@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Wed Apr 10 15:31:40 2024\n"
+"POT-Creation-Date: Sun May 26 15:56:54 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -20,42 +20,238 @@ msgstr ""
 msgid "intermediate goal solved! 🎉"
 msgstr ""
 
-#: Game.Levels.DemoWorld.L01_HelloWorld
-msgid "Hello World"
+#: Game.Levels.BasicAlgebra.L01_Intro
+msgid "A Number Equals Itself"
 msgstr ""
 
-#: Game.Levels.DemoWorld.L01_HelloWorld
+#: Game.Levels.BasicAlgebra.L01_Intro
+msgid "In this exercise, we will prove `2 = 2`\n"
+"\n"
+"`rfl` will do the job."
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L01_Intro
+msgid "`rfl` means reflexivity, which is the property that for any number `a`, `a = a`"
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L02_Introduction
+msgid "Introd"
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L02_Introduction
+msgid "`h` is a proof of `x = 2`. Our goal is to prove that `x = 2`. To do this, we should let Lean know that we have a term that 'exactly' matches that goal. \n"
+"\n"
+"Using `exact h` will accomplish that."
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L02_Introduction
+msgid ""
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L02_Introduction
+msgid "## Overview\n"
+"Having h : P and P as your goal, exact h will close the goal. exact h asserts that h is exactly whats needed to prove the goal which makes sense because h is a proof of P.(It doesn't matter what P is)"
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L02_Introduction
+msgid ""
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L03_lvl2
+msgid "Substituting Variables By Their Values"
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L03_lvl2
+msgid "We will learn how to substitute the value of a variable.\n"
+"\n"
+"This can be done using the tactic `rw` (short for rewrite).\n"
+"\n"
+"`rw` takes a term of type `A=B` and replaces all the `A`s in the goal with `B`s"
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L03_lvl2
+msgid "Do `rw [«{h}»]` or `rw [«{g}»]` and observe what happens."
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L03_lvl2
+msgid "You should use `«{h}»` now."
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L03_lvl2
+msgid "You should use `«{g}»` now."
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L03_lvl2
+msgid "Our goal is now `3 + 3 = 6` which Lean knows to be true because it's a direct consequence of the definition of the natural numbers. \n"
+"\n"
+"Notice we didn't use the fact `i` which is that `z=10`. You should ignore any assumptions you think are irrelevant to proving the goal."
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L04_Normalize
+msgid "Normalize Equations"
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L04_Normalize
+msgid "In this level, we will learn about normalizing equations using the `norm_num` tactic.\n"
+"\n"
+"`norm_num` is short for normalize numerical expressions like carrying out calculations and simplifying the expression.\n"
+"\n"
+"We will also learn how to apply a tactic to an assumption instead of the goal."
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L04_Normalize
+msgid ""
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L05_Lvl3
+msgid "some title"
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L05_Lvl3
+msgid "Here, we introduce a multiplication cancellation tactic.\n"
+"\n"
+"To be able to achieve this we need to rewrite `16` in `h` as `4 * 4` to be able to cancel the `4` on both sides of the equation , proving `y=4`. \n"
+"\n"
+"But first, we need to construct an object of type `16 = 4 * 4` (a proof) and add it to our assumptions.\n"
+"\n"
+"This is exactly what `have` does\n"
+"\n"
+"The syntax is \n"
+"`have name-of-object : type := by ...` where `...` is the proof.\n"
+"\n"
+"The type here is `16 = 4 * 4`, you can pick anything as `name-of-object` like `helper`. For the proof, we need to carry out the calculation of `4 * 4` and as in the previous level, the tactic for that is `norm_num`. Typing that as the proof will work."
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L05_Lvl3
+msgid "Try `have helper : 16=4*4 := by norm_num`"
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L05_Lvl3
+msgid "Now we want to replace the `16` in `«{helper}»` with `4 * 4`"
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L05_Lvl3
+msgid "`rw [«{helper}»] at h`"
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L05_Lvl3
+msgid "Now that we have `4` on both sides, we want to cancel this `4`\n"
+"\n"
+"This is possible using the theorem `Nat.mul_left_cancel` which has the following type :\n"
+"```\n"
+"Nat.mul_left_cancel  (np : 0 < n) (h : n * m = n * k) :\n"
+"m = k\n"
+"```\n"
+"where `n,m,k` are natural numbers.\n"
+"\n"
+"`Nat.mul_left_cancel` takes two arguments, the first `np` is a proof that what you are cancelling from both sides of the equation is positive, and the second `h` is the equation itself. Its type is the equation `h` with `n` cancelled from both sides.\n"
+"\n"
+"In our cases, we want a proof that `4` is positive which is `four_pos` and the equation we are working with which is `h`"
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L05_Lvl3
+msgid "Notice that `Nat.mul_left_cancel four_pos h` has type `y = 4`. So, `exact Nat.mul_left_cancel four_pos h` will do it."
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L05_Lvl3
+msgid ""
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L05_Lvl3
+msgid ""
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L05_Lvl3
+msgid ""
+msgstr ""
+
+#: Game.Levels.BasicAlgebra
+msgid "Basic Algebra"
+msgstr ""
+
+#: Game.Levels.Logic.L01_Intro
+msgid "Intro"
+msgstr ""
+
+#: Game.Levels.Logic.L01_Intro
+msgid "Notice that the objects of interest are now of type `Prop` (i.e proposition). A proposition is a statement/assertion that can take only one of two values, either true or false. Having `hP:P` means that we have a proof of `P`, and therefore you can think about this as `P` being true.\n"
+"\n"
+"`hP` 'exactly' matches the goal. `hP` is 'exactly' what you need to close the goal. This is to emphasize that for the tactic `exact h`, the type of h doesn't matter."
+msgstr ""
+
+#: Game.Levels.Logic.L01_Intro
+msgid "Type `exact hP`!"
+msgstr ""
+
+#: Game.Levels.Logic.L01_Intro
+msgid "Notice that `hQ` and `hR` were not used. We couldn't use them in any case because `Q` and `R` are not related to `P`. In the next levels, we will discuss how to construct new propositions from old ones which would in a sense depend on the old ones."
+msgstr ""
+
+#: Game.Levels.Logic.L02_And
+msgid "And"
+msgstr ""
+
+#: Game.Levels.Logic.L02_And
+msgid "In this level, we will learn about the `∧` logical connective, known as 'And'.\n"
+"In logic, for `P,Q` propositions, `P and Q` is true when both `P` is true and `Q` is true.\n"
+"So in Lean, to prove `P ∧ Q`, you need a proof of `P` and a proof of `Q`\n"
+"Giving these two proofs to the And introduction rule will construct a proof of `P ∧ Q`.\n"
+"\n"
+"Here's the type of `And.intro`:\n"
+"```\n"
+"  And.intro  (left : P) (right : Q) : P ∧ Q\n"
+"```\n"
+"where `P Q : Prop`"
+msgstr ""
+
+#: Game.Levels.Logic.L02_And
+msgid ""
+msgstr ""
+
+#: Game.Levels.Logic
+msgid "Logic"
+msgstr ""
+
+#: Game.Levels.SetTheoryLemmas.L01_Introduction
+msgid "Intro"
+msgstr ""
+
+#: Game.Levels.SetTheoryLemmas.L01_Introduction
+msgid "Hi"
+msgstr ""
+
+#: Game.Levels.SetTheoryLemmas.L01_Introduction
+msgid "."
+msgstr ""
+
+#: Game.Levels.SetTheoryLemmas
+msgid "Set Theory Lemmas"
+msgstr ""
+
+#: Game.Levels.SetTheoryLemmas
+msgid "This introduction is shown before one enters level 1 of the demo world. Use markdown."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.L01_Introduction
+msgid "Intro"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.L01_Introduction
 msgid "This text is shown as first message when the level is played.\n"
 "You can insert hints in the proof below. They will appear in this side panel\n"
 "depending on the proof a user provides."
 msgstr ""
 
-#: Game.Levels.DemoWorld.L01_HelloWorld
-msgid "You can either start using `«{h}»` or `«{g}»`."
-msgstr ""
-
-#: Game.Levels.DemoWorld.L01_HelloWorld
-msgid "You should use `«{h}»` now."
-msgstr ""
-
-#: Game.Levels.DemoWorld.L01_HelloWorld
-msgid "You should use `«{g}»` now."
-msgstr ""
-
-#: Game.Levels.DemoWorld.L01_HelloWorld
+#: Game.Levels.KnightsAndKnaves.L01_Introduction
 msgid "This last message appears if the level is solved."
 msgstr ""
 
-#: Game.Levels.DemoWorld
-msgid "Demo World"
-msgstr ""
-
-#: Game.Levels.DemoWorld
-msgid "This introduction is shown before one enters level 1 of the demo world. Use markdown."
+#: Game.Levels.KnightsAndKnaves
+msgid "Knights And Knaves"
 msgstr ""
 
 #: Game
-msgid "Hello World Game"
+msgid "Hello World Game111!!"
 msgstr ""
 
 #: Game

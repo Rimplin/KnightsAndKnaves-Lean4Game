@@ -1,7 +1,9 @@
-import Game.Levels.DemoWorld
-
+import Game.Levels.BasicAlgebra
+import Game.Levels.Logic
+import Game.Levels.SetTheoryLemmas
+import Game.Levels.KnightsAndKnaves
 -- Here's what we'll put on the title screen
-Title "Hello World Game"
+Title "Hello World Game111!!"
 Introduction
 "
 This text appears on the starting page where one selects the world/level to play.
@@ -23,6 +25,7 @@ CaptionShort "Game Template"
 CaptionLong "You should use this game as a template for your own game and add your own levels."
 -- Prerequisites "" -- add this if your game depends on other games
 -- CoverImage "images/cover.png"
-
+Dependency BasicAlgebra → Logic → SetTheoryLemmas → KnightsAndKnaves
 /-! Build the game. Show's warnings if it found a problem with your game. -/
+
 MakeGame
