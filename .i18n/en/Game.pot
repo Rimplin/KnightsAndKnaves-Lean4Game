@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Sun May 26 15:56:54 2024\n"
+"POT-Creation-Date: Mon May 27 12:01:41 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -96,7 +96,13 @@ msgid "In this level, we will learn about normalizing equations using the `norm_
 "\n"
 "`norm_num` is short for normalize numerical expressions like carrying out calculations and simplifying the expression.\n"
 "\n"
-"We will also learn how to apply a tactic to an assumption instead of the goal."
+"We will also learn how to apply a tactic to an assumption instead of the goal.\n"
+"\n"
+"We want to use `norm_num` on h, so simply write `norm_num at h`."
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L04_Normalize
+msgid "Now `h` looks exactly like the goal"
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L04_Normalize
@@ -146,11 +152,19 @@ msgid "Now that we have `4` on both sides, we want to cancel this `4`\n"
 "\n"
 "`Nat.mul_left_cancel` takes two arguments, the first `np` is a proof that what you are cancelling from both sides of the equation is positive, and the second `h` is the equation itself. Its type is the equation `h` with `n` cancelled from both sides.\n"
 "\n"
-"In our cases, we want a proof that `4` is positive which is `four_pos` and the equation we are working with which is `h`"
+"In our cases, we want a proof that `4` is positive which is `four_pos : 0 < 4` and the equation we are working with which is `h`"
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L05_Lvl3
 msgid "Notice that `Nat.mul_left_cancel four_pos h` has type `y = 4`. So, `exact Nat.mul_left_cancel four_pos h` will do it."
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L05_Lvl3
+msgid ""
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L05_Lvl3
+msgid ""
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L05_Lvl3
@@ -194,7 +208,7 @@ msgstr ""
 #: Game.Levels.Logic.L02_And
 msgid "In this level, we will learn about the `∧` logical connective, known as 'And'.\n"
 "In logic, for `P,Q` propositions, `P and Q` is true when both `P` is true and `Q` is true.\n"
-"So in Lean, to prove `P ∧ Q`, you need a proof of `P` and a proof of `Q`\n"
+"So in Lean, to prove `P ∧ Q`, you need a proof of `P` and a proof of `Q`.\n"
 "Giving these two proofs to the And introduction rule will construct a proof of `P ∧ Q`.\n"
 "\n"
 "Here's the type of `And.intro`:\n"
@@ -202,6 +216,10 @@ msgid "In this level, we will learn about the `∧` logical connective, known as
 "  And.intro  (left : P) (right : Q) : P ∧ Q\n"
 "```\n"
 "where `P Q : Prop`"
+msgstr ""
+
+#: Game.Levels.Logic.L02_And
+msgid "Try `exact And.intro hP hQ`"
 msgstr ""
 
 #: Game.Levels.Logic.L02_And

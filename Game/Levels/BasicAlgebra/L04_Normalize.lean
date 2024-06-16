@@ -12,6 +12,8 @@ Introduction
 `norm_num` is short for normalize numerical expressions like carrying out calculations and simplifying the expression.
 
 We will also learn how to apply a tactic to an assumption instead of the goal.
+
+We want to use `norm_num` on h, so simply write `norm_num at h`.
 "
 
 Statement (h : x + 2 = 4)
@@ -19,6 +21,7 @@ Statement (h : x + 2 = 4)
 
   {
     norm_num at h 
+    Hint "Now `h` looks exactly like the goal"
     exact h
   }
 

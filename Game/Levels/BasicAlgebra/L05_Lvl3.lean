@@ -41,7 +41,7 @@ m = k
 
   `Nat.mul_left_cancel` takes two arguments, the first `np` is a proof that what you are cancelling from both sides of the equation is positive, and the second `h` is the equation itself. Its type is the equation `h` with `n` cancelled from both sides.
 
-  In our cases, we want a proof that `4` is positive which is `four_pos` and the equation we are working with which is `h`
+  In our cases, we want a proof that `4` is positive which is `four_pos : 0 < 4` and the equation we are working with which is `h`
   "
   Hint (hidden:=true) "
   Notice that `Nat.mul_left_cancel four_pos h` has type `y = 4`. So, `exact Nat.mul_left_cancel four_pos h` will do it."
@@ -57,10 +57,12 @@ Conclusion ""
 
 /- Use these commands to add items to the game's inventory. -/
 
-NewTactic rw exact «have»
+NewTactic «have»
 
 TheoremDoc four_pos as "four_pos" in ">0"
+TheoremDoc zero_lt_four as "zero_lt_four" in ">0"
 
+TheoremDoc zero_lt_four' as "zero_lt_four'" in ">0"
 TheoremDoc Nat.mul_left_cancel as "Nat.mul_left_cancel" in "*"
-NewTheorem Nat.mul_left_cancel four_pos
+NewTheorem Nat.mul_left_cancel four_pos zero_lt_four zero_lt_four'
 -- NewDefinition Nat Add Eq
