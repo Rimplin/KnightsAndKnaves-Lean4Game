@@ -14,7 +14,16 @@ Introduction
 
 
 <img src=\"data/g/JadAbouHawili/testing-leangame/Truth-Table-And.png\"/>
+
+$\\displaystyle {\\frac {P\\lor Q,\\neg P}{\\therefore Q}}$
+
+
+
+
+$\\iff$
 "
+-- $ \\begin{tabular}{ c c c }cell1 & cell2 & cell3 \\ cell4 & cell5 & cell6 \\  cell7 & cell8 & cell9    \\end{tabular}$
+
 --
 --``
 --<img src=\"https://url.com/to/image\"/>

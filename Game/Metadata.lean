@@ -8,6 +8,8 @@ import Mathlib.Tactic.Polyrith
 import Mathlib.Algebra.Group.Basic
 import Mathlib.Tactic.ApplyFun
 import Game.LevelLemmas.Logical
+--import Mathlib.Tactic
+--import Mathlib.Util.Delaborators
 --import Mathlib
 
 --#check 2

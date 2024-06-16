@@ -1,5 +1,5 @@
 import Game.Metadata
-
+import Mathlib.Data.Nat.Parity
 
 World "" 
 Level 
@@ -10,6 +10,8 @@ Introduction
 "
 "
 
+open Nat
+
 example {x y : ℤ} (hx : x + 3 ≤ 2) (hy : y + 2 * x ≥ 3) : y > 3 :=
   calc
     y = y + 2 * x - 2 * x := by ring
@@ -18,6 +20,9 @@ example {x y : ℤ} (hx : x + 3 ≤ 2) (hy : y + 2 * x ≥ 3) : y > 3 :=
     _ ≥ 9 - 2 * 2 := by rel [hx]
     _ > 3 := by linarith
 
+
+example : ∀ m n : Nat, Even n → Even (m * n) := by
+  intros; simp [*, parity_simps]
 
 example {r s : ℚ} (h1 : s + 3 ≥ r) (h2 : s + r ≤ 3) : r ≤ 3 :=
   calc
