@@ -12,6 +12,8 @@ This level introduces automations for the kinds of algebra problems you have pre
 In fact, you have already seen automations. `norm_num` for example.
 "
 
+ring
+simp
 --omega
 --linarith
 Statement 

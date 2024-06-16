@@ -19,9 +19,9 @@ This is exactly what `have` does
 The syntax is 
 `have name-of-object : type := by ...` where `...` is the proof.
 
-The type here is `16 = 4 * 4`, you can pick anything as `name-of-object` like `helper`. For the proof, we need to carry out the calculation of `4 * 4` and as in the previous level, the tactic for that is `norm_num`. Typing that as the proof will work.
+The type here is `16 = 4 * 4`, you can pick anything as `name-of-object` like `helper`. For the proof, we need to carry out the calculation of `4 * 4` and as in the previous level, the tactic for that is `norm_num`. Typing that as the proof will work. (change this, dont mention norm_num, say like previous level, add show more help if user wrong).
 
-Alternative syntax:
+There is an alternative syntax for `have` which you can view in the right side pane. In any case, it will be introduced later on when its more convenient to use.
 `have name := ........`
 "
 
@@ -69,7 +69,7 @@ Conclusion ""
 /- Use these commands to add items to the game's inventory. -/
 
 /--
-
+[[mathlib_doc]]
 -/
 TacticDoc «have»
 NewTactic «have»
@@ -82,7 +82,7 @@ NewTactic «have»
 
   In our cases, we want a proof that `4` is positive which is `four_pos : 0 < 4` and the equation we are working with which is `h`
 -/
-/-- some info -/
+/-- [[mathlib_doc]] -/
 TheoremDoc mul_left_cancel₀ as "mul_left_cancel₀" in "*"
 NewTheorem mul_left_cancel₀ four_ne_zero
 -- NewDefinition Nat Add Eq

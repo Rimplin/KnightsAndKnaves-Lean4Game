@@ -12,13 +12,23 @@ Introduction
 
 `hP` 'exactly' matches the goal. `hP` is 'exactly' what you need to close the goal. This is to emphasize that for the tactic `exact h`, the type of h doesn't matter.
 
-<img src='data/g/hhu-adam/testing-leangame/images/Truth-Table-And.png' />
 
-<img src='images/Logic/Truth-Table-And.png' />
-
-<img src='data/g/hhu-adam/robo/images/Robo.png' />
+<img src=\"data/g/JadAbouHawili/testing-leangame/Truth-Table-And.png\"/>
 "
+--
+--``
+--<img src=\"https://url.com/to/image\"/>
+--```
+--
+--Local images can currently only be included with a hack:
+--
+--Images in the game's `images/` folder will be accessible at `data/g/[user]/[repo]/[image].[png|jpg|…]`
+--
 
+
+--<img src='data/g/hhu-adam/testing-leangame/images/Truth-Table-And.png' />
+
+--<img src='images/Logic/Truth-Table-And.png' />
 Statement (hP: P) (hQ: Q) (hR : R)
   : P := by
   {
@@ -157,6 +167,15 @@ example : ¬(P ∨ Q) ↔ (¬P ∧ ¬Q) := by
   exact h.right h_1
 --library_search
 
+example : ¬ (¬ P) ↔ P := by
+  constructor
+  · intro h
+    push_neg at h
+    exact h
+
+  · intro h
+    push_neg 
+    exact h
 
 Conclusion "Notice that `hQ` and `hR` were not used. We couldn't use them in any case because `Q` and `R` are not related to `P`. In the next levels, we will discuss how to construct new propositions from old ones which would in a sense depend on the old ones. "
 

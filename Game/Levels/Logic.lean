@@ -4,7 +4,7 @@ import Game.Levels.Logic.L03_Or
 import Game.Levels.Logic.L04_Implication
 import Game.Levels.Logic.L05_Not
 import Game.Levels.Logic.L06_contrapositive
-import Game.Levels.Logic.L07_PrincipleOfExplosion
+--import Game.Levels.Logic.L08_PrincipleOfExplosion
 
 --Image "images/Logic/Truth-Table-And.png"
 World "Logic"
@@ -25,12 +25,20 @@ In this world, you will also learn how to construct new propositions by connecti
 
 ## Logical Connectives
 It is important to note that connecting two proposition via a logic connective results in a proposition as well. This proposition, like any other proposition, has a truth value. This truth value depends on the truth value of the atomic propositions and the rules of the logical connective.
-### `And` , `∧`
+
+### Example: `And` , `∧`
+As an example, we present the `∧` logical connective.
 Let `p` denote the proposition 'The official language of France is french'(which is true).
 Let `q` denote the prposition 'The official language of Germany is german'(which is true as well).
-Combining these two prpositions together gives us the proposition `p ∧ q` which translate to English: 'The official language of Franch is french `And` the official language of Germany is german'. Because the two propositions connected by the `And` are true, then the entire statement is true as well. It's not hard to see that `p` or `q` being false would make `p ∧ q` false
+Combining these two prpositions together gives us the proposition `p ∧ q` which translated to English: 'The official language of France is french `And` the official language of Germany is german'. Because the two propositions connected by the `And` are true, then the entire statement is true as well. It's not hard to see that one of or both `p` or `q` being false would make `p ∧ q` false
 
-# truth table
+The atomic propositions in the compound proposition `p ∧ q` are : `p`, `q`. Of course, `p ∧ q` can be used to construct more complicated propositions.
+# truth table 
+The truth table of a logical connective illustrates the rule for that logical connective , i.e the truth value of the compound statement depending on the truth value of the atomic propositions.
+The following truth table illustrates this for the prevously discussed `∧` connective.
+
+`T` stands for true
+`F` stands for false
 ```
 | P | Q | P ∧ Q  |
 |---|---|--------|

@@ -2,6 +2,7 @@ import Game.Levels.BasicAlgebra
 import Game.Levels.Logic
 import Game.Levels.SetTheoryLemmas
 import Game.Levels.KnightsAndKnaves
+import Game.Levels.KnightsAndKnaves2
 -- Here's what we'll put on the title screen
 Title "Hello World Game111!!"
 Introduction
@@ -44,6 +45,13 @@ For example: Game version, Credits, Link to Github and Zulip, etc.
 Many technical details have been skipped for the sake of not getting bogged down with Lean and its mathematical library mathlib, but focus on the aspects of reasoning and proof. You can visit https://leanprover-community.github.io/mathlib4_docs/ for more information about any tactic used by searching `Mathlib.Tactic.tacticname`, and theorems.
 
 Zulip chat for lean has been a very useful resource to resolve issues when formalizing the exercises, you can visit it and ask questions in the '#new members' stream. You can also view messages without signing up. There are other streams dedicated to various topics you can check out as well. 
+
+# Editor Mode, copy and paste your solutions somewhere else
+Some levels will force you to use editor mode. Editor mode is necessary for multiline tactics. Moreover, you should get used to it because it mimics a vscode Lean environment which is the most common way Lean is run.
+
+To access editor mode, click on the icon to the left of the hamburger menu in the top right.
+You can copy and paste your solutions if you have Lean setup, or you can use the lean web editor: https://live.lean-lang.org/ if you want to experiment with your solutions outside the lean game.
+Make sure to have `import Mathlib.Tactic` at the top and then to copy whats above the editor area which is the problem statement. Each problem statement is of the form `example ... :=  by` and after that is where your solution should go.
 
 # Links 
 https://leanprover-community.github.io/

@@ -22,14 +22,16 @@ Statement (h : x = 3) (g: y = 6) (i : z=10) : x + x = y := by
 
 Conclusion "This last message appears if the level is solved."
 
-/-
-example (a b c d e f g : ℝ) (h : a + b + c = d - e + f - g) : a/2 + b/2 + c/2 = d/2 - e/2 + f/2 - g/2 :=
+
+example (a b c d e f g : ℝ) (h : a + b + c = d - e + f - g) : a/2 + b/2 + c/2 = d/2 - e/2 + f/2 - g/2 := by
+
   field_simp
+  exact h
  --   rw ← add_assoc,
  --   rw h,
  --   ring,
  -- end
--/
+
 
 
 example (y : ℕ) (h:3*y=12) : y=4 := by
