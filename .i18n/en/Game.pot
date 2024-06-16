@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Thu May 30 19:20:23 2024\n"
+"POT-Creation-Date: Sun Jun  2 18:14:51 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -141,7 +141,7 @@ msgstr ""
 #: Game.Levels.BasicAlgebra.L05_Lvl3
 msgid "Here, we introduce a multiplication cancellation tactic.\n"
 "\n"
-"To be able to achieve this we need to rewrite `16` in `h` as `4 * 4` to be able to cancel the `4` on both sides of the equation , proving `y=4`. \n"
+"To be able to achieve this, we need to rewrite `16` in `h` as `4 * 4` to be able to cancel the `4` on both sides of the equation , proving `y=4`. \n"
 "\n"
 "But first, we need to construct an object of type `16 = 4 * 4` (a proof) and add it to our assumptions.\n"
 "\n"
@@ -150,7 +150,10 @@ msgid "Here, we introduce a multiplication cancellation tactic.\n"
 "The syntax is \n"
 "`have name-of-object : type := by ...` where `...` is the proof.\n"
 "\n"
-"The type here is `16 = 4 * 4`, you can pick anything as `name-of-object` like `helper`. For the proof, we need to carry out the calculation of `4 * 4` and as in the previous level, the tactic for that is `norm_num`. Typing that as the proof will work."
+"The type here is `16 = 4 * 4`, you can pick anything as `name-of-object` like `helper`. For the proof, we need to carry out the calculation of `4 * 4` and as in the previous level, the tactic for that is `norm_num`. Typing that as the proof will work.\n"
+"\n"
+"Alternative syntax:\n"
+"`have name := ........`"
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L05_Lvl3
@@ -170,37 +173,72 @@ msgid "Now that we have `4` on both sides, we want to cancel this `4`\n"
 "\n"
 "This is possible using the theorem `Nat.mul_left_cancel` which has the following type :\n"
 "```\n"
-"Nat.mul_left_cancel  (np : 0 < n) (h : n * m = n * k) :\n"
-"m = k\n"
+"mul_left_cancel(a✝ : a * b = a * c) :\n"
+"b = c\n"
+"\n"
 "```\n"
-"where `n,m,k` are natural numbers.\n"
+"`mul_left_cancel` takes one argument which is the equation you are working with, then cancels `a` from both sides giving a proof of `b=c`. This is exactly what we want to prove the goal."
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L05_Lvl3
+msgid "Notice that `mul_left_cancel h` has type `y = 4`. So, `exact mul_left_cancel h` will do it."
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L05_Lvl3
+msgid ""
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L05_Lvl3
+msgid ""
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L05_Lvl3
+msgid "some info"
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L06_Final
+msgid "Final"
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L06_Final
+msgid "A similar problem to the previous one."
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L06_Final
+msgid "First start by substitute the value of `y` in `h`"
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L06_Final
+msgid "Now simplify `h`"
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L06_Final
+msgid "We need to isolate `3*x` on the left side of the equation. You can do this using the `eq_add_of_add_neg_eq` theorem which is of type:\n"
+"```\n"
+"eq_add_of_add_neg_eq (h : a + -c = b) : a = b + c\n"
+"```\n"
+"We can use this theorem with the `have` tactic to construct a term of type `3 * x = 12 + 6`"
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L06_Final
+msgid "Simplify `«{helper}»`"
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L06_Final
+msgid "Now, like the previous exercise, you need to construct a term of type `(18:ℤ)=3*6`"
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L06_Final
+msgid "Replace the `18` with 3*6"
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L06_Final
+msgid "Cancel `3` from both sides and your done\n"
 "\n"
-"`Nat.mul_left_cancel` takes two arguments, the first `np` is a proof that what you are cancelling from both sides of the equation is positive, and the second `h` is the equation itself. Its type is the equation `h` with `n` cancelled from both sides.\n"
-"\n"
-"In our cases, we want a proof that `4` is positive which is `four_pos : 0 < 4` and the equation we are working with which is `h`"
+"This time, use `mul_left_cancel`"
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L05_Lvl3
-msgid "Notice that `Nat.mul_left_cancel four_pos h` has type `y = 4`. So, `exact Nat.mul_left_cancel four_pos h` will do it."
-msgstr ""
-
-#: Game.Levels.BasicAlgebra.L05_Lvl3
-msgid ""
-msgstr ""
-
-#: Game.Levels.BasicAlgebra.L05_Lvl3
-msgid ""
-msgstr ""
-
-#: Game.Levels.BasicAlgebra.L05_Lvl3
-msgid ""
-msgstr ""
-
-#: Game.Levels.BasicAlgebra.L05_Lvl3
-msgid ""
-msgstr ""
-
-#: Game.Levels.BasicAlgebra.L05_Lvl3
+#: Game.Levels.BasicAlgebra.L06_Final
 msgid ""
 msgstr ""
 
@@ -237,26 +275,113 @@ msgstr ""
 #: Game.Levels.Logic.L02_And
 msgid "In this level, we will learn about the `∧` logical connective, known as 'And'.\n"
 "In logic, for `P,Q` propositions, `P and Q` is true when both `P` is true and `Q` is true.\n"
-"So in Lean, to prove `P ∧ Q`, you need a proof of `P` and a proof of `Q`.\n"
+"\n"
+"\n"
+"# Two ways of dealing with ∧ in the goal(Try both!)\n"
+"In Lean, to prove `P ∧ Q`, you need a proof of `P` and a proof of `Q`.\n"
+"\n"
+"## first way\n"
 "Giving these two proofs to the And introduction rule will construct a proof of `P ∧ Q`.\n"
 "\n"
 "Here's the type of `And.intro`:\n"
 "```\n"
 "  And.intro  (left : P) (right : Q) : P ∧ Q\n"
 "```\n"
-"where `P Q : Prop`"
+"where `P Q : Prop`\n"
+"\n"
+"## second way\n"
+"Using the `constructor` tactic will split a goal of the form `P ∧ Q` into two subgoals `P`,`Q` where you can deal with eac one separetly"
 msgstr ""
 
 #: Game.Levels.Logic.L02_And
-msgid "Try `exact And.intro hP hQ`"
+msgid "Try `exact And.intro hP hQ` or `constructor`"
+msgstr ""
+
+#: Game.Levels.Logic.L02_And
+msgid "Notice that the goal is now `P`"
+msgstr ""
+
+#: Game.Levels.Logic.L02_And
+msgid "After closing the goal `P`, you now have to close the goal `Q`"
 msgstr ""
 
 #: Game.Levels.Logic.L02_And
 msgid ""
 msgstr ""
 
+#: Game.Levels.Logic.L03_Or
+msgid "Or"
+msgstr ""
+
+#: Game.Levels.Logic.L03_Or
+msgid "In this level, you will learn about the `Or` logical connective.\n"
+"\n"
+"# truth table\n"
+"```\n"
+"| P | Q | P ∨ Q  |\n"
+"|---|---|--------|\n"
+"| T | T |   T    |\n"
+"| T | F |   T    |\n"
+"| F | T |   T    |\n"
+"| F | F |   F    |\n"
+"```\n"
+"\n"
+"From the truth table, we can see that if one of `P`,`Q` is true then `P ∨ Q` is true. \n"
+"Therefore, if we have `P ∨ Q` as our goal, it is enough to prove `P` or to prove `Q`.\n"
+"This is exactly what the `left` and `right` tactic does. \n"
+"The `left` tactic transforms our goal from `P ∨ Q` to `P` and similarily for the `right` tactic. This is because Lean understands that if `P` is true, then `P ∨ Q` is true."
+msgstr ""
+
+#: Game.Levels.Logic.L03_Or
+msgid "Use either `left` or `right`"
+msgstr ""
+
+#: Game.Levels.Logic.L03_Or
+msgid "`p` is exactly the goal"
+msgstr ""
+
+#: Game.Levels.Logic.L03_Or
+msgid "`q` is exactly the goal"
+msgstr ""
+
+#: Game.Levels.Logic.L03_Or
+msgid ""
+msgstr ""
+
 #: Game.Levels.Logic
 msgid "Logic"
+msgstr ""
+
+#: Game.Levels.Logic
+msgid "In this world, we will be dealing with `Objects` of type `Prop` i.e propositions. You can think of a proposition as a statement that is either true or false(obviously, it can't be both at the same time).\n"
+"\n"
+"Moreover, these statements are denoted by a symbol like `p`,`q`,`r`.\n"
+"\n"
+"# examples of propositions\n"
+"'The Lean theorem prover had a 4.70 release' is a true statement.\n"
+"'World War 2 ended in 1950' is a false statement. It ended in 1945.\n"
+"\n"
+"# Building New Propositions From Previous Ones\n"
+"In this world, you will also learn how to construct new propositions by connecting other propositions with logical connectives\n"
+"\n"
+"## Logical Connectives\n"
+"\n"
+"### `And` , `∧`\n"
+"Let `p` denote the proposition 'The official language of France is french'(which is true).\n"
+"Let `q` denote the prposition 'The official language of Germany is german'(which is true as well).\n"
+"Combining these two prpositions together gives us the proposition `p ∧ q` which translate to English: 'The official language of Franch is french `And` the official language of Germany is german'. Because the two propositions connected by the `And` are true, then the entire statement is true as well. It's not hard to see that `p` or `q` being false would make `p ∧ q` false\n"
+"\n"
+"# truth table\n"
+"```\n"
+"| P | Q | P ∧ Q  |\n"
+"|---|---|--------|\n"
+"| T | T |   T    |\n"
+"| T | F |   F    |\n"
+"| F | T |   F    |\n"
+"| F | F |   F    |\n"
+"```\n"
+"\n"
+"Image \"images/Logic/Truth-Table-And.png\""
 msgstr ""
 
 #: Game.Levels.SetTheoryLemmas.L01_Introduction
@@ -284,9 +409,7 @@ msgid "Intro"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.L01_Introduction
-msgid "This text is shown as first message when the level is played.\n"
-"You can insert hints in the proof below. They will appear in this side panel\n"
-"depending on the proof a user provides."
+msgid "# Xor"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.L01_Introduction
@@ -303,6 +426,8 @@ msgstr ""
 
 #: Game
 msgid "This is a gamification of mathematical proofs. Every level has a `Goal`, which is what you are trying to prove. Closing the `Goal` means you have proved theorem and there is nothing else to do.\n"
+"\n"
+"You will use the Lean theorem prover, and its mathematical library mathlib.\n"
 "\n"
 "# Right Side Pane\n"
 "Let's explain what's going on in the right side pane.\n"
@@ -327,7 +452,9 @@ msgid "Here you can put additional information about the game. It is accessible\
 "\n"
 "For example: Game version, Credits, Link to Github and Zulip, etc.\n"
 "\n"
-"Use markdown."
+"Many technical details have been skipped for the sake of not getting bogged down with Lean, but focus on the aspects of reasoning and proof. You can visit https://leanprover-community.github.io/mathlib4_docs/ for more information about any tactic used by searching `Mathlib.Tactic.tacticname`, and theorems.\n"
+"\n"
+"Zulip chat for lean has been a very useful to resolve issues when formalizing the exercises, you can visit it and ask questions in the '#new members' stream. You can also view messages without signing up"
 msgstr ""
 
 #: Game

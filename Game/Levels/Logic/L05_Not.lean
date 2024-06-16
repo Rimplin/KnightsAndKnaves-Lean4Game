@@ -2,11 +2,20 @@ import Game.Metadata
 
 
 World "Logic" 
-Level 3
+Level 5
 
-Title "Inclusive/Exclusive Or" 
+Title "Not, ¬" 
 
-Introduction "In this level, we will introduce"
+Introduction 
+"
+```
+| P |  ¬P    |
+|---|--------|
+| T |   F    |
+| F |   T    |
+```
+
+"
 
 Statement 
   :  := by

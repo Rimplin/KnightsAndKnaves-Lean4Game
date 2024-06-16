@@ -30,8 +30,9 @@ Conclusion "."
 /- Use these commands to add items to the game's inventory. -/
 
 
-NewTactic intro contradiction Set.mem_inter
+NewTactic intro contradiction 
 NewDefinition
 --NewDefinition mem_inter_iff
 -- NewLemma Nat.add_comm Nat.add_assoc
 -- NewDefinition Nat Add Eq
+NewTheorem Set.mem_inter

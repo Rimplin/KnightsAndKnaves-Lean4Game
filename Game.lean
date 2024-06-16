@@ -8,6 +8,8 @@ Introduction
 "
 This is a gamification of mathematical proofs. Every level has a `Goal`, which is what you are trying to prove. Closing the `Goal` means you have proved theorem and there is nothing else to do.
 
+You will use the Lean theorem prover, and its mathematical library mathlib.
+
 # Right Side Pane
 Let's explain what's going on in the right side pane.
 
@@ -31,7 +33,9 @@ from the starting through the drop-down menu.
 
 For example: Game version, Credits, Link to Github and Zulip, etc.
 
-Use markdown.
+Many technical details have been skipped for the sake of not getting bogged down with Lean, but focus on the aspects of reasoning and proof. You can visit https://leanprover-community.github.io/mathlib4_docs/ for more information about any tactic used by searching `Mathlib.Tactic.tacticname`, and theorems.
+
+Zulip chat for lean has been a very useful to resolve issues when formalizing the exercises, you can visit it and ask questions in the '#new members' stream. You can also view messages without signing up
 "
 
 /-! Information to be displayed on the servers landing page. -/

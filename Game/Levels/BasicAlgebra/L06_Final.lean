@@ -8,9 +8,11 @@ Title "Final"
 
 Introduction
 "
+A similar problem to the previous one.
 "
 
-variable [IsLeftCancelMul ℤ ] 
+variable [IsLeftCancelMul ℤ] 
+/-
 variable {x y : ℚ }
 
 -- a bit too complicated
@@ -23,27 +25,42 @@ example  (h : 3*x - 2*y = 12) (k : y = 3) : x = 6 := by {
    _ = 18 - (12)/(3/2) - 4*3/3 := by rw [h,k]
    _ = 6 := by ring
 }
+-/
 
-variable {x y : ℤ  }
+variable {x y : ℤ}
 Statement  (h : 3*x - 2*y = 12) (k : y = 3) : x = 6 := by {
   --calc
   --  x = 3*x -2*y -2*x +2*y := by polyrith
   --  _ =
 
+ Hint "First start by substitute the value of `y` in `h`"
  rw [k] at h
+ Hint "Now simplify `h`"
  norm_num at h
+ Hint "
+ We need to isolate `3*x` on the left side of the equation. You can do this using the `eq_add_of_add_neg_eq` theorem which is of type:
+ ```
+eq_add_of_add_neg_eq (h : a + -c = b) : a = b + c
+ ```
+ We can use this theorem with the `have` tactic to construct a term of type `3 * x = 12 + 6`
+ "
  have helper : 3*x = 12 + 6:= by exact eq_add_of_add_neg_eq h
+ Hint "Simplify `{helper}`"
  norm_num at helper
-
- have helper2 :(18:ℤ  )=3*6:= by
- { norm_num
- }
-
+ Hint "Now, like the previous exercise, you need to construct a term of type `(18:ℤ)=3*6`"
+ have helper2 :(18:ℤ)=3*6:= by norm_num
+ 
+ Hint "Replace the `18` with 3*6"
  rw [helper2] at helper
 -- exact IsLeftCancelMul.mul_left_cancel 3 x 6 helper
 -- exact mul_left_cancel ℚ IsLeftCancelMul.mul_left_cancel ℚ helper
  --exact (IsLeftCancelMul.mul_left_cancel 3 x 6) helper
+ Hint 
+ "
+ Cancel `3` from both sides and your done
 
+ This time, use `mul_left_cancel`
+ "
  exact mul_left_cancel helper
 
  --rw [exppp] at helper2  -- works fine
@@ -109,3 +126,4 @@ Conclusion
 --NewTactic rw rfl
 -- NewLemma Nat.add_comm Nat.add_assoc
 -- NewDefinition Nat Add Eq
+NewTheorem eq_add_of_add_neg_eq
