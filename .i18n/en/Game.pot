@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Sun Jun  2 18:14:51 2024\n"
+"POT-Creation-Date: Wed Jun  5 10:05:34 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -257,7 +257,13 @@ msgstr ""
 #: Game.Levels.Logic.L01_Intro
 msgid "Notice that the objects of interest are now of type `Prop` (i.e proposition). A proposition is a statement/assertion that can take only one of two values, either true or false. Having `hP:P` means that we have a proof of `P`, and therefore you can think about this as `P` being true.\n"
 "\n"
-"`hP` 'exactly' matches the goal. `hP` is 'exactly' what you need to close the goal. This is to emphasize that for the tactic `exact h`, the type of h doesn't matter."
+"`hP` 'exactly' matches the goal. `hP` is 'exactly' what you need to close the goal. This is to emphasize that for the tactic `exact h`, the type of h doesn't matter.\n"
+"\n"
+"<img src='data/g/hhu-adam/testing-leangame/images/Truth-Table-And.png' />\n"
+"\n"
+"<img src='images/Logic/Truth-Table-And.png' />\n"
+"\n"
+"<img src='data/g/hhu-adam/robo/images/Robo.png' />"
 msgstr ""
 
 #: Game.Levels.Logic.L01_Intro
@@ -348,6 +354,36 @@ msgstr ""
 msgid ""
 msgstr ""
 
+#: Game.Levels.Logic.L04_Implication
+msgid "Implication, →"
+msgstr ""
+
+#: Game.Levels.Logic.L04_Implication
+msgid "Logical implication `P → Q` is made up of two components:\n"
+"- The premise, which in this case is `P`\n"
+"- The conclusion, which in this case is `Q`\n"
+"\n"
+"# truth table\n"
+"```\n"
+"| P | Q | P → Q  |\n"
+"|---|---|--------|\n"
+"| T | T |   T    |\n"
+"| T | F |   F    |\n"
+"| F | T |   T    |\n"
+"| F | F |   T    |\n"
+"```\n"
+"\n"
+"A statement `P → Q` is false when `P` is true and `Q` false, it's true otherwise."
+msgstr ""
+
+#: Game.Levels.Logic.L04_Implication
+msgid "asdfasdfd asdfsadfdsa here"
+msgstr ""
+
+#: Game.Levels.Logic.L04_Implication
+msgid ""
+msgstr ""
+
 #: Game.Levels.Logic
 msgid "Logic"
 msgstr ""
@@ -355,7 +391,7 @@ msgstr ""
 #: Game.Levels.Logic
 msgid "In this world, we will be dealing with `Objects` of type `Prop` i.e propositions. You can think of a proposition as a statement that is either true or false(obviously, it can't be both at the same time).\n"
 "\n"
-"Moreover, these statements are denoted by a symbol like `p`,`q`,`r`.\n"
+"Moreover, these statements are denoted by a symbol like `P`,`Q`,`R`.\n"
 "\n"
 "# examples of propositions\n"
 "'The Lean theorem prover had a 4.70 release' is a true statement.\n"
@@ -396,6 +432,10 @@ msgstr ""
 msgid "."
 msgstr ""
 
+#: Game.Levels.SetTheoryLemmas.L01_Introduction
+msgid "asdf"
+msgstr ""
+
 #: Game.Levels.SetTheoryLemmas
 msgid "Set Theory Lemmas"
 msgstr ""
@@ -409,11 +449,39 @@ msgid "Intro"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.L01_Introduction
-msgid "# Xor"
+msgid "# Xor\n"
+"\n"
+"# How the proof will work(cases tactic)\n"
+"Take all possible cases for `x` and `y`. These cases are:\n"
+"```\n"
+"x ∈ Knight, y ∈ Knight\n"
+"x ∈ Knight, y ∈ Knave\n"
+"x ∈ Knave, y ∈ Knight\n"
+"x ∈ Knave, y ∈ Knave\n"
+"```"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.L01_Introduction
 msgid "This last message appears if the level is solved."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.L01_Introduction
+msgid "# Exclusive Or \n"
+"\n"
+"## Rewriting Xor'\n"
+"`Xor' p q` can be rewritten as:\n"
+"```\n"
+"(p ∧ ¬q) ∨ (¬p ∧ q)\n"
+"```\n"
+"To rewrite `Xor'` in the goal:\n"
+"```\n"
+"rw [Xor']\n"
+"```\n"
+"\n"
+"To rewrite `Xor'` in hypothesis `h`:\n"
+"```\n"
+"rw [Xor'] at h\n"
+"```"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves

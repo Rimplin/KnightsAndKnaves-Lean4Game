@@ -35,4 +35,6 @@ NewDefinition
 --NewDefinition mem_inter_iff
 -- NewLemma Nat.add_comm Nat.add_assoc
 -- NewDefinition Nat Add Eq
+/-- asdf -/
+TheoremDoc Set.mem_inter as "mem_inter" in "Set"
 NewTheorem Set.mem_inter

@@ -24,12 +24,14 @@ Logical implication `P → Q` is made up of two components:
 
 A statement `P → Q` is false when `P` is true and `Q` false, it's true otherwise.
 "
-
-Statement 
-  :  := by
+variable {P Q : Prop}
+/-- asdfasdfd asdfsadfdsa here -/
+TheoremDoc modus_ponens as "modus_ponens" in "logic"
+Statement modus_ponens (p : P) (ptoq: P → Q)
+  : Q := by
 
   {
-
+    exact ptoq p
   }
 
 
@@ -42,7 +44,16 @@ Conclusion
 
 /- Use these commands to add items to the game's inventory. -/
 
---NewTactic rw rfl
--- NewLemma Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq
+--TheoremDoc mul_left_cancel as "mul_left_cancel" in "*"
+--NewTheorem mul_left_cancel 
 
+/- asdf -/
+--TheoremDoc modus_ponens as "modus_ponens" in "logic"
+--NewTheorem modus_ponens 
+
+/- some info -/
+--TheoremDoc mul_left_cancel as "mul_left_cancel" in "*"
+--NewTheorem mul_left_cancel 
+--NewTactic rw rfl
+-- NewDefinition Nat Add Eq
+NewTheorem
