@@ -1,4 +1,5 @@
 import Game.Metadata
+import Game.Doc.doc
 
 
 World "Logic" 

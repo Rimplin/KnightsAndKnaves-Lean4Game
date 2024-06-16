@@ -1,5 +1,6 @@
 import Game.Metadata
 
+import Game.Doc.doc
 
 World "BasicAlgebra" 
 Level 5 
@@ -68,10 +69,6 @@ Conclusion ""
 
 /- Use these commands to add items to the game's inventory. -/
 
-/--
-[[mathlib_doc]]
--/
-TacticDoc «have»
 NewTactic «have»
 /- Focus on the type of `four_pos : 0 < 4`. The rest is just arguments that if you don't pass to Lean, Lean will deduce automatically. You can always learn what they mean by refering to the mathlib documentation -/
 --TheoremDoc four_pos as "four_pos" in ">0"

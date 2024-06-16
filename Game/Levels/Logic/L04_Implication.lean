@@ -54,6 +54,5 @@ Conclusion
 /- some info -/
 --TheoremDoc mul_left_cancel as "mul_left_cancel" in "*"
 --NewTheorem mul_left_cancel 
---NewTactic rw rfl
 -- NewDefinition Nat Add Eq
 NewTheorem

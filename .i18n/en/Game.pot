@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Thu Jun 13 20:07:42 2024\n"
+"POT-Creation-Date: Sun Jun 16 17:31:23 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -34,18 +34,6 @@ msgid "In this exercise, we will prove `2 = 2`\n"
 "`rfl` also applies more generally, `rfl` will close any goal of the form `A=B` where `A`,`B` are identical."
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L01_Intro
-msgid "`rfl` is short for reflexivity, which is the property that for any number `a`, `a = a`.\n"
-"\n"
-"The `rfl` tactic will close all goals of the form `X=X`, regardless of what `X` is.\n"
-"\n"
-"## examples\n"
-"```\n"
-"x - 7 = x - 7\n"
-"```\n"
-"`rfl` will close this goal."
-msgstr ""
-
 #: Game.Levels.BasicAlgebra.L02_Introduction
 msgid "Introd"
 msgstr ""
@@ -69,11 +57,6 @@ msgstr ""
 
 #: Game.Levels.BasicAlgebra.L02_Introduction
 msgid ""
-msgstr ""
-
-#: Game.Levels.BasicAlgebra.L02_Introduction
-msgid "## Overview\n"
-"Having h : P and P as your goal, exact h will close the goal. exact h asserts that h is exactly whats needed to prove the goal which makes sense because h is a proof of P.(It doesn't matter what P is)"
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L02_Introduction
@@ -145,7 +128,32 @@ msgstr ""
 msgid ""
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L04_Normalize
+#: Game.Doc.doc
+msgid "`rfl` is short for reflexivity, which is the property that for any number `a`, `a = a`.\n"
+"\n"
+"The `rfl` tactic will close all goals of the form `X=X`, regardless of what `X` is.\n"
+"\n"
+"## examples\n"
+"```\n"
+"x - 7 = x - 7\n"
+"```\n"
+"`rfl` will close this goal."
+msgstr ""
+
+#: Game.Doc.doc
+msgid "testing stuff, does importing work?!?!?!?!"
+msgstr ""
+
+#: Game.Doc.doc
+msgid "[[mathlib_doc]]"
+msgstr ""
+
+#: Game.Doc.doc
+msgid "## Overview\n"
+"Having h : P and P as your goal, exact h will close the goal. exact h asserts that h is exactly whats needed to prove the goal which makes sense because h is a proof of P.(It doesn't matter what P is)"
+msgstr ""
+
+#: Game.Doc.doc
 msgid "Normalize numerical expressions. Supports the operations `+` `-` `*` `/` `⁻¹` `^` and `%`\n"
 "over numerical types such as `ℕ`, `ℤ`, `ℚ`, `ℝ`, `ℂ`."
 msgstr ""
@@ -207,10 +215,6 @@ msgstr ""
 
 #: Game.Levels.BasicAlgebra.L05_Lvl3
 msgid ""
-msgstr ""
-
-#: Game.Levels.BasicAlgebra.L05_Lvl3
-msgid "[[mathlib_doc]]"
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L05_Lvl3

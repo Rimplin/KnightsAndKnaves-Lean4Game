@@ -38,18 +38,6 @@ Conclusion ""
 
 /- Use these commands to add items to the game's inventory. -/
 
-
-/-
-Testing rfl description1
--/
---TacticDoc rfl
-
-
-/--
-## Overview
-Having h : P and P as your goal, exact h will close the goal. exact h asserts that h is exactly whats needed to prove the goal which makes sense because h is a proof of P.(It doesn't matter what P is)
--/
-TacticDoc exact
 NewTactic exact
 -- NewLemma Nat.add_comm Nat.add_assoc
 

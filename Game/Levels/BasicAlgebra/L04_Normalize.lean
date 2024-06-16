@@ -1,6 +1,7 @@
 import Game.Metadata
 
 
+
 World "BasicAlgebra" 
 Level 4
 
@@ -36,12 +37,6 @@ Conclusion
 
 /- Use these commands to add items to the game's inventory. -/
 
-/-- 
-Normalize numerical expressions. Supports the operations `+` `-` `*` `/` `⁻¹` `^` and `%`
-over numerical types such as `ℕ`, `ℤ`, `ℚ`, `ℝ`, `ℂ`.
-
--/
-TacticDoc norm_num
 NewTactic norm_num
 -- NewLemma Nat.add_comm Nat.add_assoc
 -- NewDefinition Nat Add Eq

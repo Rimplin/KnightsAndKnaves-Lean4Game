@@ -545,15 +545,7 @@ example {x y : ℚ} (hx : x = 2) (hy : y ^ 2 = -7) : x + y ^ 2 = -5 :=
     _ = -5 := by linarith [hx]
 
 example {w : ℚ} (h1 : 3 * w + 1 = 4) : w = 1 := by  linarith  
-/--
-Testing rw description1
--/
-TacticDoc rw
 
-/--
-Testing rfl description1
--/
-TacticDoc rfl
 NewTactic rw rfl
 -- NewLemma Nat.add_comm Nat.add_assoc
 -- NewDefinition Nat Add Eq
