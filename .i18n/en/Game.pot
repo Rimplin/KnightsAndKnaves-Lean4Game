@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Thu Jun  6 18:52:44 2024\n"
+"POT-Creation-Date: Sun Jun  9 14:50:09 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -173,15 +173,17 @@ msgid "Now that we have `4` on both sides, we want to cancel this `4`\n"
 "\n"
 "This is possible using the theorem `Nat.mul_left_cancel` which has the following type :\n"
 "```\n"
-"mul_left_cancel(a✝ : a * b = a * c) :\n"
+"mul_left_cancel₀ (a✝ : a * b = a * c) :\n"
 "b = c\n"
 "\n"
 "```\n"
-"`mul_left_cancel` takes one argument which is the equation you are working with, then cancels `a` from both sides giving a proof of `b=c`. This is exactly what we want to prove the goal."
+"`mul_left_cancel₀` takes two arguments which is that what you want to cancel is not equal to zero(in this case `a`) and the equation you are working with, which then cancels `a` from both sides giving a proof of `b=c`. This is exactly what we want to prove the goal.\n"
+"\n"
+"To write the subscript in `mul_left_cancel₀`, do backslash zero."
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L05_Lvl3
-msgid "Notice that `mul_left_cancel h` has type `y = 4`. So, `exact mul_left_cancel h` will do it."
+msgid "Notice that `mul_left_cancel₀ h` has type `y = 4`. So, `exact mul_left_cancel₀ h` will do it."
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L05_Lvl3
@@ -235,7 +237,7 @@ msgstr ""
 #: Game.Levels.BasicAlgebra.L06_Final
 msgid "Cancel `3` from both sides and your done\n"
 "\n"
-"This time, use `mul_left_cancel`"
+"Remember `mul_left_cancel₀`"
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L06_Final
@@ -384,6 +386,59 @@ msgstr ""
 msgid ""
 msgstr ""
 
+#: Game.Levels.Logic.L05_Not
+msgid "Not, ¬"
+msgstr ""
+
+#: Game.Levels.Logic.L05_Not
+msgid "```\n"
+"| P |  ¬P    |\n"
+"|---|--------|\n"
+"| T |   F    |\n"
+"| F |   T    |\n"
+"```"
+msgstr ""
+
+#: Game.Levels.Logic.L05_Not
+msgid ""
+msgstr ""
+
+#: Game.Levels.Logic.L06_contrapositive
+msgid "Contrapositive"
+msgstr ""
+
+#: Game.Levels.Logic.L06_contrapositive
+msgid ""
+msgstr ""
+
+#: Game.Levels.Logic.L06_contrapositive
+msgid "testssstsgasdfa"
+msgstr ""
+
+#: Game.Levels.Logic.L06_contrapositive
+msgid ""
+msgstr ""
+
+#: Game.Levels.Logic.L07_PrincipleOfExplosion
+msgid "Principle Of Explosion"
+msgstr ""
+
+#: Game.Levels.Logic.L07_PrincipleOfExplosion
+msgid "Otherwise known as 'from contradiction, anything follows'. \n"
+"This principle asserts that if you have contradictory assumptions then you can prove anything.\n"
+"Example of contradictory assumptions:\n"
+"```\n"
+"h: P\n"
+"nh: ¬P\n"
+"```\n"
+"\n"
+"Why this principle is valid?"
+msgstr ""
+
+#: Game.Levels.Logic.L07_PrincipleOfExplosion
+msgid ""
+msgstr ""
+
 #: Game.Levels.Logic
 msgid "Logic"
 msgstr ""
@@ -522,7 +577,7 @@ msgid "Here you can put additional information about the game. It is accessible\
 "\n"
 "Many technical details have been skipped for the sake of not getting bogged down with Lean, but focus on the aspects of reasoning and proof. You can visit https://leanprover-community.github.io/mathlib4_docs/ for more information about any tactic used by searching `Mathlib.Tactic.tacticname`, and theorems.\n"
 "\n"
-"Zulip chat for lean has been a very useful to resolve issues when formalizing the exercises, you can visit it and ask questions in the '#new members' stream. You can also view messages without signing up"
+"Zulip chat for lean has been a very useful resource to resolve issues when formalizing the exercises, you can visit it and ask questions in the '#new members' stream. You can also view messages without signing up"
 msgstr ""
 
 #: Game

@@ -1,6 +1,5 @@
 import Game.Metadata
 
-
 World "BasicAlgebra" 
 Level 7
 
@@ -28,7 +27,27 @@ Statement
 
 Conclusion 
 "
-".
+"
+example (y : ℕ) (h:3*y=12) : y=4 := by
+  apply Nat.mul_left_cancel three_pos
+  rw [h]
+  norm_num
+
+
+example (y : ℕ) (h:3*y=12) : y=4 := by
+  qify at h ⊢
+  apply_fun (·/3) at h
+ -- norm_num at h
+  simp at h
+  rw [h]
+  norm_num
+
+example (y : ℕ) (h:3*y=12) : y=4 := by
+  apply_fun (3*·)
+  simp
+  exact h
+  refine mul_right_injective₀ ?_
+  norm_num
 
 /- Use these commands to add items to the game's inventory. -/
 

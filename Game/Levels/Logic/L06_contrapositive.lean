@@ -11,7 +11,8 @@ Introduction
 
 "
 variable { P Q : Prop }
-Statement  
+/-
+Statement  contrapositive
   : (P → Q) ↔ (¬Q → ¬P) := by
 
   {
@@ -26,23 +27,35 @@ Statement
    intro h
    have : P → Q:= by tauto
 
-   exact h
+   exact this
 
    --intro p 
     
   }
+-/
+/--testssstsgasdfa-/
+TheoremDoc contrapositive as "contrapositive" in "logic"
+Statement contrapositive (forward: (P → Q))
+  : (¬Q → ¬P) := by
 
+  {
+    intro nq
+    intro p
+    exact nq (forward p)
+   --intro h 
+   --intro nq
 
-
-
+   --intro p 
+   --exact nq (h p)  
+}
 
 Conclusion 
 "
-".
+"
 
 /- Use these commands to add items to the game's inventory. -/
 
---NewTactic rw rfl
+NewTactic tauto
 -- NewLemma Nat.add_comm Nat.add_assoc
 -- NewDefinition Nat Add Eq
 

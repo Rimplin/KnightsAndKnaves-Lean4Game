@@ -2,6 +2,9 @@ import Game.Levels.Logic.L01_Intro
 import Game.Levels.Logic.L02_And
 import Game.Levels.Logic.L03_Or
 import Game.Levels.Logic.L04_Implication
+import Game.Levels.Logic.L05_Not
+import Game.Levels.Logic.L06_contrapositive
+import Game.Levels.Logic.L07_PrincipleOfExplosion
 
 World "Logic"
 Title "Logic"

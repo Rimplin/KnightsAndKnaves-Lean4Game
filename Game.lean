@@ -35,7 +35,7 @@ For example: Game version, Credits, Link to Github and Zulip, etc.
 
 Many technical details have been skipped for the sake of not getting bogged down with Lean, but focus on the aspects of reasoning and proof. You can visit https://leanprover-community.github.io/mathlib4_docs/ for more information about any tactic used by searching `Mathlib.Tactic.tacticname`, and theorems.
 
-Zulip chat for lean has been a very useful to resolve issues when formalizing the exercises, you can visit it and ask questions in the '#new members' stream. You can also view messages without signing up
+Zulip chat for lean has been a very useful resource to resolve issues when formalizing the exercises, you can visit it and ask questions in the '#new members' stream. You can also view messages without signing up
 "
 
 /-! Information to be displayed on the servers landing page. -/

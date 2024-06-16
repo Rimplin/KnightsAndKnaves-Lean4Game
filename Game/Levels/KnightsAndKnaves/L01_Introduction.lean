@@ -1,5 +1,6 @@
 import Game.Metadata
-
+import Game.LevelLemmas.Logical
+namespace LevelLemmas
 open Set
 
 variable {K : Type}
@@ -49,7 +50,7 @@ Statement
     have h_4 := mem_inter h_2.left h_3.right
     rw [h] at h_4
     contradiction
-
+    have heee := contrapositive stx
     have h_4 := mem_inter h_1.left h_3.left
     rw [h] at h_4
     contradiction
@@ -87,6 +88,7 @@ Conclusion "This last message appears if the level is solved."
 --NewTheorem Xor' 
 
 NewTactic cases push_neg 
+--NewTheorem contrapositive
 --NewLemma Nat.add_comm Nat.add_assoc
 /--
 # Exclusive Or 

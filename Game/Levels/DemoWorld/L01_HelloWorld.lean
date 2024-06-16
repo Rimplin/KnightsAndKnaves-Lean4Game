@@ -34,8 +34,8 @@ example (a b c d e f g : ℝ) (h : a + b + c = d - e + f - g) : a/2 + b/2 + c/2 
 
 example (y : ℕ) (h:3*y=12) : y=4 := by
   --hint
-  omega
-  --linarith
+  --omega
+  linarith
 
 example (y : ℕ) (h:3*y=12) : y=4 := by
   --omega

@@ -1,5 +1,5 @@
 import Game.Metadata
-
+--import Game.LevelLemmas.Logical
 open Set
 
 variable {K : Type}
@@ -69,10 +69,13 @@ Statement
    }
   
    have target := contr.right.right
-   contrapose target
-   push_neg
-   push_neg at target
-
+   have helpp := contrapositive target
+   push_neg at helpp
+   --contrapose at target
+   --push_neg
+   --push_neg at target
+   --contrapose target
+   --push_neg at target
    have target2 : y ∈ Knave → x ∉ Knight := by {
      intro h 
      -- writing an implication as a disjunction...., this is tough

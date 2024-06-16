@@ -171,4 +171,5 @@ Having h : P and P as your goal, exact h will close the goal. exact h asserts th
  NewTactic «sorry»
  NewLemma Nat.add_comm Nat.add_assoc
 -/
+NewTactic intro
 NewDefinition
