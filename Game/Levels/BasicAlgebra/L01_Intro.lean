@@ -10,7 +10,10 @@ Introduction "In this exercise, we will prove `2 = 2`
 
 `rfl` will do the job.
 
-`rfl` is short for reflexivity, which is the property that for any number `a`, `a = a`"
+`rfl` is short for reflexivity, which is the property that for any number `a`, `a = a`
+
+`rfl` also applies more generally, `rfl` will close any goal of the form `A=B` where `A`,`B` are identical.
+"
 
 Statement 
   : 2 = 2 := by

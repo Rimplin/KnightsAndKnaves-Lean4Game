@@ -11,10 +11,34 @@ Title "lev 2"
 
 Introduction "Hi"
 
+open Lean Parser Elab Tactic
+elab "show_goal" t:tactic : tactic => do
+  logInfoAt t m!"⊢ {(← Elab.Tactic.getMainTarget)}"
+  evalTactic t
+
+def getTacs (t1 : Syntax) : Array Syntax :=
+  match t1 with
+    | .node _ ``tacticSeq #[.node _ ``tacticSeq1Indented #[.node _ `null args]] =>
+      args.filter (! ·.isOfKind `null)
+    | _ => #[t1]
+
+elab "show_goals1 " tacs:tacticSeq : tactic => do
+  let tacs := getTacs tacs
+  for t in tacs do
+    evalTactic (← `(tactic| show_goal $(⟨t⟩)))
+
+elab "show_goals " tacs:tacticSeq : tactic => do
+  let tacs := getTacs tacs
+  let _ ← tacs.mapM fun t => do
+    match t with
+      | `(tactic| · $ts) => evalTactic (← `(tactic| · show_goals1 $(⟨ts.raw⟩)))
+      | _ => evalTactic (← `(tactic| show_goals1 $(⟨t⟩)))
+
 --Raymond Smullyan, what is the name of this book, problem 28
 Statement 
   --sets
-  (Knight : Set K ) (Knave : Set K)
+  (Knight : Set K ) (Knave : Set K) 
+  --(uni : Knight ∪ Knave) 
   (h : Knight ∩ Knave = ∅ )
   (h1 : Xor' (x ∈ Knight) (x ∈ Knave) ) 
   (h2: Xor' (y ∈ Knight)  (y ∈ Knave) )
@@ -99,6 +123,7 @@ theorem organized
 --goal
   : x ∈ Knight ∧ y ∈ Knave:= by
 { 
+show_goals
 cases h1 with
 | inl h_1 => 
   obtain ⟨xKnight, xnKnave⟩ := h_1 
@@ -154,7 +179,26 @@ example : ¬(P ∨ Q) ↔ (¬P ∧ ¬Q) := by
 
  
 
+
+variable {P Q : Prop}
 example : ¬(P ∨ Q) ↔ (¬P ∧ ¬Q) := by
+  show_goals  -- <---  note the `show_goals` here!
+  constructor
+  · intro h
+    constructor
+    · intro hp
+      exact h (Or.inl hp)
+    · intro hq
+      exact h (Or.inr hq)
+
+  · intro h
+    intro h1
+    cases h1 with
+    | inl h_1 => exact h.left h_1
+    | inr h_1 => exact h.right h_1
+
+example : ¬(P ∨ Q) ↔ (¬P ∧ ¬Q) := by
+  show_goals
   constructor
 
   intro h
@@ -173,6 +217,7 @@ example : ¬(P ∨ Q) ↔ (¬P ∧ ¬Q) := by
   exact h.right h_1
 
 example : ¬(P ∨ Q) ↔ (¬P ∧ ¬Q) := by
+  show_goals
   constructor
   · intro h
     constructor
@@ -188,6 +233,7 @@ example : ¬(P ∨ Q) ↔ (¬P ∧ ¬Q) := by
 
 
 example : ¬(P ∨ Q) ↔ (¬P ∧ ¬Q) := by
+  show_goals
   constructor
   case mp =>
     intro h
@@ -236,6 +282,7 @@ example : ¬(P ∨ Q) ↔ (¬P ∧ ¬Q) where
 
 
 example (h : p ∨ q) : q ∨ p := by
+  show_goals
   cases h with
   | inl hp => exact Or.inr hp
   | inr hq => exact Or.inl hq
@@ -249,5 +296,4 @@ Conclusion "."
 -- NewLemma Nat.add_comm Nat.add_assoc
 -- NewDefinition Nat Add Eq
 
-
-
+NewTactic show_goals obtain

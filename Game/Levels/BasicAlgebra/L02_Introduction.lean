@@ -9,10 +9,15 @@ Title "Introd"
 Introduction "
 In this level, we have `Objects`, `Assumptions`, and the `Goal`.
 
-For this world, objects will always be variables we are working with. `x : ℕ` means that `x` is a variable of type natural number(positive numbers). 
+# Objects
+For this world, objects will always be unknown numbers, or variables we are working with. Anything after the `:` denotes the type of whats before the `:`. 
 
-As for the assumptions, we have `h` which is a proof of `x = 2`. 
+Here, `x`  denotes a number but we don't know which number it is. The `:ℕ` in `x : ℕ` means that `x` is a variable of type natural number(positive numbers like `1`,`2`,`3`, and so on...). 
 
+# Assumptions
+As for the assumptions, we have `h: x=2` which means that `h` is an object of type `x=2`. This essentially means that `h` is an object asserting that the statement `x=2` is true or in other words, is a proof of `x=2`.
+
+# Goal
 Our goal is to prove that `x = 2`. To do this, we should let Lean know that we have a term that 'exactly' matches that goal. Notice that we do, that term is `h`!
 
 Using `exact h` will do."

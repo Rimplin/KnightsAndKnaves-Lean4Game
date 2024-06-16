@@ -27,26 +27,35 @@ Alternative syntax:
 
 --variable [IsLeftCancelMul ℕ] 
 Statement (h : 4*y=16) : y = 4 := by{
+  --Template
+ -- have helper: 16=4*4 := by norm_num
+ -- --Hole
+ -- rw [helper] at h
+ -- exact mul_left_cancel₀ four_ne_zero h
+ 
   Hint (hidden := true) (strict := true) "Try `have helper : 16=4*4 := by norm_num`" 
   have helper : 16=4*4 := by norm_num 
-  Hint "Now we want to replace the `16` in `{helper}` with `4 * 4`"
+  Hint "Now we want to replace the `16` in `h` with `4 * 4`. In other words, we want to do `rw [{helper}]` and have it be applied on h. "
   Hint (hidden := true) "`rw [{helper}] at h`" 
   rw [helper] at h 
   Hint "
   Now that we have `4` on both sides, we want to cancel this `4`
 
-  This is possible using the theorem `Nat.mul_left_cancel` which has the following type :
+  This is possible using the theorem `mul_left_cancel₀` which has the following type :
   ```
-  mul_left_cancel₀ (a✝ : a * b = a * c) :
-  b = c
-
+  mul_left_cancel₀(ha : a ≠ 0) (h : a * b = a * c) : b = c
   ```
-  `mul_left_cancel₀` takes two arguments which is that what you want to cancel is not equal to zero(in this case `a`) and the equation you are working with, which then cancels `a` from both sides giving a proof of `b=c`. This is exactly what we want to prove the goal.
+  `mul_left_cancel₀` takes two arguments which is:
+   - a proof that what you want to cancel is not equal to zero (in this case `a`).
+   - the equation you are working with.
+   The theorem then cancels `a` from both sides giving a proof of `b=c`. This is exactly what we want to prove the goal.
 
   To write the subscript in `mul_left_cancel₀`, do backslash zero.
+
+  You should have noticed that a proof of `4≠0` was not mentioned previously, and you will not have to prove this. You can use the term `four_ne_zero : 4≠0`.
   "
   Hint (hidden:=true) "
-  Notice that `mul_left_cancel₀ h` has type `y = 4`. So, `exact mul_left_cancel₀ h` will do it."
+  Notice that `mul_left_cancel₀ four_ne_zero h` has type `y = 4`. So, `exact mul_left_cancel₀ four_ne_zero h` will do it."
   exact mul_left_cancel₀ four_ne_zero h
 }
 
@@ -64,7 +73,6 @@ Conclusion ""
 -/
 TacticDoc «have»
 NewTactic «have»
-
 /- Focus on the type of `four_pos : 0 < 4`. The rest is just arguments that if you don't pass to Lean, Lean will deduce automatically. You can always learn what they mean by refering to the mathlib documentation -/
 --TheoremDoc four_pos as "four_pos" in ">0"
 
@@ -76,5 +84,5 @@ NewTactic «have»
 -/
 /-- some info -/
 TheoremDoc mul_left_cancel₀ as "mul_left_cancel₀" in "*"
-NewTheorem mul_left_cancel₀  
+NewTheorem mul_left_cancel₀ four_ne_zero
 -- NewDefinition Nat Add Eq

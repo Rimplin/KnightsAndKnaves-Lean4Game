@@ -86,18 +86,18 @@ example {P Q R : Prop} (h1 : P → Q) (h2 : P → R) (h3 : P) : Q ∧ R := by
 example : ¬(P ∧ ¬ P) := by
   intro h
   have h1 := h.left
-  have h2 := h.right 
+  have h2 := h.right
   exact h2 h1
 
 example (h1 : P ↔ ¬ Q) (h2 : Q) : ¬ P := by
   obtain ⟨p,nq⟩ := h1
-  intro h 
-  exact (p h) h2 
-
+  intro h
+  exact (p h) h2
+#check 2
 
 example (h1 : P ∨ Q) (h2 : Q → P) : P := by
-  cases h1 
-  exact h 
+  cases h1
+  exact h
   exact h2 h
 
 example (h : P ↔ Q) : (P ∧ R) ↔ (Q ∧ R) := by
@@ -108,32 +108,32 @@ constructor
 intro h
 exact And.intro (pq h.left) h.right
 --swap
-intro h 
+intro h
 exact And.intro (qp h.left) h.right
 
 example : (P ∧ P) ↔ P := by
   constructor
 
-  intro h 
-  exact h.left 
+  intro h
+  exact h.left
 
-  intro h 
+  intro h
   exact And.intro h h
 
 example : (P ∨ Q) ↔ (Q ∨ P) := by
-  constructor 
-
-  intro h
-  cases h 
-  right
-  exact h_1 
-  left 
-  exact h_1 
+  constructor
 
   intro h
   cases h
   right
-  exact h_1 
+  exact h_1
+  left
+  exact h_1
+
+  intro h
+  cases h
+  right
+  exact h_1
   left
   exact h_1
 
@@ -142,20 +142,22 @@ example : ¬(P ∨ Q) ↔ (¬P ∧ ¬Q) := by
   constructor
 
   intro h
-  constructor 
+  constructor
 
-  intro h1 
+  intro h1
   exact h (Or.inl h1)
- 
-  intro h1 
+
+  intro h1
   exact h (Or.inr h1)
-  
+
   intro h
-  intro h1 
+  intro h1
   cases h1
   exact h.left h_1
   exact h.right h_1
---library_search 
+--library_search
+
+
 Conclusion "Notice that `hQ` and `hR` were not used. We couldn't use them in any case because `Q` and `R` are not related to `P`. In the next levels, we will discuss how to construct new propositions from old ones which would in a sense depend on the old ones. "
 
 /- Use these commands to add items to the game's inventory. -/

@@ -21,7 +21,7 @@ Statement (h : x + 2 = 4)
 
   {
     norm_num at h 
-    Hint "Now `h` looks exactly like the goal. Let Lean know!!"
+    Hint "This should look familiar to a previous exercise. Now `h` looks exactly like the goal. Let Lean know!!"
     Hint (hidden:=true) "Remember the `exact` tactic, try `exact h`."
     exact h
   }

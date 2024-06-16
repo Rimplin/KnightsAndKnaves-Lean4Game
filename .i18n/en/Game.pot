@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Sun Jun  9 14:50:09 2024\n"
+"POT-Creation-Date: Wed Jun 12 15:32:55 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -29,7 +29,9 @@ msgid "In this exercise, we will prove `2 = 2`\n"
 "\n"
 "`rfl` will do the job.\n"
 "\n"
-"`rfl` is short for reflexivity, which is the property that for any number `a`, `a = a`"
+"`rfl` is short for reflexivity, which is the property that for any number `a`, `a = a`\n"
+"\n"
+"`rfl` also applies more generally, `rfl` will close any goal of the form `A=B` where `A`,`B` are identical."
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L01_Intro
@@ -51,10 +53,15 @@ msgstr ""
 #: Game.Levels.BasicAlgebra.L02_Introduction
 msgid "In this level, we have `Objects`, `Assumptions`, and the `Goal`.\n"
 "\n"
-"For this world, objects will always be variables we are working with. `x : ℕ` means that `x` is a variable of type natural number(positive numbers). \n"
+"# Objects\n"
+"For this world, objects will always be unknown numbers, or variables we are working with. Anything after the `:` denotes the type of whats before the `:`. \n"
 "\n"
-"As for the assumptions, we have `h` which is a proof of `x = 2`. \n"
+"Here, `x`  denotes a number but we don't know which number it is. The `:ℕ` in `x : ℕ` means that `x` is a variable of type natural number(positive numbers like `1`,`2`,`3`, and so on...). \n"
 "\n"
+"# Assumptions\n"
+"As for the assumptions, we have `h: x=2` which means that `h` is an object of type `x=2`. This essentially means that `h` is an object asserting that the statement `x=2` is true or in other words, is a proof of `x=2`.\n"
+"\n"
+"# Goal\n"
 "Our goal is to prove that `x = 2`. To do this, we should let Lean know that we have a term that 'exactly' matches that goal. Notice that we do, that term is `h`!\n"
 "\n"
 "Using `exact h` will do."
@@ -82,7 +89,8 @@ msgid "We will learn how to substitute a variable with its value, for example ho
 "\n"
 "This can be done using the tactic `rw` (short for rewrite).\n"
 "\n"
-"`rw` takes a term of type `A=B` and replaces all the `A`s in the goal with `B`s"
+"`rw` takes a term of type `A=B` and replaces all the `A`s in the goal with `B`s.\n"
+"So `rw [h]` where `h : x=3` will replace all the `x`s of the goal with `3`."
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L03_lvl2
@@ -94,13 +102,21 @@ msgid "You should use `«{h}»` now."
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L03_lvl2
+msgid "`rw [h]`"
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L03_lvl2
 msgid "You should use `«{g}»` now."
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L03_lvl2
-msgid "Our goal is now `3 + 3 = 6` which Lean knows to be true because it's a direct consequence of the definition of the natural numbers. \n"
+msgid "`rw [g]`"
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L03_lvl2
+msgid "Our goal is now `3 + 3 = 6` which Lean knows to be true because it's a direct consequence of the definition of the natural numbers. So, there's nothing left to do. \n"
 "\n"
-"Notice we didn't use the fact `i` which is that `z=10`. You should ignore any assumptions you think are irrelevant to proving the goal."
+"Notice we didn't use the fact `i: z=10` which is that `z=10`. This will not be the case for the majority of exercises, you will need to use all the assumptions you have (explicitly or implicity)."
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L04_Normalize
@@ -118,7 +134,7 @@ msgid "In this level, we will learn about normalizing equations using the `norm_
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L04_Normalize
-msgid "Now `h` looks exactly like the goal. Let Lean know!!"
+msgid "This should look familiar to a previous exercise. Now `h` looks exactly like the goal. Let Lean know!!"
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L04_Normalize
@@ -161,7 +177,7 @@ msgid "Try `have helper : 16=4*4 := by norm_num`"
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L05_Lvl3
-msgid "Now we want to replace the `16` in `«{helper}»` with `4 * 4`"
+msgid "Now we want to replace the `16` in `h` with `4 * 4`. In other words, we want to do `rw [«{helper}»]` and have it be applied on h."
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L05_Lvl3
@@ -171,19 +187,22 @@ msgstr ""
 #: Game.Levels.BasicAlgebra.L05_Lvl3
 msgid "Now that we have `4` on both sides, we want to cancel this `4`\n"
 "\n"
-"This is possible using the theorem `Nat.mul_left_cancel` which has the following type :\n"
+"This is possible using the theorem `mul_left_cancel₀` which has the following type :\n"
 "```\n"
-"mul_left_cancel₀ (a✝ : a * b = a * c) :\n"
-"b = c\n"
-"\n"
+"mul_left_cancel₀(ha : a ≠ 0) (h : a * b = a * c) : b = c\n"
 "```\n"
-"`mul_left_cancel₀` takes two arguments which is that what you want to cancel is not equal to zero(in this case `a`) and the equation you are working with, which then cancels `a` from both sides giving a proof of `b=c`. This is exactly what we want to prove the goal.\n"
+"`mul_left_cancel₀` takes two arguments which is:\n"
+"- a proof that what you want to cancel is not equal to zero (in this case `a`).\n"
+"- the equation you are working with.\n"
+"The theorem then cancels `a` from both sides giving a proof of `b=c`. This is exactly what we want to prove the goal.\n"
 "\n"
-"To write the subscript in `mul_left_cancel₀`, do backslash zero."
+"To write the subscript in `mul_left_cancel₀`, do backslash zero.\n"
+"\n"
+"You should have noticed that a proof of `4≠0` was not mentioned previously, and you will not have to prove this. You can use the term `four_ne_zero : 4≠0`."
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L05_Lvl3
-msgid "Notice that `mul_left_cancel₀ h` has type `y = 4`. So, `exact mul_left_cancel₀ h` will do it."
+msgid "Notice that `mul_left_cancel₀ four_ne_zero h` has type `y = 4`. So, `exact mul_left_cancel₀ four_ne_zero h` will do it."
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L05_Lvl3
@@ -449,8 +468,9 @@ msgid "In this world, we will be dealing with `Objects` of type `Prop` i.e propo
 "Moreover, these statements are denoted by a symbol like `P`,`Q`,`R`.\n"
 "\n"
 "# examples of propositions\n"
-"'The Lean theorem prover had a 4.70 release' is a true statement.\n"
-"'World War 2 ended in 1950' is a false statement. It ended in 1945.\n"
+"'The Lean theorem prover had a 4.70 release' is a true statement. After denoting this statement with `P`, we can say that `P` is true.\n"
+"\n"
+"'World War 2 ended in 1950' is a false statement. It ended in 1945. After denoting this statement with `Q`, we can say that `Q` is false.\n"
 "\n"
 "# Building New Propositions From Previous Ones\n"
 "In this world, you will also learn how to construct new propositions by connecting other propositions with logical connectives\n"
@@ -470,9 +490,7 @@ msgid "In this world, we will be dealing with `Objects` of type `Prop` i.e propo
 "| T | F |   F    |\n"
 "| F | T |   F    |\n"
 "| F | F |   F    |\n"
-"```\n"
-"\n"
-"Image \"images/Logic/Truth-Table-And.png\""
+"```"
 msgstr ""
 
 #: Game.Levels.SetTheoryLemmas.L01_Introduction
@@ -539,6 +557,18 @@ msgid "# Exclusive Or \n"
 "```"
 msgstr ""
 
+#: Game.Levels.KnightsAndKnaves.L02_Anoter
+msgid "lev 2"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.L02_Anoter
+msgid "Hi"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.L02_Anoter
+msgid "."
+msgstr ""
+
 #: Game.Levels.KnightsAndKnaves
 msgid "Knights And Knaves"
 msgstr ""
@@ -548,7 +578,7 @@ msgid "Hello World Game111!!"
 msgstr ""
 
 #: Game
-msgid "This is a gamification of mathematical proofs. Every level has a `Goal`, which is what you are trying to prove. Closing the `Goal` means you have proved theorem and there is nothing else to do.\n"
+msgid "This is a gamification of mathematical proofs. Every level has a `Goal`, which is what you are trying to prove. Closing the `Goal` means you have proved the theorem and there is nothing else to do.\n"
 "\n"
 "You will use the Lean theorem prover, and its mathematical library mathlib.\n"
 "\n"
@@ -559,14 +589,22 @@ msgid "This is a gamification of mathematical proofs. Every level has a `Goal`, 
 "\n"
 "## Tactics\n"
 "In this puzzle game, you will use tactics to manipulate the `Goal` and close it, essentially proving the `Goal`. Tactics will be incrementally introduced, and tactics that haven't been introduced yet will have a lock icon which means you can't use them yet. \n"
+"\n"
 "## Definitions\n"
-"The point of this game is not just to showcase lean, but also to learn some mathematics. Relevant definitions will be displayed here\n"
+"The point of this game is not just to showcase ***Lean***, but also to learn some mathematics. Relevant definitions will be displayed here\n"
 "\n"
 "## Theorems\n"
 "Here is listed theorems to use throughout the levels. Some you would have proved in previous levels and others are presented for you to use but without proof.\n"
 "\n"
 "# Level Structure\n"
-"Within every level, the `Objects`, `Assumptions`, and `Goal` for the current level will be display with a text input to execute tactics accordingly. Click on the main node in the `Basic Algebra` world to see what that looks like!"
+"Within every level, the `Objects`, `Assumptions`, and `Goal` for the current level. This is called the initial proof state. There will also be a text input to execute tactics accordingly.\n"
+"***Lean*** tracks the proof state as you execute tactics. \n"
+"You will execute tactics one by one until Lean tells you that have closed the goal.\n"
+"\n"
+"# More info\n"
+"You can click the hamburger menu in the top right then 'Game Info' for more information.\n"
+"\n"
+"# Terminlogy"
 msgstr ""
 
 #: Game
@@ -575,9 +613,19 @@ msgid "Here you can put additional information about the game. It is accessible\
 "\n"
 "For example: Game version, Credits, Link to Github and Zulip, etc.\n"
 "\n"
-"Many technical details have been skipped for the sake of not getting bogged down with Lean, but focus on the aspects of reasoning and proof. You can visit https://leanprover-community.github.io/mathlib4_docs/ for more information about any tactic used by searching `Mathlib.Tactic.tacticname`, and theorems.\n"
+"Many technical details have been skipped for the sake of not getting bogged down with Lean and its mathematical library mathlib, but focus on the aspects of reasoning and proof. You can visit https://leanprover-community.github.io/mathlib4_docs/ for more information about any tactic used by searching `Mathlib.Tactic.tacticname`, and theorems.\n"
 "\n"
-"Zulip chat for lean has been a very useful resource to resolve issues when formalizing the exercises, you can visit it and ask questions in the '#new members' stream. You can also view messages without signing up"
+"Zulip chat for lean has been a very useful resource to resolve issues when formalizing the exercises, you can visit it and ask questions in the '#new members' stream. You can also view messages without signing up. There are other streams dedicated to various topics you can check out as well. \n"
+"\n"
+"# Links \n"
+"https://leanprover-community.github.io/\n"
+"https://lean-lang.org/\n"
+"https://lean-lang.org/documentation/\n"
+"\n"
+"https://github.com/leanprover-community/mathlib4\n"
+"\n"
+"https://leanprover.zulipchat.com/\n"
+"https://zulip.com/case-studies/lean/"
 msgstr ""
 
 #: Game
