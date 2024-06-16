@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Mon May 27 12:01:41 2024\n"
+"POT-Creation-Date: Thu May 30 19:20:23 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -27,11 +27,21 @@ msgstr ""
 #: Game.Levels.BasicAlgebra.L01_Intro
 msgid "In this exercise, we will prove `2 = 2`\n"
 "\n"
-"`rfl` will do the job."
+"`rfl` will do the job.\n"
+"\n"
+"`rfl` is short for reflexivity, which is the property that for any number `a`, `a = a`"
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L01_Intro
-msgid "`rfl` means reflexivity, which is the property that for any number `a`, `a = a`"
+msgid "`rfl` is short for reflexivity, which is the property that for any number `a`, `a = a`.\n"
+"\n"
+"The `rfl` tactic will close all goals of the form `X=X`, regardless of what `X` is.\n"
+"\n"
+"## examples\n"
+"```\n"
+"x - 7 = x - 7\n"
+"```\n"
+"`rfl` will close this goal."
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L02_Introduction
@@ -39,9 +49,15 @@ msgid "Introd"
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L02_Introduction
-msgid "`h` is a proof of `x = 2`. Our goal is to prove that `x = 2`. To do this, we should let Lean know that we have a term that 'exactly' matches that goal. \n"
+msgid "In this level, we have `Objects`, `Assumptions`, and the `Goal`.\n"
 "\n"
-"Using `exact h` will accomplish that."
+"For this world, objects will always be variables we are working with. `x : ℕ` means that `x` is a variable of type natural number(positive numbers). \n"
+"\n"
+"As for the assumptions, we have `h` which is a proof of `x = 2`. \n"
+"\n"
+"Our goal is to prove that `x = 2`. To do this, we should let Lean know that we have a term that 'exactly' matches that goal. Notice that we do, that term is `h`!\n"
+"\n"
+"Using `exact h` will do."
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L02_Introduction
@@ -62,7 +78,7 @@ msgid "Substituting Variables By Their Values"
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L03_lvl2
-msgid "We will learn how to substitute the value of a variable.\n"
+msgid "We will learn how to substitute a variable with its value, for example how to substitiute `x` by `2` if we know that `x=2`.\n"
 "\n"
 "This can be done using the tactic `rw` (short for rewrite).\n"
 "\n"
@@ -98,15 +114,24 @@ msgid "In this level, we will learn about normalizing equations using the `norm_
 "\n"
 "We will also learn how to apply a tactic to an assumption instead of the goal.\n"
 "\n"
-"We want to use `norm_num` on h, so simply write `norm_num at h`."
+"We want to use `norm_num` on `h`, so simply write `norm_num at h`."
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L04_Normalize
-msgid "Now `h` looks exactly like the goal"
+msgid "Now `h` looks exactly like the goal. Let Lean know!!"
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L04_Normalize
+msgid "Remember the `exact` tactic, try `exact h`."
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L04_Normalize
 msgid ""
+msgstr ""
+
+#: Game.Levels.BasicAlgebra.L04_Normalize
+msgid "Normalize numerical expressions. Supports the operations `+` `-` `*` `/` `⁻¹` `^` and `%`\n"
+"over numerical types such as `ℕ`, `ℤ`, `ℚ`, `ℝ`, `ℂ`."
 msgstr ""
 
 #: Game.Levels.BasicAlgebra.L05_Lvl3
@@ -181,6 +206,10 @@ msgstr ""
 
 #: Game.Levels.BasicAlgebra
 msgid "Basic Algebra"
+msgstr ""
+
+#: Game.Levels.BasicAlgebra
+msgid "In this world, you will learn how to solve equations."
 msgstr ""
 
 #: Game.Levels.Logic.L01_Intro
@@ -273,8 +302,23 @@ msgid "Hello World Game111!!"
 msgstr ""
 
 #: Game
-msgid "This text appears on the starting page where one selects the world/level to play.\n"
-"You can use markdown."
+msgid "This is a gamification of mathematical proofs. Every level has a `Goal`, which is what you are trying to prove. Closing the `Goal` means you have proved theorem and there is nothing else to do.\n"
+"\n"
+"# Right Side Pane\n"
+"Let's explain what's going on in the right side pane.\n"
+"\n"
+"Anything you click on will display an overview and some examples. Refer back to it whenever you need to.\n"
+"\n"
+"## Tactics\n"
+"In this puzzle game, you will use tactics to manipulate the `Goal` and close it, essentially proving the `Goal`. Tactics will be incrementally introduced, and tactics that haven't been introduced yet will have a lock icon which means you can't use them yet. \n"
+"## Definitions\n"
+"The point of this game is not just to showcase lean, but also to learn some mathematics. Relevant definitions will be displayed here\n"
+"\n"
+"## Theorems\n"
+"Here is listed theorems to use throughout the levels. Some you would have proved in previous levels and others are presented for you to use but without proof.\n"
+"\n"
+"# Level Structure\n"
+"Within every level, the `Objects`, `Assumptions`, and `Goal` for the current level will be display with a text input to execute tactics accordingly. Click on the main node in the `Basic Algebra` world to see what that looks like!"
 msgstr ""
 
 #: Game

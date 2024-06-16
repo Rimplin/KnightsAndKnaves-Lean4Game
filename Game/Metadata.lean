@@ -5,6 +5,7 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Tactic.Linarith.Frontend
 import Mathlib.Tactic.Qify
 import Mathlib.Tactic.Polyrith
+import Mathlib.Algebra.Group.Basic
 /-! Use this file to add things that should be available in all levels.
 
 For example, this demo imports the mathlib tactics

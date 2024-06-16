@@ -6,7 +6,7 @@ Level 3
 
 Title "Substituting Variables By Their Values" 
 
-Introduction "We will learn how to substitute the value of a variable.
+Introduction "We will learn how to substitute a variable with its value, for example how to substitiute `x` by `2` if we know that `x=2`.
 
 This can be done using the tactic `rw` (short for rewrite).
 

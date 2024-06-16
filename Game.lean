@@ -6,8 +6,23 @@ import Game.Levels.KnightsAndKnaves
 Title "Hello World Game111!!"
 Introduction
 "
-This text appears on the starting page where one selects the world/level to play.
-You can use markdown.
+This is a gamification of mathematical proofs. Every level has a `Goal`, which is what you are trying to prove. Closing the `Goal` means you have proved theorem and there is nothing else to do.
+
+# Right Side Pane
+Let's explain what's going on in the right side pane.
+
+Anything you click on will display an overview and some examples. Refer back to it whenever you need to.
+
+## Tactics
+In this puzzle game, you will use tactics to manipulate the `Goal` and close it, essentially proving the `Goal`. Tactics will be incrementally introduced, and tactics that haven't been introduced yet will have a lock icon which means you can't use them yet. 
+## Definitions
+The point of this game is not just to showcase lean, but also to learn some mathematics. Relevant definitions will be displayed here
+
+## Theorems
+Here is listed theorems to use throughout the levels. Some you would have proved in previous levels and others are presented for you to use but without proof.
+
+# Level Structure
+Within every level, the `Objects`, `Assumptions`, and `Goal` for the current level will be display with a text input to execute tactics accordingly. Click on the main node in the `Basic Algebra` world to see what that looks like!
 "
 
 Info "

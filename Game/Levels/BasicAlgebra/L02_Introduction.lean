@@ -6,9 +6,16 @@ Level 2
 
 Title "Introd" 
 
-Introduction "`h` is a proof of `x = 2`. Our goal is to prove that `x = 2`. To do this, we should let Lean know that we have a term that 'exactly' matches that goal. 
+Introduction "
+In this level, we have `Objects`, `Assumptions`, and the `Goal`.
 
-Using `exact h` will accomplish that."
+For this world, objects will always be variables we are working with. `x : ℕ` means that `x` is a variable of type natural number(positive numbers). 
+
+As for the assumptions, we have `h` which is a proof of `x = 2`. 
+
+Our goal is to prove that `x = 2`. To do this, we should let Lean know that we have a term that 'exactly' matches that goal. Notice that we do, that term is `h`!
+
+Using `exact h` will do."
 
 variable (x : ℕ )
 Statement (h : x=2)
