@@ -2,7 +2,7 @@ import Game.Metadata
 
 import Game.Doc.doc
 
-World "BasicAlgebra" 
+World "EquationalReasoning" 
 Level 5 
 
 Title "some title" 

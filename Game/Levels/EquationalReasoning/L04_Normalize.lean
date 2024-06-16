@@ -2,7 +2,7 @@ import Game.Metadata
 
 
 
-World "BasicAlgebra" 
+World "EquationalReasoning" 
 Level 4
 
 Title "Normalize Equations" 

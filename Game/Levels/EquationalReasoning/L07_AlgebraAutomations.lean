@@ -1,6 +1,6 @@
 import Game.Metadata
 
-World "BasicAlgebra" 
+World "EquationalReasoning" 
 Level 7
 
 Title "Automations" 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Sun Jun 16 18:35:21 2024\n"
+"POT-Creation-Date: Sun Jun 16 20:16:29 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -50,11 +50,11 @@ msgid "Normalize numerical expressions. Supports the operations `+` `-` `*` `/` 
 "over numerical types such as `ℕ`, `ℤ`, `ℚ`, `ℝ`, `ℂ`."
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L01_Intro
+#: Game.Levels.EquationalReasoning.L01_Intro
 msgid "A Number Equals Itself"
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L01_Intro
+#: Game.Levels.EquationalReasoning.L01_Intro
 msgid "In this exercise, we will prove `2 = 2`\n"
 "\n"
 "`rfl` will do the job.\n"
@@ -64,11 +64,11 @@ msgid "In this exercise, we will prove `2 = 2`\n"
 "`rfl` also applies more generally, `rfl` will close any goal of the form `A=B` where `A`,`B` are identical."
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L02_Introduction
+#: Game.Levels.EquationalReasoning.L02_Introduction
 msgid "Introd"
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L02_Introduction
+#: Game.Levels.EquationalReasoning.L02_Introduction
 msgid "In this level, we have `Objects`, `Assumptions`, and the `Goal`.\n"
 "\n"
 "# Objects\n"
@@ -85,19 +85,19 @@ msgid "In this level, we have `Objects`, `Assumptions`, and the `Goal`.\n"
 "Using `exact h` will do."
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L02_Introduction
+#: Game.Levels.EquationalReasoning.L02_Introduction
 msgid ""
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L02_Introduction
+#: Game.Levels.EquationalReasoning.L02_Introduction
 msgid ""
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L03_lvl2
+#: Game.Levels.EquationalReasoning.L03_lvl2
 msgid "Substituting Variables By Their Values"
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L03_lvl2
+#: Game.Levels.EquationalReasoning.L03_lvl2
 msgid "We will learn how to substitute a variable with its value, for example how to substitiute `x` by `2` if we know that `x=2`.\n"
 "\n"
 "This can be done using the tactic `rw` (short for rewrite).\n"
@@ -106,37 +106,37 @@ msgid "We will learn how to substitute a variable with its value, for example ho
 "So `rw [h]` where `h : x=3` will replace all the `x`s of the goal with `3`."
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L03_lvl2
+#: Game.Levels.EquationalReasoning.L03_lvl2
 msgid "Do `rw [«{h}»]` or `rw [«{g}»]` and observe what happens."
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L03_lvl2
+#: Game.Levels.EquationalReasoning.L03_lvl2
 msgid "You should use `«{h}»` now."
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L03_lvl2
+#: Game.Levels.EquationalReasoning.L03_lvl2
 msgid "`rw [h]`"
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L03_lvl2
+#: Game.Levels.EquationalReasoning.L03_lvl2
 msgid "You should use `«{g}»` now."
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L03_lvl2
+#: Game.Levels.EquationalReasoning.L03_lvl2
 msgid "`rw [g]`"
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L03_lvl2
+#: Game.Levels.EquationalReasoning.L03_lvl2
 msgid "Our goal is now `3 + 3 = 6` which Lean knows to be true because it's a direct consequence of the definition of the natural numbers. So, there's nothing left to do. \n"
 "\n"
 "Notice we didn't use the fact `i: z=10` which is that `z=10`. This will not be the case for the majority of exercises, you will need to use all the assumptions you have (explicitly or implicity)."
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L04_Normalize
+#: Game.Levels.EquationalReasoning.L04_Normalize
 msgid "Normalize Equations"
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L04_Normalize
+#: Game.Levels.EquationalReasoning.L04_Normalize
 msgid "In this level, we will learn about normalizing equations using the `norm_num` tactic.\n"
 "\n"
 "`norm_num` is short for normalize numerical expressions like carrying out calculations and simplifying the expression.\n"
@@ -146,23 +146,23 @@ msgid "In this level, we will learn about normalizing equations using the `norm_
 "We want to use `norm_num` on `h`, so simply write `norm_num at h`."
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L04_Normalize
+#: Game.Levels.EquationalReasoning.L04_Normalize
 msgid "This should look familiar to a previous exercise. Now `h` looks exactly like the goal. Let Lean know!!"
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L04_Normalize
+#: Game.Levels.EquationalReasoning.L04_Normalize
 msgid "Remember the `exact` tactic, try `exact h`."
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L04_Normalize
+#: Game.Levels.EquationalReasoning.L04_Normalize
 msgid ""
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L05_Lvl3
+#: Game.Levels.EquationalReasoning.L05_Lvl3
 msgid "some title"
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L05_Lvl3
+#: Game.Levels.EquationalReasoning.L05_Lvl3
 msgid "Here, we introduce a multiplication cancellation tactic.\n"
 "\n"
 "To be able to achieve this, we need to rewrite `16` in `h` as `4 * 4` to be able to cancel the `4` on both sides of the equation , proving `y=4`. \n"
@@ -180,19 +180,19 @@ msgid "Here, we introduce a multiplication cancellation tactic.\n"
 "`have name := ........`"
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L05_Lvl3
+#: Game.Levels.EquationalReasoning.L05_Lvl3
 msgid "Try `have helper : 16=4*4 := by norm_num`"
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L05_Lvl3
+#: Game.Levels.EquationalReasoning.L05_Lvl3
 msgid "Now we want to replace the `16` in `h` with `4 * 4`. In other words, we want to do `rw [«{helper}»]` and have it be applied on h."
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L05_Lvl3
+#: Game.Levels.EquationalReasoning.L05_Lvl3
 msgid "`rw [«{helper}»] at h`"
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L05_Lvl3
+#: Game.Levels.EquationalReasoning.L05_Lvl3
 msgid "Now that we have `4` on both sides, we want to cancel this `4`\n"
 "\n"
 "This is possible using the theorem `mul_left_cancel₀` which has the following type :\n"
@@ -209,35 +209,35 @@ msgid "Now that we have `4` on both sides, we want to cancel this `4`\n"
 "You should have noticed that a proof of `4≠0` was not mentioned previously, and you will not have to prove this. You can use the term `four_ne_zero : 4≠0`."
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L05_Lvl3
+#: Game.Levels.EquationalReasoning.L05_Lvl3
 msgid "Notice that `mul_left_cancel₀ four_ne_zero h` has type `y = 4`. So, `exact mul_left_cancel₀ four_ne_zero h` will do it."
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L05_Lvl3
+#: Game.Levels.EquationalReasoning.L05_Lvl3
 msgid ""
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L05_Lvl3
+#: Game.Levels.EquationalReasoning.L05_Lvl3
 msgid "[[mathlib_doc]]"
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L06_Final
+#: Game.Levels.EquationalReasoning.L06_Final
 msgid "Final"
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L06_Final
+#: Game.Levels.EquationalReasoning.L06_Final
 msgid "A similar problem to the previous one."
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L06_Final
+#: Game.Levels.EquationalReasoning.L06_Final
 msgid "First start by substitute the value of `y` in `h`"
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L06_Final
+#: Game.Levels.EquationalReasoning.L06_Final
 msgid "Now simplify `h`"
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L06_Final
+#: Game.Levels.EquationalReasoning.L06_Final
 msgid "We need to isolate `3*x` on the left side of the equation. You can do this using the `eq_add_of_add_neg_eq` theorem which is of type:\n"
 "```\n"
 "eq_add_of_add_neg_eq (h : a + -c = b) : a = b + c\n"
@@ -245,33 +245,33 @@ msgid "We need to isolate `3*x` on the left side of the equation. You can do thi
 "We can use this theorem with the `have` tactic to construct a term of type `3 * x = 12 + 6`"
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L06_Final
+#: Game.Levels.EquationalReasoning.L06_Final
 msgid "Simplify `«{helper}»`"
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L06_Final
+#: Game.Levels.EquationalReasoning.L06_Final
 msgid "Now, like the previous exercise, you need to construct a term of type `(18:ℤ)=3*6`"
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L06_Final
+#: Game.Levels.EquationalReasoning.L06_Final
 msgid "Replace the `18` with 3*6"
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L06_Final
+#: Game.Levels.EquationalReasoning.L06_Final
 msgid "Cancel `3` from both sides and your done\n"
 "\n"
 "Remember `mul_left_cancel₀`"
 msgstr ""
 
-#: Game.Levels.BasicAlgebra.L06_Final
+#: Game.Levels.EquationalReasoning.L06_Final
 msgid ""
 msgstr ""
 
-#: Game.Levels.BasicAlgebra
-msgid "Basic Algebra"
+#: Game.Levels.EquationalReasoning
+msgid "Equational Reasoning"
 msgstr ""
 
-#: Game.Levels.BasicAlgebra
+#: Game.Levels.EquationalReasoning
 msgid "In this world, you will learn how to solve equations."
 msgstr ""
 

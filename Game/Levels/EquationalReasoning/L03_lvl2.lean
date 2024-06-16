@@ -1,7 +1,7 @@
 import Game.Metadata
 
 
-World "BasicAlgebra" 
+World "EquationalReasoning" 
 Level 3
 
 Title "Substituting Variables By Their Values" 

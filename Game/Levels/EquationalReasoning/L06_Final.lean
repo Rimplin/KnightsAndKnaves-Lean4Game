@@ -1,7 +1,7 @@
 import Game.Metadata
 
 
-World "BasicAlgebra"
+World "EquationalReasoning"
 Level 6
 
 Title "Final"

@@ -1,7 +1,7 @@
 import Game.Metadata
 import Game.Doc.doc
 
-World "BasicAlgebra" 
+World "EquationalReasoning" 
 Level 1
 
 Title "A Number Equals Itself" 
@@ -19,7 +19,7 @@ Statement
   : 2 = 2 := by
 
   {
-    rfl
+    rfl 
   }
 
 
