@@ -25,7 +25,7 @@ Alternative syntax:
 `have name := ........`
 "
 
-variable [IsLeftCancelMul ℕ] 
+--variable [IsLeftCancelMul ℕ] 
 Statement (h : 4*y=16) : y = 4 := by{
   Hint (hidden := true) (strict := true) "Try `have helper : 16=4*4 := by norm_num`" 
   have helper : 16=4*4 := by norm_num 
@@ -37,16 +37,17 @@ Statement (h : 4*y=16) : y = 4 := by{
 
   This is possible using the theorem `Nat.mul_left_cancel` which has the following type :
   ```
-  mul_left_cancel(a✝ : a * b = a * c) :
+  mul_left_cancel₀ (a✝ : a * b = a * c) :
   b = c
 
   ```
-  `mul_left_cancel` takes one argument which is the equation you are working with, then cancels `a` from both sides giving a proof of `b=c`. This is exactly what we want to prove the goal.
+  `mul_left_cancel₀` takes two arguments which is that what you want to cancel is not equal to zero(in this case `a`) and the equation you are working with, which then cancels `a` from both sides giving a proof of `b=c`. This is exactly what we want to prove the goal.
 
+  To write the subscript in `mul_left_cancel₀`, do backslash zero.
   "
   Hint (hidden:=true) "
-  Notice that `mul_left_cancel h` has type `y = 4`. So, `exact mul_left_cancel h` will do it."
-  exact mul_left_cancel h
+  Notice that `mul_left_cancel₀ h` has type `y = 4`. So, `exact mul_left_cancel₀ h` will do it."
+  exact mul_left_cancel₀ four_ne_zero h
 }
 
 
@@ -74,6 +75,6 @@ NewTactic «have»
   In our cases, we want a proof that `4` is positive which is `four_pos : 0 < 4` and the equation we are working with which is `h`
 -/
 /-- some info -/
-TheoremDoc mul_left_cancel as "mul_left_cancel" in "*"
-NewTheorem mul_left_cancel 
+TheoremDoc mul_left_cancel₀ as "mul_left_cancel₀" in "*"
+NewTheorem mul_left_cancel₀  
 -- NewDefinition Nat Add Eq

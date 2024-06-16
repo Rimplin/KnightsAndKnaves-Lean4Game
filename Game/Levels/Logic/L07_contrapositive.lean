@@ -19,6 +19,17 @@ Statement
 
    intro h 
    intro nq
+
+   intro p 
+   exact nq (h p)  
+   
+   intro h
+   have : P → Q:= by tauto
+
+   exact h
+
+   --intro p 
+    
   }
 
 

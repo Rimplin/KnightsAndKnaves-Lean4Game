@@ -38,6 +38,7 @@ example (y : ℕ) (h:3*y=12) : y=4 := by
   --linarith
 
 example (y : ℕ) (h:3*y=12) : y=4 := by
+  --omega
   apply Nat.mul_left_cancel three_pos
   rw [h]
   norm_num

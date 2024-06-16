@@ -11,7 +11,7 @@ Introduction
 A similar problem to the previous one.
 "
 
-variable [IsLeftCancelMul ℤ] 
+--variable [IsLeftCancelMul ℤ] 
 /-
 variable {x y : ℚ }
 
@@ -59,9 +59,9 @@ eq_add_of_add_neg_eq (h : a + -c = b) : a = b + c
  "
  Cancel `3` from both sides and your done
 
- This time, use `mul_left_cancel`
+ Remember `mul_left_cancel₀`
  "
- exact mul_left_cancel helper
+ exact mul_left_cancel₀ three_ne_zero helper
 
  --rw [exppp] at helper2  -- works fine
  --rw [exppp] at helper -- gives a tactic rewrite failed
@@ -126,4 +126,4 @@ Conclusion
 --NewTactic rw rfl
 -- NewLemma Nat.add_comm Nat.add_assoc
 -- NewDefinition Nat Add Eq
-NewTheorem eq_add_of_add_neg_eq
+NewTheorem eq_add_of_add_neg_eq three_ne_zero mul_left_cancel₀
