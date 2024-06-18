@@ -30,6 +30,7 @@ Note: If your package (like `mathlib` or `Std`) has tags of the form `v4.X.0` th
 you can use `require mathlib from git "[URL]" @ leanVersion`
  -/
 
+require LeanCopilot from git "https://github.com/lean-dojo/LeanCopilot.git" @ "v1.2.0"
 
 
 require mathlib from git "https://github.com/leanprover-community/mathlib4.git" @ leanVersion
@@ -46,6 +47,10 @@ package Game where
     "-Dtactic.hygienic=false",
     "-Dlinter.unusedVariables.funArgs=false",
     "-Dtrace.debug=false"]
+  moreLinkArgs := #[
+    "-L./.lake/packages/LeanCopilot/.lake/build/lib",
+    "-lctranslate2"
+  ]
   moreServerOptions := #[
     ⟨`tactic.hygienic, false⟩,
     ⟨`linter.unusedVariables.funArgs, true⟩,
