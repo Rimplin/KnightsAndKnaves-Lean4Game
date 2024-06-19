@@ -37,6 +37,17 @@ Conclusion
 Our goal is now `3 + 3 = 6` which Lean knows to be true because it's a direct consequence of the definition of the natural numbers. So, there's nothing left to do. 
 
 Notice we didn't use the fact `i: z=10` which is that `z=10`. This will not be the case for the majority of exercises, you will need to use all the assumptions you have (explicitly or implicity).
+
+Another solution:
+```
+rw [h,g]
+```
+instead of 
+```
+rw [h]
+rw [g]
+```
+
 "
 
 /- Use these commands to add items to the game's inventory. -/

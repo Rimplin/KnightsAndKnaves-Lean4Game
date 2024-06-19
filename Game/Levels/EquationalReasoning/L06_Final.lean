@@ -28,6 +28,17 @@ example  (h : 3*x - 2*y = 12) (k : y = 3) : x = 6 := by {
 -/
 
 variable {x y : ℤ}
+example  (h : 3*x - 2*y = 12) (k : y = 3) : x = 6 := by {
+ rw [k] at h
+ have helper : 3*x = 12 + 6:= by exact eq_add_of_add_neg_eq h
+
+ norm_num at helper
+
+ have helper2 :(18:ℤ)=3*6:= by norm_num
+ rw [helper2] at helper
+ exact mul_left_cancel₀ three_ne_zero helper
+}
+
 Statement  (h : 3*x - 2*y = 12) (k : y = 3) : x = 6 := by {
   --calc
   --  x = 3*x -2*y -2*x +2*y := by polyrith

@@ -1,4 +1,5 @@
 import Game.Levels.EquationalReasoning
+import Game.Levels.EquationalReasoningAutomation
 import Game.Levels.Logic
 import Game.Levels.SetTheoryLemmas
 import Game.Levels.KnightsAndKnaves
@@ -46,13 +47,16 @@ Many technical details have been skipped for the sake of not getting bogged down
 
 Zulip chat for lean has been a very useful resource to resolve issues when formalizing the exercises, you can visit it and ask questions in the '#new members' stream. You can also view messages without signing up. There are other streams dedicated to various topics you can check out as well. 
 
-# Editor Mode, copy and paste your solutions somewhere else
+# Editor Mode 
+## copy and paste your solutions somewhere else
 Some levels will force you to use editor mode. Editor mode is necessary for multiline tactics. Moreover, you should get used to it because it mimics a vscode Lean environment which is the most common way Lean is run.
 
 To access editor mode, click on the icon to the left of the hamburger menu in the top right.
 You can copy and paste your solutions if you have Lean setup, or you can use the lean web editor: https://live.lean-lang.org/ if you want to experiment with your solutions outside the lean game.
 Make sure to have `import Mathlib.Tactic` at the top and then to copy whats above the editor area which is the problem statement. Each problem statement is of the form `example ... :=  by` and after that is where your solution should go.
 
+## vscode like environment
+Hovering over things will give you useful information.
 # Links 
 https://leanprover-community.github.io/
 https://lean-lang.org/
@@ -63,6 +67,10 @@ https://github.com/leanprover-community/mathlib4
 https://leanprover.zulipchat.com/
 https://zulip.com/case-studies/lean/
 
+# how to navigate documentation
+You can use https://leanprover-community.github.io/mathlib4_docs/ for Lean and mathlib related documentation. You can see 'Lean', 'Mathlib' in the left side pane, clicking on either will expand them. A more effective way of finding what you want is using the search feature of this page , using 'Go To Definition' if you have vscode setup for Lean and mathlib, or hovering over things to get more information
+
+
 "
 
 /-! Information to be displayed on the servers landing page. -/
@@ -71,7 +79,7 @@ CaptionShort "Game Template"
 CaptionLong "You should use this game as a template for your own game and add your own levels."
 -- Prerequisites "" -- add this if your game depends on other games
 -- CoverImage "images/cover.png"
-Dependency EquationalReasoning → Logic → SetTheoryLemmas → KnightsAndKnaves
+Dependency EquationalReasoning → EquationalReasoningAutomation → Logic → SetTheoryLemmas → KnightsAndKnaves
 /-! Build the game. Show's warnings if it found a problem with your game. -/
 
 MakeGame
