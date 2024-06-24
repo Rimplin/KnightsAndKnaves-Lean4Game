@@ -1,4 +1,5 @@
 import Game.Metadata
+import LeanCopilot
 
 World "DemoWorld"
 Level 2
@@ -21,6 +22,11 @@ Statement (h : x = 3) (g: y = 6) (i : z=10) : x + x = y := by
 
 Conclusion "This last message appears if the level is solved."
 
+example (h : 2 * a ≤3 * b) (h' : 1 ≤a) (h'' : d = 2) : d + a ≤5 * b := by{
+  --suggest_tactics
+  --simp [h'', le_refl]
+
+}
 /- Use these commands to add items to the game's inventory. -/
 
 

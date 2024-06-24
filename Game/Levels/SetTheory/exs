@@ -1,0 +1,86 @@
+import Mathlib.Tactic
+-- mathematics in lean 4.1
+variable {α : Type}
+variable {s t: Set α}
+example : s ∩ (s ∪ t) = s :=
+by {
+  ext x
+  --split
+  constructor 
+  { intro hx
+    exact hx.left }
+  { intro hx
+    exact ⟨hx, Or.inl hx⟩ }
+}
+example : s ∩ (t ∪ u) ⊆ s ∩ t ∪ s ∩ u := by
+  rintro x ⟨xs, xt | xu⟩
+  · left; exact ⟨xs, xt⟩
+  · right; exact ⟨xs, xu⟩
+example : (s \ t) \ u ⊆ s \ (t ∪ u) := by
+  intro x xstu
+  have xs : x ∈ s := xstu.1.1
+  have xnt : x ∉ t := xstu.1.2
+  have xnu : x ∉ u := xstu.2
+  constructor
+  · exact xs
+  intro xtu
+  rcases xtu with xt | xu
+  · show False; exact xnt xt
+  · show False; exact xnu xu
+example : s ∩ t = t ∩ s := by
+  ext x
+  simp only [Set.mem_inter_iff]
+  constructor
+  · rintro ⟨xs, xt⟩; exact ⟨xt, xs⟩
+  · rintro ⟨xt, xs⟩; exact ⟨xs, xt⟩
+example : (s ∩ ⋃ i, A i) = ⋃ i, A i ∩ s := by
+  ext x
+  simp only [Set.mem_inter_iff, Set.mem_iUnion]
+  constructor
+  · rintro ⟨xs, ⟨i, xAi⟩⟩
+    exact ⟨i, xAi, xs⟩
+  · rintro ⟨i, xAi, xs⟩
+    exact ⟨xs, ⟨i, xAi⟩⟩
+example : s ∩ (s ∪ t) = s := by
+  ext x,
+  rw [←subset_def],
+  apply subset_inter_iff.mpr,
+  split,
+  { intros hx,
+    exact ⟨hx.left, or.inl hx.left⟩ },
+  { intros hx,
+    cases hx with hxs hxt,
+    exact hxs,
+    exfalso,
+    exact hxt hxs }
+example : s ∪ (s ∩ t) = s := by
+  ext x,
+  rw [←subset_def],
+  apply subset_union_left.mpr,
+  intros hx,
+  exact hx.left
+example : s \ t ∪ t = s ∪ t := by
+  ext x,
+  rw [←subset_def],
+  apply subset_union_right.mpr,
+  intros hx,
+  split,
+  { exact hx.left },
+  { intro hst,
+    cases hx,
+    exact hx.right,
+    exfalso,
+    exact hx.left hst }
+example : (s \ t) ∪ (t \ s) = (s ∪ t) \ (s ∩ t) := by
+  ext x
+  rw [←subset_def]
+  apply subset_union_diff.mpr,
+  intros hx,
+  split,
+  { cases hx with hst hts,
+    { exact or.inl hst },
+    { exact or.inr hts } },
+  { intro h,
+    cases h with hst hts,
+    { exact ⟨hst, not_mem_inter_of_union hst⟩ },
+    { exact ⟨hts, not_mem_inter_of_union hts⟩ } }

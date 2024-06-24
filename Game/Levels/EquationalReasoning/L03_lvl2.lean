@@ -34,7 +34,7 @@ Statement (h : x = 3) (g: y = 6) (i : z=10) : x + x = y := by
 
 Conclusion 
 "
-Our goal is now `3 + 3 = 6` which Lean knows to be true because it's a direct consequence of the definition of the natural numbers. So, there's nothing left to do. 
+Our goal is now `3 + 3 = 6` which Lean knows to be true because it's a direct consequence of the definition of the natural numbers. So, there's nothing left to do. Providing a bit more detail, this is what is called 'definitional equality', i.e two things are equal due to the way they are defined.
 
 Notice we didn't use the fact `i: z=10` which is that `z=10`. This will not be the case for the majority of exercises, you will need to use all the assumptions you have (explicitly or implicity).
 

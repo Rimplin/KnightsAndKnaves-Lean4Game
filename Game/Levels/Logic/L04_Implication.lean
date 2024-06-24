@@ -12,6 +12,7 @@ Logical implication `P → Q` is made up of two components:
 - The premise, which in this case is `P`
 - The conclusion, which in this case is `Q`
 
+What logical implication does is that it takes evidence or proof for `P` and transforms it returning a proof of `Q`.
 # truth table
 ```
 | P | Q | P → Q  |

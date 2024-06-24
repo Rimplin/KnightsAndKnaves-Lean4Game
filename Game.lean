@@ -1,6 +1,7 @@
 import Game.Levels.EquationalReasoning
 import Game.Levels.EquationalReasoningAutomation
 import Game.Levels.Logic
+import Game.Levels.LogicAlternative
 import Game.Levels.SetTheoryLemmas
 import Game.Levels.KnightsAndKnaves
 import Game.Levels.KnightsAndKnaves2
@@ -79,7 +80,7 @@ CaptionShort "Game Template"
 CaptionLong "You should use this game as a template for your own game and add your own levels."
 -- Prerequisites "" -- add this if your game depends on other games
 -- CoverImage "images/cover.png"
-Dependency EquationalReasoning → EquationalReasoningAutomation → Logic → SetTheoryLemmas → KnightsAndKnaves
+Dependency EquationalReasoning → EquationalReasoningAutomation → Logic → LogicAlternative → SetTheoryLemmas → KnightsAndKnaves
 /-! Build the game. Show's warnings if it found a problem with your game. -/
 
 MakeGame
