@@ -23,7 +23,7 @@ Statement (hP : P)
   : P  := by
 
   {
-   apply hP
+   exact hP
    --trivial
   }
 
