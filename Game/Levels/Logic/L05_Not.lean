@@ -14,8 +14,8 @@ Introduction
 | T |   F    |
 | F |   T    |
 ```
-
-`¬P` in Lean can be treated as `P → False`
+The ¬ symbol flips the truth value of `P`.
+`¬P` in Lean is defined as `P → False`. What this means is that we obtain `¬P` by assuming `P` and deriving a contradiction i.e constructing an object of type `False` which is impossible.
 
 "
 

@@ -24,7 +24,7 @@ These are called atomic propositions. You will also learn how to make compound p
 In this world, you will also learn how to construct new propositions by connecting other propositions with logical connectives
 
 ## Logical Connectives
-It is important to note that connecting two proposition via a logic connective results in a proposition as well. This proposition, like any other proposition, has a truth value. This truth value depends on the truth value of the atomic propositions and the rules of the logical connective.
+It is important to note that connecting two proposition via a logic connective results in a proposition as well. This proposition, like any other proposition, has a truth value. This truth value depends on the truth value of the atomic propositions and the rules of the logical connective. This point will be reiterated and hopefully fully materialize in your head as you deal with various logical connectives and as we discuss truth tables(see below for an example).
 
 ### Example: `And` , `∧`
 As an example, we present the `∧` logical connective.

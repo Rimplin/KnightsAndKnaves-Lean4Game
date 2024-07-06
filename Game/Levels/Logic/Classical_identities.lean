@@ -94,6 +94,12 @@ example : (((p → q) → p) → p) :=
                              (fun hnp ↦ 
                              hpqp (falseAntecedent p q hnp)))
 
+example : ¬(p ↔ ¬p) :=  
+  fun hpnp ↦ 
+  have hnp : ¬p := fun hp ↦ absurd hp (hpnp.mp hp)
+  have hp : p := hpnp.mpr hnp
+  absurd hp hnp
+
 
 Conclusion 
 "adf
