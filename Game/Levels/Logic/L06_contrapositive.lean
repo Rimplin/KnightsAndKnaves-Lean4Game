@@ -41,6 +41,7 @@ Statement contrapositive (forward: (P → Q))
   {
     intro nq
     intro p
+    Hint "To obtain `False`, we need `Q`, and to obtain `Q` we need `P` which we have. Construct the appropriate expression to obtain `False`"
     exact nq (forward p)
    --intro h 
    --intro nq

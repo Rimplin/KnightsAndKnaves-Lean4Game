@@ -16,16 +16,60 @@ h: P
 nh: ¬P
 ```
 
-Why is this principle is valid? Well, this is what you will hav e to prove in this level. For your convenience, the contradiction tactic will be unlocked so you don't have to do the same steps when there are contradictory assumptions.
+Why is this principle valid? Well, this is what you will have to prove in this level. For your convenience, the contradiction tactic will be unlocked after this level so you don't have to do the same steps when there are contradictory assumptions.
+
+
+you can prove anything. 
+False.elim eliminates false and produces an object of any type you want!!!
+False implies anything.
 "
-variable {P Q: Prop}
+-- need to have disjunctive syllogism as an already established primitive , disjunctive syllogism would have to be explained here as well which might be a bit too much??
+/-
+"
+$\\displaystyle {\\frac {P\\lor Q,\\neg P}{\\therefore Q}}$
+"
+--will not prove, can be easily explained in a reasonable and convincing way
+-/
+
+
+variable {P Q : Prop}
+
+theorem disjunctiveSyllogism (h : P ∨ Q) (np : ¬P)
+  : Q := by
+
+  {
+    apply Or.elim (Classical.em Q)
+    intro hQ
+    assumption 
+
+    intro hnQ 
+    have := And.intro np hnQ
+    rw [not_or.symm] at this
+    contradiction
+  }
+  /-
+   cases h 
+   have := np h_1  
+   contradiction
+   -/
+   
 Statement (h : P) (nh : ¬P)
   : Q := by
 
   {
     have helper : P ∨ Q := Or.inl h
+    exact disjunctiveSyllogism helper nh
   }
 
+
+example : ¬ (¬ P) ↔ P := by
+  constructor
+  · intro h 
+    apply Or.elim (Classical.em P)
+    sorry
+    sorry
+
+  · sorry
 
 example (P : Prop) : ¬ (¬ P) ↔ P := by
   constructor

@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Sat Jul  6 23:53:11 2024\n"
+"POT-Creation-Date: Sun Jul  7 17:13:07 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -446,6 +446,10 @@ msgstr ""
 
 #: Game.Levels.Logic.L06_contrapositive
 msgid "testssstsgasdfa"
+msgstr ""
+
+#: Game.Levels.Logic.L06_contrapositive
+msgid "To obtain `False`, we need `Q`, and to obtain `Q` we need `P` which we have. Construct the appropriate expression to obtain `False`"
 msgstr ""
 
 #: Game.Levels.Logic.L06_contrapositive

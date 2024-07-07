@@ -17,12 +17,18 @@ Statement memleft_empty_inter (A:Set K) (B: Set K)
     intro h2
     have contr:= mem_inter h h2
     rw [l] at contr 
-    contradiction
+    norm_num at contr
+  --  contradiction
   }
 
 
 
 
+variable [IsLeftCancelMul ℤ ]
+
+ example : False := by
+   have : (0 : ℤ) * 0 = 0 * 1 → 0 = 1 := mul_left_cancel
+   norm_num at this
 
 Conclusion "."
 
