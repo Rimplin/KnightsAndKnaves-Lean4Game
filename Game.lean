@@ -6,7 +6,7 @@ import Game.Levels.SetTheoryLemmas
 import Game.Levels.KnightsAndKnaves
 import Game.Levels.KnightsAndKnaves2
 -- Here's what we'll put on the title screen
-Title "Hello World Game111!!"
+Title "Reasoning"
 Introduction
 "
 This is a gamification of mathematical proofs. Every level has a `Goal`, which is what you are trying to prove. Closing the `Goal` means you have proved the theorem and there is nothing else to do.
@@ -16,7 +16,7 @@ You will use the Lean theorem prover, and its mathematical library mathlib.
 # Right Side Pane
 Let's explain what's going on in the right side pane.
 
-Anything you click on will display an overview and some examples. Refer back to it whenever you need to.
+Anything you click on will display an overview and some examples. This will be available to you at all times when working on the levels. Refer back to it whenever you need to.
 
 ## Tactics
 In this puzzle game, you will use tactics to manipulate the `Goal` and close it, essentially proving the `Goal`. Tactics will be incrementally introduced, and tactics that haven't been introduced yet will have a lock icon which means you can't use them yet. 
@@ -70,7 +70,6 @@ https://zulip.com/case-studies/lean/
 
 # how to navigate documentation
 You can use https://leanprover-community.github.io/mathlib4_docs/ for Lean and mathlib related documentation. You can see 'Lean', 'Mathlib' in the left side pane, clicking on either will expand them. A more effective way of finding what you want is using the search feature of this page , using 'Go To Definition' if you have vscode setup for Lean and mathlib, or hovering over things to get more information
-
 
 "
 

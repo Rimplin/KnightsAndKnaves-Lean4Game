@@ -35,7 +35,7 @@ Statement (hP : P) (hQ : Q) (hPQ: P ∧ Q)
   : P ∧ Q  := by
 
   {
-    tauto 
+--    tauto 
     Hint (hidden:=true) "Try `exact And.intro hP hQ` or `constructor`" 
     Branch
        exact And.intro hP hQ 
@@ -57,7 +57,7 @@ The constructor tactic transformed the goal `P ∧ Q` into two subgoals the firs
 
 /- Use these commands to add items to the game's inventory. -/
 
-NewTactic And.intro constructor
--- NewLemma Nat.add_comm Nat.add_assoc
+NewTactic  constructor
+NewTheorem And.intro 
 -- NewDefinition Nat Add Eq
 

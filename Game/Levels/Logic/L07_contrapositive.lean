@@ -2,7 +2,7 @@ import Game.Metadata
 
 
 World "Logic" 
-Level 6
+Level 7
 
 Title "Contrapositive" 
 

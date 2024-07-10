@@ -37,10 +37,10 @@ Statement (p : P) (q: Q)
     Branch
       left
       Hint "`p` is exactly the goal"
-      exact p
+      assumption 
     right
     Hint "`q` is exactly the goal"
-    exact q
+    assumption
   }
 
 
@@ -52,8 +52,8 @@ Conclusion
 "
 
 /- Use these commands to add items to the game's inventory. -/
-
 NewTactic left right
+OnlyTactic left right assumption
 -- NewLemma Nat.add_comm Nat.add_assoc
 -- NewDefinition Nat Add Eq
 

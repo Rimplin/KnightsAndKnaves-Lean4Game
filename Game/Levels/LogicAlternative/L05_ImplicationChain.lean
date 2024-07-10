@@ -34,7 +34,7 @@ The alternative solution:
 ```
 exact  StoT (RtoS (QtoR (PtoQ hP)))
 ```
-which is arguably less appealing for people that dislike too many parenthesis.
+which is arguably less appealing and less readable.
 "
 
 /- Use these commands to add items to the game's inventory. -/

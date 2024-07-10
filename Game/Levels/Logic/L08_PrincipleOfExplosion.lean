@@ -22,6 +22,46 @@ Why is this principle valid? Well, this is what you will have to prove in this l
 you can prove anything. 
 False.elim eliminates false and produces an object of any type you want!!!
 False implies anything.
+
+| P | Q | P & Q |
+|—|—|—|
+| T | T | T |
+| T | F | F |
+| F | T | F |
+| F | F | F |
+
+
+$
+\\begin{array}{|c c|c|} 
+\\hline
+a & b & F \\\\
+\\hline
+0 & 0 & 0 \\\\
+0 & 1 & 0 \\\\
+1 & 0 & 0 \\\\
+1 & 1 & 1 \\\\
+\\hline
+\\end{array}
+$
+
+$$
+\\begin{CD}
+      A  @>{f}>> B @<{g}<< C    \\\\
+  @V{h}VV    @V{i}VV   @V{j}VV \\\\
+      D  @<{k}<< E @>{l}>> F    \\\\
+  @A{m}AA    @A{n}AA   @V{p}VV \\\\
+      G  @<{q}<< H @>{r}>> I
+\\end{CD}
+$$
+
+$\\displaystyle {\\frac {P\\lor Q,\\neg P}{\\therefore Q}}$
+
+$
+\\begin{matrix}
+   a & b \\\\
+   c & d
+\\end{matrix}
+$
 "
 -- need to have disjunctive syllogism as an already established primitive , disjunctive syllogism would have to be explained here as well which might be a bit too much??
 /-
@@ -32,27 +72,12 @@ $\\displaystyle {\\frac {P\\lor Q,\\neg P}{\\therefore Q}}$
 -/
 
 
-variable {P Q : Prop}
-
-theorem disjunctiveSyllogism (h : P ∨ Q) (np : ¬P)
-  : Q := by
-
-  {
-    apply Or.elim (Classical.em Q)
-    intro hQ
-    assumption 
-
-    intro hnQ 
-    have := And.intro np hnQ
-    rw [not_or.symm] at this
-    contradiction
-  }
   /-
    cases h 
    have := np h_1  
    contradiction
    -/
-   
+variable {P Q:Prop} 
 Statement (h : P) (nh : ¬P)
   : Q := by
 

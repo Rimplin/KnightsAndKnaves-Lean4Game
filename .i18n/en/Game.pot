@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Sun Jul  7 17:13:07 2024\n"
+"POT-Creation-Date: Wed Jul 10 15:46:53 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -339,12 +339,11 @@ msgstr ""
 
 #: Game.Levels.Logic.L02_And
 msgid "In this level, we will learn about the `∧` logical connective, known as 'And'.\n"
-"In logic, for `P,Q` propositions, `P and Q` is true when both `P` is true and `Q` is true.\n"
+"In logic, for `P,Q` propositions, `P and Q` is true when both `P` is true and `Q` is true, being false otherwise.\n"
 "\n"
 "\n"
 "# Two ways of dealing with ∧ in the goal(Try both!)\n"
 "In Lean, to prove `P ∧ Q`, you need a proof of `P` and a proof of `Q`.\n"
-"\n"
 "## first way\n"
 "Giving these two proofs to the And introduction rule will construct a proof of `P ∧ Q`.\n"
 "\n"
@@ -355,7 +354,7 @@ msgid "In this level, we will learn about the `∧` logical connective, known as
 "where `P Q : Prop`\n"
 "\n"
 "## second way\n"
-"Using the `constructor` tactic will split a goal of the form `P ∧ Q` into two subgoals `P`,`Q` where you can deal with eac one separetly"
+"Using the `constructor` tactic will split a goal of the form `P ∧ Q` into two subgoals `P`,`Q` where you can deal with each one separately"
 msgstr ""
 
 #: Game.Levels.Logic.L02_And
@@ -371,19 +370,33 @@ msgid "After closing the goal `P`, you now have to close the goal `Q`"
 msgstr ""
 
 #: Game.Levels.Logic.L02_And
-msgid ""
+msgid "The constructor tactic transformed the goal `P ∧ Q` into two subgoals the first being `P` and the second being `Q`. This way of doing things matches the meaning of the `∧` connective."
 msgstr ""
 
 #: Game.Levels.Logic.L03_Or
-msgid "Or"
+msgid "Or, `∨`"
 msgstr ""
 
 #: Game.Levels.Logic.L03_Or
-msgid "Or introduction"
+msgid "There are two `∨` introduction rules: \n"
+" \n"
+"```\n"
+"Or.intro_left (b : Prop) (h : a) : a ∨ b\n"
+"```\n"
+"- `Or.intro_right`"
 msgstr ""
 
 #: Game.Levels.Logic.L03_Or
-msgid ""
+msgid "Notice that in the type of `Or.intro_left`, you need to explicitly give the type that will be used to the right of the `∨` but you don't need to do this for the type to the left of `∨`. How does Lean what to do? Well, the type of `Or.intro_left` is in fact:\n"
+"```\n"
+"Or.intro_left {a : Prop} (b : Prop) (h : a) : a ∨ b\n"
+"```\n"
+"The only difference is the curly braces. This means that `a` is an implicit argument. In other words, you don't need to give it explicitly, Lean will deduce it from the type of `h`. For example, if `h:P` where `P:Prop` then Lean will know that `a` is `P` and will put `P` to the left of `∨`.\n"
+"\n"
+"You can avoid entering both `a` or `b` explicitly and instead use: \n"
+"```\n"
+"Or.inl {a b : Prop} (h : a) : a ∨ b\n"
+"```"
 msgstr ""
 
 #: Game.Levels.Logic.L04_Implication
@@ -417,11 +430,60 @@ msgstr ""
 msgid ""
 msgstr ""
 
-#: Game.Levels.Logic.L05_Not
+#: Game.Levels.Logic.L05_False
+msgid "asdf"
+msgstr ""
+
+#: Game.Levels.Logic.L05_False
+msgid "Negation of a proposition `P`, denoted `¬P`, is defined as `P → False`. Notice that this is an implication which you have learned to deal with in the previous level. \n"
+"For now, just know that `False` is a type that has no introduction rule and that proving `False` means deriving a contradiction. So, to prove `¬p` , you must assume `p` and derive a contradiction.\n"
+"\n"
+"you cannot find an `h` such that `h:False`. \n"
+"Before dealing with negation directly, we will explain `False` in this level.\n"
+"\n"
+"To emphasize the fact that negation is an implication, you have to go through this simple level.\n"
+"\n"
+"`False` is the empty proposition, thus it has no introduction rule. It represents a contradiction.\n"
+"What is a contradiction? Well, it is a propostional statement that is false for all possible values of its variables.\n"
+"Example:\n"
+"\n"
+"But in this context, we will use the term contradiction to refer the assertion or proof of a propositional statement that is false for all possible values of its variables.\n"
+"\n"
+"# What is `False` exactly? \n"
+"## As a type\n"
+"`False : Prop` is the type that has no inhabitants, i.e there is no object, say `h`, that is of type `False`. In other words, we cannot find an `h` such that `h :False`. This makes sense when considering that finding an `h:False` would mean we have proved something that is false. \n"
+"\n"
+"## How to prove `False` and what are the consequences?\n"
+"Well, when was the first time you saw `False`?\n"
+"\n"
+"Here:\n"
+"'\n"
+"Negation of a proposition `P`, denoted `¬P`, is defined as `P → False`. \n"
+"'\n"
+"It should be clear that to get to false, you would need to prove `¬P`, and `P`. Then given such a proof state:\n"
+"```\n"
+"hnP : ¬P\n"
+"hP : P\n"
+"```\n"
+"we can obtain false by `hnP hP`.\n"
+"Proving a proposition and its negation is whats called deriving a contradiction. A logical system that has this quality is called an inconsistent system.\n"
+"\n"
+"## Principle of explosion\n"
+"Moreover, `False` has no introduction rule , so the reasoning described above is the only way to obtain an object of type `False`. If you were able to find `h:False` i.e prove `False` then our system is worthless because we can prove anything. To reiterate, such a system would be called an inconsistent system because of a contradiction.\n"
+"\n"
+"-- rules of inference like modus ponens need to be emphasized to make this understsanble. Also we can make the user prove the principle of explosion using modus ponens.\n"
+"will be discussed in previous, but the basic idea is that if you have in your proof state an `h` such that `h:False` then you can prove any proposition you want. In other words, within this proof state, all propositions are true. This is obviously absurd because it would mean for every proposition `p`, `p` is true and also `¬p` is true."
+msgstr ""
+
+#: Game.Levels.Logic.L05_False
+msgid "asdf"
+msgstr ""
+
+#: Game.Levels.Logic.L06_Not
 msgid "Not, ¬"
 msgstr ""
 
-#: Game.Levels.Logic.L05_Not
+#: Game.Levels.Logic.L06_Not
 msgid "```\n"
 "| P |  ¬P    |\n"
 "|---|--------|\n"
@@ -429,30 +491,96 @@ msgid "```\n"
 "| F |   T    |\n"
 "```\n"
 "The ¬ symbol flips the truth value of `P`.\n"
+"As you can see in the above truth table, if `P` were true then `¬P` would be false and vice versa\n"
 "`¬P` in Lean is defined as `P → False`. What this means is that we obtain `¬P` by assuming `P` and deriving a contradiction i.e constructing an object of type `False` which is impossible."
 msgstr ""
 
-#: Game.Levels.Logic.L05_Not
+#: Game.Levels.Logic.L06_Not
 msgid ""
 msgstr ""
 
-#: Game.Levels.Logic.L06_contrapositive
+#: Game.Levels.Logic.L07_contrapositive
 msgid "Contrapositive"
 msgstr ""
 
-#: Game.Levels.Logic.L06_contrapositive
+#: Game.Levels.Logic.L07_contrapositive
 msgid ""
 msgstr ""
 
-#: Game.Levels.Logic.L06_contrapositive
+#: Game.Levels.Logic.L07_contrapositive
 msgid "testssstsgasdfa"
 msgstr ""
 
-#: Game.Levels.Logic.L06_contrapositive
+#: Game.Levels.Logic.L07_contrapositive
 msgid "To obtain `False`, we need `Q`, and to obtain `Q` we need `P` which we have. Construct the appropriate expression to obtain `False`"
 msgstr ""
 
-#: Game.Levels.Logic.L06_contrapositive
+#: Game.Levels.Logic.L07_contrapositive
+msgid ""
+msgstr ""
+
+#: Game.Levels.Logic.L08_PrincipleOfExplosion
+msgid "Principle Of Explosion"
+msgstr ""
+
+#: Game.Levels.Logic.L08_PrincipleOfExplosion
+msgid "Otherwise known as 'from contradiction, anything follows'. \n"
+"This principle asserts that if you have contradictory assumptions then you can prove anything.\n"
+"Example of contradictory assumptions:\n"
+"```\n"
+"h: P\n"
+"nh: ¬P\n"
+"```\n"
+"\n"
+"Why is this principle valid? Well, this is what you will have to prove in this level. For your convenience, the contradiction tactic will be unlocked after this level so you don't have to do the same steps when there are contradictory assumptions.\n"
+"\n"
+"\n"
+"you can prove anything. \n"
+"False.elim eliminates false and produces an object of any type you want!!!\n"
+"False implies anything.\n"
+"\n"
+"| P | Q | P & Q |\n"
+"|—|—|—|\n"
+"| T | T | T |\n"
+"| T | F | F |\n"
+"| F | T | F |\n"
+"| F | F | F |\n"
+"\n"
+"\n"
+"$\n"
+"\\begin{array}{|c c|c|} \n"
+"\\hline\n"
+"a & b & F \\\\\n"
+"\\hline\n"
+"0 & 0 & 0 \\\\\n"
+"0 & 1 & 0 \\\\\n"
+"1 & 0 & 0 \\\\\n"
+"1 & 1 & 1 \\\\\n"
+"\\hline\n"
+"\\end{array}\n"
+"$\n"
+"\n"
+"$$\n"
+"\\begin{CD}\n"
+"      A  @>{f}>> B @<{g}<< C    \\\\\n"
+"  @V{h}VV    @V{i}VV   @V{j}VV \\\\\n"
+"      D  @<{k}<< E @>{l}>> F    \\\\\n"
+"  @A{m}AA    @A{n}AA   @V{p}VV \\\\\n"
+"      G  @<{q}<< H @>{r}>> I\n"
+"\\end{CD}\n"
+"$$\n"
+"\n"
+"$\\displaystyle {\\frac {P\\lor Q,\\neg P}{\\therefore Q}}$\n"
+"\n"
+"$\n"
+"\\begin{matrix}\n"
+"   a & b \\\\\n"
+"   c & d\n"
+"\\end{matrix}\n"
+"$"
+msgstr ""
+
+#: Game.Levels.Logic.L08_PrincipleOfExplosion
 msgid ""
 msgstr ""
 
@@ -478,13 +606,20 @@ msgid "In this world, we will be dealing with `Objects` of type `Prop` i.e propo
 "## Logical Connectives\n"
 "It is important to note that connecting two proposition via a logic connective results in a proposition as well. This proposition, like any other proposition, has a truth value. This truth value depends on the truth value of the atomic propositions and the rules of the logical connective. This point will be reiterated and hopefully fully materialize in your head as you deal with various logical connectives and as we discuss truth tables(see below for an example).\n"
 "\n"
+"Every logical connective has an introduction rule which introduces a new expression involving propositions with that connective and some 'elimination' or 'unpacking rule' which unpacks the information within such an expression.\n"
+"\n"
 "### Example: `And` , `∧`\n"
+"And.intro\n"
+"And.left h\n"
+"And.right h\n"
+"\n"
 "As an example, we present the `∧` logical connective.\n"
 "Let `p` denote the proposition 'The official language of France is french'(which is true).\n"
 "Let `q` denote the prposition 'The official language of Germany is german'(which is true as well).\n"
-"Combining these two prpositions together gives us the proposition `p ∧ q` which translated to English: 'The official language of France is french `And` the official language of Germany is german'. Because the two propositions connected by the `And` are true, then the entire statement is true as well. It's not hard to see that one of or both `p` or `q` being false would make `p ∧ q` false\n"
+"Combining these two prpositions together gives us the proposition `p ∧ q` which translated to English: 'The official language of France is french `And` the official language of Germany is german'. Because the two propositions connected by the `And` are true, then the entire statement is true as well. It's not hard to see that one of or both `p` or `q` being false would make `p ∧ q` false. In other words, `p ∧ q` is true when `p` is true and `q` is true. It is false otherwise.\n"
 "\n"
 "The atomic propositions in the compound proposition `p ∧ q` are : `p`, `q`. Of course, `p ∧ q` can be used to construct more complicated propositions.\n"
+"\n"
 "# truth table \n"
 "The truth table of a logical connective illustrates the rule for that logical connective , i.e the truth value of the compound statement depending on the truth value of the atomic propositions.\n"
 "The following truth table illustrates this for the prevously discussed `∧` connective.\n"
@@ -506,11 +641,22 @@ msgid "`assumption` tactic"
 msgstr ""
 
 #: Game.Levels.LogicAlternative.L01_assumption
-msgid ""
+msgid "Let's introduce the first 'automation' tactic. \n"
+"The point behind such tactics is that there are tedious patterns of reasoning and automation tactics alleviate the burden of having to spell them out into Lean every time. \n"
+"\n"
+"Automations will sacrifice ... for brevity which is less tedious but might be more obfuscated.\n"
+"\n"
+"One pattern of reasoning you will almost always encounter is having an assumption of a type that 'exactly' matches the goal. The `exact` tactic suggests itself here, but you could just write `assumption`. The `assumption` tactic will use the assumptions in the proof state to prove the goal.\n"
+"\n"
+"Try it out!"
 msgstr ""
 
 #: Game.Levels.LogicAlternative.L01_assumption
-msgid ""
+msgid "Informally, the `assumption` tactic looks through the assumptions in the proof state and tries to find one which has a type that matches the goal through the assumptions in the proof state and tries to find one that which has a type that matches the goal. In this case, that would be `hP` and the type would be `P`.\n"
+"\n"
+"The `assumption` tactic is capable of alot more, but it will not be used in this game. You can read more about these capabilities in the right side pane documentation\n"
+"\n"
+"The advantage of the `assumption` tactic over exact is that you don't have to spell out the assumption to Lean. However, it might be clearer to explicity do so. This is the tradeoff between brevity and ..."
 msgstr ""
 
 #: Game.Levels.LogicAlternative.L02_constructorNotation
@@ -615,7 +761,7 @@ msgid "The alternative solution: \n"
 "```\n"
 "exact  StoT (RtoS (QtoR (PtoQ hP)))\n"
 "```\n"
-"which is arguably less appealing for people that dislike too many parenthesis."
+"which is arguably less appealing and less readable."
 msgstr ""
 
 #: Game.Levels.LogicAlternative
@@ -707,7 +853,7 @@ msgid "Knights and Knaves, second approach"
 msgstr ""
 
 #: Game
-msgid "Hello World Game111!!"
+msgid "Reasoning"
 msgstr ""
 
 #: Game
@@ -718,7 +864,7 @@ msgid "This is a gamification of mathematical proofs. Every level has a `Goal`, 
 "# Right Side Pane\n"
 "Let's explain what's going on in the right side pane.\n"
 "\n"
-"Anything you click on will display an overview and some examples. Refer back to it whenever you need to.\n"
+"Anything you click on will display an overview and some examples. This will be available to you at all times when working on the levels. Refer back to it whenever you need to.\n"
 "\n"
 "## Tactics\n"
 "In this puzzle game, you will use tactics to manipulate the `Goal` and close it, essentially proving the `Goal`. Tactics will be incrementally introduced, and tactics that haven't been introduced yet will have a lock icon which means you can't use them yet. \n"

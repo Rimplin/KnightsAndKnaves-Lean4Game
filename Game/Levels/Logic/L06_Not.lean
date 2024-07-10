@@ -2,7 +2,7 @@ import Game.Metadata
 
 
 World "Logic" 
-Level 5
+Level 6
 
 Title "Not, ¬" 
 
