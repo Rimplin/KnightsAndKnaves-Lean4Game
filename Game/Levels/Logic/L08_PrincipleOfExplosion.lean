@@ -44,30 +44,12 @@ a & b & F \\\\
 \\end{array}
 $
 
-$$
-\\begin{CD}
-      A  @>{f}>> B @<{g}<< C    \\\\
-  @V{h}VV    @V{i}VV   @V{j}VV \\\\
-      D  @<{k}<< E @>{l}>> F    \\\\
-  @A{m}AA    @A{n}AA   @V{p}VV \\\\
-      G  @<{q}<< H @>{r}>> I
-\\end{CD}
-$$
 
 $\\displaystyle {\\frac {P\\lor Q,\\neg P}{\\therefore Q}}$
 
-$
-\\begin{matrix}
-   a & b \\\\
-   c & d
-\\end{matrix}
-$
 "
 -- need to have disjunctive syllogism as an already established primitive , disjunctive syllogism would have to be explained here as well which might be a bit too much??
 /-
-"
-$\\displaystyle {\\frac {P\\lor Q,\\neg P}{\\therefore Q}}$
-"
 --will not prove, can be easily explained in a reasonable and convincing way
 -/
 
@@ -109,6 +91,22 @@ example (P : Prop) : ¬ (¬ P) ↔ P := by
 
 Conclusion 
 "
+We have proven that `P ∧ ¬P → Q` for any proposition `Q`. since `P ∧ ¬P` is always false, then the implication proved becomes `False → Q`.
+
+From contradiction, anything follows.
+There are more examples of contradictions like 
+¬(P ∨ ¬P)
+
+$
+\\begin{array}{|c c|c|} 
+\\hline
+P & ¬P & P ∨ ¬P & ¬(P ∨ ¬P) \\\\
+\\hline
+T & F & T & F \\\\
+F & T & T & F \\\\
+\\hline
+\\end{array}
+$
 "
 
 /- Use these commands to add items to the game's inventory. -/

@@ -28,6 +28,19 @@ where `P Q : Prop`
 Using the `constructor` tactic will split a goal of the form `P ∧ Q` into two subgoals `P`,`Q` where you can deal with each one separately
 
 
+# truth table 
+$
+\\begin{array}{|c c|c|} 
+\\hline
+P & Q & P ∧ Q \\\\
+\\hline
+T & T & T \\\\
+T & F & F \\\\
+F & T & F \\\\
+F & F & F \\\\
+\\hline
+\\end{array}
+$
 
 "
 
