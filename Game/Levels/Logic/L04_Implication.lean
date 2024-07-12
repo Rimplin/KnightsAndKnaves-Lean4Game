@@ -31,6 +31,7 @@ TheoremDoc modus_ponens as "modus_ponens" in "logic"
 Statement modus_ponens (p : P) (ptoq: P → Q)
   : Q := by
 
+
   {
     exact ptoq p
   }
@@ -56,4 +57,7 @@ Conclusion
 --TheoremDoc mul_left_cancel as "mul_left_cancel" in "*"
 --NewTheorem mul_left_cancel 
 -- NewDefinition Nat Add Eq
-NewTheorem
+--NewTheorem
+/-- no lean docstring avaialble -/
+DefinitionDoc imp as "→"
+NewDefinition imp 
