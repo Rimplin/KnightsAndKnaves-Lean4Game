@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Fri Jul 12 18:26:43 2024\n"
+"POT-Creation-Date: Sat Jul 13 11:35:10 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -446,7 +446,7 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.Logic.L04_Implication
-msgid ""
+msgid "no lean docstring avaialble"
 msgstr ""
 
 #: Game.Levels.Logic.L05_False
@@ -497,6 +497,10 @@ msgstr ""
 
 #: Game.Levels.Logic.L05_False
 msgid "If you feel like seeing the implication definition of ¬ in the proof state would provide more clarity and make it easier to solve upcoming problems, you can always unfold ¬ to its implication form. Try `unfold Not at hnp`."
+msgstr ""
+
+#: Game.Levels.Logic.L05_False
+msgid "Now, this is just like the previous level"
 msgstr ""
 
 #: Game.Levels.Logic.L05_False
@@ -580,7 +584,7 @@ msgid "Contrapositive"
 msgstr ""
 
 #: Game.Levels.Logic.L07_contrapositive
-msgid ""
+msgid "More practice on implication and negation"
 msgstr ""
 
 #: Game.Levels.Logic.L07_contrapositive
@@ -656,7 +660,9 @@ msgid "We have proven that `P ∧ ¬P → Q` for any proposition `Q`. since `P �
 "F & T & T & F \\\\\n"
 "\\hline\n"
 "\\end{array}\n"
-"$"
+"$\n"
+"\n"
+"You could have also solved it by just writing `contradiction`. Contradiction is a tactic that detects if you have contradictory assumptions and if so, closes the goal. Try it if you want."
 msgstr ""
 
 #: Game.Levels.Logic
@@ -819,24 +825,6 @@ msgstr ""
 msgid "The apply tactic takes a proof of a general statement or implication, tries to match the conclusion with the current goal,\n"
 "and leaves the hypotheses, if any, as new goals. If the given proof matches the goal exactly (modulo definitional equality),\n"
 "you can use the exact tactic instead of apply. So, all of these work:"
-msgstr ""
-
-#: Game.Levels.LogicAlternative.L05_ImplicationChain
-msgid "Chain Of Implications"
-msgstr ""
-
-#: Game.Levels.LogicAlternative.L05_ImplicationChain
-msgid "The `apply` tactic is much more useful when reasoning with multiplicaiton implications.\n"
-"\n"
-"This is very clear if you attempt to solve this exercise by passing the premise to an implication, concluding the right hand side and then passing that to another implication and so on..."
-msgstr ""
-
-#: Game.Levels.LogicAlternative.L05_ImplicationChain
-msgid "The alternative solution: \n"
-"```\n"
-"exact  StoT (RtoS (QtoR (PtoQ hP)))\n"
-"```\n"
-"which is arguably less appealing and less readable."
 msgstr ""
 
 #: Game.Levels.LogicAlternative

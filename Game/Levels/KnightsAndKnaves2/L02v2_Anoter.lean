@@ -19,27 +19,12 @@ example
   : x ∈ Knight ∧ y ∈ Knave:= by
   {
  --  show_goals
-   cases h1  
-
-   cases h2
-
-   --cases h2
-   · have statement:= stx h_1.left 
-     have cont : False := by tauto 
-     contradiction
-   · exact ⟨h_1.left, h_2.left⟩ 
-
-   cases h2 
-   have statement := stnx h_1.left 
-   have cont : x ∈ Knave ∧ y ∈ Knight ∨ x ∈ Knave ∧ y ∈ Knave := by exact Or.inl (And.intro h_1.left h_2.left)
-   have cont2 :  x ∈ Knight ∧ y ∈ Knave ∨ x ∈ Knave ∧ y ∈ Knight ∨ x ∈ Knave ∧ y ∈ Knave := Or.inr cont
-   contradiction
-
-   have statement := stnx h_1.left 
-   have cont : (x ∈ Knight ∧ y ∈ Knave ∨ x ∈ Knave ∧ y ∈ Knight) ∨ x ∈ Knave ∧ y ∈ Knave := Or.inr (And.intro h_1.left h_2.left)
-   rw [or_assoc] at cont
-   --have := or_assoc.1 cont
-   contradiction
-
-  }
-
+  obtain xKnight | xKnave := h1 
+    -- step 1, deduce from the statement
+  · have statement := stx xKnight.left
+    -- now take cases for y
+    cases h2
+    · sorry
+    · sorry
+  · sorry
+}

@@ -59,6 +59,7 @@ Statement (hp:p) (hnp:¬p)
     -- So, we can use `hp` to prove `False`
     Hint (hidden:=true) "If you feel like seeing the implication definition of ¬ in the proof state would provide more clarity and make it easier to solve upcoming problems, you can always unfold ¬ to its implication form. Try `unfold Not at hnp`."
     unfold Not at hnp 
+    Hint "Now, this is just like the previous level"
     exact hnp hp
   }
 

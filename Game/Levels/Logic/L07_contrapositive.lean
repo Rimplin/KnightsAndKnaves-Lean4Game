@@ -8,7 +8,7 @@ Title "Contrapositive"
 
 Introduction 
 "
-
+More practice on implication and negation
 "
 variable { P Q : Prop }
 /-
