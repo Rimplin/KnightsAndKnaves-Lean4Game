@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Sat Jul 13 11:35:10 2024\n"
+"POT-Creation-Date: Sun Jul 14 20:20:29 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -303,6 +303,22 @@ msgstr ""
 
 #: Game.Levels.EquationalReasoningAutomation
 msgid "to do"
+msgstr ""
+
+#: Game.Levels.EquationalReasoningCalc.L01_rw
+msgid ""
+msgstr ""
+
+#: Game.Levels.EquationalReasoningCalc.L01_rw
+msgid "Remember level 3 in equational reasoning."
+msgstr ""
+
+#: Game.Levels.EquationalReasoningCalc.L01_rw
+msgid ""
+msgstr ""
+
+#: Game.Levels.EquationalReasoningCalc
+msgid "This world is a variant world of equational reasoning, where you have to solve some problems from that world using the `calc` tactic"
 msgstr ""
 
 #: Game.Levels.Logic.L01_Intro

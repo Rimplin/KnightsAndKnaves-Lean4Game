@@ -1,5 +1,4 @@
 import Game.Metadata
-import LeanCopilot
 
 World "DemoWorld"
 Level 2
@@ -27,18 +26,3 @@ example (h : 2 * a ≤3 * b) (h' : 1 ≤a) (h'' : d = 2) : d + a ≤5 * b := by{
   --simp [h'', le_refl]
 
 }
-/- Use these commands to add items to the game's inventory. -/
-
-
-/--
-Testing rw description1
--/
-TacticDoc rw 
-
-/--
-Testing rfl description1
--/
-TacticDoc rfl 
-NewTactic rw rfl
--- NewLemma Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq
