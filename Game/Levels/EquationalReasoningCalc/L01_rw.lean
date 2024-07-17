@@ -8,6 +8,13 @@ Title ""
 
 Introduction 
 "
+This world is just:
+'
+In Lean, an algebraic rearrangement is indicated by the tactic ring, and a substitution by the tactic rw (stands for “rewrite”). When making a substitution, you must indicate by name the hypotheses which you are substituting.
+'
+'create a term to deal with ...'
+
+Notice that a proof completely made by rewrites can be done exactly the same way with and without `calc`.
 Remember level 3 in equational reasoning.
 
 # `calc`
@@ -34,7 +41,7 @@ calc
 Notice that every step of the calculation is shown on each line and justified at the end of that line.
 Lets go through this proof line by line.
 First, we prove that `a = (a - b) + b` using the `ring` tactic.
-Then, we prove that `(a - b) + b = 0 + b`, the `_` there is to avoid having to rewrite `(a - b) + b`. Since we know that `(a - b) = 0`, this step is justified by a rewrite.
+Then, we prove that `(a - b) + b = 0 + b`, the `_` there is to avoid having to write `(a - b) + b` again, Lean would just deduce that. Since we know that `(a - b) = 0`, this step is justified by a rewrite.
 Finally, we prove that `0 + b = b` using the ring tactic.
 Now, what calc does is the following: 
 since `a = (a - b) + b` and `(a - b) + b = 0 + b` then `a = 0 + b` and since `0 + b = b` then `a = b` which is the goal. This is whats known as the transitivity property of `=`:
@@ -59,13 +66,16 @@ Replace every occurrence of `sorry` with a legitimate proof.
 Statement (h : x = 3) (g: y = 6) (i : z=10) : x + x = y := by
 {
   Template
-  calc 
-  x+x = 3+3 := by sorry
-    _ = 6 := by sorry
-    _ = y := by sorry
-      
+    calc 
+      x+x = 3+3 := by sorry
+        _ = 6 := by sorry
+        _ = y := by sorry
 }
-
+/-
+  x+x = 3+3 := by rw [h]
+    _ = 6 := by norm_num
+    _ = y := by rw [←g]
+-/
 
 
 

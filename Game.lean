@@ -72,6 +72,11 @@ https://zulip.com/case-studies/lean/
 # how to navigate documentation
 You can use https://leanprover-community.github.io/mathlib4_docs/ for Lean and mathlib related documentation. You can see 'Lean', 'Mathlib' in the left side pane, clicking on either will expand them. A more effective way of finding what you want is using the search feature of this page , using 'Go To Definition' if you have vscode setup for Lean and mathlib, or hovering over things to get more information
 
+# Rules
+You can relax the rules.
+
+This is not recommended for people who have never heard about Lean before. Moreover, relaxing the rules would ruin the coherence and structured/guided experience you would have when playing the game normally. If that is what you are looking for, then don't relax the rules.
+
 "
 
 /-! Information to be displayed on the servers landing page. -/

@@ -162,17 +162,6 @@ example (P Q : Prop) : P → (P ∨ ¬ Q) := by
   left
   apply hP
 
-
-
---linarith
-
--- Example 1
-
--- Example 2
-
-
-
-
 example {x y : ℚ} (hx : x = 2) (hy : y ^ 2 = -7) : x + y ^ 2 = -5 :=
   calc
     x + y ^ 2 = x - 7 := by linarith [hy]

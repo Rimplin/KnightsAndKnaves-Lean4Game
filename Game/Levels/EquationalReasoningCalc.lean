@@ -1,5 +1,8 @@
 import Game.Metadata
 import Game.Levels.EquationalReasoningCalc.L01_rw
+import Game.Levels.EquationalReasoningCalc.L02_l
+import Game.Levels.EquationalReasoningCalc.L03_e
+import Game.Levels.EquationalReasoningCalc.L04_whatever
 World "EquationalReasoningCalc"
 Introduction 
 "
