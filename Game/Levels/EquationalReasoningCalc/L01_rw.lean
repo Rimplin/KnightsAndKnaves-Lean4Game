@@ -8,6 +8,7 @@ Title ""
 
 Introduction 
 "
+addition associative to the left...
 This world is just:
 '
 In Lean, an algebraic rearrangement is indicated by the tactic ring, and a substitution by the tactic rw (stands for “rewrite”). When making a substitution, you must indicate by name the hypotheses which you are substituting.

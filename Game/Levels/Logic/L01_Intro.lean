@@ -1,4 +1,5 @@
 import Game.Metadata
+import Mathlib.Logic.Basic
 
 variable (P Q R : Prop)
 
@@ -45,6 +46,26 @@ Statement (hP: P) (hQ: Q) (hR : R)
    exact hP
   }
 
+--#check (@(iff_eq_eq.mpr)) P P
+#check iff_eq_eq.mp
+
+example : P = (P ∧ P) := by 
+  --apply @iff_eq_eq.mpr P P 
+  apply iff_eq_eq.mp 
+  constructor 
+  intro hp ; constructor; repeat assumption
+  intro pp ; exact pp.left
+
+-- this is viable, the only issue is that the user has to explicitly go to the truth functional world, can this be forced somehow?? yes i can, by defining it and having the user user it. first make a level like this then make it easier for the user...
+example : P = (P ∧ P) := by 
+  --apply @iff_eq_eq.mpr P P 
+  cases em P
+  · have := eq_true h
+    rw [this] 
+    rw [and_true] 
+  · have := eq_false h 
+    rw [this]
+    rw [and_false] 
 
 example  (h1 : P ∨ Q) (h2 : ¬ Q) : P := by
   obtain hP | hQ := h1

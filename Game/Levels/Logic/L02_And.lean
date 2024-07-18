@@ -44,10 +44,13 @@ $
 
 "
 
+variable {p : BooleanAlgebra Prop}
+#check p.himp_eq P Q
 Statement (hP : P) (hQ : Q) (hPQ: P ∧ Q)
   : P ∧ Q  := by
 
   {
+    
 --    tauto 
     Hint (hidden:=true) "Try `exact And.intro hP hQ` or `constructor`" 
     Branch
