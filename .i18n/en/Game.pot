@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Thu Jul 18 18:27:30 2024\n"
+"POT-Creation-Date: Fri Jul 19 15:03:06 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -410,6 +410,26 @@ msgstr ""
 msgid "This world is a variant world of equational reasoning, where you have to solve some problems from that world using the `calc` tactic.\n"
 "\n"
 "`calc` is a multiline tactic, so you will be dropped into editor mode in each level in this world."
+msgstr ""
+
+#: Game.Levels.LogicTruthValue.L01_And
+msgid ""
+msgstr ""
+
+#: Game.Levels.LogicTruthValue.L01_And
+msgid ""
+msgstr ""
+
+#: Game.Levels.LogicTruthValue.L01_And
+msgid ""
+msgstr ""
+
+#: Game.Levels.LogicTruthValue
+msgid "Logic Truth Value"
+msgstr ""
+
+#: Game.Levels.LogicTruthValue
+msgid "asdf"
 msgstr ""
 
 #: Game.Levels.Logic.L01_Intro

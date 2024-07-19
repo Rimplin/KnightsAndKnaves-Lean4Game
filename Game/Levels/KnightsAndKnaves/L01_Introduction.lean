@@ -87,7 +87,7 @@ Conclusion "This last message appears if the level is solved."
 --TheoremDoc Xor' as "Xor" in "logic"
 --NewTheorem Xor' 
 
-NewTactic cases push_neg 
+NewTactic push_neg 
 --NewTheorem contrapositive
 --NewLemma Nat.add_comm Nat.add_assoc
 /--
