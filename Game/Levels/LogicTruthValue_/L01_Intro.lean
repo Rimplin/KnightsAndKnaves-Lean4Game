@@ -9,7 +9,8 @@ Level 1
 Title "Intro "
 
 Introduction
-" Notice that the objects of interest are now of type `Prop` (i.e proposition). A proposition is a statement/assertion that can take only one of two values, either true or false. Having `hP:P` means that we have a proof of `P`, and therefore you can think about this as `P` being true.
+" Notice that the objects of interest are now of type `Prop` (i.e proposition). A proposition is a statement/assertion that can take only one of two values, either true or false. Having `hP : P = true` means that we have a proof that `P` is true, and therefore you can think about this as `P` being true.
+Moreover, having `hnP : P = false` means that we have a proof that `P` is false
 
 `hP` 'exactly' matches the goal. `hP` is 'exactly' what you need to close the goal. This is to emphasize that for the tactic `exact h`, the type of h doesn't matter.
 

@@ -1,25 +1,22 @@
-import Game.Levels.Logic.L01_Intro
-import Game.Levels.Logic.L02_And
-import Game.Levels.Logic.L03_Or
-import Game.Levels.Logic.L04_Implication
-import Game.Levels.Logic.L05_False
-import Game.Levels.Logic.L06_Not
-import Game.Levels.Logic.L07_contrapositive
-import Game.Levels.Logic.L08_PrincipleOfExplosion
-
+import Game.Levels.LogicTruthValue_.L01_Propositions
+--import Game.Levels.Logic.L01_Intro
+--import Game.Levels.Logic.L02_And
+--import Game.Levels.Logic.L03_Or
+--import Game.Levels.Logic.L04_Implication
+--import Game.Levels.Logic.L05_False
+--import Game.Levels.Logic.L06_Not
+--import Game.Levels.Logic.L07_contrapositive
+--import Game.Levels.Logic.L08_PrincipleOfExplosion
+--
 --Image "images/Logic/Truth-Table-And.png"
-World "Logic"
-Title "Logic"
-Introduction "In this world, we will be dealing with `Objects` of type `Prop` i.e propositions. You can think of a proposition as a statement that is either true or false(obviously, it can't be both at the same time).
+World "LogicTruthValue_"
+Title "Logic Truth Value_"
+Introduction "
+This world will heavily rely on the truth table perspective of propositions and the various logical connective to provide an intuitive foundation for explaining the validity of various rules in propositional logic. 'Propositions' will be explained here, and the rest will be hinted at here but fully explained throught the levels.
+
+In this world, we will be dealing with `Objects` of type `Prop` i.e propositions. You can think of a proposition as a statement that is either true or false(obviously, it can't be both at the same time).
 
 Moreover, these statements are denoted by a symbol like `P`,`Q`,`R`.
-
-# examples of propositions
-'The Lean theorem prover had a 4.70 release' is a true statement. After denoting this statement with `P`, we can say that `P` is true.
-
-'World War 2 ended in 1950' is a false statement. It ended in 1945. After denoting this statement with `Q`, we can say that `Q` is false.
-
-These are called atomic propositions. You will also learn how to make compound propositions from atomic propositions using logical connectives.
 
 # Building New Propositions From Previous Ones
 In this world, you will also learn how to construct new propositions by connecting other propositions with logical connectives

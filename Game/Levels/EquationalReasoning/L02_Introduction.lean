@@ -12,7 +12,7 @@ In this level, we have `Objects`, `Assumptions`, and the `Goal`.
 # Objects
 For this world, objects will always be unknown numbers, or variables we are working with. Anything after the `:` denotes the type of whats before the `:`. 
 
-Here, `x`  denotes a number but we don't know which number it is. The `:ℕ` in `x : ℕ` means that `x` is a variable of type natural number(positive numbers like `1`,`2`,`3`, and so on...). 
+Here, `x`  denotes a number but we don't know which number it is. The `: ℕ` in `x : ℕ` means that `x` is a variable of type natural number(positive numbers like `1`,`2`,`3`, and so on...). 
 
 # Assumptions
 As for the assumptions, we have `h: x=2` which means that `h` is an object of type `x=2`. This essentially means that `h` is an object asserting that the statement `x=2` is true or in other words, is a proof of `x=2`.
