@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Sat Jul 20 14:33:39 2024\n"
+"POT-Creation-Date: Sun Jul 21 18:41:46 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -443,26 +443,62 @@ msgid "# examples of propositions\n"
 "\n"
 "'World War 2 ended in 1950' is a false statement. It ended in 1945. After denoting this statement with `Q`, we can say that `Q` is false or `Q = false`.\n"
 "\n"
-"These are called atomic propositions. You will also learn how to make compound propositions from atomic propositions using logical connectives."
+"These are called atomic propositions. You will also learn how to make compound propositions from atomic propositions using logical connectives.\n"
+"\n"
+"# talk about editor mode and sorry, this is good because it would introduce them early on... in a world that every user is required to go through as part of the main experience.\n"
+"# experiment\n"
+"Use `#check` to check that for yourself!\n"
+"Try:\n"
+"```\n"
+"#check 2=2\n"
+"#check x=2\n"
+"#check P \n"
+"...\n"
+"```\n"
+"Whenever you are done, replace `sorry` with `rfl` to close the goal and move on."
 msgstr ""
 
 #: Game.Levels.LogicTruthValue_.L01_Propositions
 msgid ""
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_
-msgid "Logic Truth Value_"
+#: Game.Levels.LogicTruthValue_.L02_Intro
+msgid "Intro"
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_
-msgid "This world will heavily rely on the truth table perspective of propositions and the various logical connective to provide an intuitive foundation for explaining the validity of various rules in propositional logic. 'Propositions' will be explained here, and the rest will be hinted at here but fully explained throught the levels.\n"
+#: Game.Levels.LogicTruthValue_.L02_Intro
+msgid "Notice that the objects of interest are now of type `Prop` (i.e proposition). A proposition is a statement/assertion that can take only one of two values, either true or false. Having `hP : P = true` means that we have a proof that `P` is true, and therefore you can think about this as `P` being true.\n"
+"Moreover, having `hnP : P = false` means that we have a proof that `P` is false\n"
 "\n"
-"In this world, we will be dealing with `Objects` of type `Prop` i.e propositions. You can think of a proposition as a statement that is either true or false(obviously, it can't be both at the same time).\n"
+"`hP` 'exactly' matches the goal. `hP` is 'exactly' what you need to close the goal. This is to emphasize that for the tactic `exact h`, the type of h doesn't matter.\n"
 "\n"
-"Moreover, these statements are denoted by a symbol like `P`,`Q`,`R`.\n"
 "\n"
-"# Building New Propositions From Previous Ones\n"
-"In this world, you will also learn how to construct new propositions by connecting other propositions with logical connectives\n"
+"<img src=\"data/g/JadAbouHawili/testing-leangame/Truth-Table-And.png\"/>\n"
+"\n"
+"$\\displaystyle {\\frac {P\\lor Q,\\neg P}{\\therefore Q}}$\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"$\\iff$"
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L02_Intro
+msgid "Type `exact hP`!"
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L02_Intro
+msgid "Notice that `hQ` and `hR` were not used. We couldn't use them in any case because `Q` and `R` are not related to `P`. In the next levels, we will discuss how to construct new propositions from old ones which would in a sense depend on the old ones."
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L03_And
+msgid "And"
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L03_And
+msgid "In this level, we will learn about the `∧` logical connective, known as 'And'.\n"
+"In logic, for `P,Q` propositions, `P and Q` is true when both `P` is true and `Q` is true, being false otherwise.\n"
+"\n"
 "\n"
 "## Logical Connectives\n"
 "It is important to note that connecting two proposition via a logic connective results in a proposition as well. This proposition, like any other proposition, has a truth value. This truth value depends on the truth value of the atomic propositions and the rules of the logical connective. This point will be reiterated and hopefully fully materialize in your head as you deal with various logical connectives and as we discuss truth tables(see below for an example).\n"
@@ -481,20 +517,73 @@ msgid "This world will heavily rely on the truth table perspective of propositio
 "\n"
 "The atomic propositions in the compound proposition `p ∧ q` are : `p`, `q`. Of course, `p ∧ q` can be used to construct more complicated propositions.\n"
 "\n"
+"# Two ways of dealing with ∧ in the goal(Try both!)\n"
+"In Lean, to prove `P ∧ Q`, you need a proof of `P` and a proof of `Q`.\n"
+"## first way\n"
+"Giving these two proofs to the And introduction rule will construct a proof of `P ∧ Q`.\n"
+"\n"
+"Here's the type of `And.intro`:\n"
+"```\n"
+"  And.intro  (left : P) (right : Q) : P ∧ Q\n"
+"```\n"
+"where `P Q : Prop`\n"
+"\n"
+"## second way\n"
+"Using the `constructor` tactic will split a goal of the form `P ∧ Q` into two subgoals `P`,`Q` where you can deal with each one separately\n"
+"\n"
+"\n"
 "# truth table \n"
 "The truth table of a logical connective illustrates the rule for that logical connective , i.e the truth value of the compound statement depending on the truth value of the atomic propositions.\n"
-"The following truth table illustrates this for the prevously discussed `∧` connective.\n"
 "\n"
+"The following truth table illustrates this for the prevously discussed `∧` connective.\n"
 "`T` stands for true\n"
 "`F` stands for false\n"
-"```\n"
-"| P | Q | P ∧ Q  |\n"
-"|---|---|--------|\n"
-"| T | T |   T    |\n"
-"| T | F |   F    |\n"
-"| F | T |   F    |\n"
-"| F | F |   F    |\n"
-"```"
+"$\n"
+"\\begin{array}{|c c|c|} \n"
+"\\hline\n"
+"P & Q & P ∧ Q \\\\\n"
+"\\hline\n"
+"T & T & T \\\\\n"
+"T & F & F \\\\\n"
+"F & T & F \\\\\n"
+"F & F & F \\\\\n"
+"\\hline\n"
+"\\end{array}\n"
+"$"
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L03_And
+msgid "Try `exact And.intro hP hQ` or `constructor`"
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L03_And
+msgid "Notice that the goal is now `P`"
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L03_And
+msgid "After closing the goal `P`, you now have to close the goal `Q`"
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L03_And
+msgid "The constructor tactic transformed the goal `P ∧ Q` into two subgoals the first being `P` and the second being `Q`. This way of doing things matches the meaning of the `∧` connective."
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_
+msgid "Logic Truth Value_"
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_
+msgid "This world will heavily rely on the truth table perspective of propositions and the various logical connective to provide an intuitive foundation for explaining the validity of various rules in propositional logic. 'Propositions' will be explained here, and the rest will be hinted at here but fully explained throught the levels.\n"
+"\n"
+"In this world, we will be dealing with `Objects` of type `Prop` i.e propositions. You can think of a proposition as a statement that is either true or false(obviously, it can't be both at the same time).\n"
+"\n"
+"Moreover, these statements are denoted by a symbol like `P`,`Q`,`R`.\n"
+"\n"
+"# Building New Propositions From Previous Ones\n"
+"In this world, you will also learn how to construct new propositions by connecting other propositions with logical connectives\n"
+"\n"
+"Just as a quick example: \n"
+"Let `P` be the proposition 'It is cloudy' and let `Q` be the proposition 'It is raining'. Out of these two atomic propositions, we can form the compound proposition 'It is cloud `and` it is rainy' denoted `P ∧ Q` where `∧` means `and` in the propositional world."
 msgstr ""
 
 #: Game.Levels.Logic.L01_Intro

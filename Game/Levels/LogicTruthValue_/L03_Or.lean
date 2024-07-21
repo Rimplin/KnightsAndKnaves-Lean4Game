@@ -61,6 +61,7 @@ You can avoid entering both `a` or `b` explicitly and instead use:
 ```
 Or.inl {a b : Prop} (h : a) : a ∨ b
 ```
+Here, Lean will infer what the propositions are automatically.
 
 "
 

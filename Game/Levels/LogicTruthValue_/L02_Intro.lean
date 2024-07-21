@@ -3,8 +3,8 @@ import Mathlib.Logic.Basic
 
 variable (P Q R : Prop)
 
-World "Logic"
-Level 1
+World "LogicTruthValue_"
+Level 2
 
 Title "Intro "
 
@@ -40,9 +40,10 @@ $\\iff$
 --<img src='data/g/hhu-adam/testing-leangame/images/Truth-Table-And.png' />
 
 --<img src='images/Logic/Truth-Table-And.png' />
-Statement (hP: P) (hQ: Q) (hR : R)
-  : P := by
+Statement (hP: P=True) (hQ: Q=True) (hR : R=True)
+  : P=True := by
   {
+  --  eq_true {p : Prop} (h : p) : p = True
    Hint (hidden := true) "Type `exact hP`!"
    exact hP
   }

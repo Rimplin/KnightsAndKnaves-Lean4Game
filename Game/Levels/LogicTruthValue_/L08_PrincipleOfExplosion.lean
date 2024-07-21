@@ -59,6 +59,7 @@ $\\displaystyle {\\frac {P\\lor Q,\\neg P}{\\therefore Q}}$
    have := np h_1  
    contradiction
    -/
+#check Or.elim
 variable {P Q:Prop} 
 Statement (h : P) (nh : ¬P)
   : Q := by
