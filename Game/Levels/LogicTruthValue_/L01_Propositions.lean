@@ -15,7 +15,7 @@ You have seen propositions in 'Equational Reasoning'. Things like `x = 2`, `y = 
 
 'World War 2 ended in 1950' is a false statement. It ended in 1945. After denoting this statement with `Q`, we can say that `Q` is false or `Q = false`.
 
-These are called atomic propositions. You will also learn how to make compound propositions from atomic propositions using logical connectives.
+These are called atomic propositions. Atomic propositions are ones which contain no logical connectives. You will also learn how to make compound propositions from atomic propositions using logical connectives.
 
 # talk about editor mode and sorry, this is good because it would introduce them early on... in a world that every user is required to go through as part of the main experience.
 # experiment

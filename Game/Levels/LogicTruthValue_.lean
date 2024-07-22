@@ -19,9 +19,17 @@ In this world, we will be dealing with `Objects` of type `Prop` i.e propositions
 Moreover, these statements are denoted by a symbol like `P`,`Q`,`R`.
 
 # Building New Propositions From Previous Ones
-In this world, you will also learn how to construct new propositions by connecting other propositions with logical connectives
+In this world, you will also learn how to construct new propositions by connecting other propositions with logical connectives. 
 
 Just as a quick example: 
 Let `P` be the proposition 'It is cloudy' and let `Q` be the proposition 'It is raining'. Out of these two atomic propositions, we can form the compound proposition 'It is cloud `and` it is rainy' denoted `P ∧ Q` where `∧` means `and` in the propositional world. 
+
+# quick overview
+
+## proving statements involving logicla connectives
+Every logical connective has an introduction rule which introduces a new expression involving propositions with that connective.
+
+## unpacking information from a complicated propositional statement
+Logical connective has some 'elimination' or 'unpacking rule' which unpacks the information within that complication expression.
 
 "
