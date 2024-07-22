@@ -127,4 +127,3 @@ The constructor tactic transformed the goal `P ∧ Q` into two subgoals the firs
 NewTactic  constructor
 NewTheorem And.intro 
 -- NewDefinition Nat Add Eq
-

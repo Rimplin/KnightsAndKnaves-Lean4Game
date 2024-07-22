@@ -23,7 +23,7 @@ What logical implication does is that it takes evidence or proof for `P` and tra
 | F | F |   T    |
 ```
 
-A statement `P → Q` is false when `P` is true and `Q` false, it's true otherwise.
+A statement `P → Q` is false when `P` is true and `Q` false, it's true otherwise. Since the statement expresses that if `P` is true then `Q` is true, then should make intuitive sense.
 "
 variable {P Q : Prop}
 /-- asdfasdfd asdfsadfdsa here -/

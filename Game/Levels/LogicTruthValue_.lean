@@ -32,4 +32,10 @@ Every logical connective has an introduction rule which introduces a new express
 ## unpacking information from a complicated propositional statement
 Logical connective has some 'elimination' or 'unpacking rule' which unpacks the information within that complication expression.
 
+# shifting between the two perspectives
+
 "
+#check of_eq_true
+#check of_eq_false
+#check eq_true
+#check eq_false
