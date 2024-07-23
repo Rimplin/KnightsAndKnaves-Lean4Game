@@ -28,21 +28,23 @@ This is new but similar to the previous level.
 
 -/
 
-Statement {t u : ℝ} (h1 : t = 2) (h2 : u + t/2 = 3) : u = 3/2 := by
+-- ring, h2 , h1 ,ring
+Statement {t u : ℝ} (h1 : t = 2) (h2 : u + t/2 = 3) : u = 2 := by
 {
+
   Template
     calc
       -- create a `u + t/2` to be able to get rid of `u`
-      u = u +  t/2 - t/2 := by sorry
+      u = (u +  t/2) - t/2 := by sorry
 
       -- get rid of `u + t/2` getting rid of `u`
       _ = 3 - t/2 := by sorry
 
       -- get rid of `t`, only being left with numbers now
-      _ = 3 - 3/2 := by sorry
+      _ = 3 - 2/2 := by sorry
 
       -- carry out the operations on the numbers
-      _ = 3/2 := by sorry
+      _ = 2 := by sorry
 }
 
 Conclusion 

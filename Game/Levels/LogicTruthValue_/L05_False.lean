@@ -50,7 +50,7 @@ To emphasize the fact that negation is an implication, you have to go through th
 "
 
 variable {p : Prop}
-Statement (hp:p) (hnp:¬p)
+Statement (hp:p=True) (hnp:p=False)
   :  False := by
 
   {
@@ -58,9 +58,17 @@ Statement (hp:p) (hnp:¬p)
     -- This is the same as saying that we have a proof of `p` and we want to prove `False`
     -- So, we can use `hp` to prove `False`
     Hint (hidden:=true) "If you feel like seeing the implication definition of ¬ in the proof state would provide more clarity and make it easier to solve upcoming problems, you can always unfold ¬ to its implication form. Try `unfold Not at hnp`."
-    unfold Not at hnp 
+    --unfold Not at hnp 
     Hint "Now, this is just like the previous level"
-    exact hnp hp
+    have : False=True := by rw [←hnp]; rw [←hp] 
+    exact false_ne_true this
+
+    --have : (False = True) = False := by {
+    --  rw [this]
+    --  
+    --}
+    --contradiction
+    --exact hnp hp
   }
 
 Conclusion 

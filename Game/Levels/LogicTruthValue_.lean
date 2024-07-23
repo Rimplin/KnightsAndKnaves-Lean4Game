@@ -1,8 +1,8 @@
 import Game.Levels.LogicTruthValue_.L01_Propositions
 import Game.Levels.LogicTruthValue_.L02_Intro
 import Game.Levels.LogicTruthValue_.L03_And
+import Game.Levels.LogicTruthValue_.L04_Implication
 --import Game.Levels.Logic.L03_Or
---import Game.Levels.Logic.L04_Implication
 --import Game.Levels.Logic.L05_False
 --import Game.Levels.Logic.L06_Not
 --import Game.Levels.Logic.L07_contrapositive

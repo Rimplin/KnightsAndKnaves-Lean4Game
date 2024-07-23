@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Mon Jul 22 18:48:11 2024\n"
+"POT-Creation-Date: Tue Jul 23 13:29:59 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -459,6 +459,10 @@ msgid "# examples of propositions\n"
 msgstr ""
 
 #: Game.Levels.LogicTruthValue_.L01_Propositions
+msgid "works here too?"
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L01_Propositions
 msgid ""
 msgstr ""
 
@@ -565,7 +569,48 @@ msgid "In this level, we will learn about the `∧` logical connective, known as
 msgstr ""
 
 #: Game.Levels.LogicTruthValue_.L03_And
+msgid "testing wow"
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L03_And
 msgid "The constructor tactic transformed the goal `P ∧ Q` into two subgoals the first being `P` and the second being `Q`. This way of doing things matches the meaning of the `∧` connective."
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L04_Implication
+msgid "Implication, →"
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L04_Implication
+msgid "Logical implication `P → Q` is made up of two components:\n"
+"- The premise, which in this case is `P`\n"
+"- The conclusion, which in this case is `Q`\n"
+"\n"
+"What logical implication does is that it takes evidence or proof for `P` and transforms it returning a proof of `Q`.\n"
+"# truth table\n"
+"$\n"
+"\\begin{array}{|c c|c|} \n"
+"\\hline\n"
+"P & Q & P → Q \\\\\n"
+"\\hline\n"
+"T & T & T \\\\\n"
+"T & F & F \\\\\n"
+"F & T & T \\\\\n"
+"F & F & T \\\\\n"
+"\\hline\n"
+"\\end{array}\n"
+"$\n"
+"\n"
+"A statement `P → Q` is false when `P` is true and `Q` false, it's true otherwise. Since the statement expresses that if `P` is true then `Q` is true, then should make intuitive sense. This utterance is not violated in other cases so the statement is true in those cases.\n"
+"\n"
+"$\\displaystyle {\\frac {P\\rightarrow Q, P}{\\therefore Q}}$"
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L04_Implication
+msgid ""
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L04_Implication
+msgid "no lean docstring avaialble"
 msgstr ""
 
 #: Game.Levels.LogicTruthValue_

@@ -80,6 +80,8 @@ The atomic propositions in the compound proposition `p ∧ q` are : `p`, `q`. Of
 
 --variable {p : BooleanAlgebra Prop}
 --#check p.himp_eq P Q
+
+/-- testing wow -/
 Statement (hP : P=True) (hQ : Q=True) (hPQ: P ∧ Q)
   : (P ∧ Q) = True  := by
 
@@ -92,11 +94,11 @@ Statement (hP : P=True) (hQ : Q=True) (hPQ: P ∧ Q)
     #check P=True
    -- rw [hP,hQ]
    -- apply and_true 
-
-    calc 
-      (P ∧ Q) = (True ∧ Q) := by rw [hP]
-      _ = (True ∧ True) := by rw [hQ] 
-      _ = True := by exact and_true True
+    Template
+      calc 
+        (P ∧ Q) = (True ∧ Q) := by rw [hP]
+        _ = (True ∧ True) := by rw [hQ] 
+        _ = True := by exact and_true True
 
 --    tauto 
  --   refine 

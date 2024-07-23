@@ -1,7 +1,7 @@
 import Game.Metadata
 
 
-World "Logic" 
+World "LogicTruthValue_" 
 Level 4
 
 Title "Implication, →" 
@@ -14,22 +14,35 @@ Logical implication `P → Q` is made up of two components:
 
 What logical implication does is that it takes evidence or proof for `P` and transforms it returning a proof of `Q`.
 # truth table
-```
-| P | Q | P → Q  |
-|---|---|--------|
-| T | T |   T    |
-| T | F |   F    |
-| F | T |   T    |
-| F | F |   T    |
-```
+$
+\\begin{array}{|c c|c|} 
+\\hline
+P & Q & P → Q \\\\
+\\hline
+T & T & T \\\\
+T & F & F \\\\
+F & T & T \\\\
+F & F & T \\\\
+\\hline
+\\end{array}
+$
 
 A statement `P → Q` is false when `P` is true and `Q` false, it's true otherwise. Since the statement expresses that if `P` is true then `Q` is true, then should make intuitive sense. This utterance is not violated in other cases so the statement is true in those cases.
+
+Representing this rule symbolically:
+$\\displaystyle {\\frac {P\\rightarrow Q, P}{\\therefore Q}}$
+
+This is what this format means in general:
+$\\displaystyle {\\frac {Premises or assumptions}{Conclusion}}$
+
+We know `P` (i.e `P = True) , and we know `P → Q` (i.e `P = True → Q = True`). We can now conclude that `Q` (i.e `Q = True`).
 "
 variable {P Q : Prop}
-/-- asdfasdfd asdfsadfdsa here -/
-TheoremDoc modus_ponens as "modus_ponens" in "logic"
-Statement modus_ponens (p : P) (ptoq: P → Q)
-  : Q := by
+-- redundant ...
+--TheoremDoc modus_ponens as "modus_ponens" in "logic"
+--previously without =True
+Statement  (p : P=True) (ptoq: P=True → Q=True)
+  : Q=True := by
 
 
   {

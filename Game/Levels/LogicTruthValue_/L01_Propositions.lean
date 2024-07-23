@@ -29,7 +29,7 @@ Try:
 ```
 Whenever you are done, replace `sorry` with `rfl` to close the goal and move on.
 "
-
+/-- works here too? -/
 Statement 
   : 2=2 := by
 
