@@ -12,14 +12,15 @@ Introduction
 
 
 -- this is viable, the only issue is that the user has to explicitly go to the truth functional world, can this be forced somehow?? yes i can, by defining it and having the user user it. first make a level like this then make it easier for the user...
+variable {emTruth : P = True ∨ P = False}
 Statement : P = (P ∧ P) := by 
   --apply @iff_eq_eq.mpr P P 
-  cases em P
-  · have := eq_true h
-    rw [this] 
+  cases emTruth
+  · 
+    rw [h] 
     rw [and_true] 
-  · have := eq_false h 
-    rw [this]
+  · 
+    rw [h]
     rw [and_false] 
 
 
@@ -35,4 +36,5 @@ Conclusion
 NewTactic cases
 -- NewTheorem Nat.add_comm Nat.add_assoc
 -- NewDefinition Nat Add Eq
-NewTheorem em eq_true eq_false and_true and_false
+-- eq_true eq_false
+NewTheorem and_true and_false
