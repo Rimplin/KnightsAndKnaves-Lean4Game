@@ -50,6 +50,7 @@ Statement
     have h_4 := mem_inter h_2.left h_3.right
     rw [h] at h_4
     contradiction
+    -- replace with Function.mt , Function.mtr
     have heee := contrapositive stx
     have h_4 := mem_inter h_1.left h_3.left
     rw [h] at h_4
