@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Fri Jul 19 15:03:06 2024\n"
+"POT-Creation-Date: Tue Jul 23 10:10:26 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -429,7 +429,7 @@ msgid "Logic Truth Value"
 msgstr ""
 
 #: Game.Levels.LogicTruthValue
-msgid "asdf"
+msgid "This world will heavily rely on the truth table perspective of propositions and the various logical connective to provide an intuitive foundation for explaining the validity of various rules in propositional logic."
 msgstr ""
 
 #: Game.Levels.Logic.L01_Intro
