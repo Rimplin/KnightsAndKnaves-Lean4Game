@@ -10,6 +10,8 @@ Introduction
 "
 More practice on implication and negation
 "
+#check Function.mtr
+#check Function.mt
 variable { P Q : Prop }
 /-
 Statement  contrapositive
@@ -39,6 +41,7 @@ Statement contrapositive (forward: (P → Q))
   : (¬Q → ¬P) := by
 
   {
+    have := Function.mt forward
     intro nq
     intro p
     Hint "To obtain `False`, we need `Q`, and to obtain `Q` we need `P` which we have. Construct the appropriate expression to obtain `False`"
@@ -59,4 +62,3 @@ Conclusion
 NewTactic tauto
 -- NewLemma Nat.add_comm Nat.add_assoc
 -- NewDefinition Nat Add Eq
-
