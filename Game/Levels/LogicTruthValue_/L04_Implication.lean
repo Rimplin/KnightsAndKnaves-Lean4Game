@@ -33,9 +33,9 @@ Representing this rule symbolically:
 $\\displaystyle {\\frac {P\\rightarrow Q, P}{\\therefore Q}}$
 
 This is what this format means in general:
-$\\displaystyle {\\frac {Premises or assumptions}{Conclusion}}$
+$\\displaystyle {\\frac {Premises}{Conclusion}}$
 
-We know `P` (i.e `P = True) , and we know `P → Q` (i.e `P = True → Q = True`). We can now conclude that `Q` (i.e `Q = True`).
+We know `P` (i.e `P = True`) , and we know `P → Q` (i.e `P = True → Q = True`). We can now conclude that `Q` (i.e `Q = True`).
 "
 variable {P Q : Prop}
 -- redundant ...
@@ -43,8 +43,6 @@ variable {P Q : Prop}
 --previously without =True
 Statement  (p : P=True) (ptoq: P=True → Q=True)
   : Q=True := by
-
-
   {
     exact ptoq p
   }

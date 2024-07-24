@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Tue Jul 23 13:29:59 2024\n"
+"POT-Creation-Date: Wed Jul 24 14:03:51 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -18,6 +18,12 @@ msgstr ""
 
 #: GameServer.RpcHandlers
 msgid "intermediate goal solved! 🎉"
+msgstr ""
+
+#: Game.Doc.doc
+msgid "Unfoldable:\n"
+"unfold Not at ...\n"
+"¬P is P → False"
 msgstr ""
 
 #: Game.Doc.doc
@@ -412,26 +418,6 @@ msgid "This world is a variant world of equational reasoning, where you have to 
 "`calc` is a multiline tactic, so you will be dropped into editor mode in each level in this world."
 msgstr ""
 
-#: Game.Levels.LogicTruthValue.L01_And
-msgid ""
-msgstr ""
-
-#: Game.Levels.LogicTruthValue.L01_And
-msgid ""
-msgstr ""
-
-#: Game.Levels.LogicTruthValue.L01_And
-msgid ""
-msgstr ""
-
-#: Game.Levels.LogicTruthValue
-msgid "Logic Truth Value"
-msgstr ""
-
-#: Game.Levels.LogicTruthValue
-msgid "This world will heavily rely on the truth table perspective of propositions and the various logical connective to provide an intuitive foundation for explaining the validity of various rules in propositional logic."
-msgstr ""
-
 #: Game.Levels.LogicTruthValue_.L01_Propositions
 msgid ""
 msgstr ""
@@ -439,15 +425,16 @@ msgstr ""
 #: Game.Levels.LogicTruthValue_.L01_Propositions
 msgid "# examples of propositions\n"
 "You have seen propositions in 'Equational Reasoning'. Things like `x = 2`, `y = 6` are propositions i.e of type `Prop`.\n"
-"'The Lean theorem prover had a 4.70 release' is a true statement. After denoting this statement with `P`, we can say that `P` is true or `P = true`.\n"
+"'The Lean theorem prover had a 4.70 release' is a true statement. After denoting this statement with `P`, we can say that `P` is `True` or `P = True`.\n"
 "\n"
-"'World War 2 ended in 1950' is a false statement. It ended in 1945. After denoting this statement with `Q`, we can say that `Q` is false or `Q = false`.\n"
+"'World War 2 ended in 1950' is a false statement. It ended in 1945. After denoting this statement with `Q`, we can say that `Q` is `False` or `Q = False`.\n"
 "\n"
-"These are called atomic propositions. Atomic propositions are ones which contain no logical connectives. You will also learn how to make compound propositions from atomic propositions using logical connectives.\n"
+"These are called atomic propositions. Atomic propositions are ones which contain no logical connectives (like the previously discussed `∧`). You will also learn how to make compound propositions from atomic propositions using logical connectives.\n"
 "\n"
 "# talk about editor mode and sorry, this is good because it would introduce them early on... in a world that every user is required to go through as part of the main experience.\n"
-"# experiment\n"
-"Use `#check` to check that for yourself!\n"
+"# experiment using editor mode\n"
+"Editor mode is a vscode like environment. The main thing we want to emphasize this level is that you can hover over things to get more information.\n"
+"Use `#check` and hover your mouse to see what iit says.\n"
 "Try:\n"
 "```\n"
 "#check 2=2\n"
@@ -455,6 +442,7 @@ msgid "# examples of propositions\n"
 "#check P \n"
 "...\n"
 "```\n"
+"`#check` gives the type of the expression that's after it.\n"
 "Whenever you are done, replace `sorry` with `rfl` to close the goal and move on."
 msgstr ""
 
@@ -602,7 +590,13 @@ msgid "Logical implication `P → Q` is made up of two components:\n"
 "\n"
 "A statement `P → Q` is false when `P` is true and `Q` false, it's true otherwise. Since the statement expresses that if `P` is true then `Q` is true, then should make intuitive sense. This utterance is not violated in other cases so the statement is true in those cases.\n"
 "\n"
-"$\\displaystyle {\\frac {P\\rightarrow Q, P}{\\therefore Q}}$"
+"Representing this rule symbolically:\n"
+"$\\displaystyle {\\frac {P\\rightarrow Q, P}{\\therefore Q}}$\n"
+"\n"
+"This is what this format means in general:\n"
+"$\\displaystyle {\\frac {Premises}{Conclusion}}$\n"
+"\n"
+"We know `P` (i.e `P = True`) , and we know `P → Q` (i.e `P = True → Q = True`). We can now conclude that `Q` (i.e `Q = True`)."
 msgstr ""
 
 #: Game.Levels.LogicTruthValue_.L04_Implication
@@ -628,7 +622,7 @@ msgid "This world will heavily rely on the truth table perspective of propositio
 "In this world, you will also learn how to construct new propositions by connecting other propositions with logical connectives. \n"
 "\n"
 "Just as a quick example: \n"
-"Let `P` be the proposition 'It is cloudy' and let `Q` be the proposition 'It is raining'. Out of these two atomic propositions, we can form the compound proposition 'It is cloud `and` it is rainy' denoted `P ∧ Q` where `∧` means `and` in the propositional world. \n"
+"Let `P` be the proposition 'It is cloudy' and let `Q` be the proposition 'It is raining'. Out of these two atomic propositions, we can form the compound proposition 'It is cloudy `and` it is rainy' denoted `P ∧ Q` where `∧` in the propostional world means `and`.\n"
 "\n"
 "# quick overview\n"
 "\n"
@@ -841,10 +835,6 @@ msgstr ""
 
 #: Game.Levels.Logic.L05_False
 msgid "In the next level, we will explore what it means to have proven `False`(pretty bad, or pretty good depending on how you look at it)."
-msgstr ""
-
-#: Game.Levels.Logic.L05_False
-msgid ""
 msgstr ""
 
 #: Game.Levels.Logic.L06_Not

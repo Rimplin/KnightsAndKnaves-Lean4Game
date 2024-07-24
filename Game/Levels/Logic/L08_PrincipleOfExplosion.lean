@@ -116,4 +116,3 @@ You could have also solved it by just writing `contradiction`. Contradiction is 
 NewTactic contradiction
 -- NewLemma Nat.add_comm Nat.add_assoc
 -- NewDefinition Nat Add Eq
-

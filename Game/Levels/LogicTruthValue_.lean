@@ -22,7 +22,7 @@ Moreover, these statements are denoted by a symbol like `P`,`Q`,`R`.
 In this world, you will also learn how to construct new propositions by connecting other propositions with logical connectives. 
 
 Just as a quick example: 
-Let `P` be the proposition 'It is cloudy' and let `Q` be the proposition 'It is raining'. Out of these two atomic propositions, we can form the compound proposition 'It is cloud `and` it is rainy' denoted `P ∧ Q` where `∧` means `and` in the propositional world. 
+Let `P` be the proposition 'It is cloudy' and let `Q` be the proposition 'It is raining'. Out of these two atomic propositions, we can form the compound proposition 'It is cloudy `and` it is rainy' denoted `P ∧ Q` where `∧` in the propostional world means `and`.
 
 # quick overview
 

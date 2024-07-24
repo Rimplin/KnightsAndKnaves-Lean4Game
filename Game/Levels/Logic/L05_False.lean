@@ -73,6 +73,6 @@ In the next level, we will explore what it means to have proven `False`(pretty b
 NewTactic unfold
 -- NewTheorem Nat.add_comm Nat.add_assoc
 
-DefinitionDoc Not as "¬" 
+--DefinitionDoc Not as "¬" 
 NewDefinition Not  
 --TheoremDoc mul_left_cancel as "mul_left_cancel" in "*"

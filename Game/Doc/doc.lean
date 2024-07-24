@@ -1,4 +1,12 @@
 import Game.Metadata
+
+/--
+Unfoldable:
+unfold Not at ...
+¬P is P → False
+-/
+DefinitionDoc Not as "¬"
+
 /--
 `rfl` is short for reflexivity, which is the property that for any number `a`, `a = a`.
 

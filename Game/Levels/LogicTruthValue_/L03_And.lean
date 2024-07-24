@@ -127,5 +127,5 @@ The constructor tactic transformed the goal `P ∧ Q` into two subgoals the firs
 /- Use these commands to add items to the game's inventory. -/
 
 NewTactic  constructor
-NewTheorem And.intro 
+NewTheorem And.intro and_true
 -- NewDefinition Nat Add Eq
