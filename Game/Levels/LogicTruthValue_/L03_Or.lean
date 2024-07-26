@@ -16,8 +16,8 @@ Or.intro_left (b : Prop) (h : a) : a ∨ b
 - `Or.intro_right`
 "
 
-Statement (hP : P) (hQ : Q) 
-  : P ∨ Q  := by
+Statement (hP : P=True) (hQ : Q=True) 
+  : (P ∨ Q) = True := by
 
   {
   /-
@@ -32,8 +32,9 @@ Alias for `Or.inl`.
   -/
 --    exact Or.intro_left Q hP
 
-
-    exact Or.intro_left Q hP
+    -- include two ways to solve...
+    rw [hP,true_or]
+    --exact Or.intro_left Q hP
     /-
 ```lean
 Or.inl {a b : Prop} (h : a) : a ∨ b
@@ -70,4 +71,4 @@ Here, Lean will infer what the propositions are automatically.
 NewTheorem Or.inl Or.intro_left
 -- NewTheorem Nat.add_comm Nat.add_assoc
 -- NewDefinition Nat Add Eq
-
+NewTheorem true_or or_true

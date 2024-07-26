@@ -83,7 +83,7 @@ example : (¬q → ¬p) → (p → q) :=
   fun hnqnp ↦ fun hp ↦ 
   Or.elim (Classical.em q) (fun hq ↦ hq) (fun hnq ↦ absurd (hp) (hnqnp hnq))
 
-example : p ∨ ¬p := Classical.em p
+theorem a: p ∨ ¬p := Classical.em p
 
 example : (((p → q) → p) → p) := 
   fun hpqp ↦ Or.elim (Classical.em q)
@@ -94,13 +94,13 @@ example : (((p → q) → p) → p) :=
                              (fun hnp ↦ 
                              hpqp (falseAntecedent p q hnp)))
 
-example : ¬(p ↔ ¬p) :=  
+theorem asdf: ¬(p ↔ ¬p) :=  
   fun hpnp ↦ 
   have hnp : ¬p := fun hp ↦ absurd hp (hpnp.mp hp)
   have hp : p := hpnp.mpr hnp
   absurd hp hnp
 
-
+#print axioms asdf
 Conclusion 
 "adf
 "

@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Thu Jul 25 13:28:08 2024\n"
+"POT-Creation-Date: Fri Jul 26 11:12:02 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -606,6 +606,44 @@ msgstr ""
 
 #: Game.Levels.LogicTruthValue_.L04_Implication
 msgid "no lean docstring avaialble"
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L05_BuildTruthTable
+msgid "asdfasdf"
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L05_BuildTruthTable
+msgid "You can consider each calc block as its own exercise."
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L05_BuildTruthTable
+msgid "Here's what you proved in truth table form: \n"
+"$\n"
+"\\begin{array}{|c c|c|} \n"
+"\\hline\n"
+"P & Q & ¬P ∨ Q \\\\\n"
+"\\hline\n"
+"T & T & T \\\\\n"
+"T & F & F \\\\\n"
+"F & T & T \\\\\n"
+"F & F & T \\\\\n"
+"\\hline\n"
+"\\end{array}\n"
+"$\n"
+"The expression is `False` when `P` is true and `Q` is false, being false otherwise.\n"
+"Look familiar? \n"
+"$\n"
+"\\begin{array}{|c c|c|} \n"
+"\\hline\n"
+"P & Q & P → Q \\\\\n"
+"\\hline\n"
+"T & T & T \\\\\n"
+"T & F & F \\\\\n"
+"F & T & T \\\\\n"
+"F & F & T \\\\\n"
+"\\hline\n"
+"\\end{array}\n"
+"$"
 msgstr ""
 
 #: Game.Levels.LogicTruthValue_

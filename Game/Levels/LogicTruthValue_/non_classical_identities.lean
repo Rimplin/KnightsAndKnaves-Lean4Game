@@ -26,8 +26,6 @@ where `P Q : Prop`
 ## second way
 Using the `constructor` tactic will split a goal of the form `P ∧ Q` into two subgoals `P`,`Q` where you can deal with eac one separetly
 
-
-
 "
 
 Statement (hP : P) (hQ : Q)

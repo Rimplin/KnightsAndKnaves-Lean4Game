@@ -41,7 +41,7 @@ variable {P Q : Prop}
 -- redundant ...
 --TheoremDoc modus_ponens as "modus_ponens" in "logic"
 --previously without =True
-Statement  (p : P=True) (ptoq: P=True → Q=True)
+Statement  (p : P=True) (ptoq: (P=True) → (Q=True))
   : Q=True := by
   {
     exact ptoq p
