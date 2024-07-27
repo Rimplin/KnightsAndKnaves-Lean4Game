@@ -33,6 +33,7 @@ Statement  contrapositive
     
   }
 -/
+/-
 /--testssstsgasdfa-/
 TheoremDoc contrapositive as "contrapositive" in "logic"
 Statement (forward: (P → Q))
@@ -49,7 +50,24 @@ Statement (forward: (P → Q))
    --intro p 
    --exact nq (h p)  
 }
+-/
 
+
+Statement  (forward: (P → Q))
+  : (¬Q → ¬P) := by
+
+  {
+    have := Function.mt forward
+    intro nq
+    intro p
+    Hint "To obtain `False`, we need `Q`, and to obtain `Q` we need `P` which we have. Construct the appropriate expression to obtain `False`"
+    exact nq (forward p)
+   --intro h 
+   --intro nq
+
+   --intro p 
+   --exact nq (h p)  
+}
 Conclusion 
 "
 "
@@ -57,7 +75,6 @@ Conclusion
 /- Use these commands to add items to the game's inventory. -/
 
 NewTactic tauto
-NewTheorem contrapositive
 -- NewLemma Nat.add_comm Nat.add_assoc
 -- NewDefinition Nat Add Eq
 

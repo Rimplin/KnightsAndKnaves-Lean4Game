@@ -4,11 +4,31 @@ import Game.Metadata
 World "Logic" 
 Level 6
 
-Title "Not, ¬" 
+Title "Not Connective, ¬" 
 
 Introduction 
 "
+Another way to say that `P = False` is by saying `¬P = True`. These two statements say the same thing. This is how we will define `¬`.
+`¬` is defined to satisfy the following properties:
+`(P = True) → (¬P = False)`
+`(P = False) → (¬P = True)`
+If `P` is True, then `¬P` is False.
+If `P` is False, then `¬P` is True.
 
+If `¬P` is False, then `P` is True.
+If `¬P` is False, then `P` is True.
+
+Two nots give a true. Double negatives. Two negatives make/resolve into a positive.
+
+Intuitvely, this fits how negation or 'not' works in language.
+
+Notice that this is the first logical connective that applies on one proposition only and not two.
+
+If `P` then `False`.
+
+
+
+------
 $
 \\begin{array}{|c c|c|} 
 \\hline
@@ -77,6 +97,8 @@ So this is pretty good because now you can effortlessly prove anything you want!
 --`False : Prop` is the type that has no inhabitants, i.e there is no object, say `h`, that is of type `False`. In other words, we cannot find an `h` such that `h :False`. This makes sense when considering that finding an `h:False` would mean we have proved something that is false. 
 -/
 
+#check not_of_eq_false
+#check eq_false
 Statement (hP : P)
   : P  := by
 
