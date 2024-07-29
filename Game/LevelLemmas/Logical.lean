@@ -1,4 +1,5 @@
 --import Game.Metadata
+--import Mathlib
 
 
 theorem contrapositive (forward: P → Q) :  ¬Q → ¬P := by
@@ -17,6 +18,7 @@ theorem disjunctiveSyllogism (h : P ∨ Q) (np : ¬P)
   : Q := by
 
   {
+  /-
     apply Or.elim (Classical.em Q)
     intro hQ
     assumption 
@@ -25,4 +27,8 @@ theorem disjunctiveSyllogism (h : P ∨ Q) (np : ¬P)
     have := And.intro np hnQ
     rw [not_or.symm] at this
     contradiction
+    -/
+  cases h
+  · contradiction
+  · assumption
   }

@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Fri Jul 26 11:12:02 2024\n"
+"POT-Creation-Date: Sat Jul 27 17:04:02 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -950,10 +950,6 @@ msgstr ""
 
 #: Game.Levels.Logic.L07_contrapositive
 msgid "More practice on implication and negation"
-msgstr ""
-
-#: Game.Levels.Logic.L07_contrapositive
-msgid "testssstsgasdfa"
 msgstr ""
 
 #: Game.Levels.Logic.L07_contrapositive

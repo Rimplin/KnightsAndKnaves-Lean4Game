@@ -10,6 +10,7 @@ Introduction
 "
 Prove princpiple of explostion from truth value perspective...
 
+From `False` anything follows.
 Otherwise known as 'from contradiction, anything follows'. 
 This principle asserts that if you have contradictory assumptions then you can prove anything.
 Example of contradictory assumptions:
@@ -92,7 +93,7 @@ example : ¬ (¬ P) ↔ P := by
 
   · sorry
 
-example (P : Prop) : ¬ (¬ P) ↔ P := by
+example : ¬ (¬ P) ↔ P := by
   constructor
   · intro h
     push_neg at h
