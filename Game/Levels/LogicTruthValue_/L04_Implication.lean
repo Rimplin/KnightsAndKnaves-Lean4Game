@@ -69,6 +69,21 @@ Conclusion
 --NewTheorem mul_left_cancel 
 -- NewDefinition Nat Add Eq
 --NewTheorem
-/-- no lean docstring avaialble -/
+/-- no lean docstring avaialble
+
+# truth table
+$
+\begin{array}{|c c|c|} 
+\hline
+P & Q & P → Q \\
+\hline
+T & T & T \\
+T & F & F \\\\
+F & T & T \\\\
+F & F & T \\\\
+\hline
+\end{array}
+$
+-/
 DefinitionDoc imp as "→"
 NewDefinition imp 

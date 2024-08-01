@@ -10,7 +10,9 @@ import Game.Levels.Logic.L08_PrincipleOfExplosion
 --Image "images/Logic/Truth-Table-And.png"
 World "Logic"
 Title "Logic"
-Introduction "In this world, we will be dealing with `Objects` of type `Prop` i.e propositions. You can think of a proposition as a statement that is either true or false(obviously, it can't be both at the same time).
+Introduction 
+"
+In this world, we will be dealing with `Objects` of type `Prop` i.e propositions. You can think of a proposition as a statement that is either true or false(obviously, it can't be both at the same time).
 
 Moreover, these statements are denoted by a symbol like `P`,`Q`,`R`.
 
@@ -41,6 +43,14 @@ Combining these two prpositions together gives us the proposition `p ∧ q` whic
 
 The atomic propositions in the compound proposition `p ∧ q` are : `p`, `q`. Of course, `p ∧ q` can be used to construct more complicated propositions.
 
+# quick overview
+
+## proving statements involving logical connectives
+Every logical connective has an introduction rule which introduces a new expression involving propositions with that connective.
+
+## unpacking information from a complicated propositional statement
+Logical connective has some 'elimination' or 'unpacking rule' which unpacks the information within that complicated expression.
+
 # truth table 
 The truth table of a logical connective illustrates the rule for that logical connective , i.e the truth value of the compound statement depending on the truth value of the atomic propositions.
 The following truth table illustrates this for the prevously discussed `∧` connective.
@@ -55,4 +65,7 @@ The following truth table illustrates this for the prevously discussed `∧` con
 | F | T |   F    |
 | F | F |   F    |
 ```
+
+# truth tables for the logical connectives
+You can find these truth tables in the documentation in the right side pane. This world will focus on the introduction and elimination rules.
 "

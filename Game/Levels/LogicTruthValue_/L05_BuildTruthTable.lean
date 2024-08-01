@@ -135,4 +135,4 @@ $
 "
 
 NewTactic «try» 
-NewTheorem false_or or_false not_true not_false_eq_true not_true_eq_false
+NewTheorem false_or or_false not_true not_false_eq_true not_true_eq_false true_or or_true

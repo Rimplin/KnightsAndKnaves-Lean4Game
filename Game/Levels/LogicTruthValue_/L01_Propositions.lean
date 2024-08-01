@@ -10,7 +10,7 @@ Introduction
 "
 
 # examples of propositions
-You have seen propositions in 'Equational Reasoning'. Things like `x = 2`, `y = 6` are propositions i.e of type `Prop`.
+You have seen propositions in 'Equational Reasoning'. Things like `x = 2`, `y = 6` are propositions i.e of type `Prop`. Note that a proof of `x = 2` was an `h : x = 2` and not `h : (x= 2) = True`. Here however, a proof of an arbitrary proposition `P` is `h : P = True` and not `h : P`. The latter would work as well, and you can go between the two using an appropriate theorem. The first perspective is emphasized in this world, and the second is emphasized in the world that follows.
 'The Lean theorem prover had a 4.70 release' is a true statement. After denoting this statement with `P`, we can say that `P` is `True` or `P = True`.
 
 'World War 2 ended in 1950' is a false statement. It ended in 1945. After denoting this statement with `Q`, we can say that `Q` is `False` or `Q = False`.
@@ -29,7 +29,8 @@ Try:
 ...
 ```
 `#check` gives the type of the expression that's after it.
-Notice that `P=True` is of type Prop which means that it is an assertion that is either `True` or `False`. It is true i.e `(P=True)=True` when we find a proof `h : P = True`.
+Notice that `P=True` is of type Prop which means that it is an assertion that is either `True` or `False`. It is true i.e `(P=True)=True` when we find a proof `h : (P = True) = True`.
+The truth table perspective will make this less confusing.
 Whenever you are done, replace `sorry` with `rfl` to close the goal and move on.
 "
 variable {P : Prop}

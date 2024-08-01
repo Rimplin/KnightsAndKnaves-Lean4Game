@@ -198,7 +198,7 @@ example : ¬ (¬ P) ↔ P := by
     push_neg 
     exact h
 
-Conclusion "Notice that `hQ` and `hR` were not used. We couldn't use them in any case because `Q` and `R` are not related to `P`. In the next levels, we will discuss how to construct new propositions from old ones which would in a sense depend on the old ones. "
+Conclusion "Notice that `hQ` and `hR` were not used. We couldn't use them in any case because `Q` and `R` are not related to `P`. In the next levels, we will discuss how to construct new propositions from old ones, where information about these building blocks would help us reason about the newly constructed propositions."
 
 /- Use these commands to add items to the game's inventory. -/
 

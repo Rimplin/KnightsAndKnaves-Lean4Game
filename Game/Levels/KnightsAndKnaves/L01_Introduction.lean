@@ -10,9 +10,14 @@ Level 1
 
 Title "Intro"
 
+#print Xor'
+#check Xor
+#check not_xor
+
 Introduction 
 "
 # Xor
+To introduce Xor, introduce as the negation of if and only if. Xor is inequivalence, Xor is such that exactly one of the propositions is truei.e exclusive or. 
 
 # How the proof will work(cases tactic)
 Take all possible cases for `x` and `y`. These cases are:
@@ -40,6 +45,8 @@ Statement
 
     --could have used constructor but had issues
 
+    #check HEq Knight Knave
+    #check Eq Knight Knave
 --    rw [Xor'] at h1
  --   rw [Xor'] at h2
     cases h1
@@ -66,31 +73,14 @@ Statement
 
   }
 
-
-
-
-
-  /-
-  Hint "You can either start using `{h}` or `{g}`."
-  Branch
-    rw [g]
-    Hint "You should use `{h}` now."
-    rw [h]
-  rw [h]
-  Hint "You should use `{g}` now."
-  rw [g]
--/
 Conclusion "This last message appears if the level is solved."
-
-/- Use these commands to add items to the game's inventory. -/
 
 /-asdf -/
 --TheoremDoc Xor' as "Xor" in "logic"
 --NewTheorem Xor' 
 
 NewTactic push_neg 
---NewTheorem contrapositive
---NewLemma Nat.add_comm Nat.add_assoc
+
 /--
 # Exclusive Or 
 

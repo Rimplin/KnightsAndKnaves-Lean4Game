@@ -83,3 +83,43 @@ NewTactic «have» rw
 TheoremDoc mul_left_cancel₀ as "mul_left_cancel₀" in "*"
 NewTheorem mul_left_cancel₀ four_ne_zero
 -- NewDefinition Nat Add Eq
+
+/--
+
+
+### **Logic Constants & Operators**
+### **Equational Reasoning**
+| $Name~~~$ | $Ascii~~~$ | $Unicode$ | $Unicode Cmd$ |
+| --- | :---: | :---: | --- |
+|     |       |       | `mul_left_cancel\0`|
+| True | `True` |  |  |
+| False | `False` |  |  |
+| Not | `Not` | ¬ | `\n` `\not` `\neg` `\lnot` |
+| And | `/\` | ∧ | `\and` `\an` `\wedge` |
+| Or | `\/` | ∨ | `\v` `\or` `\vee` |
+| Implies | `->` | → | `\r` `\imp` `\->` `\to` `\r-` `\rightarrow` |
+| Iff | `<->` | ↔ | `\iff` `\lr-` `\lr` `\<->` `\leftrightarrow` |
+| For All | `foral` | ∀ | `\all` `\forall` |
+| Exists | `exists` | ∃ | `\ex` `\exists` |
+
+### **Other Unicode**
+| $Name$ | $Unicode~~~$ | $Unicode Cmd$ |
+| --- | :---: | --- |
+| Angle brackets | ⟨ ⟩ | `\<` `\>` `\langle` `\rangle` |
+| Subscript Numbers | ₁ ₂ ₃ ... | `\1` `\2` `\3` ... |
+| Left Arrow | ← | `\l` `\leftarrow` `\gets` `\<-` |
+| Turnstyle | ⊢ | `\│-` `\entails` `\vdash` `\goal` |
+
+$
+\begin{array}{|c|c|} 
+\hline
+Unicode & Text \\
+\hline
+\text{mul\_left\_cancel₀} & `mul\_left\_cancel\0` \\
+\hline
+\end{array}
+$
+mul_left_cancel₀ written as mul_left_cancel\0
+-/
+DefinitionDoc UnicodeSymbols as "Unicode Symbols"
+NewDefinition UnicodeSymbols

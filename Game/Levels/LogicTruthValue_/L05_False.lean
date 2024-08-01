@@ -9,7 +9,8 @@ Title "asdf"
 Introduction 
 "
 # Truth Table
-We want an operator which flips the value of `P`. Lets call this operator `not` represented as `¬`. In other words, if `P` were true then `¬P` would be false and vice versa. 
+We want an operator which flips the value of a proposition `P`. Lets call this operator `Not` represented as `¬`. In other words, if `P` were true then `¬P` would be false and vice versa. 
+Note that `¬P` is also a proposition, so `¬ (¬P)` is a valid expression.
 
 
 This is what the truth table would look like.
@@ -37,6 +38,7 @@ F & T  \\\\
 \\end{array}
 $
 Notice that this definition is an implication which you have learned to deal with in the previous level and that the truth table with `¬P` and the truth table with `P → False` are identical which means this definition captures what we want `¬` to mean.
+
 # Natural Language Example
 Let `P` denote the assertion 'Today is Monday'. `¬P` would then denote the assertion 'Today is not Monday'. You could also say that `¬P` denotes 'Today is Tuesday or Wednsday or Thursday or Friday or Saturday or Sunday'. Both assertions express the same thing (assuming there are 7 days of the week and these are their names) so either one is acceptable.
 
@@ -65,7 +67,7 @@ example (hp:p=True) (hnp:p=False) (hnnp:¬p=True) (h' : (p = True) → (False = 
   unfold Not at hnnp
   have : (p=True) ∧ (p=False) := by exact And.intro hp hnp
   have this2: False :=by exact hnnp hp
-  -- true regardless of proof state, introduce it in a previous level and then when i come here, i can form the term on the left and rewrite to get `False`.
+  -- true regardless of proof state i.e true in every proof state, introduce it in a previous level and then when i come here, i can form the term on the left and rewrite to get `False`.
   #check this
   have this2: p ≠ True := by rw [hnp]; apply false_ne_true
   exact this2 hp

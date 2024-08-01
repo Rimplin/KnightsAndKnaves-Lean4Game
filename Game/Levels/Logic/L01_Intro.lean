@@ -9,7 +9,10 @@ Level 1
 Title "Intro "
 
 Introduction
-" Notice that the objects of interest are now of type `Prop` (i.e proposition). A proposition is a statement/assertion that can take only one of two values, either true or false. Having `hP:P` means that we have a proof of `P`, and therefore you can think about this as `P` being true.
+" 
+Explicitly indicate that this is an analogue of the previous world.
+
+Notice that the objects of interest are still of type `Prop` (i.e proposition) but a proof of `P` is indicated as `hP : P`.(make a level before this one where user is in editor mode and eq_true is used to transitition to the previous level, maybe combine both worlds????) A proposition is a statement/assertion that can take only one of two values, either true or false. Having `hP : P` means that we have a proof of `P`, and therefore you can think about this as `P` being true.
 
 `hP` 'exactly' matches the goal. `hP` is 'exactly' what you need to close the goal. This is to emphasize that for the tactic `exact h`, the type of h doesn't matter.
 
