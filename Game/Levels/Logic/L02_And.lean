@@ -15,32 +15,40 @@ In logic, for `P,Q` propositions, `P and Q` is true when both `P` is true and `Q
 
 # Two ways of dealing with ∧ in the goal(Try both!)
 In Lean, to prove `P ∧ Q`, you need a proof of `P` and a proof of `Q`.
-## first way
-Giving these two proofs to the And introduction rule will construct a proof of `P ∧ Q`.
+## `And` introduction rule
+In Lean, to prove `P ∧ Q`, you need a proof of `P` and a proof of `Q`. Using the `And` introduction rule, we can introduce `∧` in a newly constructed expression. 
+The `And` introduction rule will enable us to prove statements involving `∧`.
+For example, given the following proof state:
+```
+hP : P
+hQ : Q
+⊢ P ∧ Q
+```
+We can close the goal by:
+```
+exact And.intro hP hQ
+```
 
 Here's the type of `And.intro`:
 ```
   And.intro  (left : P) (right : Q) : P ∧ Q
 ```
+`And.intro` takes a proof of `P`, a proof of `Q`, and transforms/evaulates to a proof of `P ∧ Q`
 where `P Q : Prop`
+### Example: `And` , `∧`
+And.intro
+And.left h
+And.right h
 
-## second way
+The atomic propositions in the compound proposition `p ∧ q` are : `p`, `q`. Of course, `p ∧ q` can be used to construct more complicated propositions.
+Giving these two proofs to the And introduction rule will construct a proof of `P ∧ Q`.
+
+
+## `constructor` tactic
 Using the `constructor` tactic will split a goal of the form `P ∧ Q` into two subgoals `P`,`Q` where you can deal with each one separately
 
-
 # truth table 
-$
-\\begin{array}{|c c|c|} 
-\\hline
-P & Q & P ∧ Q \\\\
-\\hline
-T & T & T \\\\
-T & F & F \\\\
-F & T & F \\\\
-F & F & F \\\\
-\\hline
-\\end{array}
-$
+Refer to the documentation in the right side pane.
 
 "
 

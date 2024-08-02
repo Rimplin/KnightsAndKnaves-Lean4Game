@@ -8,7 +8,6 @@ Title ""
 
 Introduction 
 "
-
 # examples of propositions
 You have seen propositions in 'Equational Reasoning'. Things like `x = 2`, `y = 6` are propositions i.e of type `Prop`. Note that a proof of `x = 2` was an `h : x = 2` and not `h : (x= 2) = True`. Here however, a proof of an arbitrary proposition `P` is `h : P = True` and not `h : P`. The latter would work as well, and you can go between the two using an appropriate theorem. The first perspective is emphasized in this world, and the second is emphasized in the world that follows.
 'The Lean theorem prover had a 4.70 release' is a true statement. After denoting this statement with `P`, we can say that `P` is `True` or `P = True`.
@@ -20,7 +19,7 @@ These are called atomic propositions. Atomic propositions are ones which contain
 # talk about editor mode and sorry, this is good because it would introduce them early on... in a world that every user is required to go through as part of the main experience.
 # experiment using editor mode
 Editor mode is a vscode like environment. The main thing we want to emphasize this level is that you can hover over things to get more information.
-Use `#check` and hover your mouse to see what iit says.
+Use `#check` and hover your mouse to see what it says.
 Try:
 ```
 #check 2=2
@@ -29,7 +28,7 @@ Try:
 ...
 ```
 `#check` gives the type of the expression that's after it.
-Notice that `P=True` is of type Prop which means that it is an assertion that is either `True` or `False`. It is true i.e `(P=True)=True` when we find a proof `h : (P = True) = True`.
+Notice that `P=True` is of type Prop which means that it is an assertion that is either `True` or `False`. It is true i.e `(P=True)=True` when we find a proof `h : (P = True)`.
 The truth table perspective will make this less confusing.
 Whenever you are done, replace `sorry` with `rfl` to close the goal and move on.
 "
@@ -43,10 +42,6 @@ Statement
     Hole
   rfl
   }
-
-
-
-
 
 Conclusion 
 "

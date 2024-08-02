@@ -215,4 +215,11 @@ Having h : P and P as your goal, exact h will close the goal. exact h asserts th
  NewLemma Nat.add_comm Nat.add_assoc
 -/
 NewTactic intro
-NewDefinition
+/--
+You can think of a proposition as a statement that is either true or false(obviously, it can't be both at the same time).
+
+For an object of type P where P is of type Prop, i.e `h : P` where `P : Prop`, `h` would be a proof or a witness that `P` is true. Equivalently, from `h` we can construct a term `h' := eq_true h of type `h' : P = True` which would be a proof that P is true as well. Both perspectives are interchangeable and equivalent.
+-/
+DefinitionDoc «Prop» as "Prop"
+NewDefinition «Prop»
+

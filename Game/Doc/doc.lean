@@ -47,3 +47,26 @@ over numerical types such as `ℕ`, `ℤ`, `ℚ`, `ℝ`, `ℂ`.
 
 -/
 TacticDoc norm_num
+
+/--
+
+# Truth table
+The truth table of a logical connective illustrates the rule for that logical connective , i.e the truth value of the compound statement depending on the truth value of the propositions it connects.
+The following truth table illustrates this for the previously discussed `∧` connective.
+`T` stands for true
+`F` stands for false
+$
+\begin{array}{|c c|c|} 
+\hline
+P & Q & P ∧ Q \\
+\hline
+T & T & T \\
+T & F & F \\
+F & T & F \\
+F & F & F \\
+\hline
+\end{array}
+$
+Notice that `P ∧ Q` is true when both `P` is true and `Q` is true, being false otherwise.
+-/
+TheoremDoc And as "And" in "Logic"

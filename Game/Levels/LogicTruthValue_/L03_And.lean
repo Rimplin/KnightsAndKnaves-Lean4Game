@@ -41,40 +41,6 @@ Let `q` denote the prposition 'The official language of Germany is german'(which
 Combining these two prpositions together gives us the proposition `p ∧ q` which translated to English: 'The official language of France is french `And` the official language of Germany is german'. Because the two propositions connected by the `And` are true, then the entire statement is true as well. It's not hard to see that one of or both `p` or `q` being false would make `p ∧ q` false. In other words, `p ∧ q` is true when `p` is true and `q` is true. It is false otherwise.
 
 
-# `And` Introduction rule
-In Lean, to prove `P ∧ Q`, you need a proof of `P` and a proof of `Q`.
-The `And` introduction rule will enable us to prove statements involving `∧`.
-For example, given the following proof state:
-```
-hP : P
-hQ : Q
-⊢ P ∧ Q
-```
-We can close the goal by:
-```
-exact And.intro hP hQ
-```
-
-
-## first way
-Giving these two proofs to the And introduction rule will construct a proof of `P ∧ Q`.
-
-Here's the type of `And.intro`:
-```
-  And.intro  (left : P) (right : Q) : P ∧ Q
-```
-where `P Q : Prop`
-
-## second way
-Using the `constructor` tactic will split a goal of the form `P ∧ Q` into two subgoals `P`,`Q` where you can deal with each one separately
-
-### Example: `And` , `∧`
-And.intro
-And.left h
-And.right h
-
-
-The atomic propositions in the compound proposition `p ∧ q` are : `p`, `q`. Of course, `p ∧ q` can be used to construct more complicated propositions.
 
 "
 
@@ -126,6 +92,7 @@ The constructor tactic transformed the goal `P ∧ Q` into two subgoals the firs
 
 /- Use these commands to add items to the game's inventory. -/
 
+#check And
 NewTactic  constructor
-NewTheorem And.intro and_true
+NewTheorem And and_true
 -- NewDefinition Nat Add Eq
