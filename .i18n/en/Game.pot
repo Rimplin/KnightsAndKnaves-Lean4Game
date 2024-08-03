@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Fri Aug  2 16:42:05 2024\n"
+"POT-Creation-Date: Sat Aug  3 17:40:55 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -619,7 +619,7 @@ msgid "Logical implication `P → Q` is made up of two components:\n"
 "This is what this format means in general:\n"
 "$\\displaystyle {\\frac {Premises}{Conclusion}}$\n"
 "\n"
-"We know `P` (i.e `P = True`) , and we know `P → Q` (i.e `P = True → Q = True`). We can now conclude that `Q` (i.e `Q = True`)."
+"We know `P` (i.e `P = True`) , and we know `P → Q` (i.e `P = True → Q = True`). We can now conclude `Q` (i.e `Q = True`)."
 msgstr ""
 
 #: Game.Levels.LogicTruthValue_.L04_Implication
@@ -756,14 +756,13 @@ msgid "And"
 msgstr ""
 
 #: Game.Levels.Logic.L02_And
-msgid "In this level, we will learn about the `∧` logical connective, known as 'And'.\n"
+msgid "In this level, we will learn about the `∧` logical connective, known as 'And' without directly reasoning with truth values.\n"
 "In logic, for `P,Q` propositions, `P and Q` is true when both `P` is true and `Q` is true, being false otherwise.\n"
-"\n"
 "\n"
 "# Two ways of dealing with ∧ in the goal(Try both!)\n"
 "In Lean, to prove `P ∧ Q`, you need a proof of `P` and a proof of `Q`.\n"
 "## `And` introduction rule\n"
-"In Lean, to prove `P ∧ Q`, you need a proof of `P` and a proof of `Q`. Using the `And` introduction rule, we can introduce `∧` in a newly constructed expression. \n"
+"Using the `And` introduction rule, we can introduce `∧` in a newly constructed expression. \n"
 "The `And` introduction rule will enable us to prove statements involving `∧`.\n"
 "For example, given the following proof state:\n"
 "```\n"
@@ -780,19 +779,18 @@ msgid "In this level, we will learn about the `∧` logical connective, known as
 "```\n"
 "  And.intro  (left : P) (right : Q) : P ∧ Q\n"
 "```\n"
-"`And.intro` takes a proof of `P`, a proof of `Q`, and transforms/evaulates to a proof of `P ∧ Q`\n"
-"where `P Q : Prop`\n"
+"`And.intro` takes a proof of `P`, a proof of `Q`, and transforms/evaulates them to a proof of `P ∧ Q` where `P Q : Prop`.\n"
+"Giving these two proofs to the And introduction rule will construct a proof of `P ∧ Q`.\n"
+"\n"
+"## `constructor` tactic\n"
+"Using the `constructor` tactic will split a goal of the form `P ∧ Q` into two subgoals `P`,`Q` where you can deal with each one separately\n"
+"\n"
 "### Example: `And` , `∧`\n"
 "And.intro\n"
 "And.left h\n"
 "And.right h\n"
 "\n"
 "The atomic propositions in the compound proposition `p ∧ q` are : `p`, `q`. Of course, `p ∧ q` can be used to construct more complicated propositions.\n"
-"Giving these two proofs to the And introduction rule will construct a proof of `P ∧ Q`.\n"
-"\n"
-"\n"
-"## `constructor` tactic\n"
-"Using the `constructor` tactic will split a goal of the form `P ∧ Q` into two subgoals `P`,`Q` where you can deal with each one separately\n"
 "\n"
 "# truth table \n"
 "Refer to the documentation in the right side pane."
@@ -800,6 +798,10 @@ msgstr ""
 
 #: Game.Levels.Logic.L02_And
 msgid "Try `exact And.intro hP hQ` or `constructor`"
+msgstr ""
+
+#: Game.Levels.Logic.L02_And
+msgid "The constructor tactic transformed the goal `P ∧ Q` into two subgoals the first being `P` and the second being `Q`. This way of doing things matches the meaning of the `∧` connective."
 msgstr ""
 
 #: Game.Levels.Logic.L02_And
@@ -811,7 +813,7 @@ msgid "After closing the goal `P`, you now have to close the goal `Q`"
 msgstr ""
 
 #: Game.Levels.Logic.L02_And
-msgid "The constructor tactic transformed the goal `P ∧ Q` into two subgoals the first being `P` and the second being `Q`. This way of doing things matches the meaning of the `∧` connective."
+msgid ""
 msgstr ""
 
 #: Game.Levels.Logic.L03_Or
@@ -824,7 +826,10 @@ msgid "There are two `∨` introduction rules: \n"
 "```\n"
 "Or.intro_left (b : Prop) (h : a) : a ∨ b\n"
 "```\n"
-"- `Or.intro_right`"
+"- `Or.intro_right`\n"
+"```\n"
+"Or.intro_right (a : Prop) (h : b) : a ∨ b\n"
+"```"
 msgstr ""
 
 #: Game.Levels.Logic.L03_Or
@@ -834,9 +839,15 @@ msgid "Notice that in the type of `Or.intro_left`, you need to explicitly give t
 "```\n"
 "The only difference is the curly braces. This means that `a` is an implicit argument. In other words, you don't need to give it explicitly, Lean will deduce it from the type of `h`. For example, if `h:P` where `P:Prop` then Lean will know that `a` is `P` and will put `P` to the left of `∨`.\n"
 "\n"
+"A similar explanation applies to `Or.intro_right` which has the type:\n"
+"```\n"
+"Or.intro_right {b : Prop} (a : Prop) (h : b) : a ∨ b\n"
+"```\n"
+"\n"
 "You can avoid entering both `a` or `b` explicitly and instead use: \n"
 "```\n"
 "Or.inl {a b : Prop} (h : a) : a ∨ b\n"
+"Or.inr {a b : Prop} (h : b) : a ∨ b\n"
 "```"
 msgstr ""
 
@@ -868,7 +879,8 @@ msgid "asdfasdfd asdfsadfdsa here"
 msgstr ""
 
 #: Game.Levels.Logic.L04_Implication
-msgid ""
+msgid "This is what is called an inference rule. It has two assumptions, `p : P` , `ptoq : P → Q` and the conclusion `Q`. It is an inference rule because we 'infer' a certain conclusion from assumptions or already established theorems.\n"
+"Usually presented in this format:"
 msgstr ""
 
 #: Game.Levels.Logic.L04_Implication

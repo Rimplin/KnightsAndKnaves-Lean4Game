@@ -42,6 +42,9 @@ Statement modus_ponens (p : P) (ptoq: P → Q)
 
 Conclusion 
 "
+This is what is called an inference rule. It has two assumptions, `p : P` , `ptoq : P → Q` and the conclusion `Q`. It is an inference rule because we 'infer' a certain conclusion from assumptions or already established theorems.
+Usually presented in this format:
+
 "
 
 /- Use these commands to add items to the game's inventory. -/

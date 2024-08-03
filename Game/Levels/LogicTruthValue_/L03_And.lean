@@ -40,8 +40,6 @@ Let `p` denote the proposition 'The official language of France is french'(which
 Let `q` denote the prposition 'The official language of Germany is german'(which is true as well).
 Combining these two prpositions together gives us the proposition `p ∧ q` which translated to English: 'The official language of France is french `And` the official language of Germany is german'. Because the two propositions connected by the `And` are true, then the entire statement is true as well. It's not hard to see that one of or both `p` or `q` being false would make `p ∧ q` false. In other words, `p ∧ q` is true when `p` is true and `q` is true. It is false otherwise.
 
-
-
 "
 
 --variable {p : BooleanAlgebra Prop}

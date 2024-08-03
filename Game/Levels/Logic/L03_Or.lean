@@ -14,8 +14,12 @@ There are two `∨` introduction rules:
 Or.intro_left (b : Prop) (h : a) : a ∨ b
 ```
 - `Or.intro_right`
+```
+Or.intro_right (a : Prop) (h : b) : a ∨ b
+```
 "
-
+#check Or.inl
+#check Or.intro_right
 Statement (hP : P) (hQ : Q) 
   : P ∨ Q  := by
 
@@ -57,16 +61,21 @@ Or.intro_left {a : Prop} (b : Prop) (h : a) : a ∨ b
 ```
 The only difference is the curly braces. This means that `a` is an implicit argument. In other words, you don't need to give it explicitly, Lean will deduce it from the type of `h`. For example, if `h:P` where `P:Prop` then Lean will know that `a` is `P` and will put `P` to the left of `∨`.
 
+A similar explanation applies to `Or.intro_right` which has the type:
+```
+Or.intro_right {b : Prop} (a : Prop) (h : b) : a ∨ b
+```
+
 You can avoid entering both `a` or `b` explicitly and instead use: 
 ```
 Or.inl {a b : Prop} (h : a) : a ∨ b
+Or.inr {a b : Prop} (h : b) : a ∨ b
 ```
 
 "
 
-/- Use these commands to add items to the game's inventory. -/
 
-NewTheorem Or.inl Or.intro_left
+NewTheorem Or.inl Or.intro_left Or.intro_right Or.inr
 -- NewTheorem Nat.add_comm Nat.add_assoc
 -- NewDefinition Nat Add Eq
 
