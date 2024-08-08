@@ -12,6 +12,7 @@ DefinitionDoc Not as "¬"
 
 The `rfl` tactic will close all goals of the form `X=X`, regardless of what `X` is.
 
+In fact, `rfl` is not a tactic but syntactic sugar for `exact rfl`. `rfl` is of type `a = a` for any `a`.
 ## examples
 ```
 x - 7 = x - 7

@@ -3,10 +3,10 @@ import Mathlib.Logic.Basic
 
 variable (P Q R : Prop)
 
-World "Logic"
-Level 1
+World "LogicTruthValue_"
+Level 3
 
-Title "Intro "
+Title "Intro"
 
 Introduction
 " 
@@ -20,9 +20,6 @@ Notice that the objects of interest are still of type `Prop` (i.e proposition) b
 <img src=\"data/g/JadAbouHawili/testing-leangame/Truth-Table-And.png\"/>
 
 $\\displaystyle {\\frac {P\\lor Q,\\neg P}{\\therefore Q}}$
-
-
-
 
 $\\iff$
 "

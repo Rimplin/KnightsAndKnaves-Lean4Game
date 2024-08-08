@@ -24,30 +24,34 @@ F & T  \\\\
 \\end{array}
 $$
 
-# Natural Language Example
-
-Let `P` denote the assertion 'Today is Monday'. `¬P` would then denote the assertion 'Today is not Monday'. You could also say that `¬P` denotes 'Today is Tuesday or Wednsday or Thursday or Friday or Saturday or Sunday'. Both assertions express the same thing (assuming there are 7 days of the week and these are their names) so either one is acceptable.
-
-# Defining `¬`
-But we don't need to introduce a new symbol, it can be defined in terms of what we already know.
-Defining `¬P` as `P → False` would accomplish this. 
-$
-\\begin{array}{|c|c|} 
-\\hline
-P & P → False \\\\
-\\hline
-T & F  \\\\
-F & T  \\\\
-\\hline
-\\end{array}
-$
-Notice that this definition is an implication which you have learned to deal with in the previous level and that the truth table with `¬P` and the truth table with `P → False` are identical which means this definition captures what we want `¬` to mean.
-
-## But what is `False` exactly?
-For now, just know that `False` is a type that has no introduction rule and that proving `False` means deriving a contradiction. So, to prove `¬p` , you must assume `p` and derive a contradiction. We will explain in more detail what is meant by 'contradiction'.
-
 To emphasize the fact that negation is an implication, you have to go through this simple level.
 "
+
+#check false_ne_true
+#check False
+variable {p : Prop}
+variable {emTruth : (P : Prop) → P = True ∨ P = False}
+-- type
+variable { h: p ∧ ¬p}
+theorem hh : False := by 
+  exact h.right h.left
+#check of_eq_true (eq_true hh)
+#check eq_true
+#check of_eq_true
+-- ∀ {p : Prop}, p = True → p = False → False
+example (hp:p=True) (hnp:p=False) (hnnp:¬p=True) (h' : (p = True) → (False = True) ) : False := by 
+
+{
+  #check hnnp
+  unfold Not at hnnp
+  have : (p=True) ∧ (p=False) := by exact And.intro hp hnp
+  have this2: False :=by exact hnnp hp
+  -- true regardless of proof state i.e true in every proof state, introduce it in a previous level and then when i come here, i can form the term on the left and rewrite to get `False`.
+  #check this
+  have this2: p ≠ True := by rw [hnp]; apply false_ne_true
+  exact this2 hp
+  
+}
 
 variable {p : Prop}
 Statement (hp:p) (hnp:¬p)

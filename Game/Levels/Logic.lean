@@ -1,17 +1,19 @@
-import Game.Levels.Logic.L01_Intro
-import Game.Levels.Logic.L02_And
-import Game.Levels.Logic.L03_Or
-import Game.Levels.Logic.L04_Implication
-import Game.Levels.Logic.L05_False
-import Game.Levels.Logic.L06_Not
-import Game.Levels.Logic.L07_contrapositive
-import Game.Levels.Logic.L08_PrincipleOfExplosion
+/-
+-- import Game.Levels.Logic.L01_Intro
+-- import Game.Levels.Logic.L02_And
+-- import Game.Levels.Logic.L03_Or
+-- import Game.Levels.Logic.L04_Implication
+-- import Game.Levels.Logic.L05_False
+-- import Game.Levels.Logic.L06_Not
+-- import Game.Levels.Logic.L07_contrapositive
+-- import Game.Levels.Logic.L08_PrincipleOfExplosion
 
 --Image "images/Logic/Truth-Table-And.png"
-World "Logic"
-Title "Logic"
+--World "Logic"
+--Title "Logic"
 Introduction 
 "
+This world moves away from the truth value perspective and mainly focuses on how to manipulate propositional expressions.
 
 Atomic propositions are propositions that do not have any logical connectives.
 
@@ -76,3 +78,4 @@ The following truth table illustrates this for the prevously discussed `∧` con
 # truth tables for the logical connectives
 You can find these truth tables in the documentation in the right side pane. This world will focus on the introduction and elimination rules of various logical connectives.
 "
+-/

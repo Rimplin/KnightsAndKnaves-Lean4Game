@@ -8,6 +8,9 @@ Title "Principle Of Explosion"
 
 Introduction 
 "
+Prove princpiple of explostion from truth value perspective...
+
+From `False` anything follows.
 Otherwise known as 'from contradiction, anything follows'. 
 This principle asserts that if you have contradictory assumptions then you can prove anything.
 Example of contradictory assumptions:
@@ -48,6 +51,42 @@ $
 $\\displaystyle {\\frac {P\\lor Q,\\neg P}{\\therefore Q}}$
 
 "
+
+-- explanation
+/-
+we have proved a statement that is not true. Since we proved it, now it's also true? Let's denote this proposition as `Q`. So we have `Q ∧ ¬Q`. What does the truth table for this expression look like for any proposition `R`?
+$
+\\begin{array}{|c|c|} 
+\\hline
+R & ¬R & R ∧ ¬R \\\\
+\\hline
+T & F & F \\\\
+F & T & F \\\\
+\\hline
+\\end{array}
+$
+This statement is always false regardless of the truth values of `R` but we were able to prove such a statement. How can this be?
+This is very bad because of the following: 
+For any propositioin `P`,
+$
+\\begin{array}{|c|c|} 
+\\hline
+P & False → P \\\\
+\\hline
+T  & T \\\\
+F  & T \\\\
+Notice that the implication `False → P` is always true. This means that proving `False` amounts to proving everything!!!
+The system you are working with quickly becomes trivial and loses its value. If you're objective is to reach truth, then there is nothing to do here because everything is true. There is nothing to study or investigate, its all true!
+\\hline
+\\end{array}
+$
+
+This is the meaning of `False ≠ True`, proving `False = True` gives a contradiction. A contradiction is when `p` and `¬p` are both true. `False ≠ True` is always true regardless of proof state, but in this state we also have `False = True` giving us a contradiction. Notice that even our starting point was of contradiction, where we had `p = True` and `p = False` i.e `¬p = True`.
+-- truth table of `p ∧ ¬p`
+-/
+
+
+
 -- need to have disjunctive syllogism as an already established primitive , disjunctive syllogism would have to be explained here as well which might be a bit too much??
 /-
 --will not prove, can be easily explained in a reasonable and convincing way
@@ -59,7 +98,19 @@ $\\displaystyle {\\frac {P\\lor Q,\\neg P}{\\therefore Q}}$
    have := np h_1  
    contradiction
    -/
+#check imp_false
+#check eq_false
+#check eq_false'
+#check implies_true
+#check true_implies
+#check true_imp_iff
+#check false_implies
+#check true_iff
+#check false_iff
+#check iff_false
+#check Or.elim
 variable {P Q:Prop} 
+
 Statement (h : P) (nh : ¬P)
   : Q := by
 
@@ -78,7 +129,7 @@ example : ¬ (¬ P) ↔ P := by
 
   · sorry
 
-example (P : Prop) : ¬ (¬ P) ↔ P := by
+example : ¬ (¬ P) ↔ P := by
   constructor
   · intro h
     push_neg at h
@@ -116,3 +167,4 @@ You could have also solved it by just writing `contradiction`. Contradiction is 
 NewTactic contradiction
 -- NewLemma Nat.add_comm Nat.add_assoc
 -- NewDefinition Nat Add Eq
+

@@ -12,13 +12,16 @@ Good luck!
 "
 
 Statement {x : ℤ} (h : x + 2 = 4)
-  : x = 2 := by{
+  : x = 2 := by {
 
   Template
     calc 
-      x = x + 2 - 2 := by sorry 
-      _ = 4 - 2 := by sorry
-      _ = 2 := by sorry
+      x = x + 2 - 2 := by 
+        Hint "hint here, works fine"
+        Hole 
+        ring
+      _ = 4 - 2 := by Hole rw [h]
+      _ = 2 := by Hole norm_num
   }
 /-
 

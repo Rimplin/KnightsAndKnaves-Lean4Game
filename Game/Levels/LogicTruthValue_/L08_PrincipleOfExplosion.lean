@@ -8,9 +8,6 @@ Title "Principle Of Explosion"
 
 Introduction 
 "
-Prove princpiple of explostion from truth value perspective...
-
-From `False` anything follows.
 Otherwise known as 'from contradiction, anything follows'. 
 This principle asserts that if you have contradictory assumptions then you can prove anything.
 Example of contradictory assumptions:
@@ -62,19 +59,7 @@ $\\displaystyle {\\frac {P\\lor Q,\\neg P}{\\therefore Q}}$
    have := np h_1  
    contradiction
    -/
-#check imp_false
-#check eq_false
-#check eq_false'
-#check implies_true
-#check true_implies
-#check true_imp_iff
-#check false_implies
-#check true_iff
-#check false_iff
-#check iff_false
-#check Or.elim
 variable {P Q:Prop} 
-
 Statement (h : P) (nh : ¬P)
   : Q := by
 
@@ -93,7 +78,7 @@ example : ¬ (¬ P) ↔ P := by
 
   · sorry
 
-example : ¬ (¬ P) ↔ P := by
+example (P : Prop) : ¬ (¬ P) ↔ P := by
   constructor
   · intro h
     push_neg at h
@@ -131,4 +116,3 @@ You could have also solved it by just writing `contradiction`. Contradiction is 
 NewTactic contradiction
 -- NewLemma Nat.add_comm Nat.add_assoc
 -- NewDefinition Nat Add Eq
-

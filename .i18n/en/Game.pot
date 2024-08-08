@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Sat Aug  3 17:40:55 2024\n"
+"POT-Creation-Date: Wed Aug  7 13:29:42 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -31,6 +31,7 @@ msgid "`rfl` is short for reflexivity, which is the property that for any number
 "\n"
 "The `rfl` tactic will close all goals of the form `X=X`, regardless of what `X` is.\n"
 "\n"
+"In fact, `rfl` is not a tactic but syntactic sugar for `exact rfl`. `rfl` is of type `a = a` for any `a`.\n"
 "## examples\n"
 "```\n"
 "x - 7 = x - 7\n"
@@ -442,6 +443,10 @@ msgid "Good luck!"
 msgstr ""
 
 #: Game.Levels.EquationalReasoningCalc.L02_l
+msgid "hint here, works fine"
+msgstr ""
+
+#: Game.Levels.EquationalReasoningCalc.L02_l
 msgid "Notice that the pattern for this `calc` is rearrange variables, rewrite, rewrite. The next problem will have the same pattern in addition to requiring a calculation at the end."
 msgstr ""
 
@@ -480,15 +485,15 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.LogicTruthValue_.L01_Propositions
-msgid "# examples of propositions\n"
-"You have seen propositions in 'Equational Reasoning'. Things like `x = 2`, `y = 6` are propositions i.e of type `Prop`. Note that a proof of `x = 2` was an `h : x = 2` and not `h : (x= 2) = True`. Here however, a proof of an arbitrary proposition `P` is `h : P = True` and not `h : P`. The latter would work as well, and you can go between the two using an appropriate theorem. The first perspective is emphasized in this world, and the second is emphasized in the world that follows.\n"
-"'The Lean theorem prover had a 4.70 release' is a true statement. After denoting this statement with `P`, we can say that `P` is `True` or `P = True`.\n"
+msgid "'The Lean theorem prover had a 4.70 release' is a true statement. After denoting this statement with `P`, we can say that `P` is `True` or `P = True`.\n"
 "\n"
 "'World War 2 ended in 1950' is a false statement. It ended in 1945. After denoting this statement with `Q`, we can say that `Q` is `False` or `Q = False`.\n"
 "\n"
+"# examples of propositions\n"
+"You have seen propositions in 'Equational Reasoning'. Things like `x = 2`, `y = 6` are propositions i.e of type `Prop`. \n"
+"\n"
 "These are called atomic propositions. Atomic propositions are ones which contain no logical connectives (like the previously discussed `∧`). You will also learn how to make compound propositions from atomic propositions using logical connectives.\n"
 "\n"
-"# talk about editor mode and sorry, this is good because it would introduce them early on... in a world that every user is required to go through as part of the main experience.\n"
 "# experiment using editor mode\n"
 "Editor mode is a vscode like environment. The main thing we want to emphasize this level is that you can hover over things to get more information.\n"
 "Use `#check` and hover your mouse to see what it says.\n"
@@ -499,8 +504,12 @@ msgid "# examples of propositions\n"
 "#check P=True \n"
 "...\n"
 "```\n"
+"In Lean, proving `P` or `P = True` is the same thing.\n"
+"In other words, for `h : P` , `eq_true h : P = True`. Conversly, for `h : P = True` , `of_eq_true h : P = True`. This world will alternate between both perspectives. The first is primarily focused on valid manipulation of expression and the second is a more 'calculus' approach focused on substituting truth values and calculating...(need better explanation)\n"
 "`#check` gives the type of the expression that's after it.\n"
-"Notice that `P=True` is of type Prop which means that it is an assertion that is either `True` or `False`. It is true i.e `(P=True)=True` when we find a proof `h : (P = True)`.\n"
+"Notice that `P=True` is of type Prop which means that it is an assertion that is either `True` or `False`. It is true i.e `(P=True)=True` when we find a proof `h : (P = True)`. When faced with any expression of the form: someProp = True, this means that someProp is true. So here, `P=True` is a true statement which implies that `P` can be replaced by `True` wherever it occurs.\n"
+"`((P = True) = True) = True` \n"
+"Note that a proof of `x = 2` was an `h : x = 2` and not `h : (x = 2) = True`. Here however, a proof of an arbitrary proposition `P` is `h : P = True` and not `h : P`. The latter would work as well, and you can go between the two using an appropriate theorem. The first perspective is emphasized in this world, and the second is emphasized in the world that follows.\n"
 "The truth table perspective will make this less confusing.\n"
 "Whenever you are done, replace `sorry` with `rfl` to close the goal and move on."
 msgstr ""
@@ -542,11 +551,44 @@ msgstr ""
 msgid "Notice that `hQ` and `hR` were not used. We couldn't use them in any case because `Q` and `R` are not related to `P`. In the next levels, we will discuss how to construct new propositions from old ones, where information about these building blocks would help us reason about the newly constructed propositions."
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L03_And
+#: Game.Levels.LogicTruthValue_.L03_Intro
+msgid "Intro"
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L03_Intro
+msgid "Explicitly indicate that this is an analogue of the previous world.\n"
+"\n"
+"Notice that the objects of interest are still of type `Prop` (i.e proposition) but a proof of `P` is indicated as `hP : P`.(make a level before this one where user is in editor mode and eq_true is used to transitition to the previous level, maybe combine both worlds????) A proposition is a statement/assertion that can take only one of two values, either true or false. Having `hP : P` means that we have a proof of `P`, and therefore you can think about this as `P` being true.\n"
+"\n"
+"`hP` 'exactly' matches the goal. `hP` is 'exactly' what you need to close the goal. This is to emphasize that for the tactic `exact h`, the type of h doesn't matter.\n"
+"\n"
+"\n"
+"<img src=\"data/g/JadAbouHawili/testing-leangame/Truth-Table-And.png\"/>\n"
+"\n"
+"$\\displaystyle {\\frac {P\\lor Q,\\neg P}{\\therefore Q}}$\n"
+"\n"
+"$\\iff$"
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L03_Intro
+msgid "Type `exact hP`!"
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L03_Intro
+msgid "Notice that `hQ` and `hR` were not used. We couldn't use them in any case because `Q` and `R` are not related to `P`. In the next levels, we will discuss how to construct new propositions from old ones which would in a sense depend on the old ones."
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L03_Intro
+msgid "You can think of a proposition as a statement that is either true or false(obviously, it can't be both at the same time).\n"
+"\n"
+"For an object of type P where P is of type Prop, i.e `h : P` where `P : Prop`, `h` would be a proof or a witness that `P` is true. Equivalently, from `h` we can construct a term `h' := eq_true h of type `h' : P = True` which would be a proof that P is true as well. Both perspectives are interchangeable and equivalent."
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L04_And
 msgid "And"
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L03_And
+#: Game.Levels.LogicTruthValue_.L04_And
 msgid "In this level, we will learn about the `∧` logical connective, known as 'And'.\n"
 "In logic, for `P,Q` propositions, `P ∧ Q` is true when both `P` is true and `Q` is true, being false otherwise.\n"
 "\n"
@@ -579,183 +621,19 @@ msgid "In this level, we will learn about the `∧` logical connective, known as
 "Combining these two prpositions together gives us the proposition `p ∧ q` which translated to English: 'The official language of France is french `And` the official language of Germany is german'. Because the two propositions connected by the `And` are true, then the entire statement is true as well. It's not hard to see that one of or both `p` or `q` being false would make `p ∧ q` false. In other words, `p ∧ q` is true when `p` is true and `q` is true. It is false otherwise."
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L03_And
+#: Game.Levels.LogicTruthValue_.L04_And
 msgid "testing wow"
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L03_And
+#: Game.Levels.LogicTruthValue_.L04_And
 msgid "The constructor tactic transformed the goal `P ∧ Q` into two subgoals the first being `P` and the second being `Q`. This way of doing things matches the meaning of the `∧` connective."
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L04_Implication
-msgid "Implication, →"
-msgstr ""
-
-#: Game.Levels.LogicTruthValue_.L04_Implication
-msgid "Logical implication `P → Q` is made up of two components:\n"
-"- The premise, which in this case is `P`\n"
-"- The conclusion, which in this case is `Q`\n"
-"\n"
-"What logical implication does is that it takes evidence or proof for `P` and transforms it returning a proof of `Q`.\n"
-"# truth table\n"
-"$\n"
-"\\begin{array}{|c c|c|} \n"
-"\\hline\n"
-"P & Q & P → Q \\\\\n"
-"\\hline\n"
-"T & T & T \\\\\n"
-"T & F & F \\\\\n"
-"F & T & T \\\\\n"
-"F & F & T \\\\\n"
-"\\hline\n"
-"\\end{array}\n"
-"$\n"
-"\n"
-"A statement `P → Q` is false when `P` is true and `Q` false, it's true otherwise. Since the statement expresses that if `P` is true then `Q` is true, then should make intuitive sense. This utterance is not violated in other cases so the statement is true in those cases.\n"
-"\n"
-"Representing this rule symbolically:\n"
-"$\\displaystyle {\\frac {P\\rightarrow Q, P}{\\therefore Q}}$\n"
-"\n"
-"This is what this format means in general:\n"
-"$\\displaystyle {\\frac {Premises}{Conclusion}}$\n"
-"\n"
-"We know `P` (i.e `P = True`) , and we know `P → Q` (i.e `P = True → Q = True`). We can now conclude `Q` (i.e `Q = True`)."
-msgstr ""
-
-#: Game.Levels.LogicTruthValue_.L04_Implication
-msgid ""
-msgstr ""
-
-#: Game.Levels.LogicTruthValue_.L04_Implication
-msgid "no lean docstring avaialble\n"
-"\n"
-"# truth table\n"
-"$\n"
-"\\begin{array}{|c c|c|} \n"
-"\\hline\n"
-"P & Q & P → Q \\\\\n"
-"\\hline\n"
-"T & T & T \\\\\n"
-"T & F & F \\\\\\\\\n"
-"F & T & T \\\\\\\\\n"
-"F & F & T \\\\\\\\\n"
-"\\hline\n"
-"\\end{array}\n"
-"$"
-msgstr ""
-
-#: Game.Levels.LogicTruthValue_.L05_BuildTruthTable
-msgid "asdfasdf"
-msgstr ""
-
-#: Game.Levels.LogicTruthValue_.L05_BuildTruthTable
-msgid "You can consider each calc block as its own exercise."
-msgstr ""
-
-#: Game.Levels.LogicTruthValue_.L05_BuildTruthTable
-msgid "Here's what you proved in truth table form: \n"
-"$\n"
-"\\begin{array}{|c c|c|} \n"
-"\\hline\n"
-"P & Q & ¬P ∨ Q \\\\\n"
-"\\hline\n"
-"T & T & T \\\\\n"
-"T & F & F \\\\\n"
-"F & T & T \\\\\n"
-"F & F & T \\\\\n"
-"\\hline\n"
-"\\end{array}\n"
-"$\n"
-"The expression is `False` when `P` is true and `Q` is false, being false otherwise.\n"
-"Look familiar? \n"
-"$\n"
-"\\begin{array}{|c c|c|} \n"
-"\\hline\n"
-"P & Q & P → Q \\\\\n"
-"\\hline\n"
-"T & T & T \\\\\n"
-"T & F & F \\\\\n"
-"F & T & T \\\\\n"
-"F & F & T \\\\\n"
-"\\hline\n"
-"\\end{array}\n"
-"$"
-msgstr ""
-
-#: Game.Levels.LogicTruthValue_
-msgid "Logic Truth Value_"
-msgstr ""
-
-#: Game.Levels.LogicTruthValue_
-msgid "This world will heavily rely on the truth table perspective of propositions and the various logical connective to provide an intuitive foundation for explaining the validity of various rules in propositional logic. 'Propositions' will be explained here, and the rest will be hinted at here but fully explained throught the levels.\n"
-"\n"
-"In this world, we will be dealing with `Objects` of type `Prop` i.e propositions. You can think of a proposition as a statement that is either true or false(obviously, it can't be both at the same time).\n"
-"\n"
-"Moreover, these statements are denoted by a symbol like `P`,`Q`,`R`.\n"
-"For example, the proposition 'World War 2 ended in 1950' is false. It ended in 1945. After denoting this statement with `Q`, we can say that `Q` is `False`\n"
-"\n"
-"# Building New Propositions From Previous Ones\n"
-"In this world, you will also learn how to construct new propositions by connecting other propositions with logical connectives. \n"
-"\n"
-"Just as a quick example: \n"
-"Let `P` be the proposition 'It is cloudy' and let `Q` be the proposition 'It is raining'. Out of these two atomic propositions, we can form the compound proposition 'It is cloudy `and` it is rainy' denoted `P ∧ Q` where `∧` in the propostional world means `and`. This is translation from english to propositional notation, we will not be concerned directly with the details of this process but will use it to intuitively convey how propositional logic works.\n"
-"\n"
-"## Connecting Propositions With A Logical Connective\n"
-"It is important to note that connecting two proposition via a logic connective results in a proposition as well. If this wasn't the case, then how could we talk about the truth value of `P ∧ Q` if `P ∧ Q` were not a proposition! This proposition constructed using a logical connective and other propositions, like any other proposition, has a truth value. This truth value depends on the truth value of the propositions it was built out of and the rules of the logical connective. This is clearly illustrated in a truth table. \n"
-"Here's an example:\n"
-"\n"
-"# quick overview\n"
-"\n"
-"## proving statements involving logical connectives\n"
-"This will involve using inference rules that are intuitively true from the truth table perspective. \n"
-"\n"
-"## unpacking information from a complicated propositional statement\n"
-"N/A\n"
-"\n"
-"# shifting between the two perspectives"
-msgstr ""
-
-#: Game.Levels.Logic.L01_Intro
-msgid "Intro"
-msgstr ""
-
-#: Game.Levels.Logic.L01_Intro
-msgid "Explicitly indicate that this is an analogue of the previous world.\n"
-"\n"
-"Notice that the objects of interest are still of type `Prop` (i.e proposition) but a proof of `P` is indicated as `hP : P`.(make a level before this one where user is in editor mode and eq_true is used to transitition to the previous level, maybe combine both worlds????) A proposition is a statement/assertion that can take only one of two values, either true or false. Having `hP : P` means that we have a proof of `P`, and therefore you can think about this as `P` being true.\n"
-"\n"
-"`hP` 'exactly' matches the goal. `hP` is 'exactly' what you need to close the goal. This is to emphasize that for the tactic `exact h`, the type of h doesn't matter.\n"
-"\n"
-"\n"
-"<img src=\"data/g/JadAbouHawili/testing-leangame/Truth-Table-And.png\"/>\n"
-"\n"
-"$\\displaystyle {\\frac {P\\lor Q,\\neg P}{\\therefore Q}}$\n"
-"\n"
-"\n"
-"\n"
-"\n"
-"$\\iff$"
-msgstr ""
-
-#: Game.Levels.Logic.L01_Intro
-msgid "Type `exact hP`!"
-msgstr ""
-
-#: Game.Levels.Logic.L01_Intro
-msgid "Notice that `hQ` and `hR` were not used. We couldn't use them in any case because `Q` and `R` are not related to `P`. In the next levels, we will discuss how to construct new propositions from old ones which would in a sense depend on the old ones."
-msgstr ""
-
-#: Game.Levels.Logic.L01_Intro
-msgid "You can think of a proposition as a statement that is either true or false(obviously, it can't be both at the same time).\n"
-"\n"
-"For an object of type P where P is of type Prop, i.e `h : P` where `P : Prop`, `h` would be a proof or a witness that `P` is true. Equivalently, from `h` we can construct a term `h' := eq_true h of type `h' : P = True` which would be a proof that P is true as well. Both perspectives are interchangeable and equivalent."
-msgstr ""
-
-#: Game.Levels.Logic.L02_And
+#: Game.Levels.LogicTruthValue_.L05_And
 msgid "And"
 msgstr ""
 
-#: Game.Levels.Logic.L02_And
+#: Game.Levels.LogicTruthValue_.L05_And
 msgid "In this level, we will learn about the `∧` logical connective, known as 'And' without directly reasoning with truth values.\n"
 "In logic, for `P,Q` propositions, `P and Q` is true when both `P` is true and `Q` is true, being false otherwise.\n"
 "\n"
@@ -796,32 +674,60 @@ msgid "In this level, we will learn about the `∧` logical connective, known as
 "Refer to the documentation in the right side pane."
 msgstr ""
 
-#: Game.Levels.Logic.L02_And
+#: Game.Levels.LogicTruthValue_.L05_And
 msgid "Try `exact And.intro hP hQ` or `constructor`"
 msgstr ""
 
-#: Game.Levels.Logic.L02_And
+#: Game.Levels.LogicTruthValue_.L05_And
 msgid "The constructor tactic transformed the goal `P ∧ Q` into two subgoals the first being `P` and the second being `Q`. This way of doing things matches the meaning of the `∧` connective."
 msgstr ""
 
-#: Game.Levels.Logic.L02_And
+#: Game.Levels.LogicTruthValue_.L05_And
 msgid "Notice that the goal is now `P`"
 msgstr ""
 
-#: Game.Levels.Logic.L02_And
+#: Game.Levels.LogicTruthValue_.L05_And
 msgid "After closing the goal `P`, you now have to close the goal `Q`"
 msgstr ""
 
-#: Game.Levels.Logic.L02_And
+#: Game.Levels.LogicTruthValue_.L05_And
 msgid ""
 msgstr ""
 
-#: Game.Levels.Logic.L03_Or
+#: Game.Levels.LogicTruthValue_.L06_Or
 msgid "Or, `∨`"
 msgstr ""
 
-#: Game.Levels.Logic.L03_Or
+#: Game.Levels.LogicTruthValue_.L06_Or
 msgid "There are two `∨` introduction rules: \n"
+" \n"
+"```\n"
+"Or.intro_left (b : Prop) (h : a) : a ∨ b\n"
+"```\n"
+"- `Or.intro_right`"
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L06_Or
+msgid "Notice that in the type of `Or.intro_left`, you need to explicitly give the type that will be used to the right of the `∨` but you don't need to do this for the type to the left of `∨`. How does Lean what to do? Well, the type of `Or.intro_left` is in fact:\n"
+"```\n"
+"Or.intro_left {a : Prop} (b : Prop) (h : a) : a ∨ b\n"
+"```\n"
+"The only difference is the curly braces. This means that `a` is an implicit argument. In other words, you don't need to give it explicitly, Lean will deduce it from the type of `h`. For example, if `h:P` where `P:Prop` then Lean will know that `a` is `P` and will put `P` to the left of `∨`.\n"
+"\n"
+"You can avoid entering both `a` or `b` explicitly and instead use: \n"
+"```\n"
+"Or.inl {a b : Prop} (h : a) : a ∨ b\n"
+"```\n"
+"Here, Lean will infer what the propositions are automatically."
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L07_Or
+msgid "Or, `∨`"
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L07_Or
+msgid "left, apply Or.inl are the same thing.\n"
+"There are two `∨` introduction rules: \n"
 " \n"
 "```\n"
 "Or.intro_left (b : Prop) (h : a) : a ∨ b\n"
@@ -832,7 +738,7 @@ msgid "There are two `∨` introduction rules: \n"
 "```"
 msgstr ""
 
-#: Game.Levels.Logic.L03_Or
+#: Game.Levels.LogicTruthValue_.L07_Or
 msgid "Notice that in the type of `Or.intro_left`, you need to explicitly give the type that will be used to the right of the `∨` but you don't need to do this for the type to the left of `∨`. How does Lean what to do? Well, the type of `Or.intro_left` is in fact:\n"
 "```\n"
 "Or.intro_left {a : Prop} (b : Prop) (h : a) : a ∨ b\n"
@@ -851,11 +757,68 @@ msgid "Notice that in the type of `Or.intro_left`, you need to explicitly give t
 "```"
 msgstr ""
 
-#: Game.Levels.Logic.L04_Implication
+#: Game.Levels.LogicTruthValue_.L08_Implication
 msgid "Implication, →"
 msgstr ""
 
-#: Game.Levels.Logic.L04_Implication
+#: Game.Levels.LogicTruthValue_.L08_Implication
+msgid "Logical implication `P → Q` is made up of two components:\n"
+"- The premise, which in this case is `P`\n"
+"- The conclusion, which in this case is `Q`\n"
+"\n"
+"What logical implication does is that it takes evidence or proof for `P` and transforms it returning a proof of `Q`.\n"
+"# truth table\n"
+"$\n"
+"\\begin{array}{|c c|c|} \n"
+"\\hline\n"
+"P & Q & P → Q \\\\\n"
+"\\hline\n"
+"T & T & T \\\\\n"
+"T & F & F \\\\\n"
+"F & T & T \\\\\n"
+"F & F & T \\\\\n"
+"\\hline\n"
+"\\end{array}\n"
+"$\n"
+"\n"
+"A statement `P → Q` is false when `P` is true and `Q` false, it's true otherwise. Since the statement expresses that if `P` is true then `Q` is true, then should make intuitive sense. This utterance is not violated in other cases so the statement is true in those cases.\n"
+"\n"
+"Representing this rule symbolically:\n"
+"$\\displaystyle {\\frac {P\\rightarrow Q, P}{\\therefore Q}}$\n"
+"\n"
+"This is what this format means in general:\n"
+"$\\displaystyle {\\frac {Premises}{Conclusion}}$\n"
+"\n"
+"We know `P` (i.e `P = True`) , and we know `P → Q` (i.e `P = True → Q = True`). We can now conclude `Q` (i.e `Q = True`)."
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L08_Implication
+msgid ""
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L08_Implication
+msgid "no lean docstring avaialble\n"
+"\n"
+"# truth table\n"
+"$\n"
+"\\begin{array}{|c c|c|} \n"
+"\\hline\n"
+"P & Q & P → Q \\\\\n"
+"\\hline\n"
+"T & T & T \\\\\n"
+"T & F & F \\\\\\\\\n"
+"F & T & T \\\\\\\\\n"
+"F & F & T \\\\\\\\\n"
+"\\hline\n"
+"\\end{array}\n"
+"$"
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L09_Implication
+msgid "Implication, →"
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.L09_Implication
 msgid "Logical implication `P → Q` is made up of two components:\n"
 "- The premise, which in this case is `P`\n"
 "- The conclusion, which in this case is `Q`\n"
@@ -874,27 +837,28 @@ msgid "Logical implication `P → Q` is made up of two components:\n"
 "A statement `P → Q` is false when `P` is true and `Q` false, it's true otherwise."
 msgstr ""
 
-#: Game.Levels.Logic.L04_Implication
+#: Game.Levels.LogicTruthValue_.L09_Implication
 msgid "asdfasdfd asdfsadfdsa here"
 msgstr ""
 
-#: Game.Levels.Logic.L04_Implication
+#: Game.Levels.LogicTruthValue_.L09_Implication
 msgid "This is what is called an inference rule. It has two assumptions, `p : P` , `ptoq : P → Q` and the conclusion `Q`. It is an inference rule because we 'infer' a certain conclusion from assumptions or already established theorems.\n"
 "Usually presented in this format:"
 msgstr ""
 
-#: Game.Levels.Logic.L04_Implication
+#: Game.Levels.LogicTruthValue_.L09_Implication
 msgid "no lean docstring avaialble"
 msgstr ""
 
-#: Game.Levels.Logic.L05_False
+#: Game.Levels.LogicTruthValue_.L10_False
 msgid "asdf"
 msgstr ""
 
-#: Game.Levels.Logic.L05_False
+#: Game.Levels.LogicTruthValue_.L10_False
 msgid "# Truth Table\n"
-"We want an operator which flips the value of `P`. In other words, if `P` were true then `¬P` would be false and vice versa. \n"
-"Lets call this operator `not` represented as `¬`. \n"
+"We want an operator which flips the value of a proposition `P`. Lets call this operator `Not` represented as `¬`. In other words, if `P` were true then `¬P` would be false and vice versa. \n"
+"Note that `¬P` is also a proposition, so `¬ (¬P)` is a valid expression. Moreover, `¬ (¬P)` is a proposition so `¬ (¬ (¬P))` or `¬¬¬P` is a valid expression (and so on).\n"
+"\n"
 "\n"
 "This is what the truth table would look like.\n"
 "$$\n"
@@ -908,11 +872,6 @@ msgid "# Truth Table\n"
 "\\end{array}\n"
 "$$\n"
 "\n"
-"# Natural Language Example\n"
-"\n"
-"Let `P` denote the assertion 'Today is Monday'. `¬P` would then denote the assertion 'Today is not Monday'. You could also say that `¬P` denotes 'Today is Tuesday or Wednsday or Thursday or Friday or Saturday or Sunday'. Both assertions express the same thing (assuming there are 7 days of the week and these are their names) so either one is acceptable.\n"
-"\n"
-"# Defining `¬`\n"
 "But we don't need to introduce a new symbol, it can be defined in terms of what we already know.\n"
 "Defining `¬P` as `P → False` would accomplish this. \n"
 "$\n"
@@ -925,243 +884,71 @@ msgid "# Truth Table\n"
 "\\hline\n"
 "\\end{array}\n"
 "$\n"
-"Notice that this definition is an implication which you have learned to deal with in the previous level and that the truth table with `¬P` and the truth table with `P → False` are identical which means this definition captures what we want `¬` to mean.\n"
+"Notice that this definition is an implication which you have learned to deal with in the previous level and that the truth table with `¬P` and the truth table with `P → False` are identical which means that the implication definition captures what we want `¬` to mean.\n"
 "\n"
-"## But what is `False` exactly?\n"
+"# Natural Language Example\n"
+"Let `P` denote the assertion 'Today is Monday'. `¬P` would then denote the assertion 'Today is not Monday'. You could also say that `¬P` denotes 'Today is Tuesday or Wednsday or Thursday or Friday or Saturday or Sunday'. Both assertions express the same thing (assuming there are 7 days of the week and these are their names) so either one is acceptable.\n"
+"\n"
+"# Contradictions\n"
+"Now we can construct propositional statements that are always false regardless of the values of their propositional variables. Having such a statement in your proof state would allow you to construct a term of type `False`. \n"
+"\n"
+"Such a statement is called a contradiction and is equal to `False` regardless of the proof state. Moreover, it is not something we assume to be true but something that is always true.\n"
+"--------------------------------\n"
+"# Defining `¬`\n"
+"\n"
+"## But what is `False` exactly?(now we know what `False` is from the truth value perspective so this would need a rewrite in logic world, no it doesn't because we were dealing with `= False` but now we are dealing with `→ False`).\n"
 "For now, just know that `False` is a type that has no introduction rule and that proving `False` means deriving a contradiction. So, to prove `¬p` , you must assume `p` and derive a contradiction. We will explain in more detail what is meant by 'contradiction'.\n"
 "\n"
 "To emphasize the fact that negation is an implication, you have to go through this simple level."
 msgstr ""
 
-#: Game.Levels.Logic.L05_False
+#: Game.Levels.LogicTruthValue_.L10_False
 msgid "If you feel like seeing the implication definition of ¬ in the proof state would provide more clarity and make it easier to solve upcoming problems, you can always unfold ¬ to its implication form. Try `unfold Not at hnp`."
 msgstr ""
 
-#: Game.Levels.Logic.L05_False
+#: Game.Levels.LogicTruthValue_.L10_False
 msgid "Now, this is just like the previous level"
 msgstr ""
 
-#: Game.Levels.Logic.L05_False
+#: Game.Levels.LogicTruthValue_.L10_False
 msgid "In the next level, we will explore what it means to have proven `False`(pretty bad, or pretty good depending on how you look at it)."
 msgstr ""
 
-#: Game.Levels.Logic.L06_Not
-msgid "Not, ¬"
-msgstr ""
-
-#: Game.Levels.Logic.L06_Not
-msgid "$\n"
-"\\begin{array}{|c c|c|} \n"
-"\\hline\n"
-"a & b & F \\\\\n"
-"\\hline\n"
-"0 & 0 & 0 \\\\\n"
-"0 & 1 & 0 \\\\\n"
-"1 & 0 & 0 \\\\\n"
-"1 & 1 & 1 \\\\\n"
-"\\hline\n"
-"\\end{array}\n"
-"$\n"
-"\n"
-"`¬P` in Lean is defined as `P → False`. What this means is that we obtain `¬P` by assuming `P` and deriving a contradiction i.e constructing an object of type `False`. \n"
-"\n"
-"`False` is the empty proposition, thus it has no introduction rule. It represents a contradiction.\n"
-"What is a contradiction? Well, it is a propostional statement that is false for all possible values of its variables. The standard example of a contradiction is the following: \n"
-"\n"
-"$\n"
-"\\begin{array}{|c|c|} \n"
-"\\hline\n"
-"P & ¬P & P ∧ ¬P\\\\\n"
-"\\hline\n"
-"T & F & F \\\\\n"
-"F & T & F \\\\\n"
-"\\hline\n"
-"\\end{array}\n"
-"$\n"
-"\n"
-"Another meaning for the term contradiction to refer to the assertion or proof of a propositional statement that is false for all possible values of its variables. We will use both interchangeably. So, deriving a contradiction means constructing such a proof.\n"
-"\n"
-"# What is `False` exactly? \n"
-"\n"
-"## How to prove `False` and what are the consequences? -- this has been introduced in the previous level...\n"
-"This is what you did in the previous level. This section is just reiterating that point. \n"
-"\n"
-"Well, when was the first time you saw `False`?\n"
-"\n"
-"Here:\n"
-"'\n"
-"Negation of a proposition `P`, denoted `¬P`, is defined as `P → False`. \n"
-"'\n"
-"It should be clear that to get to false, you would need to prove `¬P`, and `P`. Then given such a proof state:\n"
-"```\n"
-"hnP : ¬P\n"
-"hP : P\n"
-"```\n"
-"we can obtain false by `hnP hP`.\n"
-"Proving a proposition and its negation is a special case of 'deriving a contradiction' because we have proven `p ∧ ¬p` which is always false. A logical system that has this quality is called an inconsistent system.\n"
-"\n"
-"## Principle of explosion\n"
-"Moreover, `False` has no introduction rule , so the reasoning described above is the only way to obtain an object of type `False`. If you were able to find `h:False` i.e prove `False` then our system is worthless because we can prove anything. To reiterate, such a system would be called an inconsistent system because of a contradiction.\n"
-"\n"
-"-- rules of inference like modus ponens need to be emphasized to make this understsanble. Also we can make the user prove the principle of explosion using modus ponens.\n"
-"will be discussed in previous, but the basic idea is that if you have in your proof state an `h` such that `h:False` then you can prove any proposition you want. In other words, within this proof state, all propositions are true. This is obviously absurd because it would mean for every proposition `p`, `p` is true and also `¬p` is true.\n"
-"\n"
-"So this is pretty good because now you can effortlessly prove anything you want!!!!! But this is also pretty bad because you can't really trust any of the results you obtain within an inconsistent system, can you?"
-msgstr ""
-
-#: Game.Levels.Logic.L06_Not
+#: Game.Levels.LogicTruthValue_.L10_False
 msgid ""
 msgstr ""
 
-#: Game.Levels.Logic.L07_contrapositive
-msgid "Contrapositive"
+#: Game.Levels.LogicTruthValue_
+msgid "Logic Truth Value_"
 msgstr ""
 
-#: Game.Levels.Logic.L07_contrapositive
-msgid "More practice on implication and negation"
-msgstr ""
-
-#: Game.Levels.Logic.L07_contrapositive
-msgid "To obtain `False`, we need `Q`, and to obtain `Q` we need `P` which we have. Construct the appropriate expression to obtain `False`"
-msgstr ""
-
-#: Game.Levels.Logic.L07_contrapositive
-msgid ""
-msgstr ""
-
-#: Game.Levels.Logic.L08_PrincipleOfExplosion
-msgid "Principle Of Explosion"
-msgstr ""
-
-#: Game.Levels.Logic.L08_PrincipleOfExplosion
-msgid "Otherwise known as 'from contradiction, anything follows'. \n"
-"This principle asserts that if you have contradictory assumptions then you can prove anything.\n"
-"Example of contradictory assumptions:\n"
-"```\n"
-"h: P\n"
-"nh: ¬P\n"
-"```\n"
-"\n"
-"Why is this principle valid? Well, this is what you will have to prove in this level. For your convenience, the contradiction tactic will be unlocked after this level so you don't have to do the same steps when there are contradictory assumptions.\n"
-"\n"
-"\n"
-"you can prove anything. \n"
-"False.elim eliminates false and produces an object of any type you want!!!\n"
-"False implies anything.\n"
-"\n"
-"| P | Q | P & Q |\n"
-"|—|—|—|\n"
-"| T | T | T |\n"
-"| T | F | F |\n"
-"| F | T | F |\n"
-"| F | F | F |\n"
-"\n"
-"\n"
-"$\n"
-"\\begin{array}{|c c|c|} \n"
-"\\hline\n"
-"a & b & F \\\\\n"
-"\\hline\n"
-"0 & 0 & 0 \\\\\n"
-"0 & 1 & 0 \\\\\n"
-"1 & 0 & 0 \\\\\n"
-"1 & 1 & 1 \\\\\n"
-"\\hline\n"
-"\\end{array}\n"
-"$\n"
-"\n"
-"\n"
-"$\\displaystyle {\\frac {P\\lor Q,\\neg P}{\\therefore Q}}$"
-msgstr ""
-
-#: Game.Levels.Logic.L08_PrincipleOfExplosion
-msgid "We have proven that `P ∧ ¬P → Q` for any proposition `Q`. since `P ∧ ¬P` is always false, then the implication proved becomes `False → Q`.\n"
-"\n"
-"From contradiction, anything follows.\n"
-"There are more examples of contradictions like \n"
-"¬(P ∨ ¬P)\n"
-"\n"
-"$\n"
-"\\begin{array}{|c c|c|} \n"
-"\\hline\n"
-"P & ¬P & P ∨ ¬P & ¬(P ∨ ¬P) \\\\\n"
-"\\hline\n"
-"T & F & T & F \\\\\n"
-"F & T & T & F \\\\\n"
-"\\hline\n"
-"\\end{array}\n"
-"$\n"
-"\n"
-"You could have also solved it by just writing `contradiction`. Contradiction is a tactic that detects if you have contradictory assumptions and if so, closes the goal. Try it if you want."
-msgstr ""
-
-#: Game.Levels.Logic
-msgid "Logic"
-msgstr ""
-
-#: Game.Levels.Logic
-msgid "Atomic propositions are propositions that do not have any logical connectives.\n"
+#: Game.Levels.LogicTruthValue_
+msgid "This world will heavily rely on the truth table perspective of propositions and the various logical connective to provide an intuitive foundation for explaining the validity of various rules in propositional logic. 'Propositions' will be explained here, and the rest will be hinted at here but fully explained throught the levels.\n"
 "\n"
 "In this world, we will be dealing with `Objects` of type `Prop` i.e propositions. You can think of a proposition as a statement that is either true or false(obviously, it can't be both at the same time).\n"
 "\n"
 "Moreover, these statements are denoted by a symbol like `P`,`Q`,`R`.\n"
+"For example, the proposition 'World War 2 ended in 1950' is false. It ended in 1945. After denoting this statement with `Q`, we can say that `Q` is `False`\n"
 "\n"
-"# examples of propositions\n"
-"'The Lean theorem prover had a 4.70 release' is a true statement. After denoting this statement with `P`, we can say that `P` is true.\n"
+"# Building New Propositions From Previous Ones\n"
+"In this world, you will also learn how to construct new propositions by connecting other propositions with logical connectives. \n"
 "\n"
-"'World War 2 ended in 1950' is a false statement. It ended in 1945. After denoting this statement with `Q`, we can say that `Q` is false.\n"
+"Just as a quick example: \n"
+"Let `P` be the proposition 'It is cloudy' and let `Q` be the proposition 'It is raining'. Out of these two atomic propositions, we can form the compound proposition 'It is cloudy `and` it is rainy' denoted `P ∧ Q` where `∧` in the propostional world means `and`. This is translation from english to propositional notation, we will not be concerned directly with the details of this process but will use it to intuitively convey how propositional logic works.\n"
 "\n"
-"These are called atomic propositions. You will also learn how to make compound propositions from atomic propositions using logical connectives.\n"
+"## Connecting Propositions With A Logical Connective\n"
+"It is important to note that connecting two proposition via a logic connective results in a proposition as well. If this wasn't the case, then how could we talk about the truth value of `P ∧ Q` if `P ∧ Q` were not a proposition! This proposition constructed using a logical connective and other propositions, like any other proposition, has a truth value. This truth value depends on the truth value of the propositions it was built out of and the rules of the logical connective. This is clearly illustrated in a truth table. \n"
+"Here's an example:\n"
 "\n"
 "# quick overview\n"
 "\n"
 "## proving statements involving logical connectives\n"
-"Every logical connective has an introduction rule which introduces a new expression involving propositions with that connective.\n"
+"This will involve using inference rules that are intuitively true from the truth table perspective. \n"
 "\n"
 "## unpacking information from a complicated propositional statement\n"
-"Logical connective has some 'elimination' or 'unpacking rule' which unpacks the information within that complicated expression.\n"
+"N/A\n"
 "\n"
-"# Building New Propositions From Previous Ones\n"
-"In this world, you will also learn how to construct new propositions by connecting other propositions with logical connectives\n"
-"\n"
-"## Logical Connectives\n"
-"It is important to note that connecting two proposition via a logic connective results in a proposition as well. This proposition, like any other proposition, has a truth value. This truth value depends on the truth value of the atomic propositions and the rules of the logical connective. This point will be reiterated and hopefully fully materialize in your head as you deal with various logical connectives and as we discuss truth tables(see below for an example).\n"
-"\n"
-"Every logical connective has an introduction rule which introduces a new expression involving propositions with that connective and some 'elimination' or 'unpacking rule' which unpacks the information within such an expression.\n"
-"\n"
-"### Example: `And` , `∧`\n"
-"And.intro\n"
-"And.left h\n"
-"And.right h\n"
-"\n"
-"As an example, we present the `∧` logical connective.\n"
-"Let `p` denote the proposition 'The official language of France is french'(which is true).\n"
-"Let `q` denote the prposition 'The official language of Germany is german'(which is true as well).\n"
-"Combining these two prpositions together gives us the proposition `p ∧ q` which translated to English: 'The official language of France is french `And` the official language of Germany is german'. Because the two propositions connected by the `And` are true, then the entire statement is true as well. \n"
-"\n"
-"-- explained in the and level\n"
-"It's not hard to see that one of or both `p` or `q` being false would make `p ∧ q` false. In other words, `p ∧ q` is true when `p` is true and `q` is true. It is false otherwise.\n"
-"\n"
-"The atomic propositions in the compound proposition `p ∧ q` are : `p`, `q`. Of course, `p ∧ q` can be used to construct more complicated propositions.\n"
-"\n"
-"\n"
-"# truth table \n"
-"The truth table of a logical connective illustrates the rule for that logical connective , i.e the truth value of the compound statement depending on the truth value of the atomic propositions.\n"
-"The following truth table illustrates this for the prevously discussed `∧` connective.\n"
-"\n"
-"`T` stands for true\n"
-"`F` stands for false\n"
-"```\n"
-"| P | Q | P ∧ Q  |\n"
-"|---|---|--------|\n"
-"| T | T |   T    |\n"
-"| T | F |   F    |\n"
-"| F | T |   F    |\n"
-"| F | F |   F    |\n"
-"```\n"
-"\n"
-"# truth tables for the logical connectives\n"
-"You can find these truth tables in the documentation in the right side pane. This world will focus on the introduction and elimination rules of various logical connectives."
+"# shifting between the two perspectives"
 msgstr ""
 
 #: Game.Levels.LogicAlternative.L01_assumption

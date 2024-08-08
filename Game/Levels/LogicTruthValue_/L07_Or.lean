@@ -1,13 +1,14 @@
 import Game.Metadata
 
 
-World "Logic" 
-Level 3 
+World "LogicTruthValue_" 
+Level 7 
 
 Title "Or, `∨`" 
 
 Introduction 
 "
+left, apply Or.inl are the same thing.
 There are two `∨` introduction rules: 
  
 ```
