@@ -8,6 +8,7 @@ Title ""
 
 Introduction 
 "
+<img src=\"https://pixabay.com/vectors/cat-kitty-child-animal-cute-baby-8943928\"/>
 
 'The Lean theorem prover had a 4.70 release' is a true statement. After denoting this statement with `P`, we can say that `P` is `True` or `P = True`.
 
@@ -45,16 +46,26 @@ variable {h : P}
 /-- works here too? -/
 Statement 
   : 2=2 := by
+-- https://www.spyne.ai/image-enhancer
 
+--```
+--<img src=\"https://pixabay.com/vectors/cat-kitty-child-animal-cute-baby-8943928\"/>
+--```
   {
+  Hint "
+<img src=\"https://www.spyne.ai/image-enhancer\"/>
+  "
   Template
     Hole
   rfl
   }
 
-Conclusion 
+Conclusion "<img src=\"https://pixabay.com/vectors/cat-kitty-child-animal-cute-baby-8943928/\">
+
+
+<img src=\"data/g/JadAbouHawili/testing-leangame/Truth-Table-And.png\"/>
 "
-"
+
 
 /- Use these commands to add items to the game's inventory. -/
 
@@ -62,3 +73,15 @@ Conclusion
 -- NewTheorem Nat.add_comm Nat.add_assoc
 -- NewDefinition Nat Add Eq
 
+variable { p q r : Prop}
+example (p q r : Prop) (hp : p) : p ∨ q ∨ r :=
+  by repeat (first | apply Or.inl; assumption | apply Or.inr | assumption);
+
+example (hq : q) : p ∨ q ∨ r :=
+  by repeat (first | apply Or.inl; assumption | apply Or.inr | assumption);
+
+example (p q r : Prop) (hr : r) : p ∨ q ∨ r :=
+  by repeat (first | apply Or.inl; assumption | apply Or.inr | assumption);
+
+example (p q r : Prop) (hp : p) (hq : q) (hr : r) : p ∧ q ∧ r := by
+  constructor <;> (try constructor) <;> assumption

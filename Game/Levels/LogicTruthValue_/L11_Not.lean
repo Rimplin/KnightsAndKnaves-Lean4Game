@@ -1,11 +1,66 @@
 import Game.Metadata
 
 
-World "Logic" 
-Level 6
+World "LogicTruthValue_" 
+Level 11
 
 Title "Not Connective, ¬" 
 
+#check not_false
+/-
+
+Index
+https://leanprover-community.github.io/mathlib4_docs/
+
+Init.Core
+https://leanprover-community.github.io/mathlib4_docs/Init/Core.html#not_true
+
+Init.Core
+https://leanprover-community.github.io/mathlib4_docs/Init/Core.html#Iff
+
+Init.Core
+https://leanprover-community.github.io/mathlib4_docs/Init/Core.html#propext
+
+Mathlib.Logic.Basic
+https://leanprover-community.github.io/mathlib4_docs/Mathlib/Logic/Basic.html#of_not_not
+
+lean4/src/Init/Core.lean at daa22187642d4cf6954c39a23eab20d8a8675416 · leanprover/lean4 · GitHub
+https://github.com/leanprover/lean4/blob/daa22187642d4cf6954c39a23eab20d8a8675416/src/Init/Core.lean#L1391-L1391
+
+Init.Core
+https://leanprover-community.github.io/mathlib4_docs/Init/Core.html#Iff.of_eq
+
+lean4/src/Init/Core.lean at daa22187642d4cf6954c39a23eab20d8a8675416 · leanprover/lean4 · GitHub
+https://github.com/leanprover/lean4/blob/daa22187642d4cf6954c39a23eab20d8a8675416/src/Init/Core.lean#L803-L803
+
+Mathlib.Logic.Basic
+https://leanprover-community.github.io/mathlib4_docs/Mathlib/Logic/Basic.html#iff_eq_eq
+
+Init.Core
+https://leanprover-community.github.io/mathlib4_docs/Init/Core.html#iff_of_eq
+
+Init.Core
+https://leanprover-community.github.io/mathlib4_docs/Init/Core.html#iff_iff_eq
+
+lean4/src/Init/Core.lean at daa22187642d4cf6954c39a23eab20d8a8675416 · leanprover/lean4 · GitHub
+https://github.com/leanprover/lean4/blob/daa22187642d4cf6954c39a23eab20d8a8675416/src/Init/Core.lean#L1390-L1390
+
+Init.Core
+https://leanprover-community.github.io/mathlib4_docs/Init/Core.html#propext
+
+lean4/src/Init/Core.lean at daa22187642d4cf6954c39a23eab20d8a8675416 · leanprover/lean4 · GitHub
+https://github.com/leanprover/lean4/blob/daa22187642d4cf6954c39a23eab20d8a8675416/src/Init/Core.lean#L1304-L1304
+
+Init.Ext
+https://leanprover-community.github.io/mathlib4_docs/Init/Ext.html#propext_iff
+
+biconditional at DuckDuckGo
+https://start.duckduckgo.com/lite/?q=biconditional
+
+Logical biconditional - Wikipedia
+https://en.wikipedia.org/wiki/Logical_biconditional#Colloquial_usage
+
+-/
 Introduction 
 "
 Another way to say that `P = False` is by saying `¬P = True`. These two statements say the same thing. This is how we will define `¬`.

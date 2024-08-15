@@ -32,7 +32,6 @@ you can use `require mathlib from git "[URL]" @ leanVersion`
 
 require LeanCopilot from git "https://github.com/lean-dojo/LeanCopilot.git" @ "v1.2.0"
 
-
 require mathlib from git "https://github.com/leanprover-community/mathlib4.git" @ leanVersion
 
 

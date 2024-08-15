@@ -8,6 +8,8 @@ import Game.Levels.LogicTruthValue_.L07_Or
 import Game.Levels.LogicTruthValue_.L08_Implication
 import Game.Levels.LogicTruthValue_.L09_Implication
 import Game.Levels.LogicTruthValue_.L10_False
+import Game.Levels.LogicTruthValue_.L11_Not
+import Game.Levels.LogicTruthValue_.L12_False
 --import Game.Levels.LogicTruthValue_.L03_And
 --import Game.Levels.LogicTruthValue_.L04_Implication
 --import Game.Levels.LogicTruthValue_.L05_BuildTruthTable
