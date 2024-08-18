@@ -105,30 +105,8 @@ Statement
 Conclusion "This last message appears if the level is solved."
 
 /-asdf -/
---TheoremDoc Xor' as "Xor" in "logic"
---NewTheorem Xor' 
+
 
 NewTactic push_neg 
 
-/--
-# Exclusive Or 
 
-## Rewriting Xor'
-`Xor' p q` can be rewritten as:
-```
-(p ∧ ¬q) ∨ (¬p ∧ q)
-```
-To rewrite `Xor'` in the goal:
-```
-rw [Xor']
-```
-
-To rewrite `Xor'` in hypothesis `h`:
-```
-rw [Xor'] at h
-```
-
-
--/
-DefinitionDoc Xor' as "Xor'" 
-NewDefinition Xor' 

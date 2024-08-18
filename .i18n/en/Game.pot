@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Wed Aug 14 13:38:30 2024\n"
+"POT-Creation-Date: Sun Aug 18 15:29:59 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -1207,28 +1207,41 @@ msgstr ""
 msgid "This world will have the same exercises as the previous `Logic` world, but the difference will be the tactics used to solve them, which will change the reasoning process."
 msgstr ""
 
-#: Game.Levels.SetTheoryLemmas.L01_Introduction
-msgid "Intro"
+#: Game.Levels.KnightsAndKnavesLemmas.L01_KnightNotKnave
+msgid ""
 msgstr ""
 
-#: Game.Levels.SetTheoryLemmas.L01_Introduction
-msgid "Hi"
+#: Game.Levels.KnightsAndKnavesLemmas.L01_KnightNotKnave
+msgid "Before starting the riddles, it is obvious that no one can be a knight and a knave at the same time."
 msgstr ""
 
-#: Game.Levels.SetTheoryLemmas.L01_Introduction
-msgid "."
+#: Game.Levels.KnightsAndKnavesLemmas.L01_KnightNotKnave
+msgid ""
 msgstr ""
 
-#: Game.Levels.SetTheoryLemmas.L01_Introduction
-msgid "asdf"
+#: Game.Levels.KnightsAndKnavesLemmas.L01_KnightNotKnave
+msgid "def Xor' (a b : Prop) := (a ∧ ¬ b) ∨ (b ∧ ¬ a)\n"
+"\n"
+"# Exclusive Or \n"
+"\n"
+"## Rewriting Xor'\n"
+"`Xor' p q` can be rewritten as:\n"
+"```\n"
+"(p ∧ ¬q) ∨ (¬p ∧ q)\n"
+"```\n"
+"To rewrite `Xor'` in the goal:\n"
+"```\n"
+"rw [Xor']\n"
+"```\n"
+"\n"
+"To rewrite `Xor'` in hypothesis `h`:\n"
+"```\n"
+"rw [Xor'] at h\n"
+"```"
 msgstr ""
 
-#: Game.Levels.SetTheoryLemmas
-msgid "Set Theory Lemmas"
-msgstr ""
-
-#: Game.Levels.SetTheoryLemmas
-msgid "This introduction is shown before one enters level 1 of the demo world. Use markdown."
+#: Game.Levels.KnightsAndKnavesLemmas
+msgid "Knights and Knaves, lemmas"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.L01_Introduction
@@ -1251,25 +1264,6 @@ msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.L01_Introduction
 msgid "This last message appears if the level is solved."
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves.L01_Introduction
-msgid "# Exclusive Or \n"
-"\n"
-"## Rewriting Xor'\n"
-"`Xor' p q` can be rewritten as:\n"
-"```\n"
-"(p ∧ ¬q) ∨ (¬p ∧ q)\n"
-"```\n"
-"To rewrite `Xor'` in the goal:\n"
-"```\n"
-"rw [Xor']\n"
-"```\n"
-"\n"
-"To rewrite `Xor'` in hypothesis `h`:\n"
-"```\n"
-"rw [Xor'] at h\n"
-"```"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.L02_Anoter

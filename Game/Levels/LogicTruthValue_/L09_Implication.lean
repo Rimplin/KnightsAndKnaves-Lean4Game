@@ -5,7 +5,8 @@ World "LogicTruthValue_"
 Level 9
 
 Title "Implication, →" 
-
+#check Function.mt
+#check Function.mtr
 Introduction 
 "
 Logical implication `P → Q` is made up of two components:
@@ -32,10 +33,7 @@ Statement modus_ponens (p : P) (ptoq: P → Q)
   : Q := by
 
 
-  {
-    exact ptoq p
-  }
-
+  { exact ptoq p }
 
 
 

@@ -10,16 +10,6 @@ Title "Intro"
 
 Introduction "Hi"
 
-Statement memleft_empty_inter (A:Set K) (B: Set K)
-(h: x ∈ A) (l: A ∩ B = ∅)
-  : x ∉ B := by
-  {
-    intro h2
-    have contr:= mem_inter h h2
-    rw [l] at contr 
-    norm_num at contr
-  --  contradiction
-  }
 
 
 

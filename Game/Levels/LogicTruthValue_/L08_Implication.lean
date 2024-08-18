@@ -5,7 +5,7 @@ World "LogicTruthValue_"
 Level 8
 
 Title "Implication, →" 
-
+#check imp_iff_not_or
 Introduction 
 "
 Logical implication `P → Q` is made up of two components:

@@ -78,52 +78,8 @@ variable (Knight : Set K ) (Knave : Set K)
 (h2: Xor' (y ∈ Knight)  (y ∈ Knave) )
 (h3: Xor' (z ∈ Knight)  (z ∈ Knave) )
 
-
--- create some helper theorems
--- notKnave_Knight (h : ¬ (x ∈ Knave) ) : x ∈ Knight
--- notKnight_Knave (h : ¬ (x ∈ Knight) ) : x ∈ Knave
--- Knave_notKnight
--- Knight_notKnave
--- knight_knave (h : x ∈ Knight) (h' : x ∈ Knave) : False , maybe extend contradiction to detect this...
-theorem notKnave_Knight (h' : ¬ (x ∈ Knave)) : x ∈ Knight := by 
-  -- explain precedence so users can understand the unfolded result.
-  unfold Xor' at h1
-
-  -- introduce ¬¬ p → p
-  -- first approach by contradiction
-  /-by_contra h''
-  have h' := eq_false h'
-  have h'' := eq_false h''
-  rw [h',h''] at h1
-  simp at h1
-  -/
-
-  -- second approach, direct
-  have h' := eq_false h'
-  rw [h'] at h1
-  simp at h1
-  assumption
-
 open Set
 #check not_mem_empty
-/-
-since this is a repeated pattern in this world, we introduce it as its own level. You need to show that having two sets being disjoint (i.e sharing no common element) and having a common element is a contradiction. This is not an obvious contradiction( like p , ¬p) for the `contradiction` tactic to work. Some work needs to be done to get to that point.
-Note the theorem:
-```
-Set.not_mem_empty.{u} {α : Type u} (x : α) : x ∉ ∅
-```
-An object of this type is given to you as an assumption in this level for your convenience and this you can also directly use this theorem.  can be used freely later on.
-
-Hint: the goal is to get something that contradicts not_mem_empty. Since x belong to Knight and Knave then it belongs to their intersection which is equal to the empty set contradiction not_mem_empty. Let's do this step by step. (Make it feel like the player discovered this:
-Notice that the only information we can derive is that x is in the intersection. Do we have information about the intersection? Well yes. its empty set so x ∈ empty set. Execute the finishing blow. 
-
-This is a common theme when using `contradiction`, sometimes contradiction can't see the 'contradiction' and manipulating the proof state would reveal this to `contradiction`.
--/
-theorem knight_knave (h' : x ∈ Knight) (h'' : x ∈ Knave) : False := by 
-   have := Set.mem_inter h' h''
-   rw [h] at this
-   have this2 : ∀ x:K, x ∉ ∅  := not_mem_empty 
-   contradiction
 
 
 example
