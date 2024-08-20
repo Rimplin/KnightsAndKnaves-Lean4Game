@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Sun Aug 18 15:29:59 2024\n"
+"POT-Creation-Date: Mon Aug 19 22:12:44 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -854,10 +854,6 @@ msgid "Logical implication `P → Q` is made up of two components:\n"
 msgstr ""
 
 #: Game.Levels.LogicTruthValue_.L09_Implication
-msgid "asdfasdfd asdfsadfdsa here"
-msgstr ""
-
-#: Game.Levels.LogicTruthValue_.L09_Implication
 msgid "This is what is called an inference rule. It has two assumptions, `p : P` , `ptoq : P → Q` and the conclusion `Q`. It is an inference rule because we 'infer' a certain conclusion from assumptions or already established theorems.\n"
 "Usually presented in this format:"
 msgstr ""
@@ -1207,19 +1203,25 @@ msgstr ""
 msgid "This world will have the same exercises as the previous `Logic` world, but the difference will be the tactics used to solve them, which will change the reasoning process."
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L01_KnightNotKnave
+#: Game.Levels.KnightsAndKnavesLemmas.L01_NotKnave_Knight
 msgid ""
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L01_KnightNotKnave
-msgid "Before starting the riddles, it is obvious that no one can be a knight and a knave at the same time."
+#: Game.Levels.KnightsAndKnavesLemmas.L01_NotKnave_Knight
+msgid "Before starting the riddles, some new concepts have to be clarified.\n"
+"Xor...\n"
+"it is obvious that no one can be a knight and a knave at the same time. If some is not a knave then they are a knight."
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L01_KnightNotKnave
+#: Game.Levels.KnightsAndKnavesLemmas.L01_NotKnave_Knight
+msgid "asdf"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L01_NotKnave_Knight
 msgid ""
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L01_KnightNotKnave
+#: Game.Levels.KnightsAndKnavesLemmas.L01_NotKnave_Knight
 msgid "def Xor' (a b : Prop) := (a ∧ ¬ b) ∨ (b ∧ ¬ a)\n"
 "\n"
 "# Exclusive Or \n"
@@ -1238,6 +1240,18 @@ msgid "def Xor' (a b : Prop) := (a ∧ ¬ b) ∨ (b ∧ ¬ a)\n"
 "```\n"
 "rw [Xor'] at h\n"
 "```"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L02_inter_empty
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L02_inter_empty
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L02_inter_empty
+msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas

@@ -1,12 +1,6 @@
 import Game.Metadata
 
 
--- create some helper theorems
--- notKnave_Knight (h : ¬ (x ∈ Knave) ) : x ∈ Knight
--- notKnight_Knave (h : ¬ (x ∈ Knight) ) : x ∈ Knave
--- Knave_notKnight
--- Knight_notKnave
--- knight_knave (h : x ∈ Knight) (h' : x ∈ Knave) : False , maybe extend contradiction to detect this...
 
 World "KnightsAndKnavesLemmas"
 Level 1
@@ -26,20 +20,22 @@ Expect lesser hints and more freedom in this world, there are many solutions and
 In this game, you can be either a knight or a knave and certainly not both at the same time. This is expressed by the fact `h`, and is reinforced in this level
 -/
 
+--variable 
+/-- 
+asdf
+-/
 
+-- notKnave_Knight (h : ¬ (x ∈ Knave) ) : x ∈ Knight
+TheoremDoc notKnave_Knight as "notKnave_Knight" in "Logic"
 Statement notKnave_Knight 
-  --sets
-  (Knight : Set K ) (Knave : Set K)
-(h : Knight ∩ Knave = ∅ )
-(h1 : Xor' (A ∈ Knight) (B ∈ Knave) ) 
-(h2: Xor' (B ∈ Knight)  (B ∈ Knave) )
+
+{Knight : Set K } {Knave : Set K}
+{h : Knight ∩ Knave = ∅ }
+{h1 : Xor' (A ∈ Knight) (B ∈ Knave) }
+{h2: Xor' (B ∈ Knight)  (B ∈ Knave) }
 (h' : ¬ (B ∈ Knave))
---(stA : A ∈ Knight → () ) 
---(stAn : A ∈ Knave → ¬ () ) 
---(stB: B ∈ Knight → () )
---(stBn: B ∈ Knave → ¬ () )
   :  A ∈ Knight := by
-  {
+{
 
   -- explain precedence so users can understand the unfolded result.
   unfold Xor' at h1
@@ -60,7 +56,7 @@ Statement notKnave_Knight
   simp at h1
   assumption
 
-  }
+}
 
 
 
@@ -140,8 +136,8 @@ The reason for the assumption `h1` is to state that `A` is of type `K` and that 
 notation:50 a:50 " ∉ " b:50 => ¬ (a ∈ b)
 
 -/
-
-example (Knight : Set K ) (Knave : Set K)
+-- simplifying the conditions, also the Xor' conditions won't be necessary after the notKnave_Knave (etc ...) stuff
+example (Knight : Set K ) (Knave : Set K) (A : K)
 (h : Knight ∩ Knave = ∅ ) : Xor' (A ∈ Knight) (A ∈ Knave) ↔ A ∈ Knight ∨ A ∈ Knave := by 
   constructor
   unfold Xor' at *
@@ -191,3 +187,4 @@ rw [Xor'] at h
 -/
 DefinitionDoc Xor' as "Xor'" 
 NewDefinition Xor' 
+NewTheorem notKnave_Knight

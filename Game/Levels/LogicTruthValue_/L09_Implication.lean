@@ -27,14 +27,13 @@ What logical implication does is that it takes evidence or proof for `P` and tra
 A statement `P → Q` is false when `P` is true and `Q` false, it's true otherwise.
 "
 variable {P Q : Prop}
-/-- asdfasdfd asdfsadfdsa here -/
-TheoremDoc modus_ponens as "modus_ponens" in "logic"
+/- asdfasdfd asdfsadfdsa here -/
+--TheoremDoc modus_ponens as "modus_ponens" in "logic"
 Statement modus_ponens (p : P) (ptoq: P → Q)
   : Q := by
 
 
   { exact ptoq p }
-
 
 
 
