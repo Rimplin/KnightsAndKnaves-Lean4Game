@@ -1,7 +1,123 @@
 import Game.Metadata
+import Game.Levels.KnightsAndKnavesLemmas.L02_Knight_NotKnave
+import Game.Levels.KnightsAndKnavesLemmas.L02_NotKnave_Knight
+import Game.Levels.KnightsAndKnavesLemmas.L03_Knave_NotKnight
+import Game.Levels.KnightsAndKnavesLemmas.L04_NotKnight_Knave
 
+
+
+--variable (Inhabitant : Type)
+--#check (Sum Inhabitant Inhabitant)
+--variable (Knight Knave : Type)
+--variable (A : Sum Knight Knave)
+--inductive A where
+--| Knight
+--| Knave
+
+-- Define a sum type that can be either an integer or a boolean
+--inductive Inhabitant
+--| int 
+--| bool 
+--variable (B : Knight)
+--example : ( Sum.inl A ∈ Knight) := by
+--  cases A 
+  
+--example : 2=2 := by sorry
+--variable (Knight: Type) (Knave : Type)
+--def Inhabitant := (Sum Knight Knave)
+--#check Inhabitant
+--example (A : Inhabitant Knight Knave) : 2=2  := sorry
+
+/-
+inductive Weekday where
+  | sunday : Weekday
+  | monday : Weekday
+  | tuesday : Weekday
+  | wednesday : Weekday
+  | thursday : Weekday
+  | friday : Weekday
+  | saturday : Weekday
+inductive Inhabitant where 
+| Knight'
+| Knave'
+
+#check Inhabitant.Knave'
+#check Inhabitant.Knight'
+example (A : Inhabitant) : 2=2 :=  
+  match A with 
+  | Knight' => sorry
+  | Knave' => sorry
+-/
+-- problem 28
+variable (Knight : Set K) (Knave : Set K)
+
+example
+  --sets
+{h : Knight ∩ Knave = ∅ }
+{h1 : Xor' (A ∈ Knight) (A ∈ Knave) }
+{h2: Xor' (B ∈ Knight)  (B ∈ Knave) }
+{stA : A ∈ Knight  ↔ ((A ∈ Knave) ∨ (B ∈ Knave)) }
+  : A ∈ Knight ∧ B ∈ Knave := by
+  {
+    #check Knave_NotKnight
+
+    have this := h1
+    unfold Xor' at h1
+    cases h1 
+    · have := stA.mp h_1.left
+      cases this 
+        -- having Xor and all that might get a rewrite so this would need to change
+      · have := Knave_NotKnight h this h_2
+        --have := @Knave_NotKnight K A Knight Knave h this h_2
+        exfalso 
+        exact this h_1.left
+
+      · sorry
+    · sorry
+  }
+
+
+
+
+
+example : (p ↔ q) ↔ (¬p ↔ ¬q) := by 
+  constructor
+  · intro h
+  -- sol 1
+    --rw [h]
+  -- sol 2
+    constructor
+    · intro h'
+      intro h''
+      have := h.mpr h''
+      exact h' this
+
+    · intro h'
+      intro h''
+      have := h.mp h''
+      exact h' this 
+
+  · intro h'
+    constructor 
+    · intro h''
+      have := Function.mt (h'.mpr) (not_not.mpr h'')
+      rw [not_not] at this
+      assumption
+    · intro h''
+      have := Function.mt (h'.mp) (not_not.mpr h'')
+      rw [not_not] at this
+      assumption
+
+example (h : p ↔ q) (h' : q ↔ r) : p ↔ r := by 
+  rw [h'] at h
+  -- loss of information
+  rw [h'] at h'
+  assumption
 -- break up every problem into multiple levels explaining the reasoning behind the solution
 -- problem 26, what is the name of this book
+-- notice that from the statement of B we can know that B is a knave, and then C correctly asserted that B is a knave so we get that C is a knight.(if someone tells the truth then they must be a knight because there is no other option, if there was someone that sometimes lies or tells the truth we can't know, therefore `iff` is more appropriate here and implication is more appropriate when such a character is present)
+
+#check imp_false
 example
   --sets
   (Knight : Set K ) (Knave : Set K)
@@ -9,6 +125,7 @@ example
 (h1 : Xor' (A ∈ Knight) (A ∈ Knave) ) 
 (h2: Xor' (B ∈ Knight)  (B ∈ Knave) )
 (h3: Xor' (C ∈ Knight)  (C ∈ Knave) )
+-- instead of stB and stnB, we can use ↔ and the knowledge of negating both sides and all that
 (stB : B ∈ Knight → ( (A ∈ Knight → A ∈ Knave) ∧ (A ∈ Knave → A ∈ Knight) ))
 (stnB : B ∈ Knave → ¬( (A ∈ Knight → A ∈ Knave) ∧ (A ∈ Knave → A ∈ Knight) ))
 (stC : C ∈ Knight → B ∈ Knave)
@@ -29,6 +146,7 @@ example
       contradiction
   }
 
+-- problem 27
 -- in this problem, we cannot know what `A` is, should this be demonstrated in a level? some helpful lessons are present.
 example
   --sets
@@ -43,6 +161,7 @@ example
   (A ∈ Knight ∧ B ∈ Knave ∧ C ∈ Knave) ∨ (A ∈ Knave ∧ B ∈ Knight ∧ C ∈ Knave) ∨ (A ∈ Knave ∧ B ∈ Knave ∧ C ∈ Knight)) ) )
 (stC : ( C ∈ Knight → B ∈ Knave) )
 (stnC : ( C ∈ Knave → B ∈ Knight) )
+
   : B ∈ Knave ∧ C ∈ Knight
   := by 
     have : B ∈ Knight ∧ C ∈ Knave ∨ B ∈ Knave ∧ C ∈ Knight := by 
@@ -60,6 +179,8 @@ example
       sorry
     · exact ⟨left,right⟩ 
 #check eq_true
+
+
 
 example
   --sets
@@ -107,3 +228,5 @@ example
     contradiction
     
 }
+
+  

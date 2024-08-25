@@ -16,23 +16,17 @@ Statement
   --sets
   {Knight : Set K} {Knave : Set K}
 {h : Knight ∩ Knave = ∅ }
---{h1 : Xor' (A ∈ Knight) (A ∈ Knave) }
---{h2: Xor' (B ∈ Knight)  (B ∈ Knave) }
+{h1 : Xor' (A ∈ Knight) (A ∈ Knave) }
+{h2: Xor' (B ∈ Knight)  (B ∈ Knave) }
 (h' : A ∈ Knight)
   : A ∉ Knave := by
 
   {
-   -- unfold Xor' at h1
-   -- cases h1
-   -- · exact h_1.right
-   -- · exfalso
-   --   exact h_1.right h'
-
-    -- eliminate h1 , h2 and do by_contra
-    by_contra
-    have := Set.mem_inter h' a
-    rw [h] at this
-    contradiction
+    unfold Xor' at h1
+    have h' := eq_true h'
+    rw [h'] at h1
+    simp at h1 
+    assumption
   }
 
 

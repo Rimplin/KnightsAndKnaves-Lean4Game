@@ -11,26 +11,21 @@ Introduction
 "
 "
 
-Statement Knave_NotKnight
+Statement
   --sets
-  -- make them required arguments then make variables above it so user only puts h'
   {Knight : Set K} {Knave : Set K}
-(h : Knight ∩ Knave = ∅ )
---(h1 : Xor' (A ∈ Knight) (A ∈ Knave) )
+{h : Knight ∩ Knave = ∅ }
+{h1 : Xor' (A ∈ Knight) (A ∈ Knave) }
 (h' : A ∈ Knave)
   : ¬ (A ∈ Knight) := by
 
   {
-    -- h1
-    --unfold Xor' at h1 
-    --cases h1 
-    --· exfalso
-    --  exact h_1.right h'
-    --· exact h_1.right
-    by_contra
-    have := Set.mem_inter a h'
-    rw [h] at this
-    contradiction
+
+    unfold Xor' at h1
+    have h' := eq_true h'
+    rw [h'] at h1
+    simp at h1 
+    assumption
   }
 
 

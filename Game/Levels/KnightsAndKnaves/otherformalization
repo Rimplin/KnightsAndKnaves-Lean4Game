@@ -1,0 +1,6 @@
+advantages of current set theoretic formalization:
+not do any weird things behind the scenes, show the logical and set theoretic expressions which the user would be used to by now.
+
+using inductive types or sum types:
+big disadvantage: goes against all the previous build up... remember that the game started with knights and knaves having set theoretic and logic formalization then backtracking...
+- advantage: maybe as an interesting side project formalization

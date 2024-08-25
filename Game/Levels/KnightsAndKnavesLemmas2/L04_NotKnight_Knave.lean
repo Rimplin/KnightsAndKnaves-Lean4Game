@@ -19,11 +19,12 @@ Statement
 : A ∈ Knave  := by
 
   {
+
     unfold Xor' at h1
-    cases h1 
-    exfalso
-    exact h' h_1.left
-    exact h_1.left
+    have h' := eq_false h'
+    rw [h'] at h1
+    simp at h1 
+    assumption
   }
 
 

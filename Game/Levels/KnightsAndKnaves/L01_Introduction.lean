@@ -14,6 +14,49 @@ Title "Intro"
 #check Xor
 #check not_xor
 
+#check not_iff
+#check Xor'
+#check eq_true
+#check Iff
+#check and_iff_not_or_not
+#check iff_iff_and_or_not_and_not
+set_option trace.Meta.Tactic.simp true
+
+example : Xor' p q ↔ ¬(p ↔ q) := by 
+  unfold Xor'
+
+  constructor 
+  · intro h
+    intro h'
+    rw [h'] at h
+    rw [or_self] at h
+    simp at h 
+  · intro h
+    
+
+    by_contra h'
+    rw [iff_iff_and_or_not_and_not] at h
+    cases em p
+    · cases em q
+      · exact h (Or.inl (⟨h_1,h_2⟩ )) 
+      · exact h' (Or.inl (⟨h_1,h_2⟩ )) 
+
+    · cases em q
+      · exact h' (Or.inr (⟨h_2,h_1⟩ )) 
+      · exact h (Or.inr (⟨h_1,h_2⟩ )) 
+
+
+    --contrapose h
+    --rw [not_not]
+    --constructor 
+    --· intro 
+    --  by_contra h'
+    --  exact h (Or.inl (⟨a,h'⟩))
+    --· sorry
+
+
+    --rw [not_iff] at h 
+    --rw [h]
 Introduction 
 "
 # Xor
@@ -30,7 +73,7 @@ x ∈ Knave, y ∈ Knave
 "
 
 -- develop tactic if x in knight then x not in knave
-Statement
+Statement --(preamble := unfold Xor' at *)
   --sets
   (Knight : Set K ) (Knave : Set K)
   (h : Knight ∩ Knave = ∅ ) (h1 : Xor' (x ∈ Knight) (x ∈ Knave) ) (h2: Xor' (y ∈ Knight)  (y ∈ Knave) )
@@ -44,7 +87,7 @@ Statement
   {
   -- need to teach pattern matching
   -- need to have alot of proficiency
-  unfold Xor' at *
+  --unfold Xor' at *
   rcases h1 with ⟨xt,_⟩|⟨xl,_⟩ 
   -- can use clear and stuff, should explain that if the antecedent of an impliation is false then we can't conclude the conclusion wihch validates clearing stxn here because the atecedent is false.
   · clear stxn
@@ -108,5 +151,3 @@ Conclusion "This last message appears if the level is solved."
 
 
 NewTactic push_neg 
-
-

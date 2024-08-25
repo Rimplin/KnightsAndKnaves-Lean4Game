@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Mon Aug 19 22:12:44 2024\n"
+"POT-Creation-Date: Sun Aug 25 15:48:32 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -1203,25 +1203,71 @@ msgstr ""
 msgid "This world will have the same exercises as the previous `Logic` world, but the difference will be the tactics used to solve them, which will change the reasoning process."
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L01_NotKnave_Knight
+#: Game.Levels.KnightsAndKnavesLemmas.L01_whydisjoint
 msgid ""
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L01_NotKnave_Knight
+#: Game.Levels.KnightsAndKnavesLemmas.L01_whydisjoint
+msgid "We can think of the set of knights and the set of knaves, denoted `Knights`, `Knaves` respectively. A set is a collection of 'entities' with a specified property. The set `Knight` would be the set of inhabitants of the island that are knights i.e satisfying the property of always telling the truth, the set `Knave` being the set of inhabitatns of the island that are knives i.e the ones that always lie. \n"
+"\n"
+"Note that in Lean, `Set K` means the set of objects of type `K`( this can be changed to something clearer?? think of clarity benefits of a change). Note that in each level, we will be considering two or three inhabitants of the island and will not be reasoning about the sets themselves but about these fixed inhabitants named `A`, `B`, `C`.\n"
+"\n"
+"---------------------------------\n"
+"Here we introduce Xor'. \n"
+"Many definitions capture the meaning we want: there is iff definition, and ∧ ∨ definition. \n"
+"\n"
+"We don't need these and can opt for a simpler assumption,"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L01_whydisjoint
+msgid "Note that the forward direction is always true, and our assumption `h` wasn't used, but the backward direction is not always( We used `h` for that). This offers a simplification and decluttering of the proof state and will be followed from now on. The downside is an apparent loss of information, but the coming levels will show that this is not the case.\n"
+"\n"
+"(follow up to show that there was no loss of information)"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L02_Knight_NotKnave
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L02_Knight_NotKnave
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L02_Knight_NotKnave
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L03_Knave_NotKnight
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L03_Knave_NotKnight
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L03_Knave_NotKnight
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L04_NotKnave_Knight
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L04_NotKnave_Knight
 msgid "Before starting the riddles, some new concepts have to be clarified.\n"
 "Xor...\n"
 "it is obvious that no one can be a knight and a knave at the same time. If some is not a knave then they are a knight."
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L01_NotKnave_Knight
+#: Game.Levels.KnightsAndKnavesLemmas.L04_NotKnave_Knight
 msgid "asdf"
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L01_NotKnave_Knight
+#: Game.Levels.KnightsAndKnavesLemmas.L04_NotKnave_Knight
 msgid ""
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L01_NotKnave_Knight
+#: Game.Levels.KnightsAndKnavesLemmas.L04_NotKnave_Knight
 msgid "def Xor' (a b : Prop) := (a ∧ ¬ b) ∨ (b ∧ ¬ a)\n"
 "\n"
 "# Exclusive Or \n"
@@ -1242,20 +1288,52 @@ msgid "def Xor' (a b : Prop) := (a ∧ ¬ b) ∨ (b ∧ ¬ a)\n"
 "```"
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L02_inter_empty
+#: Game.Levels.KnightsAndKnavesLemmas.L05_NotKnight_Knave
 msgid ""
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L02_inter_empty
+#: Game.Levels.KnightsAndKnavesLemmas.L05_NotKnight_Knave
 msgid ""
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L02_inter_empty
+#: Game.Levels.KnightsAndKnavesLemmas.L05_NotKnight_Knave
 msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas
 msgid "Knights and Knaves, lemmas"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas
+msgid "This level will introduce the knights and knaves puzzle, detail the process of formalizing and representing it in Lean, and prove basic but important lemmas that will be used to solve puzzles in the next world.\n"
+"\n"
+"The setting is an island in which its inhabitatnts satisfy the following properties:\n"
+"- Every inhabitant of the island is either a knight or a knave. \n"
+"- 'Knights' always tell the truth and 'Knaves' always lie. \n"
+"The objective is to conclude who is a knight and who is a knave, based on the statements of several inhabitants. This will be done using logical reasoning. Every inhabitant will make at most one statement.\n"
+"\n"
+"How should this be translated into Logic? Well, this is what the upcoming levels will focus on before transitioning to proving some important properties. \n"
+"\n"
+"\n"
+"Note that you can't be a Knight and a Knave at the same time, you can only be one or the other and not both. \n"
+"1. We can capture this in logic by saying that the two sets `Knight` and `Knave` are disjoint i.e there is no inhabitant that belongs to both at the same time. The notation for that is `Knight ∩ Knave = ∅` where `∅` is a set with no elements.\n"
+"2. We can capture this in logic by saying that for any inhabitant say `A`, (`A` is a knight and is not a knave) or (`A` is a knave and is not a knight).\n"
+"3. inductive type interpretation?  \n"
+"variable (Inhabitant : Type)\n"
+"#check (Sum Inhabitant Inhabitant\n"
+"variable (A : Sum Knight Knave)\n"
+"variable (B : Knight)\n"
+"example : 2=2 := by sorry\n"
+"\n"
+"Then, for any inhabitant of the island they are either a knight or a knave but not both. In other words, if they are a knight then they can't be a knave and if they are a knave they can't be a knight. This can be translated to : (x is a knight and x is not a knave) or (x is a knave and is not a knight). This can be simplified to just saying that: (x is a knight) or (x is a knave) conveying the same information. In the first case (x being a knight), we know the two sets are disjoint so x can't be a knave. Similarly for the second case. This simpler statement conveys the same information as the former which is more complicated, so it should ie be used instead.\n"
+"\n"
+"-- don't show any formalism, just lay it out here then copy paste it to every level and formalise there.\n"
+"\n"
+"The statement `x ∈ Knight` should be understand as 'x IS Knight' i.e 'x' always tells the truth. \n"
+"Similarly, the statement `x ∉ Knight` should be understand as 'x IS-NOT Knight'. What is `x` then? `x` has to be a knave.\n"
+"\n"
+"The same reasoning applies to `x ∈ Knave`, `x ∉ Knave`.\n"
+"Every mentioned here will be thoroughly formalized and explained in this world, and the paragraph in question in that level will be directly referenced. Every idea is left to be elaborated and formalised in the levels of this world."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.L01_Introduction
@@ -1298,6 +1376,40 @@ msgstr ""
 
 #: Game.Levels.KnightsAndKnaves
 msgid "It is recommended to solve the problems in this world while in editor mode, though you have the choice not to."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas2.L01_NotKnave_Knight
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas2.L01_NotKnave_Knight
+msgid "Before starting the riddles, some new concepts have to be clarified.\n"
+"Xor...\n"
+"it is obvious that no one can be a knight and a knave at the same time. If some is not a knave then they are a knight."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas2.L01_NotKnave_Knight
+msgid "asdf"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas2.L01_NotKnave_Knight
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas2.L02_inter_empty
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas2.L02_inter_empty
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas2.L02_inter_empty
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas2
+msgid "Knights and Knaves, lemmas 2"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves2

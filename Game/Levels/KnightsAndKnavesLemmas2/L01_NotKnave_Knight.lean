@@ -2,7 +2,7 @@ import Game.Metadata
 
 
 
-World "KnightsAndKnavesLemmas"
+World "KnightsAndKnavesLemmas2"
 Level 1
 
 Title ""
@@ -26,8 +26,8 @@ asdf
 -/
 
 -- notKnave_Knight (h : ¬ (x ∈ Knave) ) : x ∈ Knight
-TheoremDoc notKnave_Knight as "notKnave_Knight" in "Logic"
-Statement notKnave_Knight 
+TheoremDoc notKnave_Knight2 as "notKnave_Knight2" in "Logic"
+Statement notKnave_Knight2 
 
 {Knight : Set K } {Knave : Set K}
 {h : Knight ∩ Knave = ∅ }
@@ -66,16 +66,6 @@ Conclusion
 "
 "
 
-theorem memleft_empty_inter (A:Set K) (B: Set K)
-(h: x ∈ A) (l: A ∩ B = ∅)
-  : x ∉ B := by
-  {
-    intro h2
-    have contr:= Set.mem_inter h h2
-    rw [l] at contr 
-    norm_num at contr
-  --  contradiction
-  }
 /- Use these commands to add items to the game's inventory. -/
 
 
@@ -102,7 +92,7 @@ Notice that the only information we can derive is that x is in the intersection.
 
 This is a common theme when using `contradiction`, sometimes contradiction can't see the 'contradiction' and manipulating the proof state would reveal this to `contradiction`.
 -/
-theorem knight_knave 
+example  
 
 /-
 The reason for the assumption `h` is to ensure that no one can be a knight and a knave at the same time, being so would lead to a contradiction.
@@ -136,36 +126,9 @@ The reason for the assumption `h1` is to state that `A` is of type `K` and that 
 notation:50 a:50 " ∉ " b:50 => ¬ (a ∈ b)
 
 -/
--- simplifying the conditions, also the Xor' conditions won't be necessary after the notKnave_Knave (etc ...) stuff
-example (Knight : Set K ) (Knave : Set K) (A : K)
-(h : Knight ∩ Knave = ∅ ) : Xor' (A ∈ Knight) (A ∈ Knave) ↔ A ∈ Knight ∨ A ∈ Knave := by 
-  constructor
-  unfold Xor' at *
-  · intro h'
-    cases h'
-    · exact Or.inl (h_1.left)
-    · exact Or.inr (h_1.left)
-  · intro h'
-    unfold Xor'
-    cases h'
-    · left
-      constructor
-      assumption
-      -- this is just KnightNotKnave, introduce those two first then this... nice!
-      by_contra
-      have := Set.mem_inter h_1 a
-      rw [h] at this
-      contradiction
-    · right
-      constructor
-      assumption
-      by_contra
-      have := Set.mem_inter a h_1
-      rw [h] at this
-      contradiction
-
 #check Set.inter_eq_right
-/--
+
+/-
 def Xor' (a b : Prop) := (a ∧ ¬ b) ∨ (b ∧ ¬ a)
 
 # Exclusive Or 
@@ -185,6 +148,5 @@ To rewrite `Xor'` in hypothesis `h`:
 rw [Xor'] at h
 ```
 -/
-DefinitionDoc Xor' as "Xor'" 
-NewDefinition Xor' 
-NewTheorem notKnave_Knight
+--DefinitionDoc Xor' as "Xor'" 
+--NewDefinition Xor' 

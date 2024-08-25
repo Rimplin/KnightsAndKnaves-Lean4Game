@@ -1,7 +1,7 @@
 import Game.Metadata
-import Game.Levels.KnightsAndKnavesLemmas.L01_NotKnave_Knight
+import Game.Levels.KnightsAndKnavesLemmas2.L01_NotKnave_Knight
 
-World "KnightsAndKnavesLemmas"
+World "KnightsAndKnavesLemmas2"
 Level 2
 
 Title ""
