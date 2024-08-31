@@ -1,8 +1,8 @@
 import Game.Metadata
-import Game.Levels.KnightsAndKnavesLemmas.L02_Knight_NotKnave
-import Game.Levels.KnightsAndKnavesLemmas.L02_NotKnave_Knight
-import Game.Levels.KnightsAndKnavesLemmas.L03_Knave_NotKnight
-import Game.Levels.KnightsAndKnavesLemmas.L04_NotKnight_Knave
+--import Game.Levels.KnightsAndKnavesLemmas.L02_Knight_NotKnave
+--import Game.Levels.KnightsAndKnavesLemmas.L02_NotKnave_Knight
+--import Game.Levels.KnightsAndKnavesLemmas.L03_Knave_NotKnight
+--import Game.Levels.KnightsAndKnavesLemmas.L04_NotKnight_Knave
 
 
 
@@ -59,7 +59,7 @@ example
 {stA : A ∈ Knight  ↔ ((A ∈ Knave) ∨ (B ∈ Knave)) }
   : A ∈ Knight ∧ B ∈ Knave := by
   {
-    #check Knave_NotKnight
+    --#check Knave_NotKnight
 
     have this := h1
     unfold Xor' at h1
@@ -67,46 +67,15 @@ example
     · have := stA.mp h_1.left
       cases this 
         -- having Xor and all that might get a rewrite so this would need to change
-      · have := Knave_NotKnight h this h_2
-        --have := @Knave_NotKnight K A Knight Knave h this h_2
-        exfalso 
-        exact this h_1.left
+      · sorry--have := Knave_NotKnight h this h_2
+        ----have := @Knave_NotKnight K A Knight Knave h this h_2
+        --exfalso 
+        --exact this h_1.left
 
       · sorry
     · sorry
   }
 
-
-
-
-
-example : (p ↔ q) ↔ (¬p ↔ ¬q) := by 
-  constructor
-  · intro h
-  -- sol 1
-    --rw [h]
-  -- sol 2
-    constructor
-    · intro h'
-      intro h''
-      have := h.mpr h''
-      exact h' this
-
-    · intro h'
-      intro h''
-      have := h.mp h''
-      exact h' this 
-
-  · intro h'
-    constructor 
-    · intro h''
-      have := Function.mt (h'.mpr) (not_not.mpr h'')
-      rw [not_not] at this
-      assumption
-    · intro h''
-      have := Function.mt (h'.mp) (not_not.mpr h'')
-      rw [not_not] at this
-      assumption
 
 example (h : p ↔ q) (h' : q ↔ r) : p ↔ r := by 
   rw [h'] at h
@@ -229,4 +198,3 @@ example
     
 }
 
-  

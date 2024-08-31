@@ -1,7 +1,5 @@
 import Game.Metadata
 
-
-
 World "KnightsAndKnavesLemmas"
 Level 4
 

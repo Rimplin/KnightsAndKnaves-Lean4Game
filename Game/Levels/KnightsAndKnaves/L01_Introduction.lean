@@ -22,6 +22,35 @@ Title "Intro"
 #check iff_iff_and_or_not_and_not
 set_option trace.Meta.Tactic.simp true
 
+
+example : (p ↔ q) ↔ (¬p ↔ ¬q) := by 
+  constructor
+  · intro h
+  -- sol 1
+    --rw [h]
+  -- sol 2
+    constructor
+    · intro h'
+      intro h''
+      have := h.mpr h''
+      exact h' this
+
+    · intro h'
+      intro h''
+      have := h.mp h''
+      exact h' this 
+
+  · intro h'
+    constructor 
+    · intro h''
+      have := Function.mt (h'.mpr) (not_not.mpr h'')
+      rw [not_not] at this
+      assumption
+    · intro h''
+      have := Function.mt (h'.mp) (not_not.mpr h'')
+      rw [not_not] at this
+      assumption
+
 example : Xor' p q ↔ ¬(p ↔ q) := by 
   unfold Xor'
 
@@ -144,6 +173,28 @@ Statement --(preamble := unfold Xor' at *)
     exact And.intro h_1.left (stxn h_1.left )
 -/
   }
+
+
+
+example --(preamble := unfold Xor' at *)
+  --sets
+  (Knight : Set K ) (Knave : Set K)
+  (h : Knight ∩ Knave = ∅ ) (h1 : Xor' (x ∈ Knight) (x ∈ Knave) ) (h2: Xor' (y ∈ Knight)  (y ∈ Knave) )
+
+  -- x says y is a knight
+  -- y says that x and y are of different type
+  --rules of the game, i.e knights tell the truth but knaves lie
+  (stx : x ∈ Knight → y ∈ Knight) (sty: y ∈ Knight → (x ∈ Knight ∧ y ∈ Knave) ∨ (x ∈ Knave ∧ y ∈ Knight) )
+  (stxn : x ∈ Knave →  y ∈ Knave) (styn: y ∈ Knave → ¬ ( (x ∈ Knight ∧ y ∈ Knave) ∨ (x ∈ Knave ∧ y ∈ Knight) ) )
+  : x ∈ Knave ∧ y ∈ Knave := by
+  rw [XorToOr x h] at h1
+  rw [XorToOr y h] at h2
+  #check IfToIff
+  have : x ∉ Knight → y ∉ Knight := by 
+    intro h'
+    have := NotKnight_Knave h'
+    exact Knave_NotKnight h (stxn (NotKnight_Knave  h'))
+  have := IfToIff stx stxn
 
 Conclusion "This last message appears if the level is solved."
 
