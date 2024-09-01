@@ -175,7 +175,7 @@ Statement --(preamble := unfold Xor' at *)
   }
 
 
-
+#check NotKnight_Knave
 example --(preamble := unfold Xor' at *)
   --sets
   (Knight : Set K ) (Knave : Set K)
@@ -190,12 +190,22 @@ example --(preamble := unfold Xor' at *)
   rw [XorToOr x h] at h1
   rw [XorToOr y h] at h2
   #check IfToIff
-  have : x ∉ Knight → y ∉ Knight := by 
-    intro h'
-    have := NotKnight_Knave h'
-    exact Knave_NotKnight h (stxn (NotKnight_Knave  h'))
-  have := IfToIff stx stxn
+  rw [Knave_NotKnight_Iff h h1] at stxn
+  rw [Knave_NotKnight_Iff h h2] at stxn
 
+  have this2:= IfToIff stx stxn
+  clear stx
+  clear stxn 
+
+  nth_rw 1 [Knave_NotKnight_Iff h h2] at styn
+  have this3:= IfToIff sty styn
+  clear sty
+  clear styn
+  rw [not_iff_not.symm] at this2
+  rw [not_iff_not.symm] at this3
+  -- replace this2 and this3 in whats in the goal and clear them
+
+#check not_iff_not
 Conclusion "This last message appears if the level is solved."
 
 /-asdf -/
