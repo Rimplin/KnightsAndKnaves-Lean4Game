@@ -22,7 +22,7 @@ Title "Intro"
 #check iff_iff_and_or_not_and_not
 set_option trace.Meta.Tactic.simp true
 
-
+#check not_iff_not
 example : (p ↔ q) ↔ (¬p ↔ ¬q) := by 
   constructor
   · intro h
@@ -101,8 +101,9 @@ x ∈ Knave, y ∈ Knave
 ```
 "
 
+-- old formalization
 -- develop tactic if x in knight then x not in knave
-Statement --(preamble := unfold Xor' at *)
+example --(preamble := unfold Xor' at *)
   --sets
   (Knight : Set K ) (Knave : Set K)
   (h : Knight ∩ Knave = ∅ ) (h1 : Xor' (x ∈ Knight) (x ∈ Knave) ) (h2: Xor' (y ∈ Knight)  (y ∈ Knave) )
@@ -175,35 +176,42 @@ Statement --(preamble := unfold Xor' at *)
   }
 
 
-#check NotKnight_Knave
-example --(preamble := unfold Xor' at *)
+Statement --(preamble := unfold Xor' at *)
   --sets
   (Knight : Set K ) (Knave : Set K)
-  (h : Knight ∩ Knave = ∅ ) (h1 : Xor' (x ∈ Knight) (x ∈ Knave) ) (h2: Xor' (y ∈ Knight)  (y ∈ Knave) )
+  (h : Knight ∩ Knave = ∅ ) (h1 : x ∈ Knight ∨ x ∈ Knave) (h2 : y ∈ Knight ∨ y ∈ Knave) 
 
   -- x says y is a knight
   -- y says that x and y are of different type
   --rules of the game, i.e knights tell the truth but knaves lie
-  (stx : x ∈ Knight → y ∈ Knight) (sty: y ∈ Knight → (x ∈ Knight ∧ y ∈ Knave) ∨ (x ∈ Knave ∧ y ∈ Knight) )
-  (stxn : x ∈ Knave →  y ∈ Knave) (styn: y ∈ Knave → ¬ ( (x ∈ Knight ∧ y ∈ Knave) ∨ (x ∈ Knave ∧ y ∈ Knight) ) )
+  (stx : x ∈ Knight ↔ y ∈ Knight)
+  (sty : y ∈ Knight ↔ x ∈ Knight ∧ y ∈ Knave ∨ x ∈ Knave ∧ y ∈ Knight)
   : x ∈ Knave ∧ y ∈ Knave := by
-  rw [XorToOr x h] at h1
-  rw [XorToOr y h] at h2
   #check IfToIff
-  rw [Knave_NotKnight_Iff h h1] at stxn
-  rw [Knave_NotKnight_Iff h h2] at stxn
 
-  have this2:= IfToIff stx stxn
-  clear stx
-  clear stxn 
-
-  nth_rw 1 [Knave_NotKnight_Iff h h2] at styn
-  have this3:= IfToIff sty styn
-  clear sty
-  clear styn
-  rw [not_iff_not.symm] at this2
-  rw [not_iff_not.symm] at this3
+  rw [not_iff_not.symm] at stx
+  --rw [not_iff_not.symm] at this3
   -- replace this2 and this3 in whats in the goal and clear them
+  #check NotKnight_KnaveIff
+  rw [NotKnight_KnaveIff h h1] at stx
+  rw [NotKnight_KnaveIff h h2] at stx
+  rw [stx]
+  simp 
+
+  have this:=h2
+  
+  cases h2 
+  rw [sty] at h_1 
+  rw [stx] at h_1
+  nth_rw 1 [stx.symm] at h_1
+  #check Knave_NotKnightIff
+  rw [Knave_NotKnightIff h h1]  at h_1
+  rw [Knave_NotKnightIff h this]  at h_1
+  rcases h_1 with ⟨a,b⟩|⟨a',b'⟩  
+  contradiction
+  contradiction
+
+  assumption
 
 #check not_iff_not
 Conclusion "This last message appears if the level is solved."
