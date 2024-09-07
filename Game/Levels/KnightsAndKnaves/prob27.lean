@@ -26,26 +26,6 @@ example
 
   : B ∈ Knave ∧ C ∈ Knight
   := by 
---fintype lean 4 at DuckDuckGo
---https://start.duckduckgo.com/lite/
---
---Defining a Finset in Lean4 - Proof Assistants Stack Exchange
---https://proofassistants.stackexchange.com/questions/4171/defining-a-finset-in-lean4
---
---Mathlib.Data.Finset.Basic
---https://leanprover-community.github.io/mathlib4_docs/Mathlib/Data/Finset/Basic.html#Finset
---
---Mathlib.Data.Fintype.Basic
---https://leanprover-community.github.io/mathlib4_docs/Mathlib/Data/Fintype/Basic.html#Fintype
---
---Mathlib.Data.Fintype.Card
---https://leanprover-community.github.io/mathlib4_docs/Mathlib/Data/Fintype/Card.html
---
---Mathlib.Data.Fintype.Card
---https://leanprover-community.github.io/mathlib4_docs/Mathlib/Data/Fintype/Card.html#Fintype.card
---
---Mathlib.Data.Fintype.Card
---https://leanprover-community.github.io/mathlib4_docs/Mathlib/Data/Fintype/Card.html#Fintype.card
 
     have : Fintype.card (Knight) = 1 := by sorry
 
@@ -168,6 +148,96 @@ example
   --  simp
   --  sorry
 
+
+
+-- newformalization
+example
+  --sets
+(Knight : Set K ) 
+(hK : Finset Knight)
+  (Knave : Set K)
+(h : Knight ∩ Knave = ∅ )
+(h1 : A ∈ Knight ∨ A ∈ Knave ) 
+(h2: B ∈ Knight ∨ (B ∈ Knave) )
+(h3: C ∈ Knight ∨ C ∈ Knave )
+(
+stB : 
+
+(B ∈ Knight) ↔ 
+  (A ∈ Knight 
+    ↔ ( (Finset.card hK) = 1)
+    --(A ∈ Knight ∧ B ∈ Knave ∧ C ∈ Knave) ∨ (A ∈ Knave ∧ B ∈ Knight ∧ C ∈ Knave) ∨ (A ∈ Knave ∧ B ∈ Knave ∧ C ∈ Knight) 
+  ) 
+  )
+
+(
+stB' : 
+
+(B ∈ Knight) ↔ 
+  (A ∈ Knight 
+    ↔ ( Knight= {A} ∨ Knight = {B} ∨ Knight = {C})
+    --(A ∈ Knight ∧ B ∈ Knave ∧ C ∈ Knave) ∨ (A ∈ Knave ∧ B ∈ Knight ∧ C ∈ Knave) ∨ (A ∈ Knave ∧ B ∈ Knave ∧ C ∈ Knight) 
+  ) 
+)
+--(stBn : (B ∈ Knave) → (A ∈ Knight → ¬ (
+--  (A ∈ Knight ∧ B ∈ Knave ∧ C ∈ Knave) ∨ (A ∈ Knave ∧ B ∈ Knight ∧ C ∈ Knave) ∨ (A ∈ Knave ∧ B ∈ Knave ∧ C ∈ Knight)) ) )
+(stC : ( C ∈ Knight ↔ B ∈ Knave) )
+--(stnC : ( C ∈ Knave → B ∈ Knight) )
+
+  : B ∈ Knave ∧ C ∈ Knight := by 
+    --squeeze_scope
+  --simp at stB'
+   
+
+  have : B ∈ Knight ∧ C ∈ Knave ∨ B ∈ Knave ∧ C ∈ Knight := 
+    by
+    have COr := h3
+    cases h3
+    -- C Knight
+    · have := stC.mp h_1
+      right
+      constructor
+      assumption ; assumption
+    -- C Knave
+    · rw [not_iff_not.symm] at stC
+      rw [NotKnight_KnaveIff h COr] at stC
+      have := stC.mp h_1
+      rw [NotKnave_KnightIff h h2] at this
+      left
+      constructor
+      assumption; assumption
+
+  cases this 
+  · cases h1
+    · have := stB'.mp h_1.left
+      have this2 := this.mp h_2
+      simp[h_1.left,h_2] at this2
+      cases this2 
+      · rw [h_3] at h_1
+        -- from h_1 B=A but we also know B≠A. so we can conclude False closing the goal.
+        sorry
+      · sorry
+    · sorry
+  · sorry
+  --have this2: B ∈ Knight ∧ C ∈ Knave ∨ B ∈ Knave ∧ C ∈ Knight → hK.card  =1 := by {
+  --intro 
+  --sorry
+  --}
+
+  --sorry
+
+example (A : K) (Knight : Set K) (hK : Finset Knight) : Knight = {A} := by sorry
+example [DecidableEq K] (Knight : Set K) (hK : Finset Knight) (ne : Finset.Nonempty hK) (hA : A ∈ Knight) (hB : B ∈ Knight): hK.card =2 := by {
+  apply Nat.le_antisymm
+  · apply? 
+  · apply?
+}
+#check Finset.card_eq_two
+#check Finset.card_pos
+#check Finset.Nonempty
 #check eq_true
+#check card_finset_fin_le
+#check Finset.card_ne_zero_of_mem
+#check Fin
 
 
