@@ -209,3 +209,11 @@ theorem IffToIf (h : p ↔ q) : (p → q) ∧ (¬p → ¬q) := by
   constructor
   · exact h.mp
   · exact Function.mt (h.mpr)
+
+theorem disjoint   {Knight : Set K} {Knave : Set K}
+(h : Knight ∩ Knave = ∅ )
+(hk : A ∈ Knight)
+(hkn : A ∈ Knave)  : False := by 
+  have := Set.mem_inter hk hkn 
+  rw [h] at this
+  contradiction

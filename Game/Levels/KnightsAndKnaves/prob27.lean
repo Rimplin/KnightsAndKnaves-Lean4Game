@@ -1,5 +1,4 @@
 import Game.Metadata
-import Mathlib.Data.Fintype.Card
 -- problem 27
 -- in this problem, we cannot know what `A` is, should this be demonstrated in a level? some helpful lessons are present.
 
@@ -148,6 +147,39 @@ example
   --  simp
   --  sorry
 
+#check ({1,2} : Multiset ℕ)
+
+--variable (K : Type)
+--variable (A B C : K)
+theorem perm : ({A,B,C}:Set K) = ({C,A,B}:Set K) := by 
+  
+  apply Set.ext_iff.mpr
+  intro x
+  constructor 
+  · intro h
+    refine Set.mem_insert_iff.mpr ?mp.a
+    cases h 
+    · right
+      rw [h_1.symm] 
+      exact Set.mem_insert x {B}
+    · cases h_1
+      · right
+        exact Set.mem_insert_of_mem A h
+      · left 
+        exact h
+   -- apply? 
+  · --#check Set.insert
+    intro h
+    refine Set.mem_insert_iff.mpr ?mpr.a
+    cases h
+    · right
+      exact Set.mem_insert_of_mem B h_1
+    · cases h_1
+      · left
+        assumption
+      · right
+        rw [Set.mem_singleton_of_eq h] 
+        exact Set.mem_insert B {C}
 
 
 -- newformalization
@@ -184,11 +216,12 @@ stB' :
 (stC : ( C ∈ Knight ↔ B ∈ Knave) )
 --(stnC : ( C ∈ Knave → B ∈ Knight) )
 
+(ne : A ≠ B )
   : B ∈ Knave ∧ C ∈ Knight := by 
     --squeeze_scope
   --simp at stB'
    
-
+  have AOr := h1
   have : B ∈ Knight ∧ C ∈ Knave ∨ B ∈ Knave ∧ C ∈ Knight := 
     by
     have COr := h3
@@ -215,10 +248,60 @@ stB' :
       cases this2 
       · rw [h_3] at h_1
         -- from h_1 B=A but we also know B≠A. so we can conclude False closing the goal.
-        sorry
-      · sorry
-    · sorry
-  · sorry
+        have hl := h_1.left
+
+        #check Multiset.mem_singleton
+        #check Finset.eq_of_mem_singleton
+        have AeqB:= (Set.eq_of_mem_singleton hl).symm
+
+        contradiction
+      · cases h_3
+        · rw [h_4] at h_2 
+          have AeqB := Set.eq_of_mem_singleton h_2
+          contradiction
+        · have h_5 := h_4.symm
+            
+          --h_5 : {C} = Knight
+          #check Set.eq_singleton_iff_unique_mem
+          rw [Set.eq_singleton_iff_unique_mem] at h_4
+          have c1 := h_4.left
+          have c2 := h_1.right
+          rw [Knight_NotKnaveIff h h3] at c1
+          contradiction
+    · -- A is a knave but the right hand of the iff in stB' is true so contradiction
+      --#check Set.mem_sub
+      have := stB'.mp h_1.left
+      rw [not_iff_not.symm] at this
+      rw [Knave_NotKnightIff h AOr] at h_2
+      have this2 := this.mp h_2
+      push_neg at this2
+      -- we have Knight = {B} (prove it) and its negation, contradiction
+      -- knight subset of {A,B,C}
+      have Ksub: Knight ⊆ {A,B,C} := by apply?
+      #check Set.subsingleton_or_nontrivial 
+        
+      have cKnave := h_1.right
+      rw[Knave_NotKnightIff h h3] at cKnave
+      #check Set.subset_insert_iff_of_not_mem
+
+--1. Set.subset_insert_iff_of_not_mem.{u} {α : Type u} {a : α} {s t : Set α} (ha : a ∉ s) : s ⊆ insert a t ↔ s ⊆ t
+      have : Knight ⊆ insert A {B,C} ↔ Knight ⊆ {B,C} := Set.subset_insert_iff_of_not_mem h_2
+      #check Set.subset_singleton_iff_eq
+      --#check Set.order
+      --have perm: {A,B,C} ⊆ {C,A,B} := by sorry
+      rw [this] at Ksub
+      #check perm
+      rw [Set.pair_comm] at Ksub
+      have sm: Knight ⊆ insert C {B} ↔ Knight ⊆ {B} := Set.subset_insert_iff_of_not_mem cKnave
+      rw [sm] at Ksub
+      #check Set.subset_singleton_iff_eq
+      rw [Set.subset_singleton_iff_eq] at Ksub
+      have : Knight ≠ ∅ := sorry
+      cases Ksub
+      · contradiction 
+      · have := this2.right.left
+        contradiction
+  · assumption
   --have this2: B ∈ Knight ∧ C ∈ Knave ∨ B ∈ Knave ∧ C ∈ Knight → hK.card  =1 := by {
   --intro 
   --sorry
@@ -239,5 +322,45 @@ example [DecidableEq K] (Knight : Set K) (hK : Finset Knight) (ne : Finset.Nonem
 #check card_finset_fin_le
 #check Finset.card_ne_zero_of_mem
 #check Fin
+
+
+
+
+
+--def A : Person := Person.Knight ∨ Person.Knave
+--def B : Person := Person.Knight ∨ Person.Knave
+--def C : Person := Person.Knight ∨ Person.Knave
+
+theorem solve_puzzle   (Knight : Set K ) (Knave : Set K)
+  (hK : Fintype Knight)
+(h : Knight ∩ Knave = ∅ )
+(h1 : Xor' (A ∈ Knight) (A ∈ Knave) ) 
+(h2: Xor' (B ∈ Knight)  (B ∈ Knave) )
+(h3: Xor' (C ∈ Knight)  (C ∈ Knave) )
+(stB : (B ∈ Knight) → (A ∈ Knight →
+  (A ∈ Knight ∧ B ∈ Knave ∧ C ∈ Knave) ∨ (A ∈ Knave ∧ B ∈ Knight ∧ C ∈ Knave) ∨ (A ∈ Knave ∧ B ∈ Knave ∧ C ∈ Knight) ) )
+(stBn : (B ∈ Knave) → (A ∈ Knight → ¬ (
+  (A ∈ Knight ∧ B ∈ Knave ∧ C ∈ Knave) ∨ (A ∈ Knave ∧ B ∈ Knight ∧ C ∈ Knave) ∨ (A ∈ Knave ∧ B ∈ Knave ∧ C ∈ Knight)) ) )
+(stC : ( C ∈ Knight → B ∈ Knave) )
+(stnC : ( C ∈ Knave → B ∈ Knight) )
+
+  : B ∈ Knave ∧ C ∈ Knight
+ := by
+
+  cases h2 
+  · sorry
+  · sorry
+ -- | Knight := given conditions
+ --   contradiction
+ -- | Knave := 
+ --   -- Case where B is a Knave
+ --   have hC : C = Person.Knight, from (iff.mp (propext and_iff_right_iff_imply)) (iff.symm _),
+
+ --   exact ⟨hB, hC⟩,
+
+
+
+
+
 
 
