@@ -6,12 +6,20 @@ import Game.Metadata
 #check Function.Bijective
 #check Function.Bijective
 
+-- use this instead of whatever was being used
+--1. Finset.card_insert_of_not_mem.{u_1} {α : Type u_1} {s : Finset α} {a : α} [inst✝ : DecidableEq α] (h : a ∉ s) :
+--     (insert a s).card = s.card + 1
+#check Finset.card_insert_of_not_mem
+#check Finset.card_le_one_iff
 
+#check Inter
+#check Finset.image_biUnion_filter_eq
 ---
 example
   --sets
-  (Knight : Set K ) (Knave : Set K)
-  (hK : Fintype Knight)
+  [inst : DecidableEq K]
+  (Knight : Finset K ) (Knave : Finset K)
+--  (hK : Finset Knight)
 (h : Knight ∩ Knave = ∅ )
 (h1 : Xor' (A ∈ Knight) (A ∈ Knave) ) 
 (h2: Xor' (B ∈ Knight)  (B ∈ Knave) )
@@ -25,8 +33,6 @@ example
 
   : B ∈ Knave ∧ C ∈ Knight
   := by 
-
-    have : Fintype.card (Knight) = 1 := by sorry
 
     have : B ∈ Knight ∧ C ∈ Knave ∨ B ∈ Knave ∧ C ∈ Knight := by 
       cases h3
@@ -147,6 +153,35 @@ example
   --  simp
   --  sorry
 
+
+
+
+example
+  --sets
+  [inst : DecidableEq K]
+  (Knight : Finset K ) (Knave : Finset K)
+(h : Knight ∩ Knave = ∅ )
+(h1 : A ∈ Knight ∨ A ∈ Knave ) 
+(h2: B ∈ Knight ∨ (B ∈ Knave) )
+(h3: C ∈ Knight ∨ C ∈ Knave )
+(stB : (B ∈ Knight) ↔ (A ∈ Knight ↔
+  (A ∈ Knight ∧ B ∈ Knave ∧ C ∈ Knave) ∨ (A ∈ Knave ∧ B ∈ Knight ∧ C ∈ Knave) ∨ (A ∈ Knave ∧ B ∈ Knave ∧ C ∈ Knight) ) )
+--(stBn : (B ∈ Knave) → (A ∈ Knight → ¬ (
+--  (A ∈ Knight ∧ B ∈ Knave ∧ C ∈ Knave) ∨ (A ∈ Knave ∧ B ∈ Knight ∧ C ∈ Knave) ∨ (A ∈ Knave ∧ B ∈ Knave ∧ C ∈ Knight)) ) )
+(stC : ( C ∈ Knight ↔ B ∈ Knave) )
+--(stnC : ( C ∈ Knave → B ∈ Knight) )
+
+  : B ∈ Knave ∧ C ∈ Knight := by 
+    --Nat.le_of_eq a
+    have : Finset.card (Knight) = 1 := by sorry
+    have : Finset.card (Knight) ≤ 1 := by exact Nat.le_of_eq this
+    #check eq_or_lt_of_le
+    #check eq_iff_le_not_lt
+    #check Finset.card_le_one_iff
+    --rw [Nat.le_of_eq] at this
+    -- this is what it means to have cardinality one
+    rw [Finset.card_le_one_iff] at this
+     
 #check ({1,2} : Multiset ℕ)
 
 --variable (K : Type)
