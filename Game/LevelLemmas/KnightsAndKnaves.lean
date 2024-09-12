@@ -2,6 +2,16 @@
 
 import Mathlib.Data.Set.Basic
 
+--- helper
+theorem disjoint   {Knight : Set K} {Knave : Set K}
+(h : Knight ∩ Knave = ∅ )
+(hk : A ∈ Knight)
+(hkn : A ∈ Knave)  : False := by 
+  have := Set.mem_inter hk hkn 
+  rw [h] at this
+  contradiction
+--- helper
+
 
 theorem Knave_NotKnight
   --sets
@@ -20,9 +30,7 @@ theorem Knave_NotKnight
     --  exact h_1.right h'
     --· exact h_1.right
     by_contra
-    have := Set.mem_inter a h'
-    rw [h] at this
-    contradiction
+    exact disjoint h a h'
   }
 
 theorem NotKnave_Knight 
@@ -84,9 +92,7 @@ theorem Knight_NotKnave
 
     -- eliminate h1 , h2 and do by_contra
     by_contra
-    have := Set.mem_inter h' a
-    rw [h] at this
-    contradiction
+    exact disjoint h h' a
   }
 
 theorem NotKnight_Knave
@@ -102,6 +108,113 @@ theorem NotKnight_Knave
     contradiction
     assumption
   }
+
+
+-- simplifying the conditions, also the Xor' conditions won't be necessary after the notKnave_Knave (etc ...) stuff
+theorem XorToOr {Knight : Set Inhabitants } {Knave : Set Inhabitants} (A : Inhabitants)
+(h : Knight ∩ Knave = ∅ ) : Xor' (A ∈ Knight) (A ∈ Knave) ↔ A ∈ Knight ∨ A ∈ Knave := by 
+  constructor
+  unfold Xor' at *
+  · intro h'
+    cases h'
+    · exact Or.inl (h_1.left)
+    · exact Or.inr (h_1.left)
+
+  · intro h'
+    unfold Xor'
+    cases h'
+    · left
+      constructor
+      assumption
+      exact Knight_NotKnave h h_1
+    · right
+      constructor
+      assumption
+      exact Knave_NotKnight h h_1
+
+-- from implication to if and only if
+
+theorem IfToIff (h : p → q) (h' : ¬p → ¬q) : p ↔ q := by 
+  constructor
+  · assumption
+  · intro hq
+    exact (Function.mtr h') hq
+theorem IffToIf (h : p ↔ q) : (p → q) ∧ (¬p → ¬q) := by 
+  constructor
+  · exact h.mp
+  · exact Function.mt (h.mpr)
+
+
+
+--- Knights and Knaves and Normal
+theorem Knight_NotKnaveNotNormalcont
+{Knight : Set K} {Knave : Set K}
+{Normal : Set K} 
+(h : Knight ∩ Normal = ∅ )
+(hk : A ∈ Knight)
+(hkn : A ∈ Normal)  : False := by 
+  exact disjoint h hk hkn 
+
+-- Knight
+-- Knave
+-- Normal
+-- maybe should do Knight_NotKnave, Knight_NotNormal etc... and not this because this would require to input multiple arguments for the disjoint sets and also might have superflous information
+-- enumerate all of them then put all the iff versions at the end after the normal ones, because the iff versions can be proven using the normal ones.
+
+theorem Knight_NotNormal
+{Knight : Set K} 
+{Normal : Set K} 
+(hKN : Knight ∩ Normal = ∅ )
+(hk : A ∈ Knight) : A ∉ Normal := by
+  exact disjoint hKN hk
+
+theorem NotNormal_Knight
+{Knight : Set K} 
+{Knave : Set K} 
+{Normal : Set K} 
+(hKN : Knight ∩ Normal = ∅ )
+(h' : A ∈ Knight ∨ A ∈ Knave ∨ A ∈ Normal)
+(hnN :A ∉ Normal): A ∈ Knight ∨ A ∈ Knave:= by
+  sorry
+  
+  
+
+theorem Knave_NotNormal
+{Knight : Set K} {Knave : Set K}
+{Normal : Set K} 
+(hKnN : Knave ∩ Normal = ∅ )
+(hk : A ∈ Knave) : A ∉ Normal := by
+  exact disjoint hKnN hk
+
+theorem Normal_NotKnight
+{Knight : Set K} {Knave : Set K}
+{Normal : Set K} 
+(hKnN : Knight ∩ Normal = ∅ )
+(hk : A ∈ Normal) : A ∉ Knight := by
+  rw [Set.inter_comm] at hKnN
+  exact disjoint hKnN hk
+
+
+theorem Normal_NotKnave
+{Knight : Set K} {Knave : Set K}
+{Normal : Set K} 
+(hKnN : Knave ∩ Normal = ∅ )
+(hk : A ∈ Normal) : A ∉ Knave := by
+  rw [Set.inter_comm] at hKnN
+  exact disjoint hKnN hk
+
+-- needs Knight_NotKnave, Knight_NotNormal
+theorem Knight_NotKnaveNotNormal
+{Knight : Set K} {Knave : Set K}
+{Normal : Set K} 
+{hKKn : Knight ∩ Knave = ∅ }
+{hKN : Knight ∩ Normal = ∅ }
+{hKnN : Knave ∩ Normal = ∅ }
+(hk : A ∈ Knight)
+: A ∉ Knave ∧ A ∉ Normal := by 
+  constructor
+  exact Knight_NotKnave 
+
 
 
 @[simp]
@@ -176,44 +289,19 @@ theorem NotKnave_KnightIff
   exact Knight_NotKnave h 
 
 
--- simplifying the conditions, also the Xor' conditions won't be necessary after the notKnave_Knave (etc ...) stuff
-theorem XorToOr {Knight : Set Inhabitants } {Knave : Set Inhabitants} (A : Inhabitants)
-(h : Knight ∩ Knave = ∅ ) : Xor' (A ∈ Knight) (A ∈ Knave) ↔ A ∈ Knight ∨ A ∈ Knave := by 
-  constructor
-  unfold Xor' at *
-  · intro h'
-    cases h'
-    · exact Or.inl (h_1.left)
-    · exact Or.inr (h_1.left)
+-- depending on usage, start formalizing knight knave normal problems and see what i need.
+-- ahhh, this is just Knight_NotNormal 
+theorem Knight_NotNormalNotIff
+{Knight : Set K} {Knave : Set K}
+{Normal : Set K} 
+(hKN : Knight ∩ Normal = ∅ )
+: A ∈ Knight → A ∉ Normal  := by
+  exact Knight_NotNormal hKN
 
-  · intro h'
-    unfold Xor'
-    cases h'
-    · left
-      constructor
-      assumption
-      exact Knight_NotKnave h h_1
-    · right
-      constructor
-      assumption
-      exact Knave_NotKnight h h_1
+theorem Knave_NotNormalNotIff
+{Knight : Set K} {Knave : Set K}
+{Normal : Set K} 
+(hKnN : Knave ∩ Normal = ∅ )
+: A ∈ Knave → A ∉ Normal  := by
+  exact Knight_NotNormal hKnN
 
--- from implication to if and only if
-
-theorem IfToIff (h : p → q) (h' : ¬p → ¬q) : p ↔ q := by 
-  constructor
-  · assumption
-  · intro hq
-    exact (Function.mtr h') hq
-theorem IffToIf (h : p ↔ q) : (p → q) ∧ (¬p → ¬q) := by 
-  constructor
-  · exact h.mp
-  · exact Function.mt (h.mpr)
-
-theorem disjoint   {Knight : Set K} {Knave : Set K}
-(h : Knight ∩ Knave = ∅ )
-(hk : A ∈ Knight)
-(hkn : A ∈ Knave)  : False := by 
-  have := Set.mem_inter hk hkn 
-  rw [h] at this
-  contradiction

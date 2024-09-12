@@ -8,6 +8,10 @@ import Game.Metadata
 -- Knave
 -- Normal
 -- many cases of having an element in two sets, all of them should contradict h
+
+
+#check Set.inter_inter_inter_comm
+#check Set.inter_left_comm
 example
   --sets
   {Knight : Set Inhabitant} 
@@ -15,16 +19,22 @@ example
   {Normal : Set Inhabitant}
   -- this means simultaneously knight,knave ,knave, but being a knave and a normal is also something we don't want.
 {h : Knight ∩ Knave ∩ Normal = ∅ }
-{h1 : Xor' (A ∈ Knight) (A ∈ Knave) }
-{h2: Xor' (B ∈ Knight)  (B ∈ Knave) }
-{stA : A ∈ Knight → () }
-{stAn : A ∈ Knave → ¬ () }
-{stB: B ∈ Knight → () }
-{stBn: B ∈ Knave → ¬ () }
-  :  := by
+{hKKn : Knight ∩ Knave = ∅ }
+{hKN : Knight ∩ Normal = ∅ }
+{hKnN : Knave ∩ Normal = ∅ }
+{h1 : A ∈ Knight ∨ A ∈ Knave ∨ A ∈ Normal }
+{h2: B ∈ Knight ∨ B ∈ Knave ∨ B ∈ Normal}
+{AKnight : A ∈ Knight}
+{ANormal : A ∈ Normal}
+--{stA : A ∈ Knight → () }
+--{stAn : A ∈ Knave → ¬ () }
+--{stB: B ∈ Knight → () }
+--{stBn: B ∈ Knave → ¬ () }
+  : False:= by
 
   {
-    #check Set.inter_inter_inter_comm
+    -- disjoint is very useful, need versions for Knight_NotKnaveNotNormal
+    exact disjoint hKN AKnight ANormal     
  
     
   }
