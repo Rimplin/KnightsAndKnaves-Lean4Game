@@ -17,8 +17,6 @@ example
   {Knight : Set Inhabitant} 
   {Knave : Set Inhabitant}
   {Normal : Set Inhabitant}
-  -- this means simultaneously knight,knave ,knave, but being a knave and a normal is also something we don't want.
-{h : Knight ∩ Knave ∩ Normal = ∅ }
 {hKKn : Knight ∩ Knave = ∅ }
 {hKN : Knight ∩ Normal = ∅ }
 {hKnN : Knave ∩ Normal = ∅ }

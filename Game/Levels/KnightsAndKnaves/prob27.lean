@@ -181,6 +181,7 @@ example
     --rw [Nat.le_of_eq] at this
     -- this is what it means to have cardinality one
     rw [Finset.card_le_one_iff] at this
+
      
 #check ({1,2} : Multiset ℕ)
 
