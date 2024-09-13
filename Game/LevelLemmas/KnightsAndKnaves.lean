@@ -2,6 +2,8 @@
 
 import Mathlib.Data.Set.Basic
 
+import Mathlib.Data.Fintype.Card
+import Mathlib.Data.Multiset.Basic
 --- helper
 theorem disjoint   {Knight : Set K} {Knave : Set K}
 (h : Knight ∩ Knave = ∅ )
@@ -314,4 +316,13 @@ theorem Knave_NotNormalNotIff
 (hKnN : Knave ∩ Normal = ∅ )
 : A ∈ Knave → A ∉ Normal  := by
   exact Knight_NotNormal hKnN
+
+
+--OneNormal : Normal.card = 1
+--ANormal : A ∈ Normal
+--CNormal : C ∈ Normal
+theorem card_eq {Normal : (Finset K)} (h : Normal.card =1) (ANormal : A ∈ Normal) ( BNormal : B ∈ Normal) : A=B := by 
+  have := Nat.le_of_eq h
+  rw [Finset.card_le_one_iff] at this
+  exact this ANormal BNormal
 
