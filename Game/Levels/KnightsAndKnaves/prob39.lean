@@ -1,7 +1,7 @@
 import Game.Metadata
-
+import Mathlib.Data.Finset.Basic
 #check Finset.mem_def
-example
+example 
   --sets
 
   [inst : DecidableEq K]
@@ -25,8 +25,7 @@ example
 {h1 : A ∈ Knight ∨ A ∈ Knave ∨ A ∈ Normal }
 {h2 : B ∈ Knight ∨ B ∈ Knave ∨ B ∈ Normal }
 {h3 : C ∈ Knight ∨ C ∈ Knave ∨ C ∈ Normal}
-{stA : A ∈ Knight → (A ∈ Normal) }
-{stAn : A ∈ Knave → ¬ (A ∈ Normal) }
+{stA : A ∈ Knight → (A ∈ Normal) } {stAn : A ∈ Knave → ¬ (A ∈ Normal) }
 {stB : B ∈ Knight → (A ∈ Normal)}
 {stBn : B ∈ Knave → ¬(A ∈ Normal)}
 {stC : C ∈ Knight → C ∉ Normal}
@@ -37,6 +36,8 @@ example
 : A ∈ Knave ∧ B ∈ Normal ∧ C ∈ Knight := by 
   --have := IfToIff stA stAn
   have AnKnight : A ∉ Knight := by 
+  {
+
     by_contra AKnight
     have ANormal := stA AKnight
     --sorry
@@ -45,11 +46,16 @@ example
     #check Set.toFinset
     --rw [KnightSet] at ANormal
     exact disjoint  hKN AKnight ANormal
+}
   have AKnaveNormal := disjunctiveSyllogism h1 AnKnight 
+
   have AnNormal : A ∉ Normal := by
+  {
     by_contra ANormal
     have BKnightNormal : B ∈ Knight ∨ B ∈ Normal := sorry
+
     have BnNormal : B ∉ Normal := by
+    {
       by_contra BNormal
        
       have : Finset.card (Normal) ≤ 1 := by exact Nat.le_of_eq OneNormal
@@ -66,38 +72,96 @@ example
       --have := Finset.mem_def.mp BNormal
       have AeqB:= by exact this ANormal BNormal
       contradiction
+    }
+
     have BNormalKnight:=  Or.symm BKnightNormal
+
     clear BKnightNormal
     have BKnight := disjunctiveSyllogism BNormalKnight BnNormal
-    have CKnave : C ∈ Knave := by 
+
+    have CKnave : C ∈ Knave := by {
       rcases h3 with CKnight|CKnaveNormal
       · -- if a set has cardinality one and there are two elements in it then they are equal, make this as its own theorem and use it here instead of reproving  
+        -- make a theorem memtoFinset
         have : C ∈ Set.toFinset (Knight) := by exact Set.mem_toFinset.mpr CKnight
         have this2: B ∈ Set.toFinset (Knight) := by exact Set.mem_toFinset.mpr BKnight
         #check Set.mem_toFinset
+        -- add new assumptions to BKnight, BFinKnight. wouldn't this be too messy?
         have BeqC := card_eq OneKnight this2 this
         contradiction
       · rcases CKnaveNormal with CKnave|CNormal
         · assumption
         · have AeqC := card_eq OneNormal ANormal CNormal
           contradiction 
-
+    }
+    have CNormal := stCn CKnave
+    have AeqC := card_eq OneNormal ANormal CNormal
+    contradiction
+  }
   have AKnave : A ∈ Knave := by
+  {
     cases AKnaveNormal
     assumption
     contradiction
 
+}
+
   have BnKnight : B ∉ Knight := by
+{ 
     intro h
     have := stB h
     contradiction
-  have BnKnave : B ∉ Knave := by 
+}
+
+
+  have BnKnave : B ∉ Knave := by{ 
     intro h_1
     have := card_eq OneKnave AKnave h_1
     contradiction
+}
+
   have := disjunctiveSyllogism h2 BnKnight 
-  have := disjunctiveSyllogism this BnKnave 
-  
+  have BNormal := disjunctiveSyllogism this BnKnave   
+
   -- now C is a knight by a similar reasoning... it is the only option left...
+  have  CnKnave : C ∉ Knave := by 
+    by_contra CKnave
+    have AeqC := card_eq OneKnave AKnave CKnave
+    contradiction
+  have  CnNormal : C ∉ Normal := by 
+    by_contra CNormal
+    have AeqC := card_eq OneNormal BNormal CNormal
+    contradiction
+  cases h3
+  · constructor
+    assumption
+    constructor
+    assumption
+    assumption
+  · cases h
+    contradiction
+    contradiction
 
+-- this2: B ∈ Set.toFinset (Knight) := by
+theorem memToFinset (Knight : Set K ) {finKnight : Fintype Knight} {hK : Finset Knight} (AKnight : A ∈ Knight) : A ∈ (Set.toFinset Knight) := by  
+  exact Set.mem_toFinset.mpr AKnight
 
+-- having a knight finset gives problems with membership, so keep it as set and then do Set.toFinset which requires a Fintype instance...(another way without going through Fintype instance??)
+#check Membership
+#check Finset.instMembershipFinset
+theorem memToFinset2 {Knight : Set K } 
+(finKnight : Fintype Knight) 
+--{hK : Finset Knight} 
+(AKnight : A ∈ Knight) 
+--[@Finset.instMembershipFinset K] 
+: A ∈ (Set.toFinset Knight) := by  
+  exact Set.mem_toFinset.mpr AKnight
+
+example  {Knight : Set K } 
+{finKnight : Fintype Knight} 
+--{hK : Finset Knight} 
+(AKnight : A ∈ Knight) 
+--[@Finset.instMembershipFinset K] 
+: 2=2 := by 
+  have := memToFinset2 finKnight AKnight
+  rfl
