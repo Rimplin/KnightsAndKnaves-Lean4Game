@@ -113,17 +113,17 @@ example
         simp [eq_true h_2] at *
         simp [eq_true h_3] at *
         assumption   
-        have h_1t := eq_true h_1 
-        have h_2t := eq_true h_2 
-        have h_3t := eq_true h_3 
-        rw [Knight_NotKnaveIff h AOr] at h_1
-        rw [Knight_NotKnaveIff h BOr] at h_2
-        rw [Knight_NotKnaveIff h COr] at h_3
-         
-        have h_1f := eq_false h_1
-        have h_2f := eq_false h_2
-        have h_3f := eq_false h_3
-        simp [h_1t,h_2t,h_3t,h_1f,h_2f,h_3f] at*
+        --have h_1t := eq_true h_1 
+        --have h_2t := eq_true h_2 
+        --have h_3t := eq_true h_3 
+        --rw [Knight_NotKnaveIff h AOr] at h_1
+        --rw [Knight_NotKnaveIff h BOr] at h_2
+        --rw [Knight_NotKnaveIff h COr] at h_3
+        -- 
+        --have h_1f := eq_false h_1
+        --have h_2f := eq_false h_2
+        --have h_3f := eq_false h_3
+        --simp [h_1t,h_2t,h_3t,h_1f,h_2f,h_3f] at*
           
       -- C Knave
       · 
@@ -137,7 +137,8 @@ example
         have h_1f := eq_false h_1
         have h_2f := eq_false h_2
         have h_3f := eq_false h_3
-        simp [h_1t,h_2t,h_3t,h_1f,h_2f,h_3f] at*
+        simp [h_1t,h_2t,h_3t,h_1f,h_2f,h_3f] at stB
+
 
     -- B Knave
     · cases h3  
@@ -152,7 +153,13 @@ example
         have h_1f := eq_false h_1
         have h_2f := eq_false h_2
         have h_3f := eq_false h_3
-        simp [h_1t,h_2t,h_3t,h_1f,h_2f,h_3f] at*
+        have conj := And.intro stB stC
+        simp [h_1t,h_2t,h_3t,h_1f,h_2f,h_3f] at conj
+        -- just evaluates it to true which means the choice of A,B,C works
+        simp [h_2t,h_3t]
+         
+
+
       · obtain h_1expr := eq_true h_1
         have h_1t := eq_true h_1 
         have h_2t := eq_true h_2 
@@ -169,7 +176,7 @@ example
   -- A Knave
   · cases h2
     · cases h3
-      · simp_rw [eq_true,eq_false,Knight_NotKnaveIff,Knave_NotKnightIff,NotKnave_KnightIff,NotKnight_KnaveIff] at *
+      · --simp_rw [eq_true,eq_false,Knight_NotKnaveIff,Knave_NotKnightIff,NotKnave_KnightIff,NotKnight_KnaveIff] at *
        --simp_rw  
         sorry
       · 
@@ -177,6 +184,7 @@ example
         simp [eq_true h_2] at *
         simp [eq_true h_3] at *
         --assumption   
+        sorry
     · cases h3  
       · 
         simp [eq_true h_1] at *
@@ -189,6 +197,95 @@ example
         simp [eq_true h_3] at *
         assumption   
 }
+
+
+/-
+Knights and Knaves Logic Puzzle Using the Biconditional [Discrete Math Class] - YouTube
+https://www.youtube.com/watch?v=Imgus1ispQk
+
+Error - Invidious
+https://yewtu.be/watch?v=Ytddk4fDRSM
+
+Mathematical Visual Proofs - YouTube
+https://www.youtube.com/@MathVisualProofs/videos
+
+Discrete Mathematics - An Open Introduction
+https://discrete.openmathbooks.org/dmoi3.html
+
+Discrete Mathematics - dmoi3-tablet.pdf
+https://discrete.openmathbooks.org/pdfs/dmoi3-tablet.pdf
+
+Discrete Mathematics - An Open Introduction
+https://discrete.openmathbooks.org/dmoi3.html
+
+Propositional Logic
+https://discrete.openmathbooks.org/dmoi3/sec_propositional.html
+
+Discrete Mathematics
+https://discrete.openmathbooks.org/dmoi3/
+
+Knights, Knaves, and Propositional Logic [Discrete Math Class] - YouTube
+https://www.youtube.com/watch?v=C6PeX4iKJbU
+
+prolog knights and knaves - Invidious
+https://yewtu.be/search?q=prolog+knights+and+knaves
+
+Mnemeonics - Invidious
+https://yewtu.be/channel/UChK2sLYpeiB5qzAQwx0Id3g
+
+Error - Invidious
+https://yewtu.be/watch?v=oEAa2pQKqQU
+
+patrick massot interactive lean book at DuckDuckGo
+https://start.duckduckgo.com/lite/?q=patrick+massot+interactive+lean+book
+
+1. Introduction — Mathematics in Lean 0.1 documentation
+https://www.imo.universite-paris-saclay.fr/~patrick.massot/mil/01_Introduction.html
+-/
+
+-- AKnight ↔ stA ∧ BKnight ↔ stB
+-- stB is not a proof, it would be just a shorthand to the proposition
+variable (A B C: K)
+variable   (Knight Knave: Set K ) 
+
+def stB := (A ∈ Knight ↔ A ∈ Knave)
+def stC := (B ∈ Knave)
+example 
+(h : Knight ∩ Knave = ∅ )
+(h1 : A ∈ Knight ∨ A ∈ Knave ) 
+(h2: B ∈ Knight ∨ B ∈ Knave )
+(h3: C ∈ Knight ∨ C ∈ Knave )
+-- instead of stB and stnB, we can use ↔ and the knowledge of negating both sides and all that
+ : 
+ (
+ ( B ∈ Knight ↔ (stB A Knight Knave) ) 
+ ∧ 
+ (C ∈ Knight ↔ stC B Knave)
+ ) 
+ ↔ (B ∈ Knave ∧ C ∈ Knight) := by{
+   -- repharsing what the backward direction means : I know what B and C are , the conclusion would be that the ∧ of all the assumption is = True, meaning that this configuration and B and C do not contradict the assumptions and therefore are a possible answer.
+   #check stB
+   #check B ∈ Knight
+   constructor 
+   · intro h'
+     by_contra h''
+     --push_neg at h''
+     #check not_and_or
+     rw [not_and_or] at h''
+     cases h''
+     · rw [NotKnave_KnightIff h h2] at h_1
+       have Bconc := h'.left.mp h_1
+       unfold stB at Bconc
+       #check not_iff_self
+       rw [Knight_NotKnaveIff h h1] at Bconc
+       exact not_iff_self Bconc
+        
+     · #check stB
+       #check stC
+       sorry
+   · sorry
+   
+ }
 #check eq_true_intro
 #check eq_true
 

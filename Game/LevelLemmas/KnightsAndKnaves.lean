@@ -1,7 +1,7 @@
 -- Knights And Knaves
 
 import Mathlib.Data.Set.Basic
-
+import Mathlib
 import Mathlib.Data.Fintype.Card
 import Mathlib.Data.Multiset.Basic
 --- helper
@@ -14,6 +14,14 @@ theorem disjoint   {Knight : Set K} {Knave : Set K}
   contradiction
 --- helper
 
+theorem disjointfinset   {Knight : Finset K} {Knave : Finset K}
+  [inst : DecidableEq K]
+(h : Knight ∩ Knave = ∅ )
+(hk : A ∈ Knight)
+(hkn : A ∈ Knave)  : False := by 
+  have := Finset.mem_inter.mpr (And.intro hk hkn )
+  rw [h] at this
+  contradiction
 -- shouldn't this be iff to alow rewrites... instead of `have`
 theorem Knight_NotKnave
   --sets

@@ -1,6 +1,34 @@
 import Game.Metadata
 import Mathlib.Data.Finset.Basic
 #check Finset.mem_def
+
+
+/-
+to solve issues, check membership and coercion here:
+
+mathlib4 docs at DuckDuckGo
+https://start.duckduckgo.com/lite/?q=mathlib4+docs
+
+Search
+https://leanprover-community.github.io/mathlib4_docs/search.html?sitesearch=https%3A%2F%2Fleanprover-community.github.io%2Fmathlib4_docs&q=Finset
+
+Mathlib.Data.Finset.Basic
+https://leanprover-community.github.io/mathlib4_docs/Mathlib/Data/Finset/Basic.html#Finset
+
+Mathlib.Data.Finset.Basic
+https://leanprover-community.github.io/mathlib4_docs/Mathlib/Data/Finset/Basic.html#Finset.instMembership
+
+mathlib4/Mathlib/Data/Finset/Basic.lean at c3c78bbdb01c312bd5143e44a38e6cbc8deb4b90 · leanprover-community/mathlib4 · GitHub
+https://github.com/leanprover-community/mathlib4/blob/c3c78bbdb01c312bd5143e44a38e6cbc8deb4b90/Mathlib/Data/Finset/Basic.lean#L166-L167
+
+New Tab
+about:newtab
+-/
+
+-- two approaches:
+-- directly as a finset
+-- as a set with a fintype instance to enable conversion to finset
+#check Set.toFinset
 example 
   --sets
 
@@ -9,13 +37,15 @@ example
   (AneB : A ≠ B)
   (BneC : B ≠ C)
   (AneC : A ≠ C)
-  (Knight : Set K ) (Knave : Finset K)
+  (Knight : Finset K ) (Knave : Finset K)
   {Normal : Finset K}
-{hK : Finset Knight}
-{hKn : Finset Knave}
-{hN : Finset Normal}
+--{hK : Finset Knight}
+--{hKn : Finset Knave}
+--{hN : Finset Normal}
 {finKnight : Fintype Knight}
-{OneKnight : Finset.card (Set.toFinset Knight) =1 }
+{finKnave : Fintype Knave}
+{finNormal : Fintype Normal}
+{OneKnight : Finset.card ( Knight) =1 }
 {OneKnave : Finset.card Knave =1 }
 {OneNormal : Finset.card Normal =1 }
 
@@ -45,15 +75,53 @@ example
     --have KnightSet:=Finset.toSet Knight
     #check Set.toFinset
     --rw [KnightSet] at ANormal
-    exact disjoint  hKN AKnight ANormal
-}
+
+    -- when knight and normal are finsets,  disjoint doesn't work because it expects sets... lets try to make a disjoint finset version and see if that woudl work...
+    exact disjointfinset hKN AKnight ANormal
+  }
+
+  -- interesting observation:
+  -- for the knight and knave only, all theorems are sets
+  -- for the knight knave normal , i need finsets . why not make theorems for knight and knave also finset, model both situations as a finset.
+  --rw [NotKnight_KnaveIff] at AnKnight 
+  
   have AKnaveNormal := disjunctiveSyllogism h1 AnKnight 
 
   have AnNormal : A ∉ Normal := by
   {
     by_contra ANormal
-    have BKnightNormal : B ∈ Knight ∨ B ∈ Normal := sorry
+    have BnKnave := (Function.mt stBn) (by push_neg; assumption)
+    have BKnightNormal : B ∈ Knight ∨ B ∈ Normal := by
+      by_contra not
+      push_neg at not
+      have := And.intro BnKnave not
+      --rw [←and_assoc] at this
+      --rw [and_comm] at this
+      #check not_or
+      rw [←not_or] at this
+      rw [←not_or] at this
+ --     rw [←or_assoc] at this
+      -- this : ¬((B ∈ Knave ∨ B ∈ Knight) ∨ B ∈ Normal)
 
+      --this : ¬(B ∈ Knave ∨ B ∈ Knight ∨ B ∈ Normal)
+
+      --rw [or_comm] at this
+      --nth_rewrite 1 [or_comm] at this
+      --nth_rewrite 1 [or_comm] at this
+      -- can't get them to be the same
+      --ring_nf at this
+      -- this is messy... can't it be cleaner, well i can present it to be clean: the user would have to do this manually using or_comm and or_assoc but the user can tell simp about these two theorems and let simp do the work
+      #check this
+      #check ¬(B ∈ Knave ∨ B ∈ Knight ∨ B ∈ Normal)
+      --have : (B ∈ Knave ∨ B ∈ Knight ∨ B ∈ Normal) ↔ (B ∈ Knight ∨ B ∈ Knave ∨ B ∈ Normal) := by exact?
+      rw [or_left_comm] at this
+      --simp [or_comm,or_assoc] at h2
+      contradiction
+      --have : this = ¬h2 := by apply?
+     -- simp only [or_comm,or_assoc] at this
+      --simp only [or_comm,or_assoc] at h2
+      --contradiction 
+      --sorry
     have BnNormal : B ∉ Normal := by
     {
       by_contra BNormal
@@ -87,7 +155,8 @@ example
         have this2: B ∈ Set.toFinset (Knight) := by exact Set.mem_toFinset.mpr BKnight
         #check Set.mem_toFinset
         -- add new assumptions to BKnight, BFinKnight. wouldn't this be too messy?
-        have BeqC := card_eq OneKnight this2 this
+        --have BeqC := card_eq OneKnight this2 this
+        have BeqC := card_eq OneKnight BKnight CKnight
         contradiction
       · rcases CKnaveNormal with CKnave|CNormal
         · assumption
@@ -124,6 +193,7 @@ example
   have BNormal := disjunctiveSyllogism this BnKnave   
 
   -- now C is a knight by a similar reasoning... it is the only option left...
+  -- make the CnKnave proof into a theorem, call it already full
   have  CnKnave : C ∉ Knave := by 
     by_contra CKnave
     have AeqC := card_eq OneKnave AKnave CKnave
@@ -157,6 +227,10 @@ theorem memToFinset2 {Knight : Set K }
 : A ∈ (Set.toFinset Knight) := by  
   exact Set.mem_toFinset.mpr AKnight
 
+-- two options
+#check Finset.toSet -- natural way
+#check Set.toFinset -- needs fintype instance
+#check Fintype
 example  {Knight : Set K } 
 {finKnight : Fintype Knight} 
 --{hK : Finset Knight} 
@@ -165,3 +239,17 @@ example  {Knight : Set K }
 : 2=2 := by 
   have := memToFinset2 finKnight AKnight
   rfl
+
+
+variable (K : Type)
+#check @Set.univ K
+#check Set.mem_univ
+example (A B C: K) : @Set.univ K = {A,B,C} := by
+  apply Set.ext 
+  intro x
+  constructor
+  sorry
+  sorry
+  --· intro xUniv
+  --  by_contra
+  --· exact fun a => trivial
