@@ -1,7 +1,6 @@
-import Mathlib
+import Game.Metadata
 
-
-
+-- alex
 example 
 
   (Knight : Set K) (Knave : Set K)

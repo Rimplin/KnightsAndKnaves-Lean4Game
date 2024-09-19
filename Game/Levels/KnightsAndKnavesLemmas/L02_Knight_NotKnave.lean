@@ -12,7 +12,15 @@ Introduction
 "
 
 -- two versions for proving the lemmas... i guess i can present the proof in the second version as its own level before knights and knaves approach 2
-Statement Knight_NotKnave
+
+--TheoremDoc notKnave_Knight as "notKnave_Knight" in "Logic"
+/-- test -/
+---- notKnave_Knight (h : ¬ (x ∈ Knave) ) : x ∈ Knight
+--TheoremDoc notKnave_Knight as "notKnave_Knight" in "Logic"
+--Statement notKnave_Knight 
+
+TheoremDoc Knight_NotKnave as "Knight_NotKnave" in "Knights and Knaves"
+Statement Knight_NotKnave 
   --sets
   {Knight : Set K} {Knave : Set K}
 {h : Knight ∩ Knave = ∅ } --{h1 : Xor' (A ∈ Knight) (A ∈ Knave) } {h2: Xor' (B ∈ Knight)  (B ∈ Knave) }
@@ -44,6 +52,6 @@ Conclusion
 /- Use these commands to add items to the game's inventory. -/
 
 
-
+--#check disjoint2
 NewTactic by_contra
-NewTheorem Set.mem_inter Knight_NotKnave
+NewTheorem Knight_NotKnave

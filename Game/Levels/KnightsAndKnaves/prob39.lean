@@ -29,6 +29,20 @@ about:newtab
 -- directly as a finset
 -- as a set with a fintype instance to enable conversion to finset
 #check Set.toFinset
+
+
+#check Set.mem_toFinset
+
+      #check Finset.instCoeTCFinsetSet
+      #check Finset.mem_coe
+      #check Finset.coe_inj
+
+      #check Finset.mem_coe.mpr 
+      #check Finset.mem_coe.symm 
+      #check Finset.mem_def.mp 
+    #check or_left_comm
+        #check Set.mem_toFinset
+        #check Set.toFinset
 example 
   --sets
 
@@ -39,12 +53,12 @@ example
   (AneC : A ≠ C)
   (Knight : Finset K ) (Knave : Finset K)
   {Normal : Finset K}
---{hK : Finset Knight}
+{hK : Finset Knight}
 --{hKn : Finset Knave}
 --{hN : Finset Normal}
-{finKnight : Fintype Knight}
-{finKnave : Fintype Knave}
-{finNormal : Fintype Normal}
+--{finKnight : Fintype Knight}
+--{finKnave : Fintype Knave}
+--{finNormal : Fintype Normal}
 {OneKnight : Finset.card ( Knight) =1 }
 {OneKnave : Finset.card Knave =1 }
 {OneNormal : Finset.card Normal =1 }
@@ -55,16 +69,16 @@ example
 {h1 : A ∈ Knight ∨ A ∈ Knave ∨ A ∈ Normal }
 {h2 : B ∈ Knight ∨ B ∈ Knave ∨ B ∈ Normal }
 {h3 : C ∈ Knight ∨ C ∈ Knave ∨ C ∈ Normal}
-{stA : A ∈ Knight → (A ∈ Normal) } {stAn : A ∈ Knave → ¬ (A ∈ Normal) }
+{stA : A ∈ Knight → (A ∈ Normal) } 
+{stAn : A ∈ Knave → ¬ (A ∈ Normal) }
 {stB : B ∈ Knight → (A ∈ Normal)}
 {stBn : B ∈ Knave → ¬(A ∈ Normal)}
 {stC : C ∈ Knight → C ∉ Normal}
 {stCn : C ∈ Knave → C ∈ Normal}
--- A ∈ Knave → (A ∉ Knight ∧ A ∉ Normal)
---{stB: B ∈ Knight → () }
---{stBn: B ∈ Knave → ¬ () }
 : A ∈ Knave ∧ B ∈ Normal ∧ C ∈ Knight := by 
-  --have := IfToIff stA stAn
+  /-
+  AnKnight, If A were a knight then A would be a normal as well which is a contradiction
+  -/ 
   have AnKnight : A ∉ Knight := by 
   {
 
@@ -76,8 +90,15 @@ example
     #check Set.toFinset
     --rw [KnightSet] at ANormal
 
-    -- when knight and normal are finsets,  disjoint doesn't work because it expects sets... lets try to make a disjoint finset version and see if that woudl work...
-    exact disjointfinset hKN AKnight ANormal
+    -- when knight and normal are finsets,  disjoint doesn't work because it expects sets... making disjoint work or just use disjointfinset
+    #check Finset.coe_inj
+    #check Finset.coe_inter
+    #check Finset.coe_empty
+    rw [Finset.coe_inj.symm] at hKN
+    rw [Finset.coe_inter] at hKN
+    rw[ Finset.coe_empty] at hKN
+    exact @disjoint K A (Finset.toSet Knight) (Finset.toSet Normal) hKN AKnight ANormal
+    --exact disjointfinset hKN AKnight ANormal
   }
 
   -- interesting observation:
@@ -85,77 +106,34 @@ example
   -- for the knight knave normal , i need finsets . why not make theorems for knight and knave also finset, model both situations as a finset.
   --rw [NotKnight_KnaveIff] at AnKnight 
   
+  -- because AnKnight, then A either knave or normal
   have AKnaveNormal := disjunctiveSyllogism h1 AnKnight 
-
+  -- AnNormal, if A were normal then BnKnave(maybe make a told the truth thing that would return A knight or normal)
   have AnNormal : A ∉ Normal := by
   {
     by_contra ANormal
     have BnKnave := (Function.mt stBn) (by push_neg; assumption)
-    have BKnightNormal : B ∈ Knight ∨ B ∈ Normal := by
-      by_contra not
-      push_neg at not
-      have := And.intro BnKnave not
-      --rw [←and_assoc] at this
-      --rw [and_comm] at this
-      #check not_or
-      rw [←not_or] at this
-      rw [←not_or] at this
- --     rw [←or_assoc] at this
-      -- this : ¬((B ∈ Knave ∨ B ∈ Knight) ∨ B ∈ Normal)
+    have BKnightNormal := NotKnave_KnightNormal hKKn hKN hKnN h2 BnKnave
 
-      --this : ¬(B ∈ Knave ∨ B ∈ Knight ∨ B ∈ Normal)
 
-      --rw [or_comm] at this
-      --nth_rewrite 1 [or_comm] at this
-      --nth_rewrite 1 [or_comm] at this
-      -- can't get them to be the same
-      --ring_nf at this
-      -- this is messy... can't it be cleaner, well i can present it to be clean: the user would have to do this manually using or_comm and or_assoc but the user can tell simp about these two theorems and let simp do the work
-      #check this
-      #check ¬(B ∈ Knave ∨ B ∈ Knight ∨ B ∈ Normal)
-      --have : (B ∈ Knave ∨ B ∈ Knight ∨ B ∈ Normal) ↔ (B ∈ Knight ∨ B ∈ Knave ∨ B ∈ Normal) := by exact?
-      rw [or_left_comm] at this
-      --simp [or_comm,or_assoc] at h2
-      contradiction
-      --have : this = ¬h2 := by apply?
-     -- simp only [or_comm,or_assoc] at this
-      --simp only [or_comm,or_assoc] at h2
-      --contradiction 
-      --sorry
+    -- helper theorem called full
     have BnNormal : B ∉ Normal := by
     {
-      by_contra BNormal
-       
-      have : Finset.card (Normal) ≤ 1 := by exact Nat.le_of_eq OneNormal
-       
-      rw [Finset.card_le_one_iff] at this
-      #check Finset.instCoeTCFinsetSet
-      #check Finset.mem_coe
-      --have := Finset.mem_coe.mpr hN
-      --rw [Finset.mem_coe.symm] at ANormal
-      --rw [Finset.mem_coe.symm] at BNormal
-      -- I have B ∈ Normal, i want B ∈ hK
-      -- turning all sets into finset messes up membership...
-      --have : B ∈ hK := by sorry
-      --have := Finset.mem_def.mp BNormal
-      have AeqB:= by exact this ANormal BNormal
-      contradiction
+      #check full
+      #check One
+      exact full B AneB OneNormal ANormal
+      
+      --by_contra BNormal
+      --have AeqB:= by exact card_eq OneNormal  ANormal BNormal
+      --contradiction
     }
 
-    have BNormalKnight:=  Or.symm BKnightNormal
+    have BKnight := disjunctiveSyllogism (Or.symm BKnightNormal) BnNormal
 
-    clear BKnightNormal
-    have BKnight := disjunctiveSyllogism BNormalKnight BnNormal
-
+    -- since A Normal, B Knight, then C Knave
     have CKnave : C ∈ Knave := by {
       rcases h3 with CKnight|CKnaveNormal
-      · -- if a set has cardinality one and there are two elements in it then they are equal, make this as its own theorem and use it here instead of reproving  
-        -- make a theorem memtoFinset
-        have : C ∈ Set.toFinset (Knight) := by exact Set.mem_toFinset.mpr CKnight
-        have this2: B ∈ Set.toFinset (Knight) := by exact Set.mem_toFinset.mpr BKnight
-        #check Set.mem_toFinset
-        -- add new assumptions to BKnight, BFinKnight. wouldn't this be too messy?
-        --have BeqC := card_eq OneKnight this2 this
+      ·   
         have BeqC := card_eq OneKnight BKnight CKnight
         contradiction
       · rcases CKnaveNormal with CKnave|CNormal
@@ -163,37 +141,40 @@ example
         · have AeqC := card_eq OneNormal ANormal CNormal
           contradiction 
     }
+
     have CNormal := stCn CKnave
     have AeqC := card_eq OneNormal ANormal CNormal
     contradiction
   }
+  #check NotKnightNormal_Knave
   have AKnave : A ∈ Knave := by
   {
-    cases AKnaveNormal
-    assumption
-    contradiction
+    exact NotKnightNormal_Knave hKN h1 AnKnight AnNormal
+    --cases AKnaveNormal
+    --assumption
+    --contradiction
 
-}
-
+  }
   have BnKnight : B ∉ Knight := by
-{ 
+    { 
     intro h
     have := stB h
     contradiction
-}
+  }
 
 
   have BnKnave : B ∉ Knave := by{ 
     intro h_1
     have := card_eq OneKnave AKnave h_1
     contradiction
-}
+  }
 
-  have := disjunctiveSyllogism h2 BnKnight 
-  have BNormal := disjunctiveSyllogism this BnKnave   
+  --have := disjunctiveSyllogism h2 BnKnight 
+  --have BNormal := disjunctiveSyllogism this BnKnave   
+  have BNormal := NotKnightKnave_Normal h2 BnKnight BnKnave
+   
 
   -- now C is a knight by a similar reasoning... it is the only option left...
-  -- make the CnKnave proof into a theorem, call it already full
   have  CnKnave : C ∉ Knave := by 
     by_contra CKnave
     have AeqC := card_eq OneKnave AKnave CKnave
@@ -202,6 +183,8 @@ example
     by_contra CNormal
     have AeqC := card_eq OneNormal BNormal CNormal
     contradiction
+  #check NotKnave_KnightNormal
+  have := NotKnave_KnightNormal hKKn hKN hKnN  h3 CnKnave
   cases h3
   · constructor
     assumption
@@ -253,3 +236,15 @@ example (A B C: K) : @Set.univ K = {A,B,C} := by
   --· intro xUniv
   --  by_contra
   --· exact fun a => trivial
+
+--inductive Person | knight : Person | knave : Person | normal : Person
+--open Person def isKnight : Person → Prop | knight => true | knave => false | normal => false 
+--def isKnave : Person → Prop | knight => false | knave => true | normal => false 
+--def isNormal : Person → Prop | knight  => false | knave  => false | normal  => true 
+--def statementA : Person → Prop | p  => match p with | knight => isNormal knight | knave =>(isNormal knave) | normal => true 
+--def statmentB: Person  → Prop | p => match p with | knight => statementA knight | knave => ¬ (statementA knave)|normal => statementA normal
+--def statmentC: Person  → Prop | p => match p with | knight => ¬ (isNormal knight ) | knave => ¬ (isNormal knave) | normal => true
+--def solve : Person  →  Person → Person  → Prop | A B C => (isknight A ∧ statementA A) ∧ (isknight B ∧ statementB B) ∧ (isknight C ∧ statementC C)
+--def tester : List (Person  × Person ×  Person):=[(knight, knave, normal),(knight, normal, knave),(knave, normal, knight),(normal,knight,knave),(normal,knave,knight),(knight,knight,knight),(knave,knave,knave),(normal,normal,normal)]
+--
+--def solution:= findSol(Person ×  Person ×  Person):=testpermutation.find(λ p, solve p.fst p.snd p.snd)

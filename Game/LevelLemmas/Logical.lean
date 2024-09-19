@@ -1,16 +1,3 @@
---import Game.Metadata
---import Mathlib
-
-
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Data.Real.Basic
-import Mathlib.Tactic.Linarith.Frontend
-import Mathlib.Tactic.Qify
-import Mathlib.Tactic.Polyrith
-import Mathlib.Algebra.Group.Basic
-import Mathlib.Tactic.ApplyFun
-import Mathlib.Data.Fintype.Card
-import Mathlib.Data.Multiset.Basic
 theorem contrapositive (forward: P → Q) :  ¬Q → ¬P := by
 
   {

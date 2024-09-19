@@ -81,7 +81,8 @@ theorem memleft_empty_inter (A:Set K) (B: Set K)
     intro h2
     have contr:= Set.mem_inter h h2
     rw [l] at contr 
-    norm_num at contr
+    --norm_num at contr
+    contradiction
   --  contradiction
   }
 /- Use these commands to add items to the game's inventory. -/

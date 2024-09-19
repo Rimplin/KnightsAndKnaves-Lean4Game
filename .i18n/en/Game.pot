@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Thu Aug 29 12:34:59 2024\n"
+"POT-Creation-Date: Thu Sep 19 22:14:12 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -1210,13 +1210,11 @@ msgstr ""
 #: Game.Levels.KnightsAndKnavesLemmas.L01_whydisjoint
 msgid "We can think of the set of knights and the set of knaves, denoted `Knights`, `Knaves` respectively. A set is a collection of 'entities' with a specified property. The set `Knight` would be the set of inhabitants of the island that are knights i.e satisfying the property of always telling the truth, the set `Knave` being the set of inhabitatns of the island that are knives i.e the ones that always lie. \n"
 "\n"
-"Note that in Lean, `Set K` means the set of objects of type `K`( this can be changed to something clearer?? think of clarity benefits of a change). Note that in each level, we will be considering two or three inhabitants of the island and will not be reasoning about the sets themselves but about these fixed inhabitants named `A`, `B`, `C`.\n"
-"\n"
-"---------------------------------\n"
-"Here we introduce Xor'. \n"
-"Many definitions capture the meaning we want: there is iff definition, and ∧ ∨ definition. \n"
-"\n"
-"We don't need these and can opt for a simpler assumption,"
+"Note that in Lean, `Set K` means the set of objects of type `K`( this can be changed to something clearer?? think of clarity benefits of a change). Note that in each level, we will be considering two or three inhabitants of the island and will not be reasoning about the sets themselves but about these fixed inhabitants named `A`, `B`, `C`."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L01_whydisjoint
+msgid "dis22"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L01_whydisjoint
@@ -1231,6 +1229,10 @@ msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L02_Knight_NotKnave
 msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L02_Knight_NotKnave
+msgid "test"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L02_Knight_NotKnave

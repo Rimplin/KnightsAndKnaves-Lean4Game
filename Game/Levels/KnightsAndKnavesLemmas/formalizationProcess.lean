@@ -19,6 +19,11 @@ Title ""
 
 Introduction 
 "
+
+
+two approaches:
+the xor' , implication
+the or, logical equivalence
 This is significant, them being disjoint will allow us to conclude that if x ∈ Knight then x ∉ Knave.
 This is because if x ∈ Knight, and we assume then x ∈ Knave then this would contradict the fact that the two sets are disjoint. This is called a proof by contradiction.
 

@@ -9,6 +9,11 @@ Title "trivial"
 Introduction 
 "
 "
+
+--macro_rules | `(tactic| trivial) => `(tactic| left)
+--macro_rules | `(tactic| contradiction) => `(tactic| left)
+--macro_rules
+--  | `($l:term RXOR $r:term) => `($l && !$r)
 /-
 macro_rules | `(tactic| trivial) => `(tactic| left)
 macro_rules | `(tactic| trivial) => `(tactic| assumption)

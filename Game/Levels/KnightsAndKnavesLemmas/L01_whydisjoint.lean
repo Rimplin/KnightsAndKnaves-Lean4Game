@@ -1,7 +1,13 @@
 import Game.Metadata
---import Game.Levels.KnightsAndKnavesLemmas.L02_NotKnave_Knight
+--import Lean
 
---#check notKnave_Knight
+--open Lean
+--#eval true LXOR true -- false
+--#eval true LXOR false -- false
+--#eval false LXOR true -- true
+--#eval false LXOR false -- false
+
+
 World "KnightsAndKnavesLemmas" 
 Level 1
 
@@ -13,11 +19,6 @@ We can think of the set of knights and the set of knaves, denoted `Knights`, `Kn
 
 Note that in Lean, `Set K` means the set of objects of type `K`( this can be changed to something clearer?? think of clarity benefits of a change). Note that in each level, we will be considering two or three inhabitants of the island and will not be reasoning about the sets themselves but about these fixed inhabitants named `A`, `B`, `C`.
 
----------------------------------
-Here we introduce Xor'. 
-Many definitions capture the meaning we want: there is iff definition, and ∧ ∨ definition. 
-
-We don't need these and can opt for a simpler assumption, 
 "
 
 #check xor_iff_not_iff
@@ -44,10 +45,9 @@ declaring the sets, the objects in question like A,B,C
 
 implication for their statements with the negated version then why the two sets are disjoint
 -/
-Statement (Knight : Set K ) (Knave : Set K)
     -- x says y is a knight
   -- y says that x and y are of different type. this doesn't work here because we are emphasizing why they are disjoint, we have not established that they are disjoint yet... after asserting they are disjoint, now its possible to say statements like they are of different type
-  --rules of the game, i.e knights tell the truth but knaves lie
+example (Knight : Set K ) (Knave : Set K)
   (stx : x ∈ Knight → y ∈ Knight) 
   (stxn : x ∈ Knave →  ¬ (y ∈ Knight)) 
   (h' : x ∈ Knight ∧ x ∈ Knave)
@@ -56,11 +56,35 @@ Statement (Knight : Set K ) (Knave : Set K)
   exact stx h'.left 
   exact stxn h'.right 
 
+-- prefered
+/-
+ extend contradiction to detect this?
+extending contradiction still seems to require passing the arguments, rendering it pointless.
+
+--syntax:10 (name := lxor) term:10 term:11 " LXOR " term:12 : term
+--
+--@[macro lxor] def lxorImpl : Macro
+--  | `($l:term $k:term LXOR $r:term) => `(disjoint $k $l $r) -- we can use the quotation mechanism to create `Syntax` in macros
+--  | _ => Macro.throwUnsupported
+--
+--macro_rules
+--  | `(contradictiondis $l:term $r:term) => `(disjoint $l $r)
+-/
+/-- dis22 -/
+TheoremDoc disjoint as "disjoint" in "Knights and Knaves"
+Statement disjoint (Knight : Set K ) (Knave : Set K)
+(AKnight : A ∈ Knight)
+(AKnave : A ∈ Knave)
+(h : Knight ∩ Knave = ∅)
+: False := by
+  have := Set.mem_inter AKnight AKnave
+  rw [h] at this
+  contradiction
+
 #check Set.inter_eq_right
 
 
 
--- knight_knave (h : x ∈ Knight) (h' : x ∈ Knave) : False , maybe extend contradiction to detect this...
 
 Conclusion 
 "
@@ -74,3 +98,4 @@ Note that the forward direction is always true, and our assumption `h` wasn't us
 --NewTactic 
 -- NewTheorem Nat.add_comm Nat.add_assoc
 -- NewDefinition Nat Add Eq
+NewTheorem Set.mem_inter disjoint

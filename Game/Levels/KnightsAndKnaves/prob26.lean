@@ -3,7 +3,15 @@ import Game.Metadata
 -- problem 26, what is the name of this book
 -- notice that from the statement of B we can know that B is a knave, and then C correctly asserted that B is a knave so we get that C is a knight.(if someone tells the truth then they must be a knight because there is no other option, if there was someone that sometimes lies or tells the truth we can't know, therefore `iff` is more appropriate here and implication is more appropriate when such a character is present)
 
+ 
+
+
 #check imp_false
+/-
+English description of the below solution:
+
+-/
+
 example
   --sets
   (Knight : Set K ) (Knave : Set K)
@@ -19,10 +27,13 @@ example
 (stnC : C ∈ Knave → B ∈ Knight)
  : B ∈ Knave ∧ C ∈ Knight := by{
   rcases h3 with ⟨CKnight,CnKnave⟩|⟨CKnave,CnKnight⟩  
-  · have := stC CKnight
+
+  · -- C Knight
+    have := stC CKnight
     constructor
     assumption; assumption
-  · -- here we want to prove that C is a knight but we know that C is not a knight, so we will have to derive some contradiction to get the goal we want
+  · -- C Knave
+    -- here we want to prove that C is a knight but we know that C is not a knight, so we will have to derive some contradiction to get the goal we want
     have := stnC CKnave
     have ⟨KnightKnave,KnaveKnight⟩ := stB this
     rcases h1 with ⟨AKnight,AnKnave⟩|⟨AKnave,AnKnight⟩  

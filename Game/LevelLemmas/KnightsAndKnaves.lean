@@ -1,7 +1,7 @@
 -- Knights And Knaves
 
 import Mathlib.Data.Set.Basic
-import Mathlib
+--import Mathlib
 import Mathlib.Data.Fintype.Card
 import Mathlib.Data.Multiset.Basic
 --- helper
@@ -235,6 +235,24 @@ theorem Knight_NotKnaveNotNormal
   exact Knight_NotKnave hKKn hk
   exact Knight_NotNormal hKN hk
 
+theorem NotKnave_KnightNormal  
+{Knight : Finset K} {Knave : Finset K}
+{Normal : Finset K} 
+[inst : DecidableEq K]
+(hKKn : Knight ∩ Knave = ∅ )
+(hKN : Knight ∩ Normal = ∅ )
+(hKnN : Knave ∩ Normal = ∅ )
+(h' : A ∈ Knight ∨ A ∈ Knave ∨ A ∈ Normal)
+(h : A ∉ Knave) : A ∈ Knight ∨ A ∈ Normal := by {
+  cases h'
+  · left
+    assumption
+  · cases h_1
+    · contradiction
+    · right
+      assumption
+}
+
 
 
 @[simp]
@@ -325,7 +343,36 @@ theorem Knave_NotNormalNotIff
 : A ∈ Knave → A ∉ Normal  := by
   exact Knight_NotNormal hKnN
 
+theorem NotKnightNormal_Knave 
+{Knight : Finset K} {Knave : Finset K}
+{Normal : Finset K} 
+[inst : DecidableEq K]
+--(hKN : Knight ∩ Normal = ∅ )
+(Or : A ∈ Knight ∨ A ∈ Knave ∨ A ∈ Normal)
+(h : A ∉ Knight)
+(h' : A ∉ Normal)
+: A ∈ Knave := by 
+  cases Or 
+  · contradiction
+  · cases h_1 
+    · assumption
+    · contradiction
 
+
+theorem NotKnightKnave_Normal
+{Knight : Finset K} {Knave : Finset K}
+{Normal : Finset K} 
+[inst : DecidableEq K]
+--(hKN : Knight ∩ Normal = ∅ )
+(Or : A ∈ Knight ∨ A ∈ Knave ∨ A ∈ Normal)
+(h : A ∉ Knight)
+(h' : A ∉ Knave)
+: A ∈ Normal := by 
+  cases Or
+  · contradiction
+  · cases h_1
+    · contradiction
+    · assumption
 --OneNormal : Normal.card = 1
 --ANormal : A ∈ Normal
 --CNormal : C ∈ Normal
@@ -334,3 +381,17 @@ theorem card_eq {Normal : (Finset K)} (h : Normal.card =1) (ANormal : A ∈ Norm
   rw [Finset.card_le_one_iff] at this
   exact this ANormal BNormal
 
+theorem full  
+{S : Finset K} 
+--[inst : DecidableEq K]
+--(hKKn : Knight ∩ Knave = ∅ )
+--(hKN : Knight ∩ Normal = ∅ )
+--(hKnN : Knave ∩ Normal = ∅ )
+--(h' : A ∈ Knight ∨ A ∈ Knave ∨ A ∈ Normal)
+(B : K)
+(AneB : A ≠ B)
+ (One : S.card =1)
+(AinS: A ∈ S): B ∉ S := by {
+  by_contra BinS
+  exact AneB (card_eq One AinS BinS)
+}
