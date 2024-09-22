@@ -30,7 +30,11 @@ about:newtab
 -- as a set with a fintype instance to enable conversion to finset
 #check Set.toFinset
 
+#check Finset.toSet 
 
+    #check Finset.coe_inj
+    #check Finset.coe_inter
+    #check Finset.coe_empty
 #check Set.mem_toFinset
 
       #check Finset.instCoeTCFinsetSet
@@ -53,7 +57,7 @@ example
   (AneC : A ≠ C)
   (Knight : Finset K ) (Knave : Finset K)
   {Normal : Finset K}
-{hK : Finset Knight}
+--{hK : Finset Knight}
 --{hKn : Finset Knave}
 --{hN : Finset Normal}
 --{finKnight : Fintype Knight}
@@ -86,14 +90,11 @@ example
     have ANormal := stA AKnight
     --sorry
     -- have to fix this
-    --have KnightSet:=Finset.toSet Knight
-    #check Set.toFinset
     --rw [KnightSet] at ANormal
 
     -- when knight and normal are finsets,  disjoint doesn't work because it expects sets... making disjoint work or just use disjointfinset
-    #check Finset.coe_inj
-    #check Finset.coe_inter
-    #check Finset.coe_empty
+    -- or make the original formalization in finsets...
+    --exact disjoint hKN AKnight ANormal
     rw [Finset.coe_inj.symm] at hKN
     rw [Finset.coe_inter] at hKN
     rw[ Finset.coe_empty] at hKN
@@ -107,7 +108,6 @@ example
   --rw [NotKnight_KnaveIff] at AnKnight 
   
   -- because AnKnight, then A either knave or normal
-  have AKnaveNormal := disjunctiveSyllogism h1 AnKnight 
   -- AnNormal, if A were normal then BnKnave(maybe make a told the truth thing that would return A knight or normal)
   have AnNormal : A ∉ Normal := by
   {
@@ -149,25 +149,21 @@ example
   #check NotKnightNormal_Knave
   have AKnave : A ∈ Knave := by
   {
-    exact NotKnightNormal_Knave hKN h1 AnKnight AnNormal
+    exact NotKnightNormal_Knave  h1 AnKnight AnNormal
     --cases AKnaveNormal
     --assumption
     --contradiction
 
   }
-  have BnKnight : B ∉ Knight := by
-    { 
-    intro h
-    have := stB h
-    contradiction
-  }
+  #check Function.mt
+  have BnKnight :=  Function.mt stB AnNormal
+  #check full
+  /-
 
-
-  have BnKnave : B ∉ Knave := by{ 
-    intro h_1
-    have := card_eq OneKnave AKnave h_1
-    contradiction
-  }
+1. theorem full.{u_1} : ∀ {K : Type u_1} {A : K} {S : Finset K} (B : K), A ≠ B → S.card = 1 → A ∈ S → B ∉ S :=
+   fun {K} {A} {S} B AneB One AinS BinS => AneB (card_eq One AinS BinS)
+  -/
+  have BnKnave := full B AneB OneKnave AKnave
 
   --have := disjunctiveSyllogism h2 BnKnight 
   --have BNormal := disjunctiveSyllogism this BnKnave   
@@ -175,25 +171,18 @@ example
    
 
   -- now C is a knight by a similar reasoning... it is the only option left...
-  have  CnKnave : C ∉ Knave := by 
-    by_contra CKnave
-    have AeqC := card_eq OneKnave AKnave CKnave
-    contradiction
-  have  CnNormal : C ∉ Normal := by 
-    by_contra CNormal
-    have AeqC := card_eq OneNormal BNormal CNormal
-    contradiction
+  -- A Knave , B Normal
+  have CnKnave := full C AneC OneKnave AKnave
+  have CnNormal := full C BneC OneNormal BNormal
+  #check NotKnaveNormal_Knight
   #check NotKnave_KnightNormal
   have := NotKnave_KnightNormal hKKn hKN hKnN  h3 CnKnave
-  cases h3
+  have CKnight := NotKnaveNormal_Knight h3 CnKnave CnNormal
+  constructor
+  · assumption
   · constructor
-    assumption
-    constructor
-    assumption
-    assumption
-  · cases h
-    contradiction
-    contradiction
+    · assumption
+    · assumption
 
 -- this2: B ∈ Set.toFinset (Knight) := by
 theorem memToFinset (Knight : Set K ) {finKnight : Fintype Knight} {hK : Finset Knight} (AKnight : A ∈ Knight) : A ∈ (Set.toFinset Knight) := by  
@@ -237,14 +226,55 @@ example (A B C: K) : @Set.univ K = {A,B,C} := by
   --  by_contra
   --· exact fun a => trivial
 
---inductive Person | knight : Person | knave : Person | normal : Person
---open Person def isKnight : Person → Prop | knight => true | knave => false | normal => false 
---def isKnave : Person → Prop | knight => false | knave => true | normal => false 
---def isNormal : Person → Prop | knight  => false | knave  => false | normal  => true 
---def statementA : Person → Prop | p  => match p with | knight => isNormal knight | knave =>(isNormal knave) | normal => true 
---def statmentB: Person  → Prop | p => match p with | knight => statementA knight | knave => ¬ (statementA knave)|normal => statementA normal
---def statmentC: Person  → Prop | p => match p with | knight => ¬ (isNormal knight ) | knave => ¬ (isNormal knave) | normal => true
---def solve : Person  →  Person → Person  → Prop | A B C => (isknight A ∧ statementA A) ∧ (isknight B ∧ statementB B) ∧ (isknight C ∧ statementC C)
---def tester : List (Person  × Person ×  Person):=[(knight, knave, normal),(knight, normal, knave),(knave, normal, knight),(normal,knight,knave),(normal,knave,knight),(knight,knight,knight),(knave,knave,knave),(normal,normal,normal)]
---
---def solution:= findSol(Person ×  Person ×  Person):=testpermutation.find(λ p, solve p.fst p.snd p.snd)
+inductive Person | knight : Person | knave : Person | normal --| dontknow : Person 
+open Person 
+--def A : Person := Person.knight
+--def B := Person
+--def C := Person
+--#check A
+/-
+disadvantages of using inductive types,  
+
+-/
+def isKnight : Person → Prop | knight => true | knave => false | normal => false 
+def isKnave : Person → Prop | knight => false | knave => true | normal => false 
+def isNormal : Person → Prop | knight  => false | knave  => false | normal  => true 
+
+    
+-- evalutes to whether stA true or not
+-- any person here not just A
+def statementA : Person → Prop | p  => match p with | knight => isNormal knight | knave =>(isNormal knave) | normal => true 
+--def statementAmod := (isKnight A) →  (isNormal A)
+def statmentB: Person  → Prop | p => match p with | knight => statementA knight | knave => ¬ (statementA knave)|normal => false -- here we don't know, B being normal we don't know if A's st is true or false|--normal => statementA normal
+def statmentC: Person  → Prop | p => match p with | knight => ¬ (isNormal knight ) | knave => ¬ (isNormal knave) | normal => true
+
+-- not clear from statementA what the actual statement of A is...
+/-
+example .... := by ...
+-/ 
+example  (A B C : Person) (hA : A = Knight) (hB : B = Knight)  : 2=2 := by 
+  #check statementA 
+  --#print statementA
+
+  have stAatA:= statementA 
+  -- can't see the statement
+  -- not self contained, not easy to reuse
+  -- would have to make a whole list of definitions to the user which would be very annoying, the user wont memorize what everything means and will refer to that list constantly, normally the user would just look at the proof state and know
+  unfold statementA at stAatA
+  have stAatB:= statementA B
+   
+  rfl 
+example (A : Person ) ( h : A = normal): isNormal A := 
+  by 
+  rw [h]
+  unfold isNormal
+  rfl
+
+def solvev : Person  →  Person → Person  → Prop | A |  B|  C => (isKnight A ∧ statementA A) ∧ (isKnight B ∧ statmentB B) ∧ (isKnight C ∧ statmentC C)
+def solvevmod (A B C : Person):  Prop := (isKnight A ∧ statementA A) ∧ (isKnight B ∧ statmentB B) ∧ (isKnight C ∧ statmentC C)
+def tester : List (Person  × Person ×  Person):=[(knight, knave, normal),(knight, normal, knave),(knave, normal, knight),(normal,knight,knave),(normal,knave,knight),(knight,knight,knight),(knave,knave,knave),(normal,normal,normal)]
+
+#check List.permutations [normal,knave,knight]
+-- not really showing the solution or reasoning, relying on lean to do it...
+-- try all cases and subtitute
+def solution:= findSol(Person ×  Person ×  Person):=testpermutation.find(λ p, solve p.fst p.snd p.snd)

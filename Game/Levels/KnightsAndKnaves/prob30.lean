@@ -6,7 +6,6 @@ example
 {Knave : Set Inhabitant}
 {h : Knight ∩ Knave = ∅ }
 {h1 : A ∈ Knight ∨ A ∈ Knave }
-{h2: B ∈ Knight ∨ B ∈ Knave }
 {stA : A ∈ Knight  ↔ (A ∈ Knave ∨ (2+2=5) ) }
 {stAn : A ∈ Knave ↔ ¬ (A ∈ Knave ∨ (2+2=5) ) }
   :False  := by
@@ -19,24 +18,42 @@ example
     · exact disjoint h h_1 h_2
     · contradiction
   · have : A ∈ Knave ∨ 2 + 2=5 := by left ; assumption
-    have negor := stAn.mp h_1 
+    have nor := stAn.mp h_1 
     contradiction
 
   }
 
 
+-- if else version
+example
+{Knight : Set Inhabitant}
+{Knave : Set Inhabitant}
+{h : Knight ∩ Knave = ∅ }
+{h1 : A ∈ Knight ∨ A ∈ Knave }
+{stA : A ∈ Knight  ↔ (A ∈ Knave ∨ (2+2=5) ) }
+{stAn : A ∈ Knave ↔ ¬ (A ∈ Knave ∨ (2+2=5) ) }
+  :False  := by
+  if AKnight : A ∈ Knight then
+    have cont := stA.mp AKnight
+    if AKnave : A ∈ Knave then 
+      rw [Knave_NotKnightIff h h1] at AKnave
+      contradiction
+    else 
+      have := disjunctiveSyllogism cont AKnave
+      contradiction
+    --cases cont
+    -- exact disjoint h h_1 h_2
+    -- contradiction
 
+    
+  else 
+    rw [NotKnight_KnaveIff h h1] at AKnight
+    have := stAn.mp AKnight
+    exact this (by left ; assumption)
+  
 
 
 Conclusion 
 "
 "
-
-/- Use these commands to add items to the game's inventory. -/
-
-
-
--- NewTactic rw rfl
--- NewTheorem Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq
 

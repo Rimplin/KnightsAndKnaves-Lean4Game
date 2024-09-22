@@ -5,6 +5,33 @@ import Mathlib.Data.Set.Basic
 import Mathlib.Data.Fintype.Card
 import Mathlib.Data.Multiset.Basic
 --- helper
+
+theorem notleft_right {P Q : Prop} (Or : P ∨ Q)(notleft : ¬P) : Q := by 
+  cases Or
+  contradiction
+  assumption
+
+theorem inleft_notinright
+  --sets
+  {left : Set K} {right : Set K}
+(h : left ∩ right = ∅ )
+(h' : A ∈ left) : A ∉ right := by
+  intro a 
+  have := Set.mem_inter h' a
+  rw [h] at this
+  contradiction
+
+theorem inright_notinleft
+  --sets
+  {left : Set K} {right : Set K}
+(h : left ∩ right = ∅ )
+(h' : A ∈ right) : A ∉ left := by
+  intro a 
+  have := Set.mem_inter h' a
+  rw [Set.inter_comm] at h
+  rw [h] at this
+  contradiction
+
 theorem disjoint   {Knight : Set K} {Knave : Set K}
 (h : Knight ∩ Knave = ∅ )
 (hk : A ∈ Knight)
@@ -358,6 +385,19 @@ theorem NotKnightNormal_Knave
     · assumption
     · contradiction
 
+theorem NotKnaveNormal_Knight
+{Knight : Finset K} {Knave : Finset K}
+{Normal : Finset K} 
+[inst : DecidableEq K]
+--(hKN : Knight ∩ Normal = ∅ )
+(Or : A ∈ Knight ∨ A ∈ Knave ∨ A ∈ Normal)
+(h : A ∉ Knave)
+(h' : A ∉ Normal) : A ∈ Knight := by 
+  cases Or
+  · assumption
+  · cases h_1
+    · contradiction
+    · contradiction
 
 theorem NotKnightKnave_Normal
 {Knight : Finset K} {Knave : Finset K}
