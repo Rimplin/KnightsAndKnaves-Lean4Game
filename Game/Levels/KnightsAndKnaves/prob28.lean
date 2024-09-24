@@ -38,7 +38,7 @@ example
     constructor
     · assumption
     · have AknOrB := stA.mp AKnight
-      exact disjunctiveSyllogism AknOrB AnKnave 
+      exact notleft_right AknOrB AnKnave 
   }
 
 

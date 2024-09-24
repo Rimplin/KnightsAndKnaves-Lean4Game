@@ -45,11 +45,11 @@ example
   · have notallknaves := stAn.mp AKnave
     rw [not_and_or] at notallknaves 
     have : ¬(A ∉ Knave) := by exact not_not.mpr AKnave
-    have BC := disjunctiveSyllogism notallknaves this 
+    have BC := notleft_right notallknaves this 
 
     rw [not_and_or] at BC 
     have : ¬(B ∉ Knave) := by exact not_not.mpr BKnave
-    have CKnight := disjunctiveSyllogism BC this
+    have CKnight := notleft_right BC this
     rw [Knight_NotKnaveIff h h3] 
     assumption
 

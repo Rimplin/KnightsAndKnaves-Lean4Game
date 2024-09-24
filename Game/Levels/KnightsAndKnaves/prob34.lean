@@ -28,7 +28,7 @@ example
 
      rw [Knight_NotKnaveIff h AOr] at AKnight
      rw [NotKnight_KnaveIff h AOr] at AC
-     exact disjunctiveSyllogism AC AKnight
+     exact notleft_right AC AKnight
    · have BKnight := stAn.mp AKnave
      rw [NotKnave_KnightIff h h2] at BKnight  
      have AC := stB.mp BKnight

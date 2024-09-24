@@ -6,6 +6,24 @@ import Mathlib.Data.Fintype.Card
 import Mathlib.Data.Multiset.Basic
 --- helper
 
+--theorem notleft_right (h : P ∨ Q) (np : ¬P)
+--  : Q := by
+--
+--  {
+--  /-
+--    apply Or.elim (Classical.em Q)
+--    intro hQ
+--    assumption 
+--
+--    intro hnQ 
+--    have := And.intro np hnQ
+--    rw [not_or.symm] at this
+--    contradiction
+--    -/
+--  cases h
+--  · contradiction
+--  · assumption
+--  }
 theorem notleft_right {P Q : Prop} (Or : P ∨ Q)(notleft : ¬P) : Q := by 
   cases Or
   contradiction

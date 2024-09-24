@@ -21,7 +21,7 @@ example
     rw [imp_not_self] at forward
     cases h1 
     · have := not_not.mpr h_1 
-      have AKBK := disjunctiveSyllogism forward this
+      have AKBK := notleft_right forward this
       constructor
       assumption
       exact AKBK h_1

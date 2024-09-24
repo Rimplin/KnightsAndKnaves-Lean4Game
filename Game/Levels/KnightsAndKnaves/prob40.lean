@@ -8,8 +8,8 @@ example
 --  (AneB : A ≠ B)
 --  (BneC : B ≠ C)
 --  (AneC : A ≠ C)
-  (Knight : Finset K ) (Knave : Finset K)
-  {Normal : Finset K}
+  (Knight : Set K ) (Knave : Set K)
+  {Normal : Set K}
 --{hK : Finset Knight}
 --{hKn : Finset Knave}
 --{hN : Finset Normal}
@@ -30,5 +30,33 @@ example
 {stAn : A ∈ Knave → ¬ (B ∈ Knight) }
 {stB : B ∈ Knight → (A ∉ Knight)}
 {stBn : B ∈ Knave → ¬(A ∉ Knight)}
-: 2=2 := by 
-  sorry
+-- Prove that at least one of them is telling the truth, but is not 
+--a knight. 
+: (A ∉ Knight ∧ B ∈ Knight) ∨ (B ∉ Knight ∧ A ∉ Knight) := by 
+  have AnKnight : A ∉ Knight := by
+    intro AKnight
+    have := stA AKnight
+    have := stB this
+    contradiction
+
+  rcases h2 with BKnight|BKnaveNormal
+  · left
+    constructor
+    assumption
+    assumption
+  · rcases BKnaveNormal with BKnave|BNormal 
+    · have := stBn BKnave
+      contradiction
+      --have :=inright_notinleft hKKn BKnave
+      --right
+      --constructor
+      --assumption
+      --assumption
+      
+    · have :=inright_notinleft hKnN BNormal
+      right
+      constructor
+      have := inright_notinleft hKN BNormal
+      assumption
+      assumption
+

@@ -65,7 +65,7 @@ Statement (h : P) (nh : ¬P)
 
   {
     have helper : P ∨ Q := Or.inl h
-    exact disjunctiveSyllogism helper nh
+    exact notleft_right helper nh
   }
 
 

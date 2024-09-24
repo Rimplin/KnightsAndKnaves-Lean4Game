@@ -128,7 +128,7 @@ example
       --contradiction
     }
 
-    have BKnight := disjunctiveSyllogism (Or.symm BKnightNormal) BnNormal
+    have BKnight := notleft_right (Or.symm BKnightNormal) BnNormal
 
     -- since A Normal, B Knight, then C Knave
     have CKnave : C ∈ Knave := by {
@@ -165,8 +165,8 @@ example
   -/
   have BnKnave := full B AneB OneKnave AKnave
 
-  --have := disjunctiveSyllogism h2 BnKnight 
-  --have BNormal := disjunctiveSyllogism this BnKnave   
+  --have := notleft_right h2 BnKnight 
+  --have BNormal := notleft_right this BnKnave   
   have BNormal := NotKnightKnave_Normal h2 BnKnight BnKnave
    
 

@@ -39,7 +39,7 @@ example
       rw [Knave_NotKnightIff h h1] at AKnave
       contradiction
     else 
-      have := disjunctiveSyllogism cont AKnave
+      have := notleft_right cont AKnave
       contradiction
     --cases cont
     -- exact disjoint h h_1 h_2
