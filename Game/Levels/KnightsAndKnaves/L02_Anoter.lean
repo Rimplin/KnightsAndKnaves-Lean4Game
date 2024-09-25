@@ -62,9 +62,9 @@ Statement
       have this := eq_true h_1
       have this2:= eq_true h_2
       
-      --have this3 := Knight_NotKnave h_1
+      --have this3 := inleft_notinright h_1
       simp[this,this2] at conc
-      have this3:= Knight_NotKnave h h_1
+      have this3:= inleft_notinright h h_1
       have this4:= eq_false this3
       simp[this4] at conc
       assumption
