@@ -187,6 +187,10 @@ example
 
 --variable (K : Type)
 --variable (A B C : K)
+theorem perm2 : ({A,B,C}:Set K) = ({C,A,B}:Set K) := by 
+  #check Set.pair_comm 
+  #check Set.insert_comm
+  sorry
 theorem perm : ({A,B,C}:Set K) = ({C,A,B}:Set K) := by 
   
   apply Set.ext_iff.mpr

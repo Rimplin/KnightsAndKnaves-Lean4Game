@@ -212,7 +212,8 @@ Statement --(preamble := unfold Xor' at *)
   contradiction
 
   assumption
-
+#check notleft_right
+#check inright_notinleft
 #check not_iff_not
 Conclusion "This last message appears if the level is solved."
 

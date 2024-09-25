@@ -24,10 +24,41 @@ import Mathlib.Data.Multiset.Basic
 --  · contradiction
 --  · assumption
 --  }
+
 theorem notleft_right {P Q : Prop} (Or : P ∨ Q)(notleft : ¬P) : Q := by 
   cases Or
   contradiction
   assumption
+theorem notright_left {P Q : Prop} (Or : P ∨ Q)(notleft : ¬Q) : P := by 
+  cases Or
+  assumption
+  contradiction
+
+
+-- notice that this is a direct adaptation of notleft_right, this theorem needs to be made clear however to make sure the user knows.
+-- note : ∉ is the same as ¬ (∈) 
+
+--NotKnight_Knave.{u_1} {K : Type u_1} {A : K} {Knight Knave : Set K} (h : Knight ∩ Knave = ∅)
+--  (h1 : A ∈ Knight ∨ A ∈ Knave) (h' : A ∉ Knight) : A ∈ Knave
+theorem notinleft_inright
+  --sets
+  {A : K}
+  {left : Set K} {right : Set K}
+  {LeftorRight : A ∈ left ∨ A ∈ right}
+(h' : A ∉ left) : A ∈ right := by
+  exact notleft_right LeftorRight h'
+
+theorem notinright_inleft
+  --sets
+  {A : K}
+  {left : Set K} {right : Set K}
+  {LeftorRight : A ∈ left ∨ A ∈ right}
+(h' : A ∉ right) : A ∈ left := by
+  exact notright_left LeftorRight h'
+
+-------------------
+
+
 
 theorem inleft_notinright
   --sets
@@ -50,6 +81,7 @@ theorem inright_notinleft
   rw [h] at this
   contradiction
 
+  
 theorem disjoint   {Knight : Set K} {Knave : Set K}
 (h : Knight ∩ Knave = ∅ )
 (hk : A ∈ Knight)
@@ -68,6 +100,8 @@ theorem disjointfinset   {Knight : Finset K} {Knave : Finset K}
   rw [h] at this
   contradiction
 -- shouldn't this be iff to alow rewrites... instead of `have`
+#check inleft_notinright
+-- this theorem is redundant, it is the same as inleft_notinright if you rename things appropriately. We live it however because the semantics (from the name) are clearer.
 theorem Knight_NotKnave
   --sets
   {Knight : Set K} {Knave : Set K}
@@ -84,8 +118,10 @@ theorem Knight_NotKnave
    --   exact h_1.right h'
 
     -- eliminate h1 , h2 and do by_contra
-    by_contra
-    exact disjoint h h' a
+    -- this
+    --by_contra
+    --exact disjoint h h' a
+    exact inleft_notinright h h'
   }
 
 theorem Knight_NotNormal

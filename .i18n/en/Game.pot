@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Tue Sep 24 22:55:07 2024\n"
+"POT-Creation-Date: Thu Sep 26 00:32:23 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -1054,6 +1054,18 @@ msgstr ""
 
 #: Game.Levels.LogicTruthValue_.L12_False
 msgid ""
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.forall
+msgid ""
+msgstr ""
+
+#: Game.Levels.LogicTruthValue_.forall
+msgid "if the goal looks like:\n"
+"```\n"
+"∀ x, ...\n"
+"```\n"
+"then intro <nameOfVariable> will take an arbitrary x."
 msgstr ""
 
 #: Game.Levels.LogicTruthValue_
