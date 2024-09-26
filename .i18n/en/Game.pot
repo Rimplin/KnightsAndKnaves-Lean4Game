@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Thu Sep 26 00:32:23 2024\n"
+"POT-Creation-Date: Thu Sep 26 21:17:50 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -1235,12 +1235,24 @@ msgid "Note that the forward direction is always true, and our assumption `h` wa
 "(follow up to show that there was no loss of information)"
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L02_Knight_NotKnave
+#: Game.Levels.KnightsAndKnavesLemmas.L02_inleft
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L02_inleft
+msgid "We will use this to prove several helpful lemmas in the context of the knights and knaves puzzle. Note that these lemmas apply to any two sets."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L02_inleft
 msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L02_Knight_NotKnave
 msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L02_Knight_NotKnave
+msgid "Note that this level is identical to the previous one except the fact that the set `left` is now called `Knight` and the set `right` is now called `Knave`. This level is to emphasize this pattern of reasoning that you will need to solve knights and knaves puzzles."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L02_Knight_NotKnave
@@ -1251,7 +1263,15 @@ msgstr ""
 msgid ""
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L03_Knave_NotKnight
+#: Game.Levels.KnightsAndKnavesLemmas.L03_inright
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L03_inright
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L03_inright
 msgid ""
 msgstr ""
 
@@ -1260,6 +1280,22 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L03_Knave_NotKnight
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L03_Knave_NotKnight
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L04_notinright
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L04_notinright
+msgid "Remember notright_left from logic world. You can go back if you wish before proceeding with this level: link to prev level."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L04_notinright
 msgid ""
 msgstr ""
 

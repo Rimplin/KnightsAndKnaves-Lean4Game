@@ -2,7 +2,7 @@ import Game.Metadata
 -- Knave_notKnight
 
 World "KnightsAndKnavesLemmas"
-Level 3
+Level 5
 
 Title ""
 
@@ -26,10 +26,11 @@ Statement Knave_NotKnight
     --· exfalso
     --  exact h_1.right h'
     --· exact h_1.right
-    by_contra
-    have := Set.mem_inter a h'
-    rw [h] at this
-    contradiction
+    --by_contra
+    --have := Set.mem_inter a h'
+    --rw [h] at this
+    --contradiction
+    exact inright_notinleft h h'
   }
 
 
