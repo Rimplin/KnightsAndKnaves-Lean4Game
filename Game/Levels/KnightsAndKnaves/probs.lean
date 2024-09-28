@@ -97,6 +97,41 @@ example
 --    Wendy says: Oberon is a knave.  Solution :     Because Oberon said 'Tracy is a knight and I am a knave,' we know Oberon is not making a true statement. (If it was true, the speaker would be a knight claiming to be a knave, which cannot happen.) Therefore, Oberon is a knave and Tracy is a knave.
 --    All islanders will call a member of the opposite type a knave. So when Tracy says that Wendy is a knave, we know that Wendy and Tracy are opposite types. Since Tracy is a knave, then Wendy is a knight.
 --
+example
+  --sets
+  {Tracy Oberon Wendy: Inhabitant}
+  {Knight : Set Inhabitant} {Knave : Set Inhabitant}
+{h : Knight ∩ Knave = ∅ }
+{Or : ∀(x :Inhabitant), x ∈ Knight ∨ x ∈ Knave}
+{stT : Tracy ∈ Knight  ↔ (Wendy ∈ Knave) }
+{stTn : Tracy ∈ Knave  ↔ ¬(Wendy ∈ Knave) }
+{stO: Oberon ∈ Knight ↔ (Tracy ∈ Knight ∧ Oberon ∈ Knave) }
+{stOn: Oberon ∈ Knave ↔ ¬(Tracy ∈ Knight ∧ Oberon ∈ Knave) }
+{stW : Wendy ∈ Knight ↔ Oberon ∈ Knave}
+{stWn : Wendy ∈ Knave ↔ ¬ (Oberon ∈ Knave)}
+  : Tracy ∈ Knave ∧ Oberon ∈ Knave ∧ Wendy ∈ Knight := by
+
+  {
+    have OberonKnave : Oberon ∈ Knave := by {
+      by_contra OberonKnight
+      rw [NotKnave_KnightIff h (Or Oberon)] at OberonKnight
+      have := stO.mp OberonKnight
+      exact disjoint h OberonKnight this.right
+    }
+    have WendyKnight := stW.mpr OberonKnave
+    have TracyKnave : Tracy ∈ Knave := by {
+      rw [Knight_NotKnaveIff h (Or Wendy)] at WendyKnight
+      exact stTn.mpr WendyKnight 
+    }
+
+    constructor
+    assumption
+    constructor
+    assumption
+    assumption
+
+  }
+
 --For these reasons we know the knaves were Tracy and Oberon, and the only knight was Wendy.
 --inductive person: Type | Tracy |Oberon| Wendy open person
 --inductive type: Type|knight|knave open type
@@ -145,15 +180,47 @@ example
 --Here is your puzzle:
 --
 --You have met a group of 3 islanders. Their names are Xavier, Gary, and Alice.
+
+
+
+
 --
---    Gary says: Alice is my type.
---    Alice says: Gary never lies.
---    Gary says: Xavier never lies.
+--    Gary says: Alice is my type.   Alice says: Gary never lies.    Gary says: Xavier never lies.
 --solution:    A knight or a knave will say they are the same type as a knight. So when Gary says they are the same type as Alice, we know that Alice is a knight.
 --    All islanders will call one of their same kind a knight. So when Alice says that Gary is a knight, we know that Gary and Alice are the same type. Since Alice is a knight, then Gary is a knight.
 --    All islanders will call one of their same kind a knight. So when Gary says that Xavier is a knight, we know that Xavier and Gary are the same type. Since Gary is a knight, then Xavier is a knight.
 --
 --For these reasons we know there were no knaves , and the knights were Alice, Xavier, and Gary.
+example
+  --sets
+  {Gary Alice Xavier: Inhabitant}
+  {Knight : Set Inhabitant} {Knave : Set Inhabitant}
+{h : Knight ∩ Knave = ∅ }
+{Or : ∀(x :Inhabitant), x ∈ Knight ∨ x ∈ Knave}
+{stG1 : Gary ∈ Knight  ↔ (Alice ∈ Knight) }
+{stGn1 : Gary ∈ Knave  ↔ (Alice ∈ Knight) }
+{stG2 : Gary ∈ Knight  ↔ (Xavier ∈ Knight) }
+{stGn2 : Gary ∈ Knave  ↔ (Xavier ∈ Knave) }
+{stA : Alice ∈ Knight ↔ (Gary ∈ Knight)}
+{stAn : Alice ∈ Knave ↔ (Gary ∈ Knave)} : Gary ∈ Knight ∧ Alice ∈ Knight ∧ Xavier ∈ Knight := by{
+  rcases Or Gary with GaryKnight|GaryKnave
+  · have AliceKnight:= stG1.mp GaryKnight
+    have XavierKnight := stG2.mp GaryKnight
+    constructor
+    assumption
+    constructor
+    assumption
+    assumption
+
+  · have AliceKnight := stGn1.mp GaryKnave
+    have GaryKnight := stA.mp AliceKnight
+    exfalso
+    exact disjoint h GaryKnight GaryKnave
+}
+
+
+
+
 ------------------
 --Here is your puzzle:
 --
@@ -165,3 +232,23 @@ example
 --    All islanders will call one of their same kind a knight. So when Ira says that Robert is a knight, we know that Robert and Ira are the same type. Since Ira is a knight, then Robert is a knight.
 --
 --For these reasons we know there were no knaves , and the knights were Robert and Ira.
+example
+  --sets
+  {Robert Ira: Inhabitant}
+  {Knight : Set Inhabitant} 
+  {Knave : Set Inhabitant}
+  {h : Knight ∩ Knave = ∅ }
+  {Or : ∀(x :Inhabitant), x ∈ Knight ∨ x ∈ Knave}
+  {stR : Robert ∈ Knight ↔ Ira ∈ Knight}
+  {stRn : Robert ∈ Knave ↔ Ira ∈ Knight}
+  {stI : Ira ∈ Knight ↔ Robert ∈ Knight}
+  {stIn : Ira ∈ Knave ↔ Robert ∈ Knave} : Robert ∈ Knight ∧ Ira ∈ Knight := by 
+    have IraKnight : Ira ∈ Knight := by 
+      
+      cases Or Robert
+      · exact stR.mp h_1
+      · exact stRn.mp h_1
+    constructor
+    · exact stI.mp IraKnight
+    · assumption
+

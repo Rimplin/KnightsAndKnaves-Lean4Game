@@ -25,6 +25,7 @@ import Mathlib.Data.Multiset.Basic
 --  · assumption
 --  }
 
+
 theorem notleft_right {P Q : Prop} (Or : P ∨ Q)(notleft : ¬P) : Q := by 
   cases Or
   contradiction
@@ -82,7 +83,7 @@ theorem inright_notinleft
   contradiction
 
   
-theorem disjoint   {Knight : Set K} {Knave : Set K}
+theorem disjoint   {Knight : Set Inhabitant} {Knave : Set Inhabitant}
 (h : Knight ∩ Knave = ∅ )
 (hk : A ∈ Knight)
 (hkn : A ∈ Knave)  : False := by 
@@ -90,6 +91,25 @@ theorem disjoint   {Knight : Set K} {Knave : Set K}
   rw [h] at this
   contradiction
 --- helper
+
+theorem IamKnave
+  --sets
+  {A : Inhabitant}
+  {Knight : Set Inhabitant} {Knave : Set Inhabitant}
+(h : Knight ∩ Knave = ∅ )
+(h1 : A ∈ Knight ∨ A ∈ Knave )
+(stA : A ∈ Knight  ↔ (A ∈ Knave) )
+  : False := by
+
+  {
+    rcases h1 with AKnight|AKnave
+
+    · have := stA.mp AKnight
+      exact disjoint h AKnight this
+    
+    · have := stA.mpr AKnave
+      exact disjoint h this AKnave
+  }
 
 theorem disjointfinset   {Knight : Finset K} {Knave : Finset K}
   [inst : DecidableEq K]

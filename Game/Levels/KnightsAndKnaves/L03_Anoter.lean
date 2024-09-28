@@ -4,7 +4,7 @@ open Set
 variable {K : Type}
 
 World "KnightsAndKnaves"
-Level 2
+Level 3
 
 Title "lev 2"
 

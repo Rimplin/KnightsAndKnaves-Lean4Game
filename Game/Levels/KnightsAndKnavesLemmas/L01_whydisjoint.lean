@@ -72,7 +72,7 @@ extending contradiction still seems to require passing the arguments, rendering 
 -/
 /-- dis22 -/
 TheoremDoc disjoint as "disjoint" in "Knights and Knaves"
-Statement disjoint (Knight : Set K ) (Knave : Set K)
+Statement disjoint  (Knight : Set Inhabitant ) (Knave : Set Inhabitant)
 (AKnight : A ∈ Knight)
 (AKnave : A ∈ Knave)
 (h : Knight ∩ Knave = ∅)
@@ -98,4 +98,4 @@ Note that the forward direction is always true, and our assumption `h` wasn't us
 --NewTactic 
 -- NewTheorem Nat.add_comm Nat.add_assoc
 -- NewDefinition Nat Add Eq
-NewTheorem Set.mem_inter disjoint
+NewTheorem Set.mem_inter disjoint 
