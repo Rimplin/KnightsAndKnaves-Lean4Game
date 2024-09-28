@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Sat Sep 28 20:43:14 2024\n"
+"POT-Creation-Date: Sat Sep 28 22:24:12 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -1439,7 +1439,13 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.L02_Introduction
-msgid ""
+msgid "Three of the inhabitants A, B, and C were standing together in a garden. \n"
+"A stranger passed by and asked A, 'Are you a knight or a knave?' A answered, but rather indistinctly, so the stranger could not make out what he said. The stranger than asked B, 'What did A say?' B replied, 'A said that he is a knave.' At this point the third man, C, said, 'Don't believe B; he is lying!' \n"
+"The question is, what are B and C?\n"
+"\n"
+"First of all, lets simplify the statements. C's statement can be simplified to 'B is a knave.'\n"
+"\n"
+"The formalization is given. Note that for the statement of B, if B where telling the truth then A indeed made such a statement which is the statement 'I am a Knave' and the formalization of that is 'A ∈ Knight ↔ A ∈ Knave'. Use IamKnave."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.L02_Introduction

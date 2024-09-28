@@ -349,6 +349,40 @@ stB' :
 
   --sorry
 
+
+-- proper formalization using cardinality lemmas
+example 
+[inst : DecidableEq Inhabitant]
+(Knight : Finset Inhabitant ) 
+(Knave : Finset Inhabitant)
+(h : Knight ∩ Knave = ∅ )
+(h1 : A ∈ Knight ∨ A ∈ Knave ) 
+(h2: B ∈ Knight ∨ (B ∈ Knave) )
+(h3: C ∈ Knight ∨ C ∈ Knave )
+(stB : B ∈ Knight ↔ ( A ∈ Knight ↔ Knight.card =1))
+(stBn : B ∈ Knave ↔ ¬( A ∈ Knight ↔ Knight.card =1))
+(stC : C ∈ Knight ↔ B ∈ Knave)
+(stCn : C ∈ Knave ↔ B ∈ Knight)
+(AneB : A ≠ B)
+: 2=2 := 
+by 
+have AKnave : A ∈ Knave := by 
+  rcases h2 with BKnight|BKnave 
+  · have stA := stB.mp BKnight
+    rcases h1 with AKnight|AKnave
+    · have OneKnight := stA.mp AKnight
+      #check full
+      #check card_eq
+      have := full AKnight OneKnight AneB
+      contradiction
+    · assumption
+      
+  · have CKnight := stC.mpr BKnave
+    by_contra AKnight
+    push_neg at AKnight
+     
+    sorry
+sorry
 example (A : K) (Knight : Set K) (hK : Finset Knight) : Knight = {A} := by sorry
 example [DecidableEq K] (Knight : Set K) (hK : Finset Knight) (ne : Finset.Nonempty hK) (hA : A ∈ Knight) (hB : B ∈ Knight): hK.card =2 := by {
   apply Nat.le_antisymm
