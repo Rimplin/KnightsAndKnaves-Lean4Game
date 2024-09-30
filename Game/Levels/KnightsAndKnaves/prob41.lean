@@ -5,12 +5,12 @@ import Game.Metadata
 example 
   --sets
 
---  [inst : DecidableEq K]
+  {inst : DecidableEq K}
 --  (A B C : K)
 --  (AneB : A ≠ B)
-  (Knight : Set K ) 
-  (Knave : Set K)
-  {Normal : Set K}
+  (Knight : Finset K ) 
+  (Knave : Finset K)
+  {Normal : Finset K}
 --{hK : Finset Knight}
 --{hKn : Finset Knave}
 --{hN : Finset Normal}

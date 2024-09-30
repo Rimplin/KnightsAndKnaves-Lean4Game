@@ -1,6 +1,7 @@
 import Game.Metadata
 
 
+#check propext
 World "LogicTruthValue" 
 Level 
 

@@ -23,7 +23,8 @@ The formalization is given. Note that for the statement of B, if B where telling
 -- prob 26
 Statement
   --sets
-  (Knight : Set K ) (Knave : Set K)
+  {inst : DecidableEq K}
+  (Knight : Finset K ) (Knave : Finset K)
 (h : Knight ∩ Knave = ∅ )
 (h1 : A ∈ Knight ∨ A ∈ Knave ) 
 (h2: B ∈ Knight ∨ B ∈ Knave )
@@ -90,7 +91,8 @@ Statement
 
 
 example
-  (Knight : Set K ) (Knave : Set K)
+  {inst : DecidableEq K}
+  (Knight : Finset K ) (Knave : Finset K)
 (h : Knight ∩ Knave = ∅ )
 (h1 : A ∈ Knight ∨ A ∈ Knave ) 
 (h2: B ∈ Knight ∨ B ∈ Knave )
@@ -103,11 +105,11 @@ example
   -- should change goal to ¬(A ∈ Knight ↔ A ∈ Knave) 
   -- truth value variant first then this(?)
   have : ¬(A ∈ Knight ↔ A ∈ Knave ) := by 
-    rw [Knight_NotKnaveIff h h1]
+    rw [inleft_notinrightIff h1 h]
     exact not_iff_self
 
   rw [iff_false_right this] at stB
-  rw [NotKnight_KnaveIff h h2] at stB
+  rw [notinleft_inrightIff h2 h] at stB
   constructor
   · assumption
 

@@ -12,7 +12,7 @@ import Mathlib.Tactic.Qify
 import Mathlib.Tactic.Polyrith
 import Mathlib.Algebra.Group.Basic
 import Mathlib.Tactic.ApplyFun
-import Mathlib.Data.Fintype.Card
+--import Mathlib.Data.Fintype.Card
 import Mathlib.Data.Multiset.Basic
 
 /-! Use this file to add things that should be available in all levels.

@@ -3,8 +3,8 @@ import Game.Metadata
 
 
 example
-  --sets
-  {Knight : Set Inhabitant} {Knave : Set Inhabitant}
+  {inst : DecidableEq Inhabitant}
+  {Knight : Finset Inhabitant} {Knave :Finset Inhabitant}
 {h : Knight ∩ Knave = ∅ }
 {h1 : A ∈ Knight ∨ A ∈ Knave }
 {h2: B ∈ Knight ∨ B ∈ Knave }
@@ -24,16 +24,16 @@ example
      rw [not_and_or] at BCnotsametype
      rw [not_and_or] at BCnotsametype
      have AC:= BCnotsametype.left
-     rw [Knave_NotKnightIff h h3] 
+     rw [inright_notinleftIff h3 h] 
 
-     rw [Knight_NotKnaveIff h AOr] at AKnight
-     rw [NotKnight_KnaveIff h AOr] at AC
+     rw [inleft_notinrightIff AOr h] at AKnight
+     rw [notinleft_inrightIff AOr h] at AC
      exact notleft_right AC AKnight
    · have BKnight := stAn.mp AKnave
-     rw [NotKnave_KnightIff h h2] at BKnight  
+     rw [notinright_inleftIff h2 h] at BKnight  
      have AC := stB.mp BKnight
      cases AC
-     · rw [Knave_NotKnightIff h AOr] at AKnave
+     · rw [inright_notinleftIff AOr h] at AKnave
        exfalso
        exact AKnave h_1.left
      · exact h_1.right
@@ -46,12 +46,4 @@ example
 Conclusion 
 "
 "
-
-/- Use these commands to add items to the game's inventory. -/
-
-
-
--- NewTactic rw rfl
--- NewTheorem Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq
 

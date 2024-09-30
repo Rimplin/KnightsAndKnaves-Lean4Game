@@ -3,7 +3,8 @@ import Game.Metadata
 
 example
   --sets
-  {Knight : Set Inhabitant} {Knave : Set Inhabitant}
+  {inst : DecidableEq Inhabitant}
+  {Knight : Finset Inhabitant} {Knave : Finset Inhabitant}
 {h : Knight ∩ Knave = ∅ }
 {h1 : A ∈ Knight ∨ A ∈ Knave }
 {h2: B ∈ Knight ∨ B ∈ Knave }
@@ -18,7 +19,7 @@ example
  -- constructor
   have AKnave : A ∈ Knave := by
     by_contra AKnight
-    rw [NotKnave_KnightIff h h1] at AKnight
+    rw [notinright_inleftIff h1 h] at AKnight
     have knaves := stA.mp AKnight
     exact disjoint h AKnight knaves.left
 
@@ -37,7 +38,7 @@ example
       exact CKnave ands.right.right
     have third : ¬( A ∈ Knight ∧ B ∈ Knight ∧ C ∈ Knave) := by 
       intro ands
-      rw [Knave_NotKnightIff h h1] at AKnave
+      rw [inright_notinleftIff h1 h] at AKnave
       exact AKnave ands.left 
     have BKnave := stBn.mpr (And.intro first 
     (And.intro second third)) 
@@ -50,7 +51,7 @@ example
     rw [not_and_or] at BC 
     have : ¬(B ∉ Knave) := by exact not_not.mpr BKnave
     have CKnight := notleft_right BC this
-    rw [Knight_NotKnaveIff h h3] 
+    rw [inleft_notinrightIff h3 h] 
     assumption
 
 

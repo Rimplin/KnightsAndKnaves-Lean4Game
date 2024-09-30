@@ -37,7 +37,8 @@ elab "show_goals " tacs:tacticSeq : tactic => do
 Statement 
 
   --sets
-  (Knight : Set K ) (Knave : Set K) 
+  {inst : DecidableEq K}
+  (Knight : Finset K ) (Knave : Finset K) 
   --(uni : Knight ∪ Knave) 
   (h : Knight ∩ Knave = ∅ )
   -- theres x and y, x says at least one of us is a knave
@@ -75,7 +76,7 @@ Statement
       assumption ; assumption
   · cases h'' y
     · have := not_iff_not.mpr stx
-      have this2:= this.mp (Knave_NotKnight h h_1)
+      have this2:= this.mp (inright_notinleft h h_1)
       contrapose this2
       simp
       right
@@ -84,7 +85,7 @@ Statement
       assumption;assumption
     · constructor
       · have := not_iff_not.mpr stx 
-        have this2 := this.mp (Knave_NotKnight h h_1)
+        have this2 := this.mp (inright_notinleft h h_1)
         contrapose this2
         simp
         right

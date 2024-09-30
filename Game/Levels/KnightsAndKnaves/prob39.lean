@@ -98,7 +98,8 @@ example
     rw [Finset.coe_inj.symm] at hKN
     rw [Finset.coe_inter] at hKN
     rw[ Finset.coe_empty] at hKN
-    exact @disjoint K A (Finset.toSet Knight) (Finset.toSet Normal) hKN AKnight ANormal
+--      exact @disjoint K A (Finset.toSet Knight) (Finset.toSet Normal) hKN AKnight ANormal
+    sorry
     --exact disjointfinset hKN AKnight ANormal
   }
 
@@ -113,7 +114,8 @@ example
   {
     by_contra ANormal
     have BnKnave := (Function.mt stBn) (by push_neg; assumption)
-    have BKnightNormal := NotKnave_KnightNormal hKKn hKN hKnN h2 BnKnave
+    simp [BnKnave] at h2
+    have BKnightNormal := h2
 
 
     -- helper theorem called full
@@ -121,7 +123,7 @@ example
     {
       #check full
       #check One
-      exact full B AneB OneNormal ANormal
+      exact full ANormal OneNormal AneB
       
       --by_contra BNormal
       --have AeqB:= by exact card_eq OneNormal  ANormal BNormal
@@ -270,11 +272,11 @@ example (A : Person ) ( h : A = normal): isNormal A :=
   unfold isNormal
   rfl
 
-def solvev : Person  →  Person → Person  → Prop | A |  B|  C => (isKnight A ∧ statementA A) ∧ (isKnight B ∧ statmentB B) ∧ (isKnight C ∧ statmentC C)
-def solvevmod (A B C : Person):  Prop := (isKnight A ∧ statementA A) ∧ (isKnight B ∧ statmentB B) ∧ (isKnight C ∧ statmentC C)
-def tester : List (Person  × Person ×  Person):=[(knight, knave, normal),(knight, normal, knave),(knave, normal, knight),(normal,knight,knave),(normal,knave,knight),(knight,knight,knight),(knave,knave,knave),(normal,normal,normal)]
-
-#check List.permutations [normal,knave,knight]
--- not really showing the solution or reasoning, relying on lean to do it...
--- try all cases and subtitute
-def solution:= findSol(Person ×  Person ×  Person):=testpermutation.find(λ p, solve p.fst p.snd p.snd)
+--def solvev : Person  →  Person → Person  → Prop | A |  B|  C => (isKnight A ∧ statementA A) ∧ (isKnight B ∧ statmentB B) ∧ (isKnight C ∧ statmentC C)
+--def solvevmod (A B C : Person):  Prop := (isKnight A ∧ statementA A) ∧ (isKnight B ∧ statmentB B) ∧ (isKnight C ∧ statmentC C)
+--def tester : List (Person  × Person ×  Person):=[(knight, knave, normal),(knight, normal, knave),(knave, normal, knight),(normal,knight,knave),(normal,knave,knight),(knight,knight,knight),(knave,knave,knave),(normal,normal,normal)]
+--
+--#check List.permutations [normal,knave,knight]
+---- not really showing the solution or reasoning, relying on lean to do it...
+---- try all cases and subtitute
+--def solution:= findSol(Person ×  Person ×  Person):=testpermutation.find(λ p, solve p.fst p.snd p.snd)

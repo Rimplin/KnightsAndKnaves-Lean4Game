@@ -23,7 +23,8 @@ TheoremDoc Knight_NotKnave as "Knight_NotKnave" in "Knights and Knaves"
 Statement Knight_NotKnave 
   --sets
   {A : Inhabitant}
-  {Knight : Set Inhabitant} {Knave : Set Inhabitant}
+  {inst : DecidableEq Inhabitant}
+  {Knight : Finset Inhabitant} {Knave : Finset Inhabitant}
 {h : Knight ∩ Knave = ∅ } (h' : A ∈ Knight)
   : A ∉ Knave := by
 

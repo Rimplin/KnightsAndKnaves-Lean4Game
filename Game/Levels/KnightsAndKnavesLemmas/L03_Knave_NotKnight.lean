@@ -13,7 +13,8 @@ Introduction
 Statement Knave_NotKnight
   --sets
   -- make them required arguments then make variables above it so user only puts h'
-  {Knight : Set K} {Knave : Set K}
+  {inst : DecidableEq K}
+  {Knight : Finset K} {Knave : Finset K}
 (h : Knight ∩ Knave = ∅ )
 --(h1 : Xor' (A ∈ Knight) (A ∈ Knave) )
 (h' : A ∈ Knave)

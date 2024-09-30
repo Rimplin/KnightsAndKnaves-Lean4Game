@@ -17,7 +17,8 @@ Merely uttering this statement is a contradiction. This is equivalent to the lia
 #check not_iff_self
 Statement IamKnave
   --sets
-  {Knight : Set Inhabitant} {Knave : Set Inhabitant}
+  {inst : DecidableEq Inhabitant}
+  {Knight : Finset Inhabitant} {Knave : Finset Inhabitant}
 {h : Knight ∩ Knave = ∅ }
 {h1 : A ∈ Knight ∨ A ∈ Knave }
 {stA : A ∈ Knight  ↔ (A ∈ Knave) }

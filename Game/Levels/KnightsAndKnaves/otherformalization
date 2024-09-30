@@ -4,3 +4,7 @@ not do any weird things behind the scenes, show the logical and set theoretic ex
 using inductive types or sum types:
 big disadvantage: goes against all the previous build up... remember that the game started with knights and knaves having set theoretic and logic formalization then backtracking...
 - advantage: maybe as an interesting side project formalization
+
+inductive Xor'' (P Q : Prop) : Prop
+| introL (p : P) (np : ¬Q) 
+| introR (q : Q) (nq : ¬P) 

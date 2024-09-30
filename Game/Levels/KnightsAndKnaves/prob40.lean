@@ -8,8 +8,8 @@ example
 --  (AneB : A ≠ B)
 --  (BneC : B ≠ C)
 --  (AneC : A ≠ C)
-  (Knight : Set K ) (Knave : Set K)
-  {Normal : Set K}
+  (Knight : Finset K ) (Knave : Finset K)
+  {Normal : Finset K}
 --{hK : Finset Knight}
 --{hKn : Finset Knave}
 --{hN : Finset Normal}
