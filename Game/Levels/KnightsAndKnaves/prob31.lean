@@ -4,8 +4,9 @@ import Game.Metadata
 inductive Solution (Knight : Finset Inhabitant) (Knave : Finset Inhabitant)
 | submit (h : A ∈ Knave ∧ B ∈ Knight ∧ C ∈ Knave) : Solution (Knight) (Knave)
 -- i could obfuscate this by making a type that when given the correct argument solves the exercise.
+
+
 example
-  --sets
   {inst : DecidableEq Inhabitant}
   {Knight : Finset Inhabitant} {Knave : Finset Inhabitant}
   {all : ∀(x : Inhabitant), x = A ∨ x = B ∨ x = C}
@@ -24,11 +25,15 @@ example
 
   {
     -- this is similar to i am a knave
-    have AKnave : A ∈ Knave := by 
+    have AKnave : A ∈ Knave := by {
+      #check iff_iff_implies_and_implies
+      have := (iff_iff_implies_and_implies _ _).mp stA
       by_contra AKnight
       rw [notinright_inleftIff h1 h] at AKnight
       have AKnave := stA.mp AKnight
-      exact disjoint h AKnight AKnave.left 
+      exact IamKnave h h1 (by simp[AKnight,AKnave.left] )
+      --exact disjoint h AKnight AKnave.left 
+    }
 
     have BKnight : B ∈ Knight := by {
       by_contra BKnave
@@ -71,27 +76,46 @@ example
       have BKnight:= stB.mpr (by right; right; assumption)
       exact disjoint h BKnight BKnave  
     }
+
     have CKnave : C ∈ Knave := by {
       have OneKnight := stB.mp BKnight
       by_contra CKnight 
       #check notright_left
       have CKnight := notright_left h3 CKnight
+      -- now theorem
+      #check full_singleton
       cases OneKnight 
-      · rw [h_1] at BKnight
-        have := Finset.mem_singleton.mp BKnight
-        symm at this
-        contradiction
-      · cases h_1 
-        · rw [h_2] at CKnight
-          have := Finset.mem_singleton.mp CKnight
-          symm at this
-          contradiction
-        · rw [h_2] at BKnight
-          have := Finset.mem_singleton.mp BKnight
-          -- make a full version but for this, i can turn Knight={C} into card one and use full
-          #check full
-          contradiction
+      · 
+        #check Finset.singleton_subset_iff
+        #check Finset.subset_of_eq
+        have AKnight := mem_eq_singleton h_1
+        exact disjoint h AKnight AKnave
+        
+        --rw [Finset.singleton_subset_iff] at h_1
+      · cases h_1
+        · 
+          -- teach this
+          exact full_singleton h_2 CKnight (by symm ;exact BneC)
+        · exact full_singleton h_2 BKnight BneC
+
+      --cases OneKnight 
+      --· rw [h_1] at BKnight
+      --  have := Finset.mem_singleton.mp BKnight
+      --  symm at this
+      --  contradiction
+      --· cases h_1 
+      --  · rw [h_2] at CKnight
+      --    have := Finset.mem_singleton.mp CKnight
+      --    symm at this
+      --    contradiction
+      --  · rw [h_2] at BKnight
+      --    have := Finset.mem_singleton.mp BKnight
+      --    -- make a full version but for this, i can turn Knight={C} into card one and use full
+      --    #check full
+      --    contradiction
     }
+    #check Finset.mem_singleton
+
     -- now submit
     sorry
       --contrapose this

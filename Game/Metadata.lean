@@ -1,6 +1,7 @@
 import GameServer.Commands
 import Game.LevelLemmas.Logical
 import Game.LevelLemmas.KnightsAndKnaves
+import Game.LevelLemmas.settheory
 --import Mathlib.Tactic
 --import Mathlib.Util.Delaborators
 --import Mathlib

@@ -600,18 +600,11 @@ theorem NotKnightKnave_Normal
   --  · contradiction
   --  · assumption
 
-theorem card_eq {Normal : (Finset K)} (h : Normal.card =1) (ANormal : A ∈ Normal) ( BNormal : B ∈ Normal) : A=B := by 
-  have := Nat.le_of_eq h
-  rw [Finset.card_le_one_iff] at this
-  exact this ANormal BNormal
 
-theorem full  
-{S : Finset K} 
-{B : K}
-(AinS: A ∈ S)
-(One : S.card =1)
-(AneB : A ≠ B)
-: B ∉ S := by {
-  by_contra BinS
-  exact AneB (card_eq One AinS BinS)
-}
+
+
+
+
+
+
+
