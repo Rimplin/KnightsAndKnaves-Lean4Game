@@ -21,8 +21,6 @@ https://leanprover-community.github.io/mathlib4_docs/Mathlib/Data/Finset/Basic.h
 mathlib4/Mathlib/Data/Finset/Basic.lean at c3c78bbdb01c312bd5143e44a38e6cbc8deb4b90 · leanprover-community/mathlib4 · GitHub
 https://github.com/leanprover-community/mathlib4/blob/c3c78bbdb01c312bd5143e44a38e6cbc8deb4b90/Mathlib/Data/Finset/Basic.lean#L166-L167
 
-New Tab
-about:newtab
 -/
 
 -- two approaches:
@@ -151,10 +149,8 @@ example
   #check NotKnightNormal_Knave
   have AKnave : A ∈ Knave := by
   {
-    exact NotKnightNormal_Knave  h1 AnKnight AnNormal
-    --cases AKnaveNormal
-    --assumption
-    --contradiction
+    simp [AnKnight,AnNormal] at h1
+    assumption
 
   }
   #check Function.mt
@@ -165,7 +161,7 @@ example
 1. theorem full.{u_1} : ∀ {K : Type u_1} {A : K} {S : Finset K} (B : K), A ≠ B → S.card = 1 → A ∈ S → B ∉ S :=
    fun {K} {A} {S} B AneB One AinS BinS => AneB (card_eq One AinS BinS)
   -/
-  have BnKnave := full B AneB OneKnave AKnave
+  have BnKnave := full AKnave OneKnave AneB
 
   --have := notleft_right h2 BnKnight 
   --have BNormal := notleft_right this BnKnave   
@@ -174,11 +170,12 @@ example
 
   -- now C is a knight by a similar reasoning... it is the only option left...
   -- A Knave , B Normal
-  have CnKnave := full C AneC OneKnave AKnave
-  have CnNormal := full C BneC OneNormal BNormal
+  have CnKnave := full AKnave OneKnave  AneC
+  have CnNormal := full  BNormal  OneNormal BneC
   #check NotKnaveNormal_Knight
   #check NotKnave_KnightNormal
-  have := NotKnave_KnightNormal hKKn hKN hKnN  h3 CnKnave
+ -- have := NotKnave_KnightNormal hKKn hKN hKnN  h3 CnKnave
+
   have CKnight := NotKnaveNormal_Knight h3 CnKnave CnNormal
   constructor
   · assumption
@@ -205,6 +202,7 @@ theorem memToFinset2 {Knight : Set K }
 #check Finset.toSet -- natural way
 #check Set.toFinset -- needs fintype instance
 #check Fintype
+
 example  {Knight : Set K } 
 {finKnight : Fintype Knight} 
 --{hK : Finset Knight} 
@@ -218,12 +216,18 @@ example  {Knight : Set K }
 variable (K : Type)
 #check @Set.univ K
 #check Set.mem_univ
-example (A B C: K) : @Set.univ K = {A,B,C} := by
-  apply Set.ext 
-  intro x
-  constructor
-  sorry
-  sorry
+example (A B C: K) ( all : ∀(x : K), x = A ∨ x = B ∨ x = C) : @Set.univ K = {A,B,C} := by
+  
+ -- unfold Set.univ
+
+  exact (Set.eq_univ_of_univ_subset fun ⦃a⦄ a_1 => all a).symm
+
+  --apply Set.ext 
+  --intro x
+  --constructor
+  --sorry
+  --sorry
+
   --· intro xUniv
   --  by_contra
   --· exact fun a => trivial
@@ -251,9 +255,6 @@ def statmentB: Person  → Prop | p => match p with | knight => statementA knigh
 def statmentC: Person  → Prop | p => match p with | knight => ¬ (isNormal knight ) | knave => ¬ (isNormal knave) | normal => true
 
 -- not clear from statementA what the actual statement of A is...
-/-
-example .... := by ...
--/ 
 example  (A B C : Person) (hA : A = Knight) (hB : B = Knight)  : 2=2 := by 
   #check statementA 
   --#print statementA

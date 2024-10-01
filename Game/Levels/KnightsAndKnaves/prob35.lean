@@ -18,22 +18,31 @@ import Game.Metadata
 
 
 example
-  --sets
-  {Knight : Set Inhabitant} {Knave : Set Inhabitant}
+  {inst : DecidableEq Inhabitant}
+  {Knight : Finset Inhabitant} {Knave : Finset Inhabitant}
 {h : Knight ∩ Knave = ∅ }
-{h1 : A ∈ Knight ∨ A ∈ Knave }
-{h2: B ∈ Knight ∨ B ∈ Knave }
-{h3: C ∈ Knight ∨ C ∈ Knave }
+{Or : ∀(x : Inhabitant), x ∈ Knight ∨ x ∈ Knave}
 {stA : A ∈ Knight  ↔ (B ∈ Knight ∧ C ∈ Knight ∨ B ∈ Knave ∧ C ∈ Knave) }
 {stAn : A ∈ Knave ↔ ¬ (B ∈ Knight ∧ C ∈ Knight ∨ B ∈ Knave ∧ B ∈ Knave) }
--- this type doesn't work, it can't work, find a way to formalize this
+-- this type doesn't work, it can't work, find a way to modify the problem
   : A ∈ Knight ∧ B ∈ Knight ∨ A ∈ Knave ∧ B ∈ Knave := by
 
   {
-   cases h1
-   · have BCsametype := stA.mp h_1
-     sorry
-   · sorry
+    rcases (Or A) with AKnight|AKnave
+    · have BCsame := stA.mp AKnight
+      rcases (Or C) with CKnight|CKnave 
+      · have CnKnave := inleft_notinright h CKnight 
+      -- A and B are same type
+        simp [CKnight,CnKnave] at BCsame
+        left
+        constructor
+        assumption
+        assumption
+
+
+      · -- A and B are of different type
+        sorry
+    · sorry
   }
 
 

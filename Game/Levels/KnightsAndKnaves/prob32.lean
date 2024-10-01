@@ -11,6 +11,8 @@ example
 {h3: C ∈ Knight ∨ C ∈ Knave }
 {stA : A ∈ Knight  ↔ (A ∈ Knave ∧ B ∈ Knave ∧ C ∈ Knave) }
 {stAn : A ∈ Knave ↔ ¬ (A ∈ Knave ∧ B ∈ Knave ∧ C ∈ Knave) }
+-- exactly one of us is a knave
+-- this can be represented as Knave = {A} ∨ Knave = {B} ∨ Knave = {C}
 {stB: B ∈ Knight ↔ (A ∈ Knave ∧ B ∈ Knight ∧ C ∈ Knight ∨ A ∈ Knight ∧ B ∈ Knave ∧ C ∈ Knight ∨ A ∈ Knight ∧ B ∈ Knight ∧ C ∈ Knave) }
 {stBn: B ∈ Knave ↔ ¬ (A ∈ Knave ∧ B ∈ Knight ∧ C ∈ Knight ∨ A ∈ Knight ∧ B ∈ Knave ∧ C ∈ Knight ∨ A ∈ Knight ∧ B ∈ Knight ∧ C ∈ Knave) }
   : A ∈ Knave ∧ C ∈ Knight := by
@@ -60,6 +62,48 @@ example
 
 
 
+example
+  --sets
+  {inst : DecidableEq Inhabitant}
+  {Knight : Finset Inhabitant} {Knave : Finset Inhabitant}
+{h : Knight ∩ Knave = ∅ }
+{h1 : A ∈ Knight ∨ A ∈ Knave }
+{h2: B ∈ Knight ∨ B ∈ Knave }
+{h3: C ∈ Knight ∨ C ∈ Knave }
+{AneB : A≠ B}
+{BneC : B≠ C}
+{AneC : A≠ C}
+-- Knave = {A,B,C} ???
+-- similar to previous problem
+{stA : A ∈ Knight  ↔ (A ∈ Knave ∧ B ∈ Knave ∧ C ∈ Knave) }
+{stAn : A ∈ Knave ↔ ¬ (A ∈ Knave ∧ B ∈ Knave ∧ C ∈ Knave) }
+{stB : B ∈ Knight ↔ Knave = {A} ∨ Knave = {B} ∨ Knave = {C}}
+  : A ∈ Knave ∧ C ∈ Knight := by
+    have AKnave : A ∈ Knave := by 
+      by_contra AKnight
+      have AKnight :=notright_left h1 AKnight
+      have := stA.mp AKnight
+      exact disjoint h AKnight this.left
+
+    constructor
+    assumption
+    rcases h2 with BKnight|BKnave
+    · have knavesingle := stB.mp BKnight
+      cases knavesingle
+      · by_contra CKnave
+        have CKnave:= notleft_right h3 CKnave
+        #check full_singleton 
+        exact full_singleton h_1 CKnave AneC.symm
+      · cases h_1
+        · have := singleton_not_in h_2 BneC.symm
+          exact notright_left h3 this
+        · #check singleton_not_in
+          have := singleton_not_in h_2 AneC
+          contradiction
+    · by_contra CnKnight
+      have CKnave := notleft_right h3 CnKnight
+      have AKnight := stA.mpr (by constructor ; assumption ; constructor ; assumption ; assumption)
+      exact disjoint h AKnight AKnave
 
 Conclusion 
 "

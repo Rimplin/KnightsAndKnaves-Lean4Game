@@ -77,7 +77,6 @@ example
           constructor
             
           · 
-          -- if you are in the one on the left then you are not in the one on the right, i could have used here Knight_NotKnave or whatever other thing_notthing. don't include the semantics of the game in the theorems, they are more general. the semantics of the game are already in the assumptions that are to be explained
             have := inright_notinleft hKnN ANormal
             assumption
           · assumption

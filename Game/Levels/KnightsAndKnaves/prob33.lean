@@ -19,6 +19,7 @@ example
 {h : Knight ∩ Knave = ∅ }
 {h1 : A ∈ Knight ∨ A ∈ Knave }
 {h2: B ∈ Knight ∨ B ∈ Knave }
+-- like i am a knave
 {stA : A ∈ Knight  ↔ (A ∈ Knave  ∧  B ∉ Knave) }
 {stAn : A ∈ Knave ↔ ¬ (A ∈ Knave  ∧  B ∉ Knave) }
   :  A ∈ Knave ∧ B ∈ Knave:= by
