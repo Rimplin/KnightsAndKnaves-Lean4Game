@@ -1,11 +1,11 @@
-theorem contrapositive (forward: P → Q) :  ¬Q → ¬P := by
-
-  {
-
-    intro nq
-    intro p
-    exact nq (forward p)
-  }
+--theorem contrapositive (forward: P → Q) :  ¬Q → ¬P := by
+--
+--  {
+--
+--    intro nq
+--    intro p
+--    exact nq (forward p)
+--  }
 
 
 

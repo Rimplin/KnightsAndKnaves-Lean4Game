@@ -31,6 +31,19 @@ theorem full_singleton
   --exact AneB (card_eq One AinS BinS)
 }
 
+theorem singleton_not_in  
+{S : Finset K} 
+{B : K}
+(singleton : S={B})
+(AneB : A ≠ B)
+: A ∉ S := by {
+  by_contra AinS
+  exact full_singleton singleton AinS AneB
+  --exact AneB (card_eq (by rw [Finset.card_eq_one] ; use B) AinS (by rw [singleton] ; exact Finset.mem_singleton.mpr rfl))
+
+  --by_contra BinS
+  --exact AneB (card_eq One AinS BinS)
+}
 
 
 theorem mem_eq_singleton {S : Finset K} {A : K} (h : S={A}) : A ∈ S := by 
