@@ -1,6 +1,6 @@
 import Game.Metadata
 World "KnightsAndKnaves" 
-Level 2
+Level 6
 
 Title "" 
 

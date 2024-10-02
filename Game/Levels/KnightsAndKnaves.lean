@@ -1,6 +1,9 @@
 import Game.Levels.KnightsAndKnaves.L01_IamKnave
-import Game.Levels.KnightsAndKnaves.L02_Introduction
+import Game.Levels.KnightsAndKnaves.prob33
 import Game.Levels.KnightsAndKnaves.L03_Anoter
+import Game.Levels.KnightsAndKnaves.prob31
+import Game.Levels.KnightsAndKnaves.prob32
+import Game.Levels.KnightsAndKnaves.L02_Introduction
 World "KnightsAndKnaves"
 Title "Knights And Knaves"
 Introduction 

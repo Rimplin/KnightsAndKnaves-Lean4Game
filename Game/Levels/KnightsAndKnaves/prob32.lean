@@ -1,8 +1,22 @@
 import Game.Metadata
 
 
-example
-  --sets
+World "KnightsAndKnaves" 
+Level 5
+
+Title "" 
+
+Introduction 
+"
+Suppose instead, A and B say the following: 
+A: All of us are knaves. 
+B: Exactly one of us is a knave. 
+Can it be determined what B is? Can it be determined what 
+C is?
+"
+
+
+Statement
   {inst : DecidableEq Inhabitant}
   {Knight : Finset Inhabitant} {Knave : Finset Inhabitant}
 {h : Knight ∩ Knave = ∅ }
@@ -108,12 +122,4 @@ example
 Conclusion 
 "
 "
-
-/- Use these commands to add items to the game's inventory. -/
-
-
-
--- NewTactic rw rfl
--- NewTheorem Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq
 

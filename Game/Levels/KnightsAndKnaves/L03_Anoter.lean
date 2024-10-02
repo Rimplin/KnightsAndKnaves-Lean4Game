@@ -8,7 +8,10 @@ Level 3
 
 Title "lev 2"
 
-Introduction "Hi"
+Introduction "In this problem, there are only two people, A and B, each of 
+whom is either a knight or a knave. A makes the following 
+statement: 'At least one of us is a knave.' 
+What are A and B? "
 
 open Lean Parser Elab Tactic
 elab "show_goal" t:tactic : tactic => do

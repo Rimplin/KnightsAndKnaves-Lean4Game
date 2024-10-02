@@ -1,5 +1,23 @@
 import Game.Metadata
 
+
+World "KnightsAndKnaves" 
+Level 2
+
+Title "" 
+
+Introduction 
+"
+Suppose A says, 'I am a knave, but B is not.' 
+What are A and B? 
+"
+
+
+
+
+
+
+
 /-
 def Knight (A: Prop) :Prop:=A 
 def Knave (A:Prop):Prop:= ¬A 
@@ -12,7 +30,7 @@ Knave (A : Prop) : Prop
 A_stat (A_knave B_knave : Prop) : Prop
 -/ 
 
-example
+Statement
   --sets
   {inst : DecidableEq Inhabitant}
   {Knight : Finset Inhabitant} {Knave : Finset Inhabitant}

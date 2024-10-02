@@ -600,11 +600,3 @@ theorem NotKnightKnave_Normal
   --  · contradiction
   --  · assumption
 
-
-
-
-
-
-
-
-

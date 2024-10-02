@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Tue Oct  1 14:17:34 2024\n"
+"POT-Creation-Date: Wed Oct  2 14:07:28 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -1434,6 +1434,66 @@ msgstr ""
 msgid ""
 msgstr ""
 
+#: Game.Levels.KnightsAndKnaves.prob33
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.prob33
+msgid "Suppose A says, 'I am a knave, but B is not.' \n"
+"What are A and B?"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.prob33
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.L03_Anoter
+msgid "lev 2"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.L03_Anoter
+msgid "In this problem, there are only two people, A and B, each of \n"
+"whom is either a knight or a knave. A makes the following \n"
+"statement: 'At least one of us is a knave.' \n"
+"What are A and B?"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.L03_Anoter
+msgid "."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.prob31
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.prob31
+msgid "Again we have three people, A, B, C, each of whom is either \n"
+"a knight or a knave. A and B make the following statements: \n"
+"A: All of us are knaves. \n"
+"B: Exactly one of us is a knight. \n"
+"What are A, B, C?"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.prob31
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.prob32
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.prob32
+msgid "Suppose instead, A and B say the following: \n"
+"A: All of us are knaves. \n"
+"B: Exactly one of us is a knave. \n"
+"Can it be determined what B is? Can it be determined what \n"
+"C is?"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.prob32
+msgid ""
+msgstr ""
+
 #: Game.Levels.KnightsAndKnaves.L02_Introduction
 msgid ""
 msgstr ""
@@ -1450,18 +1510,6 @@ msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.L02_Introduction
 msgid ""
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves.L03_Anoter
-msgid "lev 2"
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves.L03_Anoter
-msgid "Hi"
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves.L03_Anoter
-msgid "."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves

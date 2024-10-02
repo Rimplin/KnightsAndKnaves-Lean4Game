@@ -30,7 +30,7 @@ theorem full_singleton
   --by_contra BinS
   --exact AneB (card_eq One AinS BinS)
 }
-
+#check Finset.mem_singleton
 theorem singleton_not_in  
 {S : Finset K} 
 {B : K}
@@ -84,11 +84,43 @@ theorem is_singleton {A : K} {S : Finset K}
 
   --rw [(Finset.nontrivial_iff_ne_singleton).symm] at ne_singleton
   
-theorem card_eq_one_iff_singletons {A B C : K} {S : Finset K} {h : S.Nonempty}
+#check Insert
+#check Set.univ
+theorem forward {A B C : K} (all : ∀ (x : K), x = A ∨ x = B ∨ x = C) : (Set.univ)  = ({A,B,C} : Set K) := by 
+  #check Set.univ_subset_iff
+  #check Set.eq_univ_of_univ_subset
+  apply Set.eq_of_subset_of_subset
+  · intro x
+    intro xU
+    exact all x
+
+  -----
+   --- exact fun ⦃a⦄ a_1 => all a
+
+  · 
+    intro x
+    intro xABC
+    exact trivial
+
+  -------
+    --- exact fun ⦃a⦄ a => trivial
+theorem backward  {A B C : K} (h : (Set.univ)  = ({A,B,C} : Set K) ):  ∀ (x : K), x = A ∨ x = B ∨ x = C:= by 
+  intro x
+  have : x ∈ Set.univ := by exact trivial
+  rw [h] at this
+  exact this
+
+theorem univ_or  {A B C : K} :  (Set.univ)  = ({A,B,C} : Set K)  ↔  ∀ (x : K), x = A ∨ x = B ∨ x = C:= by 
+  constructor
+  exact fun a x => backward a x
+  #check forward
+  exact forward
+
+theorem card_eq_one_iff_singletons {A B C : K} {S : Finset K} (h : S.Nonempty)
 (all : ∀(x : K), x = A ∨ x = B ∨ x = C)
-(AneB : A ≠ B)
-(BneC : B ≠ C)
-(AneC : A ≠ C)
+--(AneB : A ≠ B)
+--(BneC : B ≠ C)
+--(AneC : A ≠ C)
 : S.card =1 ↔  S = {A} ∨ S = {B} ∨ S = {C}
   := by 
   constructor
@@ -122,4 +154,15 @@ theorem card_eq_one_iff_singletons {A B C : K} {S : Finset K} {h : S.Nonempty}
     · cases h_1
       · exact eq_singleton_card_one h_2
       · exact eq_singleton_card_one h_2
+
+
+theorem card_eq_one_iff_singletons_univ {A B C : K} {S : Finset K} {h : S.Nonempty}
+(U : (Set.univ)  = ({A,B,C} : Set K))
+--(all : ∀(x : K), x = A ∨ x = B ∨ x = C)
+--(AneB : A ≠ B)
+--(BneC : B ≠ C)
+--(AneC : A ≠ C)
+: S.card =1 ↔  S = {A} ∨ S = {B} ∨ S = {C} := by  
+  have all := univ_or.mp U
+  exact card_eq_one_iff_singletons h all 
 
