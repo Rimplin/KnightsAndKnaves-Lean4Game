@@ -23,7 +23,7 @@ Statement (h : x + 2 = 4)
   {
     norm_num at h 
     Hint "This should look familiar to a previous exercise. Now `h` looks exactly like the goal. Let Lean know!!"
-    Hint (hidden:=true) "Remember the `exact` tactic, try `exact h`."
+    Hint (hidden:=true) "Remember the `exact` tactic? Try `exact h`."
     exact h
   }
 
@@ -35,9 +35,5 @@ Conclusion
 "
 "
 
-/- Use these commands to add items to the game's inventory. -/
-
 NewTactic norm_num
--- NewLemma Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq
 

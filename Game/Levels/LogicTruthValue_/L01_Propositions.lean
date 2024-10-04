@@ -10,6 +10,7 @@ Introduction
 "
 <img src=\"https://pixabay.com/vectors/cat-kitty-child-animal-cute-baby-8943928\"/>
 
+-- the user already knows what propositions are...............................
 'The Lean theorem prover had a 4.70 release' is a true statement. After denoting this statement with `P`, we can say that `P` is `True` or `P = True`.
 
 'World War 2 ended in 1950' is a false statement. It ended in 1945. After denoting this statement with `Q`, we can say that `Q` is `False` or `Q = False`.
@@ -66,12 +67,6 @@ Conclusion "<img src=\"https://pixabay.com/vectors/cat-kitty-child-animal-cute-b
 <img src=\"data/g/JadAbouHawili/testing-leangame/Truth-Table-And.png\"/>
 "
 
-
-/- Use these commands to add items to the game's inventory. -/
-
---NewTactic 
--- NewTheorem Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq
 
 variable { p q r : Prop}
 example (p q r : Prop) (hp : p) : p ∨ q ∨ r :=

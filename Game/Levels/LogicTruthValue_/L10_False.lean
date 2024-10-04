@@ -155,4 +155,4 @@ Note that we have not obtained a term of type `False` in our proof. We have only
 --NewTactic 
 -- NewTheorem Nat.add_comm Nat.add_assoc
 -- NewDefinition Nat Add Eq
-NewTheorem not_true_eq_false and_false
+NewTheorem not_true_eq_false false_and and_false
