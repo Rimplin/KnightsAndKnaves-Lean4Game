@@ -9,6 +9,8 @@ Title ""
 
 Introduction 
 "Note that this level is identical to the previous one except the fact that the set `left` is now called `Knight` and the set `right` is now called `Knave`. This level is to emphasize this pattern of reasoning that you will need to solve knights and knaves puzzles.
+
+If you are a knight, then you are definitely not a knave. Recall that knights always tell the truth and knaves always lie.
 "
 
 -- two versions for proving the lemmas... i guess i can present the proof in the second version as its own level before knights and knaves approach 2
@@ -19,8 +21,8 @@ Introduction
 --TheoremDoc notKnave_Knight as "notKnave_Knight" in "Logic"
 --Statement notKnave_Knight 
 
-TheoremDoc Knight_NotKnave as "Knight_NotKnave" in "Knights and Knaves"
-Statement Knight_NotKnave 
+--TheoremDoc Knight_NotKnave as "Knight_NotKnave" in "Knights and Knaves"
+Statement  
   --sets
   {A : Inhabitant}
   {inst : DecidableEq Inhabitant}
@@ -46,4 +48,3 @@ Conclusion
 "
 
 NewTactic by_contra
-NewTheorem Knight_NotKnave

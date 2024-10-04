@@ -1,7 +1,4 @@
--- Knights And Knaves
-
 import Mathlib.Data.Set.Basic
---import Mathlib
 import Mathlib.Data.Fintype.Card
 import Mathlib.Data.Multiset.Basic
 --- helper
@@ -37,7 +34,6 @@ theorem notright_left {P Q : Prop} (Or : P ∨ Q)(notleft : ¬Q) : P := by
 
 
 -- notice that this is a direct adaptation of notleft_right, this theorem needs to be made clear however to make sure the user knows.
--- note : ∉ is the same as ¬ (∈) 
 
 --NotKnight_Knave.{u_1} {K : Type u_1} {A : K} {Knight Knave : Set K} (h : Knight ∩ Knave = ∅)
 --  (h1 : A ∈ Knight ∨ A ∈ Knave) (h' : A ∉ Knight) : A ∈ Knave
@@ -293,9 +289,11 @@ theorem IamKnave
 --: A ∈ Knave  := by
 --
 --  {
---    cases h1 
---    contradiction
+--    simp [h'] at h1
 --    assumption
+----    cases h1 
+----    contradiction
+----    assumption
 --  }
 
 
@@ -321,7 +319,6 @@ theorem XorToOr {inst : DecidableEq Inhabitant}{Knight : Finset Inhabitant } {Kn
       assumption
       exact inright_notinleft h h_1
 
--- from implication to if and only if
 
 theorem IfToIff (h : p → q) (h' : ¬p → ¬q) : p ↔ q := by 
   constructor
@@ -337,13 +334,6 @@ theorem IffToIf (h : p ↔ q) : (p → q) ∧ (¬p → ¬q) := by
 
 
 --- Knights and Knaves and Normal
---theorem Knight_NotKnaveNotNormalcont
---{Knight : Set K} {Knave : Set K}
---{Normal : Set K} 
---(h : Knight ∩ Normal = ∅ )
---(hk : A ∈ Knight)
---(hkn : A ∈ Normal)  : False := by 
---  exact disjoint h hk hkn 
 
 -- Knight
 -- Knave
@@ -351,48 +341,44 @@ theorem IffToIf (h : p ↔ q) : (p → q) ∧ (¬p → ¬q) := by
 -- maybe should do Knight_NotKnave, Knight_NotNormal etc... and not this because this would require to input multiple arguments for the disjoint sets and also might have superflous information
 -- enumerate all of them then put all the iff versions at the end after the normal ones, because the iff versions can be proven using the normal ones.
 
-
-theorem NotNormal_KnightKnave
-{inst : DecidableEq K}
-{Knight : Finset K} 
-{Knave : Finset K} 
-{Normal : Finset K} 
-(hKN : Knight ∩ Normal = ∅ )
-(h' : A ∈ Knight ∨ A ∈ Knave ∨ A ∈ Normal)
-(hnN :A ∉ Normal): A ∈ Knight ∨ A ∈ Knave:= by
-  rw [←or_assoc] at h'
-  exact notright_left h' hnN
-  
-  
-
 -- needs Knight_NotKnave, Knight_NotNormal
 
-theorem Knight_NotKnaveNotNormal
-{inst : DecidableEq K}
-{Knight : Finset K} {Knave : Finset K}
-{Normal : Finset K} 
-{hKKn : Knight ∩ Knave = ∅ }
-{hKN : Knight ∩ Normal = ∅ }
-{hKnN : Knave ∩ Normal = ∅ }
-(hk : A ∈ Knight)
-: A ∉ Knave ∧ A ∉ Normal := by 
-  constructor
-  exact inleft_notinright hKKn hk
-  exact inleft_notinright hKN hk
+#check inleft_notinright
+#check inleft_notinrightIff
 
-theorem NotKnave_KnightNormal  
-{Knight : Finset K} {Knave : Finset K}
-{Normal : Finset K} 
-(h' : A ∈ Knight ∨ A ∈ Knave ∨ A ∈ Normal)
-(h : A ∉ Knave) : A ∈ Knight ∨ A ∈ Normal := by {
-  cases h'
-  · left
-    assumption
-  · cases h_1
-    · contradiction
-    · right
-      assumption
-}
+-- not in stuff can be replaced with the user doing simp on the or expression
+#check notinright_inleft
+
+#check notright_left
+--theorem Knight_NotKnaveNotNormal
+--{inst : DecidableEq K}
+--{Knight : Finset K} {Knave : Finset K}
+--{Normal : Finset K} 
+--{hKKn : Knight ∩ Knave = ∅ }
+--{hKN : Knight ∩ Normal = ∅ }
+--{hKnN : Knave ∩ Normal = ∅ }
+--(hk : A ∈ Knight)
+--: A ∉ Knave ∧ A ∉ Normal := by 
+--  constructor
+--  exact inleft_notinright hKKn hk
+--  exact inleft_notinright hKN hk
+
+--theorem NotKnave_KnightNormal  
+--{Knight : Finset K} {Knave : Finset K}
+--{Normal : Finset K} 
+--(h' : A ∈ Knight ∨ A ∈ Knave ∨ A ∈ Normal)
+--(h : A ∉ Knave) : A ∈ Knight ∨ A ∈ Normal := by {
+--  simp [h] at h'
+--  assumption
+--
+--  --cases h'
+--  --· left
+--  --  assumption
+--  --· cases h_1
+--  --  · contradiction
+--  --  · right
+--  --    assumption
+--}
 
 
 
@@ -423,10 +409,6 @@ theorem NotKnave_KnightNormal
 
 --@[simp]
 --theorem NotKnave_KnightIff
---
----- notice that if B not in Knave then we don't know if B is in knight. But we want this because on our island, those are the only two options and if you arent one of those options then you are whats left...
---
----- you have two options, either being a knight or a knave. if you aren't a knave then the only option left is a knight. but the formalization in lean allows for B not to be a knight either, maybe its something else. The way to resolve this is to assert that B is either a knight ∨ knave.
 --  {inst : DecidableEq K}
 --  {Knight : Finset K} {Knave : Finset K}
 --(h : Knight ∩ Knave = ∅ )
@@ -480,11 +462,6 @@ theorem NotKnave_KnightNormal
 --  --exact inleft_notinright h
 --  --exact notinright_inleft h' 
 
-/-
-instead of lemmas, 
-if A ∉ _ , then use simp on the or expression to make conclusions to make the three disjunct situation easier
-if A ∈ _ then use a theorem. that is fine because the disjoint of two sets is needed and not a disjunct of three things
--/
 --(U : both =left ∪ right)
 example  (left right : Set K) (h : left ∩ right = ∅) (hl : A ∈ left) : A ∉ right := by 
   #check Set.mem_compl
@@ -546,54 +523,55 @@ example  (left right : Set K) (h : left ∩ right = ∅) (hl : A ∈ left) : A �
 --  
 ----  exact Knight_NotNormal hKnN
 
-theorem NotKnightNormal_Knave 
-{Knight : Finset K} {Knave : Finset K}
-{Normal : Finset K} 
-[inst : DecidableEq K]
---(hKN : Knight ∩ Normal = ∅ )
-(Or : A ∈ Knight ∨ A ∈ Knave ∨ A ∈ Normal)
-(h : A ∉ Knight)
-(h' : A ∉ Normal)
-: A ∈ Knave := by 
-  -- use this strategy, teach it to the user. don't do a million theorems.... the theorem option can still be open, notfirst - notsecond - notthird or using the notleftright stuff but would need to do or_assoc stuff.
-  /-
-  looking into the notfirst - notsecond - notthrid option, the or argument would have three disjuncts but the notleftright stuff has two. This could be a source of confusion and tedious application, also beware of lemma bloat
-  -/
-  simp [h,h'] at Or -- i already introduce or_false which is the manual way of doing this in an example for two disjuncts. give a long disjunct and say that using or_false would be teedious, do simp instead...
-  exact Or
-  --cases Or 
-  --· contradiction
-  --· cases h_1 
-  --  · assumption
-  --  · contradiction
+--theorem NotKnightNormal_Knave 
+--{Knight : Finset K} {Knave : Finset K}
+--{Normal : Finset K} 
+--[inst : DecidableEq K]
+----(hKN : Knight ∩ Normal = ∅ )
+--(Or : A ∈ Knight ∨ A ∈ Knave ∨ A ∈ Normal)
+--(h : A ∉ Knight)
+--(h' : A ∉ Normal)
+--: A ∈ Knave := by 
+--  -- use this strategy, teach it to the user. don't do a million theorems.... the theorem option can still be open, notfirst - notsecond - notthird or using the notleftright stuff but would need to do or_assoc stuff.
+--  /-
+--  looking into the notfirst - notsecond - notthrid option, the or argument would have three disjuncts but the notleftright stuff has two. This could be a source of confusion and tedious application, also beware of lemma bloat
+--  -/
+--  simp [h,h'] at Or -- i already introduce or_false which is the manual way of doing this in an example for two disjuncts. give a long disjunct and say that using or_false would be teedious, do simp instead...
+--  exact Or
+--  --cases Or 
+--  --· contradiction
+--  --· cases h_1 
+--  --  · assumption
+--  --  · contradiction
 
-theorem NotKnaveNormal_Knight
-{Knight : Finset K} {Knave : Finset K}
-{Normal : Finset K} 
-[inst : DecidableEq K]
---(hKN : Knight ∩ Normal = ∅ )
-(Or : A ∈ Knight ∨ A ∈ Knave ∨ A ∈ Normal)
-(h : A ∉ Knave)
-(h' : A ∉ Normal) : A ∈ Knight := by 
-  simp [h,h'] at Or
-  assumption
-  --cases Or
-  --· assumption
-  --· cases h_1
-  --  · contradiction
-  --  · contradiction
+--theorem NotKnaveNormal_Knight
+--{Knight : Finset K} {Knave : Finset K}
+--{Normal : Finset K} 
+--[inst : DecidableEq K]
+----(hKN : Knight ∩ Normal = ∅ )
+--(Or : A ∈ Knight ∨ A ∈ Knave ∨ A ∈ Normal)
+--(h : A ∉ Knave)
+--(h' : A ∉ Normal) : A ∈ Knight := by 
+--  simp [h,h'] at Or
+--  assumption
+--  --cases Or
+--  --· assumption
+--  --· cases h_1
+--  --  · contradiction
+--  --  · contradiction
 
-theorem NotKnightKnave_Normal
-{Knight : Finset K} {Knave : Finset K}
-{Normal : Finset K} 
-[inst : DecidableEq K]
---(hKN : Knight ∩ Normal = ∅ )
-(Or : A ∈ Knight ∨ A ∈ Knave ∨ A ∈ Normal)
-(h : A ∉ Knight)
-(h' : A ∉ Knave)
-: A ∈ Normal := by 
-  simp [h,h'] at Or
-  assumption
+--theorem NotKnightKnave_Normal
+--{Knight : Finset K} {Knave : Finset K}
+--{Normal : Finset K} 
+--[inst : DecidableEq K]
+----(hKN : Knight ∩ Normal = ∅ )
+--(Or : A ∈ Knight ∨ A ∈ Knave ∨ A ∈ Normal)
+--(h : A ∉ Knight)
+--(h' : A ∉ Knave)
+--: A ∈ Normal := by 
+--  simp [h,h'] at Or
+--  assumption
+
   --cases Or
   --· contradiction
   --· cases h_1

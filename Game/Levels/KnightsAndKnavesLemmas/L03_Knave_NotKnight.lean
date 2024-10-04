@@ -10,7 +10,7 @@ Introduction
 "
 "
 
-Statement Knave_NotKnight
+Statement 
   --sets
   -- make them required arguments then make variables above it so user only puts h'
   {inst : DecidableEq K}
@@ -45,5 +45,4 @@ Conclusion
 /- Use these commands to add items to the game's inventory. -/
 
 
-NewTheorem Knave_NotKnight
 -- NewTactic rw rfl

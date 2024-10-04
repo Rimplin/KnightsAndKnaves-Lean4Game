@@ -31,7 +31,7 @@ theorem full_singleton
   --exact AneB (card_eq One AinS BinS)
 }
 #check Finset.mem_singleton
-theorem singleton_not_in  
+theorem not_in_of_singleton  
 {S : Finset K} 
 {B : K}
 (singleton : S={B})
@@ -46,7 +46,7 @@ theorem singleton_not_in
 }
 
 
-theorem mem_eq_singleton {S : Finset K} {A : K} (h : S={A}) : A ∈ S := by 
+theorem mem_of_eq_singleton {S : Finset K} {A : K} (h : S={A}) : A ∈ S := by 
   symm at h
   have := Finset.subset_of_eq h
   exact Finset.singleton_subset_iff.mp this
@@ -156,7 +156,7 @@ theorem card_eq_one_iff_singletons {A B C : K} {S : Finset K} (h : S.Nonempty)
       · exact eq_singleton_card_one h_2
 
 
-theorem card_eq_one_iff_singletons_univ {A B C : K} {S : Finset K} {h : S.Nonempty}
+theorem card_eq_one_iff_singletons_univ (A B C : K) {S : Finset K} (h : S.Nonempty)
 (U : (Set.univ)  = ({A,B,C} : Set K))
 --(all : ∀(x : K), x = A ∨ x = B ∨ x = C)
 --(AneB : A ≠ B)
@@ -166,3 +166,41 @@ theorem card_eq_one_iff_singletons_univ {A B C : K} {S : Finset K} {h : S.Nonemp
   have all := univ_or.mp U
   exact card_eq_one_iff_singletons h all 
 
+-- can use to intuitivley explained other things like x ∈ {A} means x=A etc.. start from it and then say more generally ...
+theorem mem_iff_or (x : K) (h : x ∈ ({A,B,C} : Set K)) : x = A ∨ x =B ∨ x = C := by unfold Set at h ; exact h
+
+theorem one_in_of_card_eq_one {A B C : K} {S : Finset K} {nonemp : S.Nonempty}  (U : Set.univ = ({A,B,C} : Set K)) (h : S.card = 1) 
+(AneB : A ≠ B)
+(BneC : B ≠ C)
+(AneC : A ≠ C)
+: A ∈ S ∧ B ∉ S ∧ C ∉ S ∨ A ∉ S ∧ B ∈ S ∧ C ∉ S ∨ A ∉ S ∧ B ∉ S ∧ C ∈ S := by 
+
+  rw [card_eq_one_iff_singletons_univ A B C nonemp U ] at h  
+  cases h
+  · left
+    constructor
+    · exact mem_of_eq_singleton h_1
+      
+    · constructor
+      ·         exact not_in_of_singleton h_1 (AneB.symm) 
+      · exact not_in_of_singleton h_1 (AneC.symm)
+
+  -- similarly
+  · cases h_1
+    · right
+      left 
+      constructor
+      · exact not_in_of_singleton h AneB 
+      · constructor
+        · exact mem_of_eq_singleton h
+        · exact not_in_of_singleton h BneC.symm
+
+    · right
+      right
+      constructor
+      · exact not_in_of_singleton h AneC
+      · constructor
+        · exact not_in_of_singleton h BneC
+        · exact mem_of_eq_singleton h
+
+  

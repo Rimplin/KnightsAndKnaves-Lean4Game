@@ -29,7 +29,7 @@ A statement `P → Q` is false when `P` is true and `Q` false, it's true otherwi
 variable {P Q : Prop}
 /- asdfasdfd asdfsadfdsa here -/
 --TheoremDoc modus_ponens as "modus_ponens" in "logic"
-Statement modus_ponens (p : P) (ptoq: P → Q)
+Statement  (p : P) (ptoq: P → Q)
   : Q := by
 
 

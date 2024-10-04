@@ -121,6 +121,7 @@ example (x y : ℤ) (h1 : x*y + 2*x = 1) (h2 : x = y) : x*y = -2*y + 1 := by
 
 example (x y : ℤ) (h1 : x*y + 2*x = 1) (h2 : x = y) : x*y = -2*y + 1 := by
   linear_combination (norm := ring_nf) -2*h2
+  sorry
   /- Goal: x * y + x * 2 - 1 = 0 -/
 
 example (x y z : ℝ) (ha : x + 2*y - z = 4) (hb : 2*x + y + z = -2)
@@ -139,28 +140,7 @@ axiom hqc : qc = 2*qc
 example (a b : ℚ) (h : ∀ p q : ℚ, p = q) : 3*a + qc = 3*b + 2*qc := by
   linear_combination 3 * h a b + hqc
 
-
-
-
 example {x : ℝ} : (x/2)/2 = x/4 := by ring
-
-
-
--- logic
-example {P Q : Prop} (h1 : P ∨ Q) (h2 : ¬ Q) : P := by
-
-  --cases recursively, rcases
-  rcases h1
-
-  --obtain hP | hQ := h1
-  --· apply hP
-  --· contradiction
-
-
-example (P Q : Prop) : P → (P ∨ ¬ Q) := by
-  intro hP
-  left
-  apply hP
 
 example {x y : ℚ} (hx : x = 2) (hy : y ^ 2 = -7) : x + y ^ 2 = -5 :=
   calc
@@ -168,4 +148,3 @@ example {x y : ℚ} (hx : x = 2) (hy : y ^ 2 = -7) : x + y ^ 2 = -5 :=
     _ = -5 := by linarith [hx]
 
 example {w : ℚ} (h1 : 3 * w + 1 = 4) : w = 1 := by  linarith  
-

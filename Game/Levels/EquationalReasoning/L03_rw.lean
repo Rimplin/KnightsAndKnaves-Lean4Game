@@ -60,4 +60,3 @@ rw [g]
 NewTactic rw 
 -- NewLemma Nat.add_comm Nat.add_assoc
 -- NewDefinition Nat Add Eq
-

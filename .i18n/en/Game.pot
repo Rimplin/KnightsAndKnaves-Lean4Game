@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Wed Oct  2 14:07:28 2024\n"
+"POT-Creation-Date: Fri Oct  4 22:20:53 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -27,9 +27,9 @@ msgid "Unfoldable:\n"
 msgstr ""
 
 #: Game.Doc.doc
-msgid "`rfl` is short for reflexivity, which is the property that for any number `a`, `a = a`.\n"
+msgid "`rfl` is short for reflexivity. In the context of numbers, it is the property that for any number `a`, `a = a`.\n"
 "\n"
-"The `rfl` tactic will close all goals of the form `X=X`, regardless of what `X` is.\n"
+"More generally, the `rfl` tactic will close all goals of the form `X=X`, regardless of what `X` is, `X=Y` where `X` and `Y` are identical. rfl can also prove the equality of two things that are 'equal by definition'.\n"
 "\n"
 "In fact, `rfl` is not a tactic but syntactic sugar for `exact rfl`. `rfl` is of type `a = a` for any `a`.\n"
 "## examples\n"
@@ -78,11 +78,11 @@ msgid "# Truth table\n"
 "Notice that `P ∧ Q` is true when both `P` is true and `Q` is true, being false otherwise."
 msgstr ""
 
-#: Game.Levels.EquationalReasoning.L01_Intro
+#: Game.Levels.EquationalReasoning.L01_rfl
 msgid "A Number Equals Itself"
 msgstr ""
 
-#: Game.Levels.EquationalReasoning.L01_Intro
+#: Game.Levels.EquationalReasoning.L01_rfl
 msgid "In this exercise, we will prove `2 = 2`\n"
 "\n"
 "`rfl` will do the job.\n"
@@ -94,11 +94,11 @@ msgid "In this exercise, we will prove `2 = 2`\n"
 "Moreover, `rfl` can unfold things into their definitions and check if they are equal. In other words, `rfl` can prove the equality of two things that are 'equal by definition'."
 msgstr ""
 
-#: Game.Levels.EquationalReasoning.L02_Introduction
+#: Game.Levels.EquationalReasoning.L02_exact
 msgid "Introd"
 msgstr ""
 
-#: Game.Levels.EquationalReasoning.L02_Introduction
+#: Game.Levels.EquationalReasoning.L02_exact
 msgid "In this level, we have `Objects`, `Assumptions`, and the `Goal`.\n"
 "\n"
 "# Objects\n"
@@ -115,19 +115,19 @@ msgid "In this level, we have `Objects`, `Assumptions`, and the `Goal`.\n"
 "Using `exact h` will do."
 msgstr ""
 
-#: Game.Levels.EquationalReasoning.L02_Introduction
+#: Game.Levels.EquationalReasoning.L02_exact
 msgid ""
 msgstr ""
 
-#: Game.Levels.EquationalReasoning.L02_Introduction
+#: Game.Levels.EquationalReasoning.L02_exact
 msgid ""
 msgstr ""
 
-#: Game.Levels.EquationalReasoning.L03_lvl2
+#: Game.Levels.EquationalReasoning.L03_rw
 msgid "Substituting Variables By Their Values"
 msgstr ""
 
-#: Game.Levels.EquationalReasoning.L03_lvl2
+#: Game.Levels.EquationalReasoning.L03_rw
 msgid "We will learn how to substitute a variable with its value, for example how to substitiute `x` by `2` if we know that `x=2`.\n"
 "\n"
 "This can be done using the tactic `rw` (short for rewrite).\n"
@@ -141,27 +141,27 @@ msgid "We will learn how to substitute a variable with its value, for example ho
 "The notation ←t can be used to instruct the tactic to use the equality t in the reverse direction."
 msgstr ""
 
-#: Game.Levels.EquationalReasoning.L03_lvl2
+#: Game.Levels.EquationalReasoning.L03_rw
 msgid "Do `rw [«{h}»]` or `rw [«{g}»]` and observe what happens."
 msgstr ""
 
-#: Game.Levels.EquationalReasoning.L03_lvl2
+#: Game.Levels.EquationalReasoning.L03_rw
 msgid "You should use `«{h}»` now."
 msgstr ""
 
-#: Game.Levels.EquationalReasoning.L03_lvl2
+#: Game.Levels.EquationalReasoning.L03_rw
 msgid "`rw [h]`"
 msgstr ""
 
-#: Game.Levels.EquationalReasoning.L03_lvl2
+#: Game.Levels.EquationalReasoning.L03_rw
 msgid "You should use `«{g}»` now."
 msgstr ""
 
-#: Game.Levels.EquationalReasoning.L03_lvl2
+#: Game.Levels.EquationalReasoning.L03_rw
 msgid "`rw [g]`"
 msgstr ""
 
-#: Game.Levels.EquationalReasoning.L03_lvl2
+#: Game.Levels.EquationalReasoning.L03_rw
 msgid "Our goal is now `3 + 3 = 6` which Lean knows to be true because it's a direct consequence of the definition of the natural numbers. So, there's nothing left to do. Providing a bit more detail, this is what is called 'definitional equality', i.e two things are equal due to the way they are defined (these types of goals can be closed using `rfl`). But you didn't have to use `rfl` here. `rw` actually tries `rfl` after the substitution, because its a common pattern. Another version `rewrite` doesn't, but it is not made available in this game and is mentioned for your information.\n"
 "\n"
 "Notice we didn't use the fact `i: z=10` which is that `z=10`. This will not be the case for the majority of exercises, you will need to use all the assumptions you have (explicitly or implicity).\n"
@@ -203,11 +203,11 @@ msgstr ""
 msgid ""
 msgstr ""
 
-#: Game.Levels.EquationalReasoning.L05_Lvl3
+#: Game.Levels.EquationalReasoning.L05_mul_left_cancel
 msgid "some title"
 msgstr ""
 
-#: Game.Levels.EquationalReasoning.L05_Lvl3
+#: Game.Levels.EquationalReasoning.L05_mul_left_cancel
 msgid "Here, we introduce a multiplication cancellation tactic.\n"
 "\n"
 "To be able to achieve this, we need to rewrite `16` in `h` as `4 * 4` to be able to cancel the `4` on both sides of the equation , proving `y=4`. \n"
@@ -225,19 +225,19 @@ msgid "Here, we introduce a multiplication cancellation tactic.\n"
 "`have name := ........`"
 msgstr ""
 
-#: Game.Levels.EquationalReasoning.L05_Lvl3
+#: Game.Levels.EquationalReasoning.L05_mul_left_cancel
 msgid "Try `have helper : 16=4*4 := by norm_num`"
 msgstr ""
 
-#: Game.Levels.EquationalReasoning.L05_Lvl3
+#: Game.Levels.EquationalReasoning.L05_mul_left_cancel
 msgid "Now we want to replace the `16` in `h` with `4 * 4`. In other words, we want to do `rw [«{helper}»]` and have it be applied on h."
 msgstr ""
 
-#: Game.Levels.EquationalReasoning.L05_Lvl3
+#: Game.Levels.EquationalReasoning.L05_mul_left_cancel
 msgid "`rw [«{helper}»] at h`"
 msgstr ""
 
-#: Game.Levels.EquationalReasoning.L05_Lvl3
+#: Game.Levels.EquationalReasoning.L05_mul_left_cancel
 msgid "Now that we have `4` on both sides, we want to cancel this `4`\n"
 "\n"
 "This is possible using the theorem `mul_left_cancel₀` which has the following type :\n"
@@ -254,19 +254,19 @@ msgid "Now that we have `4` on both sides, we want to cancel this `4`\n"
 "You should have noticed that a proof of `4≠0` was not mentioned previously, and you will not have to prove this. You can use the term `four_ne_zero : 4≠0`."
 msgstr ""
 
-#: Game.Levels.EquationalReasoning.L05_Lvl3
+#: Game.Levels.EquationalReasoning.L05_mul_left_cancel
 msgid "Notice that `mul_left_cancel₀ four_ne_zero h` has type `y = 4`. So, `exact mul_left_cancel₀ four_ne_zero h` will do it."
 msgstr ""
 
-#: Game.Levels.EquationalReasoning.L05_Lvl3
+#: Game.Levels.EquationalReasoning.L05_mul_left_cancel
 msgid ""
 msgstr ""
 
-#: Game.Levels.EquationalReasoning.L05_Lvl3
+#: Game.Levels.EquationalReasoning.L05_mul_left_cancel
 msgid "[[mathlib_doc]]"
 msgstr ""
 
-#: Game.Levels.EquationalReasoning.L05_Lvl3
+#: Game.Levels.EquationalReasoning.L05_mul_left_cancel
 msgid "### **Logic Constants & Operators**\n"
 "### **Equational Reasoning**\n"
 "| $Name~~~$ | $Ascii~~~$ | $Unicode$ | $Unicode Cmd$ |\n"
@@ -1222,7 +1222,25 @@ msgstr ""
 #: Game.Levels.KnightsAndKnavesLemmas.L01_whydisjoint
 msgid "We can think of the set of knights and the set of knaves, denoted `Knights`, `Knaves` respectively. A set is a collection of 'entities' with a specified property. The set `Knight` would be the set of inhabitants of the island that are knights i.e satisfying the property of always telling the truth, the set `Knave` being the set of inhabitatns of the island that are knives i.e the ones that always lie. \n"
 "\n"
-"Note that in Lean, `Set K` means the set of objects of type `K`( this can be changed to something clearer?? think of clarity benefits of a change). Note that in each level, we will be considering two or three inhabitants of the island and will not be reasoning about the sets themselves but about these fixed inhabitants named `A`, `B`, `C`."
+"Note that in Lean, `Set K` means the set of objects of type `K`( this can be changed to something clearer?? think of clarity benefits of a change). Note that in each level, we will be considering two or three inhabitants of the island and will not be reasoning about the sets themselves but about these fixed inhabitants named `A`, `B`, `C`.\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"/-\n"
+"since this is a repeated pattern in this world, we introduce it as its own level. You need to show that having two sets being disjoint (i.e sharing no common element) and having a common element is a contradiction. This is not an obvious contradiction( like p , ¬p) for the `contradiction` tactic to work. Some work needs to be done to get to that point.\n"
+"Note the theorem:\n"
+"```\n"
+"Set.not_mem_empty.{u} {α : Type u} (x : α) : x ∉ ∅\n"
+"```\n"
+"An object of this type is given to you as an assumption in this level for your convenience and this you can also directly use this theorem.  can be used freely later on.\n"
+"\n"
+"Hint: the goal is to get something that contradicts not_mem_empty. Since x belong to Knight and Knave then it belongs to their intersection which is equal to the empty set contradiction not_mem_empty. Let's do this step by step. (Make it feel like the player discovered this:\n"
+"Notice that the only information we can derive is that x is in the intersection. Do we have information about the intersection? Well yes. its empty set so x ∈ empty set. Execute the finishing blow. \n"
+"\n"
+"This is a common theme when using `contradiction`, sometimes contradiction can't see the 'contradiction' and manipulating the proof state would reveal this to `contradiction`.\n"
+"-/"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L01_whydisjoint
@@ -1252,7 +1270,9 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L02_Knight_NotKnave
-msgid "Note that this level is identical to the previous one except the fact that the set `left` is now called `Knight` and the set `right` is now called `Knave`. This level is to emphasize this pattern of reasoning that you will need to solve knights and knaves puzzles."
+msgid "Note that this level is identical to the previous one except the fact that the set `left` is now called `Knight` and the set `right` is now called `Knave`. This level is to emphasize this pattern of reasoning that you will need to solve knights and knaves puzzles.\n"
+"\n"
+"If you are a knight, then you are definitely not a knave. Recall that knights always tell the truth and knaves always lie."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L02_Knight_NotKnave
@@ -1518,40 +1538,6 @@ msgstr ""
 
 #: Game.Levels.KnightsAndKnaves
 msgid "It is recommended to solve the problems in this world while in editor mode, though you have the choice not to."
-msgstr ""
-
-#: Game.Levels.KnightsAndKnavesLemmas2.L01_NotKnave_Knight
-msgid ""
-msgstr ""
-
-#: Game.Levels.KnightsAndKnavesLemmas2.L01_NotKnave_Knight
-msgid "Before starting the riddles, some new concepts have to be clarified.\n"
-"Xor...\n"
-"it is obvious that no one can be a knight and a knave at the same time. If some is not a knave then they are a knight."
-msgstr ""
-
-#: Game.Levels.KnightsAndKnavesLemmas2.L01_NotKnave_Knight
-msgid "asdf"
-msgstr ""
-
-#: Game.Levels.KnightsAndKnavesLemmas2.L01_NotKnave_Knight
-msgid ""
-msgstr ""
-
-#: Game.Levels.KnightsAndKnavesLemmas2.L02_inter_empty
-msgid ""
-msgstr ""
-
-#: Game.Levels.KnightsAndKnavesLemmas2.L02_inter_empty
-msgid ""
-msgstr ""
-
-#: Game.Levels.KnightsAndKnavesLemmas2.L02_inter_empty
-msgid ""
-msgstr ""
-
-#: Game.Levels.KnightsAndKnavesLemmas2
-msgid "Knights and Knaves, lemmas 2"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves2

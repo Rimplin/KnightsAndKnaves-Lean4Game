@@ -24,8 +24,8 @@ asdf
 -/
 
 -- notKnave_Knight (h : ¬ (x ∈ Knave) ) : x ∈ Knight
-TheoremDoc notKnave_Knight as "notKnave_Knight" in "Logic"
-Statement notKnave_Knight 
+--TheoremDoc notKnave_Knight as "notKnave_Knight" in "Logic"
+Statement  
 
 -- notice that if B not in Knave then we don't know if B is in knight. But we want this because on our island, those are the only two options and if you arent one of those options then you are whats left...
 
@@ -168,4 +168,3 @@ rw [Xor'] at h
 -/
 DefinitionDoc Xor' as "Xor'" 
 NewDefinition Xor' 
-NewTheorem notKnave_Knight

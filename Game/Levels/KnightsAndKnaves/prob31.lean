@@ -123,6 +123,7 @@ example {inst : DecidableEq K} {Knave : Finset K} {A B C : K} (all : ∀ (x : K)
   · intro KnaveEveryone
     rw [KnaveEveryone]  
 
+    -- set theoretic
     constructor
     · exact Finset.mem_insert_self A {B, C}
     · constructor
@@ -179,6 +180,7 @@ example
 
     #check Finset.subset_insert_iff_of_not_mem
     #check Finset.subset_insert_iff_of_not_mem AKnave
+--    simp [AKnave,BKnave] at this
     #check (Finset.subset_insert_iff_of_not_mem AKnave).mp this
 --    have smaller :=      (Finset.subset_insert_iff_of_not_mem AKnave).mp this
 
@@ -189,14 +191,10 @@ example
     rw [(Finset.subset_insert_iff_of_not_mem BKnave)] at this
     have Csubset : {C} ⊆ Knight := by
     -- make this into a theorem, C ∈ Knight so the singleton subset of knight. mem_singleton_subset
-      #check Nat.lt_of_succ_le
-      #check Nat.mul_pos
-      #check add_le_add_left
-      #check Nat.le_of_mul_le_mul_left
       intro x
       intro xC
-      #check mem_eq_singleton
-      #check mem_eq_singleton
+      #check mem_of_eq_singleton
+      #check mem_of_eq_singleton
       #check Finset.mem_singleton
       #check Finset.mem_singleton_self
       rw[Finset.mem_singleton] at xC
@@ -256,6 +254,7 @@ Statement
       --simp[BKnave] at stAn 
        
       --have := stBn.mp BKnave
+      -- last one left theorem, its own level?
       have CKnight : C ∈ Knight := by 
         have Knaves := stAn.mp AKnave
         repeat rw [not_and_or] at Knaves
@@ -297,7 +296,7 @@ Statement
       · 
         #check Finset.singleton_subset_iff
         #check Finset.subset_of_eq
-        have AKnight := mem_eq_singleton h_1
+        have AKnight := mem_of_eq_singleton h_1
         exact disjoint h AKnight AKnave
         
         --rw [Finset.singleton_subset_iff] at h_1
@@ -327,51 +326,16 @@ Statement
 
     -- now submit
     sorry
-      --contrapose this
-      --rw [not_and_or]
-      --rw [not_and_or]
-      --right
-      --right
-      --push_neg
-      --have KSub : Knight ⊆ {A,B,C} := by sorry
-      --rw [inright_notinleftIff h1 h] at AKnave
-      --rw [Finset.subset_insert_iff_of_not_mem AKnave] at KSub
-      --rw [inright_notinleftIff h2 h] at BKnave
-      --rw [Finset.subset_insert_iff_of_not_mem BKnave] at KSub
-      --#check Finset.subset_singleton_iff
-      --rw[ Finset.subset_singleton_iff] at KSub
-      --have nonemp : Knight ≠ ∅ := sorry
-      --cases KSub
-      --contradiction
-      --assumption
-      -- have done this before, start from knight subset of A,B,C then remove... then state its non empty then do it...
-
-    --have CKnave : C ∈ Knave := by 
-    --  by_contra CKnight
-    --  #check Set.mem_singleton_iff
-    --  #check Set.eq_singleton_iff_unique_mem
-    --  have Ors := stB.mp BKnight
-    --  cases Ors
-    --  · rw [Finset.eq_singleton_iff_unique_mem] at h_1 
-    --    rw [inright_notinleftIff h1 h] at AKnave
-    --    exact AKnave h_1.left
-    --  · cases h_1 
-    --    · rw [notinright_inleftIff h3 h] at CKnight
-    --      rw [h_2] at CKnight
-    --      rw [Finset.mem_singleton] at CKnight
-    --      have : C ≠ B := sorry
-    --      contradiction
-    --    · rw [h_2] at BKnight
-    --      rw [Finset.mem_singleton] at BKnight
-    --      have : B ≠ C := sorry
-    --      contradiction
-    --exact Solution.submit (And.intro AKnave ( (And.intro BKnight CKnave)))
 
   }
+#check Finset.mem_singleton
+    --  #check Set.eq_singleton_iff_unique_mem
 
 example (S : Set K) (h : S ⊆ {A,B,C}) (h': A ∉ S) : S ⊆ {B,C} := by   
-  sorry
+  exact (Set.subset_insert_iff_of_not_mem h').mp h
+
    
+#check Set.mem_singleton_iff
 #check Set.subset_insert_iff_of_not_mem
 
 

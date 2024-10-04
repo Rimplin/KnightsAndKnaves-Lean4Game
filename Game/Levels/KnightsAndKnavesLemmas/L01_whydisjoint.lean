@@ -19,6 +19,24 @@ We can think of the set of knights and the set of knaves, denoted `Knights`, `Kn
 
 Note that in Lean, `Set K` means the set of objects of type `K`( this can be changed to something clearer?? think of clarity benefits of a change). Note that in each level, we will be considering two or three inhabitants of the island and will not be reasoning about the sets themselves but about these fixed inhabitants named `A`, `B`, `C`.
 
+
+
+
+
+/-
+since this is a repeated pattern in this world, we introduce it as its own level. You need to show that having two sets being disjoint (i.e sharing no common element) and having a common element is a contradiction. This is not an obvious contradiction( like p , ¬p) for the `contradiction` tactic to work. Some work needs to be done to get to that point.
+Note the theorem:
+```
+Set.not_mem_empty.{u} {α : Type u} (x : α) : x ∉ ∅
+```
+An object of this type is given to you as an assumption in this level for your convenience and this you can also directly use this theorem.  can be used freely later on.
+
+Hint: the goal is to get something that contradicts not_mem_empty. Since x belong to Knight and Knave then it belongs to their intersection which is equal to the empty set contradiction not_mem_empty. Let's do this step by step. (Make it feel like the player discovered this:
+Notice that the only information we can derive is that x is in the intersection. Do we have information about the intersection? Well yes. its empty set so x ∈ empty set. Execute the finishing blow. 
+
+This is a common theme when using `contradiction`, sometimes contradiction can't see the 'contradiction' and manipulating the proof state would reveal this to `contradiction`.
+-/
+
 "
 
 #check xor_iff_not_iff

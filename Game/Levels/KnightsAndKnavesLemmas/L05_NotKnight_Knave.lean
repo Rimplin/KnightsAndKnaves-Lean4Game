@@ -1,6 +1,5 @@
 import Game.Metadata
 
-
 World "KnightsAndKnavesLemmas"
 Level 8
 
@@ -10,8 +9,7 @@ Introduction
 "
 "
 
-Statement NotKnight_Knave
-  --sets
+Statement 
   {Knight : Set K} {Knave : Set K}
 {h : Knight ∩ Knave = ∅ }
 {h1 : Xor' (A ∈ Knight) (A ∈ Knave) }
@@ -25,12 +23,6 @@ Statement NotKnight_Knave
     exact h' h_1.left
     exact h_1.left
   }
-
-
-
---#check Knave_NotKnight
-#check NotKnight_Knave
-
 
 Conclusion 
 "
@@ -71,12 +63,4 @@ We have proven:
 ```
 "
 
-
-/- Use these commands to add items to the game's inventory. -/
-
-
-
 NewTactic exfalso
- NewTheorem NotKnight_Knave
--- NewDefinition Nat Add Eq
-

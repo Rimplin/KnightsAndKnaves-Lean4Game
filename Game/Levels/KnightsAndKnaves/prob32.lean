@@ -109,10 +109,10 @@ example
         #check full_singleton 
         exact full_singleton h_1 CKnave AneC.symm
       · cases h_1
-        · have := singleton_not_in h_2 BneC.symm
+        · have := not_in_of_singleton h_2 BneC.symm
           exact notright_left h3 this
-        · #check singleton_not_in
-          have := singleton_not_in h_2 AneC
+        · #check not_in_of_singleton
+          have := not_in_of_singleton h_2 AneC
           contradiction
     · by_contra CnKnight
       have CKnave := notleft_right h3 CnKnight
