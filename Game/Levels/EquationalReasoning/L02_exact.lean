@@ -1,12 +1,12 @@
 import Game.Metadata
 
-
 World "EquationalReasoning" 
 Level 2
 
 Title "Introd" 
 
-Introduction "
+Introduction
+"
 In this level, we have `Objects`, `Assumptions`, and the `Goal`.
 
 # Objects
@@ -20,7 +20,8 @@ As for the assumptions, we have `h : x=2` which means that `h` is an object of t
 # Goal
 Our goal is to prove that `x = 2`.
 Always look at the assumptions which represent everything you know. Well, we already have that `h` is a proof of the goal. 
-We should let Lean know. Using `exact h` accomplishes this."
+We should let Lean know. Using `exact h` accomplishes this.
+"
 
 variable (x : ℕ )
 Statement (h : x=2)
@@ -30,19 +31,12 @@ Statement (h : x=2)
     exact h
   }
 
-
-
-
-
 Conclusion 
 "
 The `exact` in `exact h` tells Lean that `h`'s type EXACTLY matches the goal. Lean verifies this and reports that there are no more goals to prove. We are done.
 "
 
-/- Use these commands to add items to the game's inventory. -/
-
 NewTactic exact
 
 DefinitionDoc Nat as "ℕ"  
 NewDefinition Nat 
-

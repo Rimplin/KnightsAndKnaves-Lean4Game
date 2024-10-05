@@ -1,6 +1,6 @@
 import Game.Levels.EquationalReasoning
 import Game.Levels.EquationalReasoningAutomation
-import Game.Levels.EquationalReasoningCalc
+--import Game.Levels.EquationalReasoningCalc
 import Game.Levels.LogicTruthValue_
 --import Game.Levels.Logic
 import Game.Levels.LogicAlternative
@@ -21,6 +21,7 @@ Let's explain what's going on in the right side pane.
 
 Anything you click on will display an overview and some examples. This will be available to you at all times when working on the levels. Refer back to it whenever you need to.
 
+Anything new tactic, theorem, or definition introduced in a level will be highlighted in a yellow color.
 ## Tactics
 In this puzzle game, you will use tactics to manipulate the `Goal` and close it, essentially proving the `Goal`. Tactics will be incrementally introduced, and tactics that haven't been introduced yet will have a lock icon which means you can't use them yet. 
 
@@ -89,6 +90,6 @@ CaptionLong "You should use this game as a template for your own game and add yo
 -- CoverImage "images/cover.png"
 Dependency EquationalReasoning → LogicTruthValue_ → LogicAlternative → KnightsAndKnavesLemmas → KnightsAndKnaves  → KnightsAndKnaves2
 Dependency EquationalReasoning → EquationalReasoningAutomation
-Dependency EquationalReasoning → EquationalReasoningCalc
+Dependency EquationalReasoning 
 /-! Build the game. Show's warnings if it found a problem with your game. -/
 MakeGame

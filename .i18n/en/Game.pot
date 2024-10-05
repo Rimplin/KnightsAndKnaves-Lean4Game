@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Sat Oct  5 00:04:12 2024\n"
+"POT-Creation-Date: Sat Oct  5 21:06:18 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -89,9 +89,11 @@ msgid "In this exercise, we will prove `2 = 2`\n"
 "\n"
 "`rfl` is short for reflexivity, which is the property that for any number `a`, `a = a`\n"
 "\n"
-"`rfl` also applies more generally, `rfl` will close any goal of the form `A=B` where `A`,`B` are identical.\n"
-" \n"
-"Moreover, `rfl` can unfold things into their definitions and check if they are equal. In other words, `rfl` can prove the equality of two things that are 'equal by definition'."
+"`rfl` also applies more generally, `rfl` will close any goal of the form `A=B` where `A`,`B` are identical. If needed, `rfl` will unfold both sides into their definitions and then check if they are equal. In other words, `rfl` can prove the equality of two things that are 'equal by definition'."
+msgstr ""
+
+#: Game.Levels.EquationalReasoning.L01_rfl
+msgid "Notice that 'level completed! 🎉' on the bottom. We say that the goal is closed/proven."
 msgstr ""
 
 #: Game.Levels.EquationalReasoning.L02_exact
@@ -157,8 +159,7 @@ msgid "`rw [g]`"
 msgstr ""
 
 #: Game.Levels.EquationalReasoning.L03_rw
-msgid "Our goal is now `3 + 3 = 6`. The `rw` tactic implicitly executes `rfl` after doing the rewrite which proved the goal here. \n"
-"\n"
+msgid "Our goal is now `3 + 3 = 6`. The `rw` tactic implicitly executes `rfl` after doing the rewrite which unfolds the numbers `3` and `6` to what they are defined as, and it turns out both sides are identical. I would recommend the natural number game if you want to learn more.\n"
 "\n"
 "Another solution:\n"
 "```\n"
@@ -186,7 +187,7 @@ msgid "In this level, we will learn about normalizing equations using the `norm_
 msgstr ""
 
 #: Game.Levels.EquationalReasoning.L04_Normalize
-msgid "This should look familiar to a previous exercise. Now `h` looks exactly like the goal. Let Lean know!!"
+msgid "This should look familiar to a previous exercise. Now `h` looks exactly like the goal. Let Lean know that `h`'s type EXACTLY matches the goal. !!"
 msgstr ""
 
 #: Game.Levels.EquationalReasoning.L04_Normalize
@@ -202,36 +203,24 @@ msgid "some title"
 msgstr ""
 
 #: Game.Levels.EquationalReasoning.L05_mul_left_cancel
-msgid "Proving the goal will go as follows:\n"
-"1- Prove that `16=4*4`\n"
-"2- Replace the `16` in `h` by `4*4`\n"
-"3- Cancel the `4` on both sides of `h` obtaining `y=4` which is the goal. (using the theorem mul_left_cancel₀)\n"
+msgid "Here we introduce the `have` tactic which allows to add theorems to the context(which you would have to prove, of course). The `mul_left_cancel₀` will not be used in future levels, but is given here for the sake of having a familiar example.\n"
 "\n"
-"Step 1 introduces a helper theorem. To introduce a new theorem to the current  context, we need the `have` tactic which obeys the following syntax:\n"
+"Proving the goal will go as follows:\n"
+"\n"
+"1- Prove that `16=4*4`\n"
+"\n"
+"2- Replace the `16` in `h` by `4*4`\n"
+"\n"
+"3- Cancel the `4` on both sides of `h` obtaining `y=4` which is the goal. (using the theorem `mul_left_cancel₀`)\n"
+"\n"
+"Step 1: ***Proving `16=4*4`***.\n"
+"We need to construct an object of type `16 = 4 * 4`. Lean does not have such an object in its math library so we will have to prove it ourselves and add it to the current proof state. \n"
+"This is exactly what `have` does, which obeys the following syntax:\n"
 "```\n"
 "`have name-of-object : type := by ...` \n"
 "```\n"
 "where `...` is the proof.\n"
-"`name-of-object` can be whatever you want, leaving it empty would be given a name automatically. The `type` in this case is the statement we want to prove , i.e `16=4*4`. Notice inside the `by` chuck we have a this new goal to prove. This should look familiar to the previous level\n"
-"\n"
-"\n"
-"for step 2...\n"
-"...\n"
-"\n"
-"-------\n"
-"Here, we introduce a multiplication cancellation tactic.\n"
-"\n"
-"To be able to achieve this, we need to rewrite `16` in `h` as `4 * 4` to be able to cancel the `4` on both sides of the equation , proving `y=4`. \n"
-"\n"
-"But first, we need to construct an object of type `16 = 4 * 4` (a proof) and add it to our assumptions.\n"
-"\n"
-"This is exactly what `have` does\n"
-"\n"
-"\n"
-"The type here is `16 = 4 * 4`, you can pick anything as `name-of-object` like `helper`. For the proof, we need to carry out the calculation of `4 * 4` and as in the previous level, the tactic for that is `norm_num`. Typing that as the proof will work. (change this, dont mention norm_num, say like previous level, add show more help if user wrong).\n"
-"\n"
-"There is an alternative syntax for `have` which you can view in the right side pane. In any case, it will be introduced later on when its more convenient to use.\n"
-"`have name := ........`"
+"`name-of-object` can be whatever you want, leaving it empty would  give the theorem a name automatically. The `type` in this case is the statement we want to prove , i.e `16=4*4`. For the proof, we need to carry out the calculation of `4 * 4` and as in the previous level, the tactic for that is `norm_num`. Typing that as the proof will work."
 msgstr ""
 
 #: Game.Levels.EquationalReasoning.L05_mul_left_cancel
@@ -255,8 +244,7 @@ msgid "Now that we have `4` on both sides, we want to cancel this `4`\n"
 "The theorem then cancels `a` from both sides giving a proof of `b=c`. This is exactly what we want to prove the goal.\n"
 "\n"
 "To write the subscript in `mul_left_cancel₀`, do backslash zero. \\0 `mul_left_cancel₀` is written as `mul_left_cancel\\0`\n"
-"\n"
-"You should have noticed that a proof of `4≠0` was not mentioned previously, and you will not have to prove this. You can use the term `four_ne_zero : 4≠0`."
+"Lean has the theorem `four_ne_zero : 4≠0` which you need."
 msgstr ""
 
 #: Game.Levels.EquationalReasoning.L05_mul_left_cancel
@@ -307,52 +295,6 @@ msgid "### **Logic Constants & Operators**\n"
 "mul_left_cancel₀ written as mul_left_cancel\\0"
 msgstr ""
 
-#: Game.Levels.EquationalReasoning.L06_Final
-msgid "Final"
-msgstr ""
-
-#: Game.Levels.EquationalReasoning.L06_Final
-msgid "A similar problem to the previous one."
-msgstr ""
-
-#: Game.Levels.EquationalReasoning.L06_Final
-msgid "First start by substitute the value of `y` in `h`"
-msgstr ""
-
-#: Game.Levels.EquationalReasoning.L06_Final
-msgid "Now simplify `h`"
-msgstr ""
-
-#: Game.Levels.EquationalReasoning.L06_Final
-msgid "We need to isolate `3*x` on the left side of the equation. You can do this using the `eq_add_of_add_neg_eq` theorem which is of type:\n"
-"```\n"
-"eq_add_of_add_neg_eq (h : a + -c = b) : a = b + c\n"
-"```\n"
-"We can use this theorem with the `have` tactic to construct a term of type `3 * x = 12 + 6`"
-msgstr ""
-
-#: Game.Levels.EquationalReasoning.L06_Final
-msgid "Simplify `«{helper}»`"
-msgstr ""
-
-#: Game.Levels.EquationalReasoning.L06_Final
-msgid "Now, like the previous exercise, you need to construct a term of type `(18:ℤ)=3*6`"
-msgstr ""
-
-#: Game.Levels.EquationalReasoning.L06_Final
-msgid "Replace the `18` with 3*6"
-msgstr ""
-
-#: Game.Levels.EquationalReasoning.L06_Final
-msgid "Cancel `3` from both sides and your done\n"
-"\n"
-"Remember `mul_left_cancel₀`"
-msgstr ""
-
-#: Game.Levels.EquationalReasoning.L06_Final
-msgid ""
-msgstr ""
-
 #: Game.Levels.EquationalReasoning
 msgid "Equational Reasoning"
 msgstr ""
@@ -379,117 +321,6 @@ msgstr ""
 
 #: Game.Levels.EquationalReasoningAutomation
 msgid "to do"
-msgstr ""
-
-#: Game.Levels.EquationalReasoningCalc.L01_rw
-msgid ""
-msgstr ""
-
-#: Game.Levels.EquationalReasoningCalc.L01_rw
-msgid "addition associative to the left...\n"
-"This world is just:\n"
-"'\n"
-"In Lean, an algebraic rearrangement is indicated by the tactic ring, and a substitution by the tactic rw (stands for “rewrite”). When making a substitution, you must indicate by name the hypotheses which you are substituting.\n"
-"'\n"
-"'create a term to deal with ...'\n"
-"\n"
-"Notice that a proof completely made by rewrites can be done exactly the same way with and without `calc`.\n"
-"Remember level 3 in equational reasoning.\n"
-"\n"
-"# `calc`\n"
-"`calc` is a tactic that supports forward reasoning. In other words, if the goal is of the form `x = y` then you start from `x` and you reason 'forward' until you reach `y` applying substitutions(rewrites) and manipulations of the expresison you have.\n"
-"\n"
-"An example would definitely be enlightening, given the following problem:\n"
-"```\n"
-"example (a b : ℤ) (h : a - b = 0) : a = b := by\n"
-"```\n"
-"\n"
-"```\n"
-"a b : ℤ\n"
-"h : a - b = 0\n"
-"⊢ a = b\n"
-"```\n"
-"Note: ℤ is the set of integers, ℤ = {...,-3,-2,-1,0,1,2,3,...}\n"
-"This is what the solution would look like:\n"
-"```\n"
-"calc\n"
-"  a = (a - b) + b := by ring\n"
-"  _ = 0 + b := by rw [h]\n"
-"  _ = b := by ring \n"
-"```\n"
-"Notice that every step of the calculation is shown on each line and justified at the end of that line.\n"
-"Lets go through this proof line by line.\n"
-"First, we prove that `a = (a - b) + b` using the `ring` tactic.\n"
-"Then, we prove that `(a - b) + b = 0 + b`, the `_` there is to avoid having to write `(a - b) + b` again, Lean would just deduce that. Since we know that `(a - b) = 0`, this step is justified by a rewrite.\n"
-"Finally, we prove that `0 + b = b` using the ring tactic.\n"
-"Now, what calc does is the following: \n"
-"since `a = (a - b) + b` and `(a - b) + b = 0 + b` then `a = 0 + b` and since `0 + b = b` then `a = b` which is the goal. This is whats known as the transitivity property of `=`:\n"
-"If `a = b` and `b = c` then `a = c`.\n"
-"This is obvious because you can substitue `b` for `a` in `b = c`.\n"
-"\n"
-"You can think of `ring` like a more capable `norm_num`, which is capable of dealing with numbers and more able of manipulating expressions with variables. Moreover, `ring` is for closing goals and cannot be applied to hypothesis which is an advantage `norm_num` has. For this way of proving things, each line is a goal so using `ring` is appropriate.\n"
-"\n"
-"If you want details, a 'ring' is an algebraic structure with an addition and multiplication operation satisfying some common sense properties. Alot of things like ... are rings. For more details, ...\n"
-"\n"
-"The syntax of `calc` is as follows:\n"
-"```\n"
-"calc \n"
-"```\n"
-"\n"
-"# `sorry`?\n"
-"You are sorry you don't know the proof and Lean accepts that and closes the goal. Note: this is very dangerous because you might have Lean admit something that is false, which is not a good idea. Also, allowing `sorry` in this game would not let you solve every level by just typing `sorry`.\n"
-"\n"
-"Replace every occurrence of `sorry` with a legitimate proof."
-msgstr ""
-
-#: Game.Levels.EquationalReasoningCalc.L01_rw
-msgid ""
-msgstr ""
-
-#: Game.Levels.EquationalReasoningCalc.L02_l
-msgid ""
-msgstr ""
-
-#: Game.Levels.EquationalReasoningCalc.L02_l
-msgid "Good luck!"
-msgstr ""
-
-#: Game.Levels.EquationalReasoningCalc.L02_l
-msgid "hint here, works fine"
-msgstr ""
-
-#: Game.Levels.EquationalReasoningCalc.L02_l
-msgid "Notice that the pattern for this `calc` is rearrange variables, rewrite, rewrite. The next problem will have the same pattern in addition to requiring a calculation at the end."
-msgstr ""
-
-#: Game.Levels.EquationalReasoningCalc.L03_e
-msgid ""
-msgstr ""
-
-#: Game.Levels.EquationalReasoningCalc.L03_e
-msgid "This is new but similar to the previous level."
-msgstr ""
-
-#: Game.Levels.EquationalReasoningCalc.L03_e
-msgid ""
-msgstr ""
-
-#: Game.Levels.EquationalReasoningCalc.L04_whatever
-msgid ""
-msgstr ""
-
-#: Game.Levels.EquationalReasoningCalc.L04_whatever
-msgid "This is the last level you have seen before, the rest will be new."
-msgstr ""
-
-#: Game.Levels.EquationalReasoningCalc.L04_whatever
-msgid ""
-msgstr ""
-
-#: Game.Levels.EquationalReasoningCalc
-msgid "This world is a variant world of equational reasoning, where you have to solve some problems from that world using the `calc` tactic.\n"
-"\n"
-"`calc` is a multiline tactic, so you will be dropped into editor mode in each level in this world."
 msgstr ""
 
 #: Game.Levels.LogicTruthValue_.L01_Propositions
@@ -1564,6 +1395,7 @@ msgid "This is a gamification of mathematical proofs. Every level has a `Goal`, 
 "\n"
 "Anything you click on will display an overview and some examples. This will be available to you at all times when working on the levels. Refer back to it whenever you need to.\n"
 "\n"
+"Anything new tactic, theorem, or definition introduced in a level will be highlighted in a yellow color.\n"
 "## Tactics\n"
 "In this puzzle game, you will use tactics to manipulate the `Goal` and close it, essentially proving the `Goal`. Tactics will be incrementally introduced, and tactics that haven't been introduced yet will have a lock icon which means you can't use them yet. \n"
 "\n"

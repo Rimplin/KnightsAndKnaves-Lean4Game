@@ -41,8 +41,7 @@ Notice we didn't use the fact `i: z=10` which is that `z=10`. This will not be t
 -/
 Conclusion 
 "
-Our goal is now `3 + 3 = 6`. The `rw` tactic implicitly executes `rfl` after doing the rewrite which proved the goal here. 
-
+Our goal is now `3 + 3 = 6`. The `rw` tactic implicitly executes `rfl` after doing the rewrite which unfolds the numbers `3` and `6` to what they are defined as, and it turns out both sides are identical. I would recommend the natural number game if you want to learn more.
 
 Another solution:
 ```
