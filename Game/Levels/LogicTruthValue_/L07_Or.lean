@@ -1,6 +1,5 @@
 import Game.Metadata
 
-
 World "LogicTruthValue_" 
 Level 3 
 
@@ -8,9 +7,12 @@ Title "Or, `∨`"
 
 Introduction 
 "
+In this level, we introduce the `∨` logical connective read as 'or'.
+
 left, apply Or.inl are the same thing.
 There are two `∨` introduction rules: 
- 
+The goal involves `∨`, and so (similar to `∧`) we need to use an introduction rule. Specifically, the `Or` introduction rule. 
+There are two introduction rules:
 ```
 Or.intro_left (b : Prop) (h : a) : a ∨ b
 ```
@@ -18,15 +20,16 @@ Or.intro_left (b : Prop) (h : a) : a ∨ b
 ```
 Or.intro_right (a : Prop) (h : b) : a ∨ b
 ```
+
+Pick the appropriate one.
 "
 #check Or.inl
 #check Or.intro_right
-Statement (hP : P) (hQ : Q) 
+Statement (hP : P)  
   : P ∨ Q  := by
+{
 
-  {
-  /-
-
+/-
 ```lean
 Or.intro_left {a : Prop} (b : Prop) (h : a) : a ∨ b
 ```
@@ -48,11 +51,7 @@ Or.inl {a b : Prop} (h : a) : a ∨ b
 ***
 *import Init.Prelude*
     -/
-  }
-
-
-
-
+}
 
 Conclusion 
 "
@@ -72,11 +71,6 @@ You can avoid entering both `a` or `b` explicitly and instead use:
 Or.inl {a b : Prop} (h : a) : a ∨ b
 Or.inr {a b : Prop} (h : b) : a ∨ b
 ```
-
 "
 
-
 NewTheorem Or.inl Or.intro_left Or.intro_right Or.inr
--- NewTheorem Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq
-

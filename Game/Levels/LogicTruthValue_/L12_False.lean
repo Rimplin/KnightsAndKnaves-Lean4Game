@@ -1,12 +1,22 @@
 import Game.Metadata
 
 World "LogicTruthValue_" 
-Level 11
+Level 6
 
 Title "asdf" 
 
 Introduction 
 "
+We proved `False`, what does this mean? What can we conclude? What does `False` IMPLY?
+Let's check the `→` truth table:
+truthtable
+we have that the implication `False → Q` is true regardless whether `Q` is true or is false. 
+So `False` implies anything. From contradiction anything follows.
+
+
+
+----
+
 Our goal is to prove `False`. This looks problematic from the get go, and we will go into the details of that in this level. But, let's first go discuss what `False` is as a type.
 
 

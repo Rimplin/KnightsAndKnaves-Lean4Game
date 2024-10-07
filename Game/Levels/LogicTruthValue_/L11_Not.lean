@@ -1,8 +1,7 @@
 import Game.Metadata
 
-
 World "LogicTruthValue_" 
-Level 10
+Level 5
 
 Title "Not Connective, ¬" 
 
@@ -81,9 +80,8 @@ Notice that this is the first logical connective that applies on one proposition
 
 If `P` then `False`.
 
-
-
 ------
+this is enough
 $
 \\begin{array}{|c c|c|} 
 \\hline
@@ -99,8 +97,12 @@ $
 
 `¬P` in Lean is defined as `P → False`. What this means is that we obtain `¬P` by assuming `P` and deriving a contradiction i.e constructing an object of type `False`. 
 
-`False` is the empty proposition, thus it has no introduction rule. It represents a contradiction.
-What is a contradiction? Well, it is a propostional statement that is false for all possible values of its variables. The standard example of a contradiction is the following: 
+In this level, we have that `P ∧ ¬P` is true. This means that `P`,`¬P` which is `P → False` is true. `¬P` being true tells us that a proof of `P` gives us a proof of `False. We have a proof of `P`. Therefore we can obtain a proof of `False` which is the goal.
+
+---------------------------------
+The empty type. It has no constructors.
+`False` is the empty proposition, thus it has no introduction rule. It represents a contradiction. Finding a 
+What is a contradiction? Well, it is a propostional statement that is false for all possible values of its variables. Constructing a term(i.e a proof) of this type is proving something that is false. The standard example of a contradiction is the following: 
 
 $
 \\begin{array}{|c|c|} 
@@ -154,11 +156,11 @@ So this is pretty good because now you can effortlessly prove anything you want!
 
 #check not_of_eq_false
 #check eq_false
-Statement (hP : P)
-  : P  := by
+Statement (hPnp : P ∧ ¬P )
+  : False  := by
 
   {
-   exact hP
+   exact hPnp.right hPnp.left
    --trivial
   }
 
@@ -197,8 +199,3 @@ theorem mul_zero (a : R) : a * 0 = 0 := by
   rw [add_left_cancel h]
 
 Conclusion ""
-
-/- Use these commands to add items to the game's inventory. -/
-
--- NewLemma Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq

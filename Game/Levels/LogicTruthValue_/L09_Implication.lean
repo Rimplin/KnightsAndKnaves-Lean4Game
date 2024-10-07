@@ -9,12 +9,16 @@ Title "Implication, →"
 #check Function.mtr
 Introduction 
 "
+In this leve, we introduce the logical implication `→` connective.
 Logical implication `P → Q` is made up of two components:
 - The premise, which in this case is `P`
 - The conclusion, which in this case is `Q`
 
 What logical implication does is that it takes evidence or proof for `P` and transforms it returning a proof of `Q`.
+The truth of `P` IMPLIES the truth of `Q`. A proof of `P` IMPLIES a proof of `Q`.
+
 # truth table
+explain
 ```
 | P | Q | P → Q  |
 |---|---|--------|

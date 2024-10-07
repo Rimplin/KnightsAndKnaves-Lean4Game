@@ -1,27 +1,25 @@
 import Game.Metadata
 
 World "KnightsAndKnavesLemmas"
-Level 8
+Level 9
 
 Title ""
 
 Introduction 
 "
+Similar to the previous level
 "
 
 Statement 
-  {Knight : Set K} {Knave : Set K}
+  {inst : DecidableEq K}
+  {Knight : Finset K} {Knave : Finset K}
 {h : Knight ∩ Knave = ∅ }
-{h1 : Xor' (A ∈ Knight) (A ∈ Knave) }
+{Or : A ∈ Knight ∨ A ∈ Knave}
 (h' : ¬ (A ∈ Knight) )
 : A ∈ Knave  := by
 
   {
-    unfold Xor' at h1
-    cases h1 
-    exfalso
-    exact h' h_1.left
-    exact h_1.left
+    exact notinleft_inright Or h'
   }
 
 Conclusion 

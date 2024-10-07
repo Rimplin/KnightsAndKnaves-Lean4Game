@@ -1,21 +1,12 @@
 import Game.Metadata
 
-
 World "KnightsAndKnavesLemmas"
 Level 2
 
 Title ""
 
-Introduction 
-"
-"
-
-
-
---World "KnightsAndKnavesLemmas"
---Level 
-
-Title ""
+#check XorToOr
+#check IffToIf
 
 Introduction 
 "
@@ -27,13 +18,12 @@ variable (A : Sum Knight Knave)
 variable (B : Knight)
 example : 2=2 := by sorry
 
-
 ---------------------
-Note that you can't be a Knight and a Knave at the same time, you can only be one or the other and not both. 
 -- xor approach
 2. We can capture this in logic by saying that for any inhabitant say `A`, (`A` is a knight and is not a knave) or (`A` is a knave and is not a knight).
 
 ---- transition from xor approach to or
+XorToOr
 Then, for any inhabitant of the island they are either a knight or a knave but not both. In other words, if they are a knight then they can't be a knave and if they are a knave they can't be a knight. This can be translated to : (x is a knight and x is not a knave) or (x is a knave and is not a knight). This can be simplified to just saying that: (x is a knight) or (x is a knave) conveying the same information. In the first case (x being a knight), we know the two sets are disjoint so x can't be a knave. Similarly for the second case. This simpler statement conveys the same information as the former which is more complicated, so it should ie be used instead.
 
 ---------------------
