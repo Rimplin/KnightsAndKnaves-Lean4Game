@@ -2,7 +2,7 @@ import Game.Metadata
 
 
 World "LogicTruthValue_" 
-Level 13 
+Level 12 
 --
 --Title "" 
 --

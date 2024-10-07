@@ -2,7 +2,7 @@ import Game.Metadata
 
 
 World "LogicTruthValue_" 
-Level 8
+Level 7
 
 Title "Implication, →" 
 #check imp_iff_not_or

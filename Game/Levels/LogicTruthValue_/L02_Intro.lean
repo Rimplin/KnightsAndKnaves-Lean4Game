@@ -1,10 +1,9 @@
 import Game.Metadata
-import Mathlib.Logic.Basic
 
 variable (P Q R : Prop)
 
 World "LogicTruthValue_"
-Level 2
+Level 1
 
 Title "Intro "
 

@@ -1,7 +1,7 @@
 import Game.Metadata
 
 World "LogicTruthValue_" 
-Level 12
+Level 11
 
 Title "asdf" 
 

@@ -2,7 +2,7 @@ import Game.Metadata
 
 
 World "LogicTruthValue_" 
-Level 10
+Level 5
 
 Title "" 
 
@@ -21,8 +21,7 @@ Statement : (p ∧ ¬p) = False := by {
   -- to do, make a cases `Template` , with comments as hints instead of Hint
   Template
     cases emTruth p 
-    · 
-        sorry
+    · sorry
 -- hint 1
 
 -- asdf
@@ -150,9 +149,4 @@ Conclusion
 Note that we have not obtained a term of type `False` in our proof. We have only proved the above equality. To obtain `False` in our proof state, we would need to have a term of type `p ∧ ¬p` and then use the above theorem rewriting the previous expression to `False`. What happens if we have `False` in our proof state.(now explain stuff about `False` no introduction rule and so on).
 "
 
-/- Use these commands to add items to the game's inventory. -/
-
---NewTactic 
--- NewTheorem Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq
 NewTheorem not_true_eq_false false_and and_false

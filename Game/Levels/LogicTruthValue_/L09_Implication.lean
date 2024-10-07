@@ -2,7 +2,7 @@ import Game.Metadata
 
 
 World "LogicTruthValue_" 
-Level 9
+Level 4
 
 Title "Implication, →" 
 #check Function.mt

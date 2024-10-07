@@ -3,7 +3,7 @@ import Game.Metadata
 variable (P Q R : Prop)
 
 World "LogicTruthValue_" 
-Level 4
+Level 3
 
 Title "And" 
 

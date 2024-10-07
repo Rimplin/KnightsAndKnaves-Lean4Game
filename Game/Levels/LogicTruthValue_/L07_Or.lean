@@ -2,7 +2,7 @@ import Game.Metadata
 
 
 World "LogicTruthValue_" 
-Level 7 
+Level 3 
 
 Title "Or, `∨`" 
 
