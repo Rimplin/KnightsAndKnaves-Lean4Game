@@ -134,8 +134,8 @@ In the next level, we will explore what it means to have proven `False`(pretty b
 
 /- Use these commands to add items to the game's inventory. -/
 
-NewTactic unfold
-NewTheorem false_ne_true
+NewTactic unfold rcases
+NewTheorem false_ne_true 
 
 DefinitionDoc Not as "¬" 
 NewDefinition Not  

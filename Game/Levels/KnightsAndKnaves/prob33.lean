@@ -2,7 +2,7 @@ import Game.Metadata
 
 
 World "KnightsAndKnaves" 
-Level 2
+Level 3
 
 Title "" 
 
@@ -11,12 +11,6 @@ Introduction
 Suppose A says, 'I am a knave, but B is not.' 
 What are A and B? 
 "
-
-
-
-
-
-
 
 /-
 def Knight (A: Prop) :Prop:=A 
@@ -51,11 +45,18 @@ Statement
     exact disjoint h AKnight AKnBK.left
   · have := stAn.mp AKnave
     rw [not_and_or] at this
-    cases this
-    contradiction
-    push_neg at h_1
+    -- looks like a good time to introduce simp
+    simp [AKnave] at this
+    --have := notleft_right  this (by push_neg; exact AKnave)
     constructor
-    assumption ; assumption
+    assumption
+    assumption
+
+    --cases this
+    --contradiction
+    --push_neg at h_1
+    --constructor
+    --assumption ; assumption
     --have AKnBK:= stA.mp AKnight
 
   }
@@ -68,11 +69,5 @@ Conclusion
 "
 "
 
-/- Use these commands to add items to the game's inventory. -/
-
-
-
--- NewTactic rw rfl
--- NewTheorem Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq
-
+NewTactic push_neg simp
+NewTheorem not_and_or

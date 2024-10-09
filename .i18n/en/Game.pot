@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Mon Oct  7 23:13:46 2024\n"
+"POT-Creation-Date: Wed Oct  9 20:58:36 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -303,26 +303,6 @@ msgstr ""
 msgid "In this world, you will learn how to solve equations."
 msgstr ""
 
-#: Game.Levels.EquationalReasoningAutomation.L01_Trivial
-msgid "trivial"
-msgstr ""
-
-#: Game.Levels.EquationalReasoningAutomation.L01_Trivial
-msgid ""
-msgstr ""
-
-#: Game.Levels.EquationalReasoningAutomation.L01_Trivial
-msgid ""
-msgstr ""
-
-#: Game.Levels.EquationalReasoningAutomation
-msgid "Equational Reasoning Automations"
-msgstr ""
-
-#: Game.Levels.EquationalReasoningAutomation
-msgid "to do"
-msgstr ""
-
 #: Game.Levels.LogicTruthValue_.L03_Intro
 msgid "Intro"
 msgstr ""
@@ -469,7 +449,21 @@ msgid "This is what is called an inference rule. It has two assumptions, `p : P`
 msgstr ""
 
 #: Game.Levels.LogicTruthValue_.L09_Implication
-msgid "no lean docstring avaialble"
+msgid "no lean docstring avaialble\n"
+"\n"
+"# truth table\n"
+"$\n"
+"\\begin{array}{|c c|c|} \n"
+"\\hline\n"
+"P & Q & P → Q \\\\\n"
+"\\hline\n"
+"T & T & T \\\\\n"
+"T & F & F \\\\\\\\\n"
+"F & T & T \\\\\\\\\n"
+"F & F & T \\\\\\\\\n"
+"\\hline\n"
+"\\end{array}\n"
+"$"
 msgstr ""
 
 #: Game.Levels.LogicTruthValue_.L11_Not
@@ -1032,10 +1026,52 @@ msgstr ""
 msgid "We have an inhabitant A which says the following statement: \n"
 "A : 'I am a knave.'\n"
 "\n"
-"Merely uttering this statement is a contradiction. This is equivalent to the liars paradox. A saying 'I am a knave' is like A saying 'I am a liar' or 'I am lying'. If A were telling the truth, then A would be lying which is a contradiction. Similarly if A were lying then A would be telling the truth. Regardless of what A is, we fall into contradiction. The proof will take all cases for A, which are either the fact of always telling the truth(Knight) or always lying(Knave) and will show this contradiction(Knave) and will show this contradiction."
+"Merely uttering this statement is a contradiction. This is equivalent to the liars paradox(https://en.wikipedia.org/wiki/Liar_paradox). A saying 'I am a knave' is like A saying 'I am a liar' or 'I am lying'. \n"
+"\n"
+"If A were telling the truth(i.e a knight), then A would be lying which is a contradiction. \n"
+"\n"
+"Similarly if A were lying(i.e a knave) then A would be telling the truth. \n"
+"\n"
+"Regardless of what A is, we fall into contradiction. The proof will take all cases for A, which are either the fact of always telling the truth(Knight) or always lying(Knave) and will show this contradiction(Knave) and will show this contradiction.\n"
+"\n"
+"Remember that is either a knight or a knave, represented by `h1` , and our reasoning was taking every case and showing that we reach the same conclusion in both. This is a proof by cases.\n"
+"\n"
+"For this, we need the `cases` tactic. Try `cases h1` and see what happens"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.L01_IamKnave
+msgid "Notice that `h1` is now replaced by `h_1`, and we have two goals to prove instead of one. The difference between each is that in the first, A is a knight and in the second A is a knave.  \n"
+"\n"
+"Use the fact that A is a knight to conclude..."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.L01_IamKnave
+msgid "So now we have that A is a knight, A is a knave. But this contradicts the fact that these two sets are disjoint."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.L01_IamKnave
+msgid "Notice that h_1 is now `A ∈ Knave`. There are multiple ways to get a contradiction here. Either by concluding `A ∉ Knave` from `stAn` or by concluding `A ∈ Knight` from `stA` which would be identical."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.L01_IamKnave
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.prob26
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.prob26
+msgid "Three of the inhabitants A, B, and C were standing together in a garden. \n"
+"A stranger passed by and asked A, 'Are you a knight or a knave?' A answered, but rather indistinctly, so the stranger could not make out what he said. The stranger than asked B, 'What did A say?' B replied, 'A said that he is a knave.' At this point the third man, C, said, 'Don't believe B; he is lying!' \n"
+"The question is, what are B and C?\n"
+"\n"
+"First of all, lets simplify the statements. C's statement can be simplified to 'B is a knave.'\n"
+"\n"
+"The formalization is given. Note that for the statement of B, if B where telling the truth then A indeed made such a statement which is the statement 'I am a Knave' and the formalization of that is 'A ∈ Knight ↔ A ∈ Knave'. Use IamKnave."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.prob26
 msgid ""
 msgstr ""
 
@@ -1052,18 +1088,18 @@ msgstr ""
 msgid ""
 msgstr ""
 
-#: Game.Levels.KnightsAndKnaves.L03_Anoter
+#: Game.Levels.KnightsAndKnaves.prob28
 msgid "lev 2"
 msgstr ""
 
-#: Game.Levels.KnightsAndKnaves.L03_Anoter
+#: Game.Levels.KnightsAndKnaves.prob28
 msgid "In this problem, there are only two people, A and B, each of \n"
 "whom is either a knight or a knave. A makes the following \n"
 "statement: 'At least one of us is a knave.' \n"
 "What are A and B?"
 msgstr ""
 
-#: Game.Levels.KnightsAndKnaves.L03_Anoter
+#: Game.Levels.KnightsAndKnaves.prob28
 msgid "."
 msgstr ""
 
@@ -1099,30 +1135,14 @@ msgstr ""
 msgid ""
 msgstr ""
 
-#: Game.Levels.KnightsAndKnaves.L02_Introduction
-msgid ""
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves.L02_Introduction
-msgid "Three of the inhabitants A, B, and C were standing together in a garden. \n"
-"A stranger passed by and asked A, 'Are you a knight or a knave?' A answered, but rather indistinctly, so the stranger could not make out what he said. The stranger than asked B, 'What did A say?' B replied, 'A said that he is a knave.' At this point the third man, C, said, 'Don't believe B; he is lying!' \n"
-"The question is, what are B and C?\n"
-"\n"
-"First of all, lets simplify the statements. C's statement can be simplified to 'B is a knave.'\n"
-"\n"
-"The formalization is given. Note that for the statement of B, if B where telling the truth then A indeed made such a statement which is the statement 'I am a Knave' and the formalization of that is 'A ∈ Knight ↔ A ∈ Knave'. Use IamKnave."
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves.L02_Introduction
-msgid ""
-msgstr ""
-
 #: Game.Levels.KnightsAndKnaves
 msgid "Knights And Knaves"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves
-msgid "It is recommended to solve the problems in this world while in editor mode, though you have the choice not to."
+msgid "It is recommended to solve the problems in this world while in editor mode, though you have the choice not to.\n"
+"\n"
+"give an example of formalization process i.e translating the statements to iff and the intuition behind that. the problem has already been presented in knights and knaves lemmas"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves2

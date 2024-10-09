@@ -31,4 +31,4 @@ Conclusion
 --NewTactic 
 -- NewTheorem Nat.add_comm Nat.add_assoc
 -- NewDefinition Nat Add Eq
-
+NewTheorem notright_left

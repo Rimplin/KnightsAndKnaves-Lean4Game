@@ -178,7 +178,8 @@ example --(preamble := unfold Xor' at *)
 
 Statement --(preamble := unfold Xor' at *)
   --sets
-  (Knight : Set K ) (Knave : Set K)
+  {inst : DecidableEq K}
+  (Knight : Finset K ) (Knave : Finset K)
   (h : Knight ∩ Knave = ∅ ) (h1 : x ∈ Knight ∨ x ∈ Knave) (h2 : y ∈ Knight ∨ y ∈ Knave) 
 
   -- x says y is a knight
@@ -192,9 +193,8 @@ Statement --(preamble := unfold Xor' at *)
   rw [not_iff_not.symm] at stx
   --rw [not_iff_not.symm] at this3
   -- replace this2 and this3 in whats in the goal and clear them
-  #check NotKnight_KnaveIff
-  rw [NotKnight_KnaveIff h h1] at stx
-  rw [NotKnight_KnaveIff h h2] at stx
+  rw [notinleft_inrightIff h1 h] at stx
+  rw [notinleft_inrightIff  h2 h] at stx
   rw [stx]
   simp 
 
@@ -204,9 +204,8 @@ Statement --(preamble := unfold Xor' at *)
   rw [sty] at h_1 
   rw [stx] at h_1
   nth_rw 1 [stx.symm] at h_1
-  #check Knave_NotKnightIff
-  rw [Knave_NotKnightIff h h1]  at h_1
-  rw [Knave_NotKnightIff h this]  at h_1
+  rw [inright_notinleftIff h1 h]  at h_1
+  rw [inright_notinleftIff this h]  at h_1
   rcases h_1 with ⟨a,b⟩|⟨a',b'⟩  
   contradiction
   contradiction
@@ -216,8 +215,5 @@ Statement --(preamble := unfold Xor' at *)
 #check inright_notinleft
 #check not_iff_not
 Conclusion "This last message appears if the level is solved."
-
-/-asdf -/
-
 
 NewTactic push_neg 

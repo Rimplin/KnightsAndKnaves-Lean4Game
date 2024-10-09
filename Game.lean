@@ -89,7 +89,5 @@ CaptionLong "You should use this game as a template for your own game and add yo
 -- Prerequisites "" -- add this if your game depends on other games
 -- CoverImage "images/cover.png"
 Dependency EquationalReasoning → LogicTruthValue_ → LogicAlternative → KnightsAndKnavesLemmas → KnightsAndKnaves  → KnightsAndKnaves2
-Dependency EquationalReasoning → EquationalReasoningAutomation
-Dependency EquationalReasoning 
 /-! Build the game. Show's warnings if it found a problem with your game. -/
 MakeGame

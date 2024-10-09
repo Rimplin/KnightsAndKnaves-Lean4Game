@@ -9,6 +9,16 @@ Title ""
 
 Introduction 
 "
+\\begin{array}{|c c|c|} 
+\\hline
+P & Q & P → Q \\\\
+\\hline
+T & T & T \\\\
+T & F & F \\\\
+F & T & T \\\\
+F & F & T \\\\
+\\hline
+\\end{array}
 "
 
 Statement (h: P ↔ Q)

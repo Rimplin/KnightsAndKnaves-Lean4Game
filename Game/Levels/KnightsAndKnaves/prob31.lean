@@ -2,7 +2,7 @@ import Game.Metadata
 
 
 World "KnightsAndKnaves" 
-Level 4
+Level 5
 
 Title "" 
 
@@ -137,6 +137,7 @@ example {inst : DecidableEq K} {Knave : Finset K} {A B C : K} (all : ∀ (x : K)
 
 
 -- using Finset.univ instead of all
+-- another formalization using cardinalities instead of A ∈ Knave ∧ B ∈ Knave ∧ C ∈ Knave
 example
   {inst : DecidableEq Inhabitant}
   {inst2 : Fintype Inhabitant}

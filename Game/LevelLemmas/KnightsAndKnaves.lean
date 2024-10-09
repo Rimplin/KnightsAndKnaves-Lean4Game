@@ -578,3 +578,21 @@ example  (left right : Set K) (h : left ∩ right = ∅) (hl : A ∈ left) : A �
   --  · contradiction
   --  · assumption
 
+#check Finset.Nonempty
+#check Finset.empty
+#check not_iff_not.mpr Finset.not_nonempty_iff_eq_empty
+#check Finset.not_nonempty_iff_eq_empty.mpr
+theorem all_in_one_other_empty {inst : DecidableEq K} {S S' : Finset K} (h : S ∩ S' = ∅)(all : ∀(x:K), x = A ∨ x = B) (hA : A ∈ S) (hB : B ∈ S) : S' = ∅ := by 
+  by_contra nonemp 
+--  have := (not_iff_not.mpr Finset.not_nonempty_iff_eq_empty).mpr nonemp
+  rw [(not_iff_not.mpr Finset.not_nonempty_iff_eq_empty).symm] at nonemp
+
+  push_neg at nonemp
+  -- now use helper theorem
+  unfold Finset.Nonempty at nonemp 
+  have ⟨x,hx⟩ := nonemp 
+  cases all x
+  · rw [h_1] at hx
+    exact disjoint h hA hx 
+  · rw [h_1] at hx
+    exact disjoint h hB hx

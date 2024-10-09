@@ -1,5 +1,4 @@
 import Game.Metadata
-
 World "KnightsAndKnavesLemmas" 
 Level 8
 
@@ -19,3 +18,4 @@ Statement notinleft_inright
 Conclusion 
 "
 "
+NewTheorem notleft_right
