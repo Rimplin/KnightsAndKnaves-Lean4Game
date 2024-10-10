@@ -90,12 +90,14 @@ extending contradiction still seems to require passing the arguments, rendering 
 -/
 /-- dis22 -/
 TheoremDoc disjoint as "disjoint" in "Knights and Knaves"
-Statement disjoint  (Knight : Set Inhabitant ) (Knave : Set Inhabitant)
+Statement disjoint  {inst : DecidableEq Inhabitant}(Knight : Finset Inhabitant ) (Knave : Finset Inhabitant)
 (AKnight : A ∈ Knight)
 (AKnave : A ∈ Knave)
 (h : Knight ∩ Knave = ∅)
 : False := by
-  have := Set.mem_inter AKnight AKnave
+  #check Set.mem_inter
+  #check Finset.mem_inter
+  have := Finset.mem_inter.mpr ⟨AKnight, AKnave⟩ 
   rw [h] at this
   contradiction
 
@@ -111,9 +113,4 @@ Note that the forward direction is always true, and our assumption `h` wasn't us
 (follow up to show that there was no loss of information)
 "
 
-/- Use these commands to add items to the game's inventory. -/
-
---NewTactic 
--- NewTheorem Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq
-NewTheorem Set.mem_inter disjoint 
+NewTheorem Finset.mem_inter disjoint 
