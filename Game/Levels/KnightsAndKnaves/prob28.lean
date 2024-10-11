@@ -65,20 +65,19 @@ elab "show_goals " tacs:tacticSeq : tactic => do
       | _ => evalTactic (← `(tactic| show_goals1 $(⟨t⟩)))
 
 
-Statement 
-  {inst : DecidableEq K}
-  (Knight : Finset K)
-  (Knave : Finset K) 
-  --(uni : Knight ∪ Knave) 
-  (h : Knight ∩ Knave = ∅ )
-  -- theres x and y, x says at least one of us is a knave
-  --rules of the game, i.e knights tell the truth but knaves lie
-(all : ∀ (x : K), x = A ∨ x = B)
-  (h'' : ∀ (x: K), x ∈ Knight ∨ x ∈ Knave)
+--(uni : Knight ∪ Knave) 
+-- theres x and y, x says at least one of us is a knave
   -- diff formalization to stx
   --(stx : (A ∈ Knight) ↔ (A ∈ Knight ∧  B ∈ Knave)
    --                 ∨ (A ∈ Knave ∧ B ∈ Knight)
    --                 ∨ (A ∈ Knave ∧ B ∈ Knave)  )
+Statement 
+  {inst : DecidableEq K}
+  (Knight : Finset K)
+  (Knave : Finset K) 
+  (h : Knight ∩ Knave = ∅ )
+(all : ∀ (x : K), x = A ∨ x = B)
+  (h'' : ∀ (x: K), x ∈ Knight ∨ x ∈ Knave)
   (stA : A ∈ Knight ↔ Knave.card ≥ 1)
   : A ∈ Knight ∧ B ∈ Knave:= by
 

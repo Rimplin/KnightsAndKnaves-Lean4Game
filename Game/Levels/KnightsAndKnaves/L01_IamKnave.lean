@@ -8,7 +8,9 @@ Title ""
 
 Introduction 
 "
-We have an inhabitant A which says the following statement: 
+Let's solve the previously mentioned 'I am a knave' puzzle.
+
+Suppose we have an inhabitant A which says: 
 A : 'I am a knave.'
 
 Merely uttering this statement is a contradiction. This is equivalent to the liars paradox(https://en.wikipedia.org/wiki/Liar_paradox). A saying 'I am a knave' is like A saying 'I am a liar' or 'I am lying'. 

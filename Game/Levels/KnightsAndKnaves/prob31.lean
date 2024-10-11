@@ -16,82 +16,10 @@ What are A, B, C?
 "
 
 
-
-inductive Solution (Knight : Finset Inhabitant) (Knave : Finset Inhabitant)
-| submit (h : A ∈ Knave ∧ B ∈ Knight ∧ C ∈ Knave) : Solution (Knight) (Knave)
--- i could obfuscate this by making a type that when given the correct argument solves the exercise.
--- all : ∀ (x : Inhabitant), x = A ∨ x = B ∨ x = C
--- {stA : A ∈ Knight  ↔ (A ∈ Knave ∧ B ∈ Knave ∧ C ∈ Knave) }
-
-
-
-
-#check Set.mem_setOf
-example (S : Set K) : S = {x | x ∈ S} := by exact rfl
-  
-  ----
-  --exact (Set.eq_univ_of_univ_subset fun ⦃a⦄ a_1 => all a).symm
-
-
--- try using Set.univ as an axiom instead and see if there are any advantages
-#check Finset.univ
-example {A B C : K} {inst : Fintype K} {inst2 : DecidableEq K}  : Finset.univ = ({A,B,C} : Finset K) ↔  ∀ (x : K), x = A ∨ x = B ∨ x = C:= by 
---  #check Finset.univ
---  #check Finset.toSet Finset.univ
---  #check Finset.coe_inj
---  #check ↑(Finset.univ)
---  rw [Finset.coe_inj.symm]
---  #check Finset.coe_inj
---  #check Finset.toSet
---  have : Finset.univ = {A,B,C} ↔ Set.univ = {A,B,C} := by 
---    constructor
---    · intro Fu
---      rw [Fu]
---    · sorry
-
-
-    --apply?
-
-  constructor
-  · intro U
-    intro x
-    #check Finset.mem_univ
-    have : x ∈ Finset.univ := Finset.mem_univ x 
-    rw [U] at this
-    #check instDecidableEqBool
-    #check Finset.mem_insert_of_mem
-    #check Finset.mem_insert
-    rw [Finset.mem_insert] at this
-    rw [Finset.mem_insert] at this
-    rw [Finset.mem_singleton] at this
-    assumption
-  · intro U
-    apply Finset.ext
-    intro a
-    constructor
-    · intro aU
-      cases U a
-      · rw [h]
-        exact Finset.mem_insert_self A {B, C}
-      · cases h
-        · rw [h_1]  
-          #check Finset.mem_insert_of_mem
-          apply Finset.mem_insert_of_mem
-          exact Finset.mem_insert_self B {C}
-        · rw [h_1]
-          apply Finset.mem_insert_of_mem
-          apply Finset.mem_insert_of_mem
-          exact Finset.mem_singleton.mpr rfl
-
-    · exact fun a_1 => Finset.mem_univ a
-
-
-
-
-example {inst : DecidableEq K} {Knave : Finset K} {A B C : K} (all : ∀ (x : K), x = A ∨ x = B ∨ x = C) : (A ∈ Knave ∧ B ∈ Knave ∧ C ∈ Knave) ↔ (Knave = ({A,B,C} : Finset K) ) := by 
+theorem everyone_knave_set_eq {inst : DecidableEq K} {Knave : Finset K} {A B C : K} (all : ∀ (x : K), x = A ∨ x = B ∨ x = C) : (A ∈ Knave ∧ B ∈ Knave ∧ C ∈ Knave) ↔ (Knave = ({A,B,C} : Finset K) ) := by 
   constructor
   · intro allknaves
-    #check Finset.ext
+    #check Finset.ext_iff
     apply Finset.ext
     intro a
     constructor
@@ -134,6 +62,23 @@ example {inst : DecidableEq K} {Knave : Finset K} {A B C : K} (all : ∀ (x : K)
       · apply Finset.mem_insert_of_mem
         apply Finset.mem_insert_of_mem
         exact Finset.mem_singleton.mpr rfl
+
+
+
+inductive Solution (Knight : Finset Inhabitant) (Knave : Finset Inhabitant)
+| submit (h : A ∈ Knave ∧ B ∈ Knight ∧ C ∈ Knave) : Solution (Knight) (Knave)
+-- i could obfuscate this by making a type that when given the correct argument solves the exercise.
+-- all : ∀ (x : Inhabitant), x = A ∨ x = B ∨ x = C
+-- {stA : A ∈ Knight  ↔ (A ∈ Knave ∧ B ∈ Knave ∧ C ∈ Knave) }
+
+
+
+
+#check Set.mem_setOf
+example (S : Set K) : S = {x | x ∈ S} := by exact rfl
+  
+  ----
+  --exact (Set.eq_univ_of_univ_subset fun ⦃a⦄ a_1 => all a).symm
 
 
 -- using Finset.univ instead of all
@@ -194,10 +139,6 @@ example
     -- make this into a theorem, C ∈ Knight so the singleton subset of knight. mem_singleton_subset
       intro x
       intro xC
-      #check mem_of_eq_singleton
-      #check mem_of_eq_singleton
-      #check Finset.mem_singleton
-      #check Finset.mem_singleton_self
       rw[Finset.mem_singleton] at xC
       rw [xC]
       exact (notright_left h3 notallKnaves )
@@ -232,6 +173,7 @@ Statement
   : Solution Knight Knave:= by
 
   {
+    
     -- this is similar to i am a knave
     have AKnave : A ∈ Knave := by {
       #check iff_iff_implies_and_implies
@@ -281,7 +223,6 @@ Statement
               exfalso
               exact disjoint h xK BKnave
             · assumption
-      ---
       have BKnight:= stB.mpr (by right; right; assumption)
       exact disjoint h BKnight BKnave  
     }
@@ -289,58 +230,75 @@ Statement
     have CKnave : C ∈ Knave := by {
       have OneKnight := stB.mp BKnight
       by_contra CKnight 
-      #check notright_left
       have CKnight := notright_left h3 CKnight
       -- now theorem
-      #check full_singleton
       cases OneKnight 
       · 
         #check Finset.singleton_subset_iff
-        #check Finset.subset_of_eq
-        have AKnight := mem_of_eq_singleton h_1
-        exact disjoint h AKnight AKnave
+        #check Finset.mem_singleton
+        exact full_singleton h_1 BKnight AneB.symm 
         
-        --rw [Finset.singleton_subset_iff] at h_1
       · cases h_1
         · 
-          -- teach this
-          exact full_singleton h_2 CKnight (by symm ;exact BneC)
+          exact full_singleton h_2 CKnight BneC.symm
         · exact full_singleton h_2 BKnight BneC
 
-      --cases OneKnight 
-      --· rw [h_1] at BKnight
-      --  have := Finset.mem_singleton.mp BKnight
-      --  symm at this
-      --  contradiction
-      --· cases h_1 
-      --  · rw [h_2] at CKnight
-      --    have := Finset.mem_singleton.mp CKnight
-      --    symm at this
-      --    contradiction
-      --  · rw [h_2] at BKnight
-      --    have := Finset.mem_singleton.mp BKnight
       --    -- make a full version but for this, i can turn Knight={C} into card one and use full
-      --    #check full
-      --    contradiction
     }
-    #check Finset.mem_singleton
-
     -- now submit
     sorry
 
   }
+
+example
+  {inst : DecidableEq Inhabitant}
+  {Knight : Finset Inhabitant} {Knave : Finset Inhabitant}
+  {all : ∀(x : Inhabitant), x = A ∨ x = B ∨ x = C}
+  { AneB : A ≠ B}
+  { BneC : B ≠ C}
+  { AneC : A ≠ C}
+{h : Knight ∩ Knave = ∅ }
+{h1 : A ∈ Knight ∨ A ∈ Knave }
+{h2: B ∈ Knight ∨ B ∈ Knave }
+{h3: C ∈ Knight ∨ C ∈ Knave }
+{stA : A ∈ Knight  ↔ (Knave={A,B,C}) }
+{stAn : A ∈ Knave ↔ ¬ (Knave={A,B,C}) }
+{stB: B ∈ Knight ↔ (Knight = {A} ∨ Knight = {B} ∨ Knight = {C}) }
+{stBn: B ∈ Knave ↔ ¬ (Knight = {A} ∨ Knight = {B} ∨ Knight = {C}) }
+  : Solution Knight Knave:= by
+  #check everyone_knave_set_eq all
+--  rw [everyone_knave_set_eq all] at stA
+  --rw [everyone_knave_set_eq all] at stAn
+  -- also similar to I am a Knave
+  have AKnave : A ∈ Knave := by
+    by_contra AKnight
+    rw [notinright_inleftIff h1 h] at AKnight
+    have everyoneknave := stA.mp AKnight  
+    have AKnave: A ∈ Knave := by rw [everyoneknave] ; apply Finset.mem_insert_self
+    exact disjoint h AKnight AKnave
+  have notallknave := stAn.mp AKnave
+  have BKnight : B ∈ Knight := by 
+    by_contra BKnave
+    rw [notinleft_inrightIff h2 h] at BKnave
+    have notoneknight := stBn.mp BKnave
+    push_neg at notoneknight
+    -- by stAn, C is a knight because otherwise Knave={A,B,C}. then knight={C} contradiction
+    -- since ¬Knave={A,B,C} then Knight is not empty. If C knave, then knight empty or then Knave={A,B,C} contradition. So C not knave, i.e C Knight but if C Knight then Knight ={C} contradiction
+    #check Finset.univ
+    sorry
+  sorry
+
+example {A B C : K} {inst : Fintype K} {inst : DecidableEq K} {S S' : Finset K}  (notuniv : S' ≠ (Finset.univ)) : S.Nonempty := by 
+  unfold Finset.univ at notuniv
+  sorry
 #check Finset.mem_singleton
-    --  #check Set.eq_singleton_iff_unique_mem
+#check Set.eq_singleton_iff_unique_mem
 
 example (S : Set K) (h : S ⊆ {A,B,C}) (h': A ∉ S) : S ⊆ {B,C} := by   
   exact (Set.subset_insert_iff_of_not_mem h').mp h
-
    
 #check Set.mem_singleton_iff
 #check Set.subset_insert_iff_of_not_mem
-
-
-
 
 Conclusion 
 "
