@@ -1,11 +1,29 @@
 import Mathlib.Data.Set.Basic
 import Mathlib.Data.Fintype.Card
 import Mathlib.Data.Multiset.Basic
+import Game.LevelLemmas.Logical
 
-        #check Finset.singleton_subset_iff
-        #check Finset.subset_of_eq
+    #check Finset.mem_insert
+    #check Finset.mem_insert_of_mem
+    #check Finset.mem_of_mem_inter_left
+#check Finset.singleton_subset_iff
+#check Finset.subset_of_eq
+#check Finset.mem_singleton
+#check Set.eq_singleton_iff_unique_mem
+
+   
+#check Set.mem_singleton_iff
+#check Set.subset_insert_iff_of_not_mem
+
 #check Finset.mem_singleton
 #check Finset.mem_singleton_self
+
+-- to sort out 
+---------------------------
+example (S : Set K) (h : S ⊆ {A,B,C}) (h': A ∉ S) : S ⊆ {B,C} := by   
+  exact (Set.subset_insert_iff_of_not_mem h').mp h
+
+-- ----------------------
 theorem card_eq {Normal : (Finset K)} (h : Normal.card =1) (ANormal : A ∈ Normal) ( BNormal : B ∈ Normal) : A=B := by 
   have := Nat.le_of_eq h
   rw [Finset.card_le_one_iff] at this
@@ -141,9 +159,17 @@ theorem forward {A B C : K} (all : ∀ (x : K), x = A ∨ x = B ∨ x = C) : (Se
    --- exact fun ⦃a⦄ a_1 => all a
 
   · 
+    #check Set.mem_univ
     intro x
-    intro xABC
-    exact trivial
+    rw [eq_true (Set.mem_univ x)]
+    rw [implies_true]
+    trivial
+
+    --exact fun _ => trivial
+    ---
+    --intro x
+    --intro xABC
+    --exact trivial
 
   -------
     --- exact fun ⦃a⦄ a => trivial
@@ -211,8 +237,49 @@ theorem card_eq_one_iff_singletons_univ (A B C : K) {S : Finset K} (h : S.Nonemp
 
 -- can use to intuitively explain other things like x ∈ {A} means x=A etc.. start from it and then say more generally ...
 -- mem1_iff_or for x ∈ {A}
--- mem2_iff_or for x ∈ {A,B}
-theorem mem_iff_or (x : K) (h : x ∈ ({A,B,C} : Set K)) : x = A ∨ x =B ∨ x = C := by unfold Set at h ; exact h
+-- mem2_iff_or for x ∈ {A,B} , can use repeat rw way
+theorem mem_iff_or 
+(A B C: K) (x : K) : x ∈ ({A,B,C} : Set K) ↔  x = A ∨ x =B ∨ x = C := by
+  constructor
+  · intro xIn
+    unfold Finset at xIn
+    exact xIn 
+  · intro Ors
+    exact Ors
+
+theorem mem2_iff_or_finset {inst : DecidableEq K} 
+{A B : K} {x : K} : x ∈ ({A,B} : Finset K) ↔  x = A ∨ x =B := by
+  constructor
+  · intro xIn
+    rw [Finset.mem_insert] at xIn 
+    rw [Finset.mem_singleton] at xIn
+    assumption
+  · intro xIn
+    rw [Finset.mem_insert]  
+    rw [Finset.mem_singleton] 
+    assumption
+
+theorem mem_iff_or_finset {inst : DecidableEq K} 
+{A B C: K} {x : K} : x ∈ ({A,B,C} : Finset K) ↔  x = A ∨ x =B ∨ x = C := by
+  constructor
+  · intro xIn
+    
+    rw [Finset.mem_insert] at xIn
+    rw [Finset.mem_insert] at xIn
+    rw [Finset.mem_singleton] at xIn
+    assumption
+  · intro Ors
+    cases Ors
+    · rw [h]
+      exact Finset.mem_insert_self A {B, C}
+    · cases h
+      · rw [h_1]
+        apply Finset.mem_insert_of_mem  
+        exact Finset.mem_insert_self B {C}
+      · rw [h_1]
+        apply Finset.mem_insert_of_mem  
+        apply Finset.mem_insert_of_mem  
+        exact mem_of_eq_singleton rfl
 
 theorem one_in_of_card_eq_one {A B C : K} {S : Finset K} {nonemp : S.Nonempty}  (U : Set.univ = ({A,B,C} : Set K)) (h : S.card = 1) 
 (AneB : A ≠ B)
@@ -251,7 +318,7 @@ theorem one_in_of_card_eq_one {A B C : K} {S : Finset K} {nonemp : S.Nonempty}  
   
 -- try using Set.univ as an axiom instead and see if there are any advantages
 #check Finset.univ
-theorem univ_iff_all {A B C : K} {inst : Fintype K} {inst2 : DecidableEq K}  : Finset.univ = ({A,B,C} : Finset K) ↔  ∀ (x : K), x = A ∨ x = B ∨ x = C:= by 
+theorem univ_iff_all {inst : Fintype K} {inst2 : DecidableEq K} {A B C : K}   : Finset.univ = ({A,B,C} : Finset K) ↔  ∀ (x : K), x = A ∨ x = B ∨ x = C:= by 
 --  #check Finset.univ
 --  #check Finset.toSet Finset.univ
 --  #check Finset.coe_inj
@@ -303,4 +370,363 @@ theorem univ_iff_all {A B C : K} {inst : Fintype K} {inst2 : DecidableEq K}  : F
 
 
 
+-- Or condition, A ∈ Knight ∨ A ∈ Knave is equivalent to A ∈ (Knight ∪ Knave). is there an advantage to introducing union?
+-------------
+-- using simp , experiment with simp_rw
+-- not in stuff can be replaced with the user doing simp on the or expression
+-- motivate using simp for notleft_right type stuff, i already introduce or_false which is the manual way of doing this in an example for two disjuncts. give a long disjunct and say that using or_false would be teedious, do simp instead...
 
+#check not_iff_not
+#check not_iff
+#check not_iff_self
+theorem inleft_notinright
+  [inst : DecidableEq K]
+  {left : Finset K} {right : Finset K}
+(h : left ∩ right = ∅ )
+(h' : A ∈ left) : A ∉ right := by
+  intro a 
+  #check Finset.mem_inter_of_mem
+  have := Finset.mem_inter_of_mem h' a
+  rw [h] at this
+  contradiction
+
+theorem notinleft_inright
+  {A : K}
+  {left : Finset K} {right : Finset K}
+  (LeftorRight : A ∈ left ∨ A ∈ right)
+(h' : A ∉ left) : A ∈ right := by
+  exact notleft_right LeftorRight h'
+
+theorem inright_notinleft
+  [inst : DecidableEq K]
+  {left : Finset K} {right : Finset K}
+(h : left ∩ right = ∅ )
+(h' : A ∈ right) : A ∉ left := by
+  intro a 
+  have := Finset.mem_inter_of_mem h' a
+  rw [Finset.inter_comm] at h
+  rw [h] at this
+  contradiction
+
+theorem notinright_inleft
+  {A : K}
+  {left : Finset K} {right : Finset K}
+  (LeftorRight : A ∈ left ∨ A ∈ right)
+(h' : A ∉ right) : A ∈ left := by
+  exact notright_left LeftorRight h'
+
+-------------------
+theorem inleft_notinrightIff
+  {inst : DecidableEq K}
+  {A : K}
+  {left : Finset K} {right : Finset K}
+  (LeftorRight : A ∈ left ∨ A ∈ right)
+  (h : left ∩ right = ∅)
+: A ∈ left ↔  A ∉ right := by
+  constructor
+  · exact inleft_notinright h
+  · exact notinright_inleft LeftorRight
+  
+theorem notinleft_inrightIff
+  {inst : DecidableEq K}
+  {A : K}
+  {left : Finset K} {right : Finset K}
+  (LeftorRight : A ∈ left ∨ A ∈ right)
+  (h : left ∩ right = ∅)
+: A ∉ left ↔  A ∈ right := by
+  constructor
+  · exact notinleft_inright LeftorRight
+  · exact inright_notinleft h  
+
+theorem inright_notinleftIff
+  {inst : DecidableEq K}
+  {A : K}
+  {left : Finset K} {right : Finset K}
+  (LeftorRight : A ∈ left ∨ A ∈ right)
+  (h : left ∩ right = ∅)
+: A ∈ right ↔  A ∉ left := by
+  constructor
+  · exact inright_notinleft h 
+  · exact notinleft_inright LeftorRight
+
+theorem notinright_inleftIff
+  {inst : DecidableEq K}
+  {A : K}
+  {left : Finset K} {right : Finset K}
+  (LeftorRight : A ∈ left ∨ A ∈ right)
+  (h : left ∩ right = ∅)
+ : A ∉ right ↔  A ∈ left := by
+  constructor
+  · exact notinright_inleft LeftorRight 
+  · exact inleft_notinright  h 
+
+theorem disjoint {inst : DecidableEq K}  {left : Finset K} {right : Finset K}
+(h : left ∩ right = ∅ )
+(hk : A ∈ left)
+(hkn : A ∈ right)  : False := by 
+  --have := Finset.mem_inter.mpr (And.intro hk hkn )
+  have := Finset.mem_inter_of_mem hk hkn 
+  rw [h] at this
+  contradiction
+
+theorem IamKnave
+  {A : Inhabitant}
+  [inst : DecidableEq Inhabitant]
+  {Knight : Finset Inhabitant} {Knave : Finset Inhabitant}
+(h : Knight ∩ Knave = ∅ )
+(h1 : A ∈ Knight ∨ A ∈ Knave )
+(stA : A ∈ Knight  ↔ (A ∈ Knave) )
+  : False := by
+
+  {
+    rcases h1 with AKnight|AKnave
+
+    · have := stA.mp AKnight
+      exact disjoint h AKnight this
+
+    · have := stA.mpr AKnave
+      exact disjoint h this AKnave
+  }
+
+-- simplifying the conditions, also the Xor' conditions won't be necessary after the notKnave_Knave (etc ...) stuff
+theorem XorToOr {inst : DecidableEq Inhabitant}{Knight : Finset Inhabitant } {Knave : Finset Inhabitant} (A : Inhabitant)
+(h : Knight ∩ Knave = ∅ ) : Xor' (A ∈ Knight) (A ∈ Knave) ↔ A ∈ Knight ∨ A ∈ Knave := by 
+  constructor
+  unfold Xor' at *
+  · intro h'
+    cases h'
+    · exact Or.inl (h_1.left)
+    · exact Or.inr (h_1.left)
+
+  · intro h'
+    unfold Xor'
+    cases h'
+    · left
+      constructor
+      assumption
+      exact inleft_notinright h h_1
+    · right
+      constructor
+      assumption
+      exact inright_notinleft h h_1
+
+
+theorem IfToIff (h : p → q) (h' : ¬p → ¬q) : p ↔ q := by 
+  constructor
+  · assumption
+  · intro hq
+    exact (Function.mtr h') hq
+
+theorem IffToIf (h : p ↔ q) : (p → q) ∧ (¬p → ¬q) := by 
+  constructor
+  · exact h.mp
+  · exact Function.mt (h.mpr)
+
+
+#check Set.mem_compl
+  #check Set.mem_compl_iff
+  #check Set.inter_eq_compl_compl_union_compl
+
+#check Finset.Nonempty
+#check Finset.empty
+#check not_iff_not.mpr Finset.not_nonempty_iff_eq_empty
+#check Finset.not_nonempty_iff_eq_empty.mpr
+theorem all2_in_one_other_empty {inst : DecidableEq K} {S S' : Finset K} (h : S ∩ S' = ∅)(all : ∀(x:K), x = A ∨ x = B) (hA : A ∈ S) (hB : B ∈ S) : S' = ∅ := by 
+  by_contra nonemp 
+--  have := (not_iff_not.mpr Finset.not_nonempty_iff_eq_empty).mpr nonemp
+  rw [(not_iff_not.mpr Finset.not_nonempty_iff_eq_empty).symm] at nonemp
+
+  push_neg at nonemp
+  -- now use helper theorem
+  unfold Finset.Nonempty at nonemp 
+  have ⟨x,hx⟩ := nonemp 
+  cases all x
+  · rw [h_1] at hx
+    exact disjoint h hA hx 
+  · rw [h_1] at hx
+    exact disjoint h hB hx
+
+theorem all3_in_one_other_empty {inst : DecidableEq K} {A B C : K} {S S' : Finset K}
+{all : ∀(x:K), x=A ∨ x=B ∨ x=C}
+(hA : A ∈ S)
+(hB : B ∈ S)
+(hC : C ∈ S)
+(h : S ∩ S'= ∅ )
+: S'=∅ := by 
+  rw [Finset.eq_empty_iff_forall_not_mem] 
+  intro x
+  intro xInS'
+  cases all x
+  · rw [h_1] at xInS'
+    exact disjoint h hA xInS'
+  · cases h_1
+    · rw [h_2] at xInS'
+      exact disjoint h hB xInS' 
+    · rw [h_2] at xInS'
+      exact disjoint h hC xInS' 
+
+-- if one is empty then the other eq_all
+theorem S_union_S'_eq_univ
+{inst : DecidableEq K} {inst2 : Fintype K} {A B C : K} {S S' : Finset K}
+(all : ∀(x:K), x=A ∨ x=B ∨ x=C)
+(Or : ∀(x:K), x ∈ S ∨ x ∈ S')
+: S ∪ S' = Finset.univ := by  
+  #check Set.eq_of_subset_of_subset
+  #check Finset.eq_of_subset_of_card_le
+  #check Finset.card_le_univ
+  #check Finset.subset_univ
+  --apply Finset.eq_of_subset_of_card_le
+  --· apply Finset.subset_univ
+  --· sorry
+
+  apply Finset.ext
+  intro a
+  constructor
+  · #check Finset.mem_univ
+    intro 
+    apply Finset.mem_univ
+  · have : S ∪ S' = {A,B,C} := by 
+      apply Finset.ext 
+      intro b
+      constructor
+      · intro t
+        #check mem_iff_or_finset
+        rw [mem_iff_or_finset]
+        exact all b
+      · intro t
+        #check Finset.mem_union 
+        rw [Finset.mem_union]
+        exact Or b
+         
+    intro inU
+    rw [this]
+    #check univ_iff_all
+    have Ueq : Finset.univ ={A,B,C}:= univ_iff_all.mpr all
+    rw [←Ueq]
+    trivial
+
+theorem empty_eq_all {inst : DecidableEq K} {A B C : K} {S S' : Finset K}
+{inst2 : Fintype K}
+{all : ∀(x:K), x=A ∨ x=B ∨ x=C}
+{Or : ∀(x:K), x ∈ S ∨ x ∈ S'}
+(Semp : S= ∅ ) : S' ={A,B,C} := by 
+  #check S_union_S'_eq_univ
+  have : S ∪ S' = Finset.univ := S_union_S'_eq_univ all Or
+  #check univ_iff_all
+  have U: Finset.univ = {A,B,C} := univ_iff_all.mpr all
+  rw [U] at this
+  rw [Semp] at this
+  simp at this
+  #check Finset.empty_union
+  assumption
+
+theorem all3_in_one_other_eq_all {inst : DecidableEq K} {A B C : K} {S S' : Finset K}
+{all : ∀(x:K), x=A ∨ x=B ∨ x=C}
+(hA : A ∈ S)
+(hB : B ∈ S)
+(hC : C ∈ S)
+(h : S ∩ S'= ∅ ) : S={A,B,C} := by 
+  apply Finset.ext
+  intro a
+  constructor
+  · intro aInS
+    -- S is the whole universe, so S' empty
+    sorry
+  · sorry 
+
+theorem everyone_in_set_eq {inst : DecidableEq K} {S : Finset K} {A B C : K} (all : ∀ (x : K), x = A ∨ x = B ∨ x = C) : (A ∈ S ∧ B ∈ S ∧ C ∈ S) ↔ (S = ({A,B,C} : Finset K) ) := by 
+  constructor
+  · intro allknaves
+    #check Finset.ext_iff
+    apply Finset.ext
+    intro a
+    constructor
+    · intro aKn
+      cases all a
+      · rw [h]
+        exact Finset.mem_insert_self A {B, C}
+      · cases h
+        · rw [h_1]
+          #check Finset.mem_insert_of_mem
+          apply Finset.mem_insert_of_mem
+          exact Finset.mem_insert_self B {C}
+        · rw [h_1]  
+          apply Finset.mem_insert_of_mem
+          apply Finset.mem_insert_of_mem
+          exact Finset.mem_singleton.mpr rfl
+
+    · intro aIn
+      cases all a
+      · rw [h]  
+        exact allknaves.left
+      · cases h
+        · rw [h_1]
+          exact allknaves.right.left
+        · rw [h_1]
+          exact allknaves.right.right
+
+  · intro KnaveEveryone
+    rw [KnaveEveryone]  
+
+    constructor
+    · exact Finset.mem_insert_self A {B, C}
+    · constructor
+
+      · apply Finset.mem_insert_of_mem
+        exact Finset.mem_insert_self B {C}
+
+      · apply Finset.mem_insert_of_mem
+        apply Finset.mem_insert_of_mem
+        exact Finset.mem_singleton.mpr rfl
+
+theorem two_in_one_other_nonemp {inst : DecidableEq K} {A B C : K} {S S' : Finset K}
+{all : ∀ (x : K), x = A ∨ x = B ∨ x = C}
+--{h : S ∩ S' = ∅}
+{Or : ∀(x:K), x ∈ S ∨ x ∈ S'}
+{hA : A ∈ S}
+{hB : B ∈ S}
+{notall : S ≠ ({A,B,C} : Finset K) } : S' ≠ ∅ := by 
+  intro S'emp
+  --rw [Finset.eq_empty_iff_forall_not_mem] at S'emp
+  have hnC : C ∉ S := by 
+    intro hC 
+    #check all3_in_one_other_empty 
+    #check everyone_in_set_eq
+    exact notall ((everyone_in_set_eq all).mp ⟨hA,⟨hB,hC⟩ ⟩  )
+    --exact all3_in_one_other_empty hA hB hC h
+  have := Or C
+  simp [hnC] at this
+  rw [S'emp] at this
+  contradiction
+
+#check univ_iff_all
+theorem univ_set_iff_or {inst : DecidableEq K} {A B C : K} 
+{inst2 : Fintype K}
+: (∀ (x : K), x = A ∨ x = B ∨ x = C) ↔ x ∈ ({A,B,C} : Finset K) := by 
+  #check univ_iff_all
+  constructor 
+  · intro all
+    have U : Finset.univ = {A, B, C} := (univ_iff_all).mpr all
+    rw [←U]
+    exact Finset.mem_univ x
+  -- doesn't work, doesn't make sense
+  · sorry
+
+#check Finset.univ_subset_iff
+#check Finset.subset_univ
+theorem set_subset_univ {inst : DecidableEq K} {A B C : K} {S : Finset K}
+{inst2 : Fintype K}
+{all : ∀ (x : K), x = A ∨ x = B ∨ x = C}
+: S ⊆ {A,B,C} := by 
+  --intro a
+  rw [univ_iff_all.symm] at all
+  --have U := (univ_iff_all  inst2 inst A B C).mpr all
+  rw [←all]
+  exact Finset.subset_univ S
+
+theorem every_elt_in_univ {inst : DecidableEq K} {A B C : K} 
+{all : ∀ (x : K), x = A ∨ x = B ∨ x = C}
+: ∀(x:K), x ∈ ({A,B,C} : Finset K) := by 
+  intro a
+  have := all a
+  sorry

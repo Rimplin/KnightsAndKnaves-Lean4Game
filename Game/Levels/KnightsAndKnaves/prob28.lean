@@ -96,8 +96,7 @@ Statement
   have atleast := stA.mp AnKnave
   have BnKnight : B ∉ Knight := by
     intro BKnight
-    #check all_in_one_other_empty
-    have Knaveemp := all_in_one_other_empty h all AnKnave BKnight
+    have Knaveemp := all2_in_one_other_empty h all AnKnave BKnight
     rw [Knaveemp] at atleast
     contradiction
   

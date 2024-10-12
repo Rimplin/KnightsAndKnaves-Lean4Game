@@ -16,53 +16,6 @@ What are A, B, C?
 "
 
 
-theorem everyone_knave_set_eq {inst : DecidableEq K} {Knave : Finset K} {A B C : K} (all : ∀ (x : K), x = A ∨ x = B ∨ x = C) : (A ∈ Knave ∧ B ∈ Knave ∧ C ∈ Knave) ↔ (Knave = ({A,B,C} : Finset K) ) := by 
-  constructor
-  · intro allknaves
-    #check Finset.ext_iff
-    apply Finset.ext
-    intro a
-    constructor
-    · intro aKn
-      cases all a
-      · rw [h]
-        exact Finset.mem_insert_self A {B, C}
-      · cases h
-        · rw [h_1]
-          #check Finset.mem_insert_of_mem
-          apply Finset.mem_insert_of_mem
-          exact Finset.mem_insert_self B {C}
-        · rw [h_1]  
-          apply Finset.mem_insert_of_mem
-          apply Finset.mem_insert_of_mem
-          exact Finset.mem_singleton.mpr rfl
-
-    · intro aIn
-      -- dont need aIn
-      cases all a
-      · rw [h]  
-        exact allknaves.left
-      · cases h
-        · rw [h_1]
-          exact allknaves.right.left
-        · rw [h_1]
-          exact allknaves.right.right
-
-  · intro KnaveEveryone
-    rw [KnaveEveryone]  
-
-    -- set theoretic
-    constructor
-    · exact Finset.mem_insert_self A {B, C}
-    · constructor
-
-      · apply Finset.mem_insert_of_mem
-        exact Finset.mem_insert_self B {C}
-
-      · apply Finset.mem_insert_of_mem
-        apply Finset.mem_insert_of_mem
-        exact Finset.mem_singleton.mpr rfl
-
 
 
 inductive Solution (Knight : Finset Inhabitant) (Knave : Finset Inhabitant)
@@ -151,7 +104,6 @@ example
   sorry
 example {S : Set K} (h : S ⊆ {A} ∪ S') (h' : A ∉ S) : S ⊆ S' := by exact (Set.subset_insert_iff_of_not_mem h').mp h
 
--- make this into a theorem because the name is too complicated??? or just prepare the user more to handle and understand the naming convention
 example {S : Set K} {AinS : A ∈ S} : {A} ⊆ S := by exact Set.singleton_subset_iff.mpr AinS
 
 
@@ -266,7 +218,6 @@ example
 {stB: B ∈ Knight ↔ (Knight = {A} ∨ Knight = {B} ∨ Knight = {C}) }
 {stBn: B ∈ Knave ↔ ¬ (Knight = {A} ∨ Knight = {B} ∨ Knight = {C}) }
   : Solution Knight Knave:= by
-  #check everyone_knave_set_eq all
 --  rw [everyone_knave_set_eq all] at stA
   --rw [everyone_knave_set_eq all] at stAn
   -- also similar to I am a Knave
@@ -285,20 +236,54 @@ example
     -- by stAn, C is a knight because otherwise Knave={A,B,C}. then knight={C} contradiction
     -- since ¬Knave={A,B,C} then Knight is not empty. If C knave, then knight empty or then Knave={A,B,C} contradition. So C not knave, i.e C Knight but if C Knight then Knight ={C} contradiction
     #check Finset.univ
+    #check all2_in_one_other_empty
+    #check all3_in_one_other_empty
+    #check all3_in_one_other_eq_all
     sorry
+  sorry
+
+example {A B C : K} { inst2 : Fintype K} {inst : DecidableEq K} 
+{S S' : Finset K} 
+(all : ∀(x:K),x=A ∨ x=B ∨ x=C)
+(Or : ∀(x:K), x ∈ S ∨ x ∈ S')
+(SneAll : S ≠ {A,B,C}) : S' ≠ ∅ := by 
+  intro S'emp 
+  #check Finset.empty
+  #check Finset.eq_empty_iff_forall_not_mem
+  rw [Finset.eq_empty_iff_forall_not_mem] at S'emp
+  have AinS:= notright_left (Or A) (S'emp A)   
+  have BinS:= notright_left (Or B) (S'emp B)   
+  have CinS:= notright_left (Or C) (S'emp C)   
+
+  have : ∀(x:K), x ∈ S := by 
+    intro x
+    have nS' := S'emp x 
+    exact  notright_left (Or x) nS'
+  have SeqAll : S = {A,B,C} := by 
+    apply Finset.ext
+    intro a
+    constructor
+    · intro ainS
+      #check {A,B,C}
+      #check Finset.instSingletonFinset
+      #check (mem_iff_or_finset).mpr
+       
+     -- exact (mem_iff_or A B C a).mpr (all a)
+      apply (mem_iff_or_finset).mpr
+      exact all a
+
+      --cases all a
+      ---- make thm first_mem, second_mem third_mem, this is a repeated pattern of reasoning
+      --· rw [h]
+      --  apply Finset.mem_insert_self
+      --· sorry
+    · exact fun _ => this a
+    
   sorry
 
 example {A B C : K} {inst : Fintype K} {inst : DecidableEq K} {S S' : Finset K}  (notuniv : S' ≠ (Finset.univ)) : S.Nonempty := by 
   unfold Finset.univ at notuniv
   sorry
-#check Finset.mem_singleton
-#check Set.eq_singleton_iff_unique_mem
-
-example (S : Set K) (h : S ⊆ {A,B,C}) (h': A ∉ S) : S ⊆ {B,C} := by   
-  exact (Set.subset_insert_iff_of_not_mem h').mp h
-   
-#check Set.mem_singleton_iff
-#check Set.subset_insert_iff_of_not_mem
 
 Conclusion 
 "

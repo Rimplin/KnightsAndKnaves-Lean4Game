@@ -1,14 +1,8 @@
---theorem contrapositive (forward: P → Q) :  ¬Q → ¬P := by
---
---  {
---
---    intro nq
---    intro p
---    exact nq (forward p)
---  }
-
-
-
-
-
-
+theorem notleft_right {P Q : Prop} (Or : P ∨ Q)(notleft : ¬P) : Q := by 
+  cases Or
+  contradiction
+  assumption
+theorem notright_left {P Q : Prop} (Or : P ∨ Q)(notleft : ¬Q) : P := by 
+  cases Or
+  assumption
+  contradiction

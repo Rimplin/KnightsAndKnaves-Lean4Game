@@ -37,7 +37,7 @@ Given the following proof state:
 We can conclude the following implications:
 A ∈ Knight → A ∉ Knave  
 A ∉ Knave → A ∈ Knight
-which can be combined into: A ∈ Knight ↔ A ∉ Knave
+which can be combined into: A ∈ Knight ↔ A ∉ Knave (let the user actually do one of them)
 Similarly for the other two levels, we can conclude A ∉ Knight ↔ A ∈ Knave
 
 These two theorems will be very useful in the following world.

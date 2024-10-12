@@ -1,27 +1,46 @@
 import Game.Metadata
 import Mathlib.Data.Multiset.Basic
+
 #check ({1,2} : Multiset ℕ)
+#check Set.insert
+#check mem_iff_or
+theorem perm3 : ({A,B,C}:Set K) = ({C,B,A}:Set K) := by 
+  apply Set.ext
+  intro x 
+  constructor 
+  · intro xIn
+    have :=mem_iff_or.mp xIn
+    rw [or_comm] at this
+    rw [@or_comm (x=B) _] at this
+    rw [or_assoc] at this
+    exact this
+     
+  · intro xIn
+    have := mem_iff_or.mp xIn  
+    rw [mem_iff_or ] 
+
+    rw [or_comm]  
+    rw [@or_comm (x=B) _] 
+    rw [or_assoc] 
+    assumption
+
+#check Set.pair_comm 
+  #check Set.insert_comm
+  #check Set.mem_insert
+      #check Set.mem_insert_iff
 
 theorem perm2 : ({A,B,C}:Set K) = ({C,B,A}:Set K) := by 
-  #check Set.pair_comm 
-  #check Set.insert_comm
   apply Set.ext_iff.mpr
   intro x
   constructor 
   · intro hx
     cases hx
     · rw [h]
-      #check Set.mem_insert_iff
-      repeat apply Set.mem_insert_of_mem <;> try apply Set.mem_insert_iff ; exact rfl
+      repeat apply Set.mem_insert_of_mem <;> try apply Set.mem_insert_iff   
       rfl
-     -- repeat apply Set.mem_insert_of_mem
-     -- exact rfl
-      --exact Set.mem_insert A {B}
     · cases h
       · rw [h_1]
-        -- 1. Set.mem_insert_of_mem.{u} {α : Type u} {x : α} {s : Set α} (y : α) (a✝ : x ∈ s) : x ∈ insert y s
         #check Set.mem_insert_of_mem
-        -- 1. Set.mem_insert_iff.{u} {α : Type u} {x a : α} {s : Set α} : x ∈ insert a s ↔ x = a ∨ x ∈ s
         #check Set.mem_insert_iff
         --repeat apply Set.mem_insert_of_mem <;> try apply Set.mem_insert_iff ; exact rfl
 
@@ -33,7 +52,6 @@ theorem perm2 : ({A,B,C}:Set K) = ({C,B,A}:Set K) := by
        -- repeat rw [ Set.mem_insert_iff] <;> try left; assumption
          
        -- apply Set.mem_insert_of_mem
-        --exact?
         --exact rfl
       · rw [h_1]
         repeat rw [Set.mem_insert_iff]
@@ -58,6 +76,7 @@ theorem perm2 : ({A,B,C}:Set K) = ({C,B,A}:Set K) := by
         repeat rw [Set.mem_insert_iff]
         left
         rfl
+
 theorem perm : ({A,B,C}:Set K) = ({C,A,B}:Set K) := by 
   
   apply Set.ext_iff.mpr
@@ -107,8 +126,7 @@ example : ({A,B,C}:Set K) = ({C,A,B}:Set K) := by
         exact Set.mem_insert_of_mem A h
       · left 
         exact h
-   -- apply? 
-  · --#check Set.insert
+  · 
     intro h
     refine Set.mem_insert_iff.mpr ?mpr.a
     cases h
