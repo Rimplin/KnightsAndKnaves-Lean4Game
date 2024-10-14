@@ -75,6 +75,7 @@ https://zulip.com/case-studies/lean/
 # how to navigate documentation
 You can use https://leanprover-community.github.io/mathlib4_docs/ for Lean and mathlib related documentation. You can see 'Lean', 'Mathlib' in the left side pane, clicking on either will expand them. A more effective way of finding what you want is using the search feature of this page , using 'Go To Definition' if you have vscode setup for Lean and mathlib, or hovering over things to get more information
 
+-- consider removing # Rules
 # Rules
 You can relax the rules.
 

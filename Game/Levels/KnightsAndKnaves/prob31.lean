@@ -6,6 +6,7 @@ Level 5
 
 Title "" 
 
+-- adapt to problems with only 2
 Introduction 
 "
 Again we have three people, A, B, C, each of whom is either 
@@ -210,6 +211,7 @@ example
   { BneC : B ≠ C}
   { AneC : A ≠ C}
 {h : Knight ∩ Knave = ∅ }
+  {Or : ∀(x:Inhabitant), x ∈ Knave ∨ x ∈ Knight}
 {h1 : A ∈ Knight ∨ A ∈ Knave }
 {h2: B ∈ Knight ∨ B ∈ Knave }
 {h3: C ∈ Knight ∨ C ∈ Knave }
@@ -239,8 +241,49 @@ example
     #check all2_in_one_other_empty
     #check all3_in_one_other_empty
     #check all3_in_one_other_eq_all
-    sorry
+    #check two_in_one_other_nonemp 
+    --rw [or_comm] at Or
+    have S'nonemp := two_in_one_other_nonemp all Or AKnave BKnave notallknave
+    #check set_subset_univ
+    have : Knight ={C} := by 
+      rw [Finset.eq_singleton_iff_nonempty_unique_mem] 
+      constructor
+      · exact Finset.nonempty_iff_ne_empty.mpr S'nonemp
+      · intro x
+        intro xKnight
+        have xs := all x
+        -- repeated pattern of reasoning
+        cases xs
+        · rw [h_1] at xKnight
+          exfalso
+          exact disjoint h xKnight AKnave
+        · cases h_1
+          · rw [h_2] at xKnight
+            exfalso
+            exact disjoint h xKnight BKnave
+          · assumption
+    exact notoneknight.right.right this
+  -- solution is A ∈ Knave ∧ B ∈ Knight ∧ C ∈ Knave
+  have Knightsingle := stB.mp BKnight
+  #check mem_of_eq_singleton
+  -- repeated pattern of reasoning
+  -- A ∉ Knight so Knight ≠ {A}
+  #check not_eq_singleton_of_not_mem
+  rw [inright_notinleftIff (h1) h] at AKnave
+  have KneA := not_eq_singleton_of_not_mem AKnave 
+  simp [KneA] at Knightsingle
+   
+  #check already_full
+  have := already_full BKnight Knightsingle BneC
+  have : C ∉ Knight := by 
+    intro CKnight 
+    rw [this] at CKnight 
+    rw [Finset.mem_singleton] at CKnight
+    exact BneC CKnight.symm
+
+  -- now submit
   sorry
+
 
 example {A B C : K} { inst2 : Fintype K} {inst : DecidableEq K} 
 {S S' : Finset K} 

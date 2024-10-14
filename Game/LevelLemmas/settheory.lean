@@ -680,12 +680,12 @@ theorem everyone_in_set_eq {inst : DecidableEq K} {S : Finset K} {A B C : K} (al
         exact Finset.mem_singleton.mpr rfl
 
 theorem two_in_one_other_nonemp {inst : DecidableEq K} {A B C : K} {S S' : Finset K}
-{all : ∀ (x : K), x = A ∨ x = B ∨ x = C}
+(all : ∀ (x : K), x = A ∨ x = B ∨ x = C)
 --{h : S ∩ S' = ∅}
-{Or : ∀(x:K), x ∈ S ∨ x ∈ S'}
-{hA : A ∈ S}
-{hB : B ∈ S}
-{notall : S ≠ ({A,B,C} : Finset K) } : S' ≠ ∅ := by 
+(Or : ∀(x:K), x ∈ S ∨ x ∈ S')
+(hA : A ∈ S)
+(hB : B ∈ S)
+(notall : S ≠ ({A,B,C} : Finset K) ) : S' ≠ ∅ := by 
   intro S'emp
   --rw [Finset.eq_empty_iff_forall_not_mem] at S'emp
   have hnC : C ∉ S := by 
@@ -718,15 +718,106 @@ theorem set_subset_univ {inst : DecidableEq K} {A B C : K} {S : Finset K}
 {inst2 : Fintype K}
 {all : ∀ (x : K), x = A ∨ x = B ∨ x = C}
 : S ⊆ {A,B,C} := by 
-  --intro a
   rw [univ_iff_all.symm] at all
-  --have U := (univ_iff_all  inst2 inst A B C).mpr all
   rw [←all]
   exact Finset.subset_univ S
 
 theorem every_elt_in_univ {inst : DecidableEq K} {A B C : K} 
+{inst2 : Fintype K}
 {all : ∀ (x : K), x = A ∨ x = B ∨ x = C}
 : ∀(x:K), x ∈ ({A,B,C} : Finset K) := by 
-  intro a
-  have := all a
-  sorry
+  #check univ_iff_all
+  --have : Finset.univ = {A,B,C} := univ_iff_all.mpr all
+  rw [univ_iff_all.symm] at all
+  rw [←all]
+  intro x
+  exact Finset.mem_univ x
+
+theorem not_eq_singleton_of_not_mem {A : K} {S : Finset K} (h : A ∉ S) : S ≠ {A} := by 
+  intro eq
+  have := mem_of_eq_singleton eq
+  contradiction
+
+
+theorem already_full 
+{A B : K}
+{S : Finset K}
+(hA : A ∈ S)
+(either_single : S={A} ∨ S={B})
+(AneB : A ≠ B)
+: S={A} := by
+  cases either_single
+  assumption
+  
+  rw [h] at hA 
+  rw [Finset.mem_singleton] at hA
+  exfalso 
+  contradiction
+
+
+theorem full2 
+{A B C : K}
+(S : Finset K) 
+{inst : DecidableEq K}
+{inst2 : Fintype K}
+(AinS: A ∈ S)
+(BinS: B ∈ S)
+(Two : S.card =2)
+(AneB : A ≠ B)
+(BneC : B ≠ C)
+(AneC : A ≠ C)
+(all : ∀(x:K),x=A ∨ x=B ∨ x=C)
+: C ∉ S := by {
+  #check Finset.card_le_two
+  intro CinS
+  #check Finset.card_eq_two 
+  have two := Two
+  rw [Finset.card_eq_two] at Two
+
+  --have ⟨x,y,xney,Seqxy⟩ := Two  
+  --rw [Seqxy] at AinS  
+  --rw [Seqxy] at BinS  
+  --rw [Seqxy] at CinS  
+
+  have : S.card=3 := by 
+    rw [Finset.card_eq_three]
+    use A
+    use B
+    use C
+    constructor
+    assumption
+    constructor
+    assumption
+    constructor 
+    assumption 
+    #check univ_iff_all 
+    rw [univ_iff_all.symm] at all
+    have : {A,B,C} ⊆ S := by
+      intro x
+      intro hx
+      #check mem_iff_or_finset
+      rw [mem_iff_or_finset] at hx
+      cases hx 
+      rw [←h] at AinS
+      assumption
+      cases h
+      rw[h_1] 
+      assumption
+      rw[h_1] 
+      assumption
+
+    
+    #check Finset.eq_of_subset_of_card_le
+    #check Finset.card_le_of_subset
+    apply Finset.eq_of_subset_of_card_le
+    rw [←all]
+    apply Finset.subset_univ S
+    #check Finset.card_le_of_subset
+    -- make my own theorem which would avoid using Finset.card_le_of_subset
+    apply Finset.card_le_card
+    assumption
+    --sorry
+  rw [two] at this
+  contradiction
+
+}
