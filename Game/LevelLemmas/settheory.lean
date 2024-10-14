@@ -18,7 +18,53 @@ import Game.LevelLemmas.Logical
 #check Finset.mem_singleton
 #check Finset.mem_singleton_self
 
+-----------
+
+-- coe
+#check Set.toFinset
+
+#check Finset.toSet 
+
+    #check Finset.coe_inj
+    #check Finset.coe_inter
+    #check Finset.coe_empty
+#check Set.mem_toFinset
+
+      #check Finset.instCoeTCFinsetSet
+      #check Finset.mem_coe
+      #check Finset.coe_inj
+      #check Finset.mem_coe.mpr 
+      #check Finset.mem_coe.symm 
+      #check Finset.mem_def.mp 
+        #check Set.mem_toFinset
+        #check Set.toFinset
+#check Finset.coe_inj.symm
+#check Finset.coe_inter
+#check Finset.coe_empty
+
+-- two options
+#check Finset.toSet -- natural way
+#check Set.toFinset -- needs fintype instance
+#check Fintype
 -- to sort out 
+
+#check Set.univ 
+#check Set.mem_univ
+example (A B C: K) ( all : ∀(x : K), x = A ∨ x = B ∨ x = C) : @Set.univ K = {A,B,C} := by
+  
+ -- unfold Set.univ
+
+  exact (Set.eq_univ_of_univ_subset fun ⦃a⦄ a_1 => all a).symm
+
+  --apply Set.ext 
+  --intro x
+  --constructor
+  --sorry
+  --sorry
+
+  --· intro xUniv
+  --  by_contra
+  --· exact fun a => trivial
 ---------------------------
 example (S : Set K) (h : S ⊆ {A,B,C}) (h': A ∉ S) : S ⊆ {B,C} := by   
   exact (Set.subset_insert_iff_of_not_mem h').mp h
@@ -369,6 +415,33 @@ theorem univ_iff_all {inst : Fintype K} {inst2 : DecidableEq K} {A B C : K}   : 
     · exact fun a_1 => Finset.mem_univ a
 
 
+theorem univ_iff_all2 {inst : Fintype K} {inst2 : DecidableEq K} {A B : K}   : Finset.univ = ({A,B} : Finset K) ↔  ∀ (x : K), x = A ∨ x = B := by 
+  constructor
+  · 
+    intro U 
+    intro x
+    #check Finset.mem_univ
+    have xinU := Finset.mem_univ x
+    rw [U] at xinU
+    rw [Finset.mem_insert] at xinU
+    rw [Finset.mem_singleton] at xinU
+    assumption
+
+  · intro all 
+    apply Finset.eq_of_subset_of_card_le 
+
+    intro x
+    intro hx
+    cases all x
+    · rw [h]
+      apply Finset.mem_insert_self
+    · rw [h]
+      apply Finset.mem_insert_of_mem 
+      rw [Finset.mem_singleton]
+    
+
+    apply Finset.card_le_card
+    apply Finset.subset_univ
 
 -- Or condition, A ∈ Knight ∨ A ∈ Knave is equivalent to A ∈ (Knight ∪ Knave). is there an advantage to introducing union?
 -------------
@@ -821,3 +894,11 @@ theorem full2
   contradiction
 
 }
+
+-- transition from finset to set stuff and vice versa
+-- this2: B ∈ Set.toFinset (Knight) := by
+-- {hK : Finset Knight}
+-- this was being considered when Set was still used, but now everything if Finset
+theorem memToFinset (Knight : Set K ) {finKnight : Fintype Knight}  (AKnight : A ∈ Knight) : A ∈ (Set.toFinset Knight) := by  
+  have FinKnight:= Set.toFinset Knight
+  exact Set.mem_toFinset.mpr AKnight

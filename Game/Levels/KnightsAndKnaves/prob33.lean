@@ -58,12 +58,29 @@ Statement
     --constructor
     --assumption ; assumption
     --have AKnBK:= stA.mp AKnight
-
   }
 
+example {x y : K}   (Knight : Set K ) (Knave : Set K) (h : Knight ∩ Knave = ∅ ) (h1 : Xor' (x ∈ Knight) (x ∈ Knave) ) (h2: Xor' (y ∈ Knight)  (y ∈ Knave) ) (stx : x ∈ Knight → x ∈ Knave ∧ y ∈ Knight) (stxn : x ∈ Knave → ¬ (x ∈ Knave ∧ y ∈ Knight) ): x ∈ Knave ∧ y ∈ Knave :=
+by
+  cases h1 with
+  | inl hxKnight =>
+ 
+    have hxyKnight : x ∈ Knave ∧ y ∈ Knight := stx hxKnight.left
 
+    have : x ∈ Knight ∩ Knave := ⟨hxKnight.left, hxyKnight.1⟩
+    rw [h] at this
+    contradiction
+  | inr hxKnave =>
 
+    have hxKnight : ¬ (x ∈ Knave ∧ y ∈ Knight) := stxn hxKnave.left
 
+    cases h2 with
+    | inl hyKnight =>
+      exfalso
+      exact hxKnight ⟨hxKnave.left,hyKnight.left⟩
+    | inr hyKnave =>
+
+      exact ⟨hxKnave.left, hyKnave.left⟩
 
 Conclusion 
 "

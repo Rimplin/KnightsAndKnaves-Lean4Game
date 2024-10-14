@@ -318,14 +318,8 @@ First of all, lets simplify the statements. C's statement can be simplified to '
 The formalization is given. Note that for the statement of B, if B where telling the truth then A indeed made such a statement which is the statement 'I am a Knave' and the formalization of that is 'A ∈ Knight ↔ A ∈ Knave'. Use IamKnave.
 "
 
-
-
-
-
-
 -- prob 26
 Statement
-  --sets
   {inst : DecidableEq K}
   (Knight : Finset K ) (Knave : Finset K)
 (h : Knight ∩ Knave = ∅ )
