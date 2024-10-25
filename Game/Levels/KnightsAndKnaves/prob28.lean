@@ -32,7 +32,7 @@ open Set
 variable {K : Type}
 
 World "KnightsAndKnaves"
-Level 4
+Level 5
 
 Title "lev 2"
 
@@ -108,6 +108,12 @@ Statement
   #check Finset.subset_insert_iff_of_not_mem
   have U : Finset.univ = {A,B}:= univ_iff_all2.mpr all
    
+
+  -- either do like after the separator or this
+  have atleastoneKnave := stA.mp (by rw [inleft_notinrightIff (h'' A) h] ; assumption)
+   
+  ------------
+  -- this can be made simpler by a proper introduction to the idea of universe.
   have : Knave ⊆ {A,B} := by 
     rw [←U]
     apply Finset.subset_univ

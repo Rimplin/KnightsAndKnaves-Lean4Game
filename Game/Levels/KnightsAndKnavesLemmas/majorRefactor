@@ -1,3 +1,0 @@
-combine two levels into one with an if and only if, make if and only if work
- combine knight_notknave and notknave_knight then do negation both sides to the if and only if to get the other two, is negation of both sides of iff needed in following worlds??
--- this can't be done as written because the notknave_knight needs an additional assumption, it can something i put in though and explain after the fact...

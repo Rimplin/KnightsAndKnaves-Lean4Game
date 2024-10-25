@@ -8,6 +8,13 @@ Title ""
 
 Introduction 
 "
+This has a very similar reasoning to inleft.
+
+The reasoning goes as follows:
+Assume `A ∈ left`.
+Then `A ∈ left ∩ right` 
+But `left ∩ right = ∅ `, so `A ∈ ∅`. 
+This is a contradiction
 "
 
 Statement inright_notinleft

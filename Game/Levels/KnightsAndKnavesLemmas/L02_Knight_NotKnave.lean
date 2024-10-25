@@ -19,7 +19,6 @@ If you are a knight, then you are definitely not a knave. Recall that knights al
 /-- test -/
 ---- notKnave_Knight (h : ¬ (x ∈ Knave) ) : x ∈ Knight
 --TheoremDoc notKnave_Knight as "notKnave_Knight" in "Logic"
---Statement notKnave_Knight 
 
 --TheoremDoc Knight_NotKnave as "Knight_NotKnave" in "Knights and Knaves"
 Statement  

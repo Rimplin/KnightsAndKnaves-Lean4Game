@@ -1,5 +1,13 @@
 import Game.Metadata
 
+World "KnightsAndKnavesAndNormals" 
+Level 3
+
+Title "" 
+
+Introduction 
+"
+"
 
 
 example 
@@ -159,3 +167,5 @@ theorem solution
   --      exact or.inr (and.intro hNAB hAB)
       else
         sorry
+
+Conclusion ""

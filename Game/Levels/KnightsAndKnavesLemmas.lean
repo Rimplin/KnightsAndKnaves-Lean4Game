@@ -22,6 +22,11 @@ We will introduce the knights and knaves puzzle here, and you will have to prove
 The setting is an island  in which certain inhabitants called 'knights' always tell the truth, and others called 'knaves' always lie.
 Every inhabitant is either a knight or a knave, there is no third option.
 
+/-
+We can think of the set of knights and the set of knaves, denoted `Knights`, `Knaves` respectively. A set is a collection of 'entities' with a specified property. The set `Knight` would be the set of inhabitants of the island that are knights i.e satisfying the property of always telling the truth, the set `Knave` being the set of inhabitatns of the island that are knives i.e the ones that always lie. 
+
+Note that in Lean, `Set K` means the set of objects of type `K`( this can be changed to something clearer?? think of clarity benefits of a change). Note that in each level, we will be considering two or three inhabitants of the island and will not be reasoning about the sets themselves but about these fixed inhabitants named `A`, `B`, `C`.
+-/
 Let `Knight` be the set of inhabitants that are knights, i.e always tell the truth.
 Let `Knave` be the set of inhabitants that are knaves, i.e always lies.
 In a proof state, this would look like:

@@ -6,7 +6,18 @@ import Mathlib.Data.Finset.Basic
 #check Finset.instCoeSortFinsetType
 -- should be available, #check Finset.instCoeSortType
 
-example 
+
+World "KnightsAndKnavesAndNormals" 
+Level 1
+
+Title "" 
+
+Introduction 
+"
+"
+
+
+Statement 
   [inst : DecidableEq K]
   (A B C : K)
   (AneB : A ≠ B)
@@ -174,3 +185,5 @@ example (A : Person ) ( h : A = normal): isNormal A :=
 ---- not really showing the solution or reasoning, relying on lean to do it...
 ---- try all cases and subtitute
 --def solution:= findSol(Person ×  Person ×  Person):=testpermutation.find(λ p, solve p.fst p.snd p.snd)
+
+Conclusion ""

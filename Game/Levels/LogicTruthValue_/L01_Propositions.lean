@@ -6,6 +6,7 @@ Level 1
 
 Title "" 
 
+#check tactics subst
 Introduction 
 "
 <img src=\"https://pixabay.com/vectors/cat-kitty-child-animal-cute-baby-8943928\"/>

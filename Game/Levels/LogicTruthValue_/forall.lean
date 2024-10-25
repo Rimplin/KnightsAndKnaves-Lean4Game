@@ -10,12 +10,14 @@ Level 12
 --"
 --"
 
-Statement 
-  :∀ (h:x), x  := by
+Statement (a : x=y)
+  :∀ (h:x), y  := by
 
   {
-  intro h
-  exact h
+  -- split_ifs
+  --positivity
+  subst a
+  exact fun h => h
   }
 
 

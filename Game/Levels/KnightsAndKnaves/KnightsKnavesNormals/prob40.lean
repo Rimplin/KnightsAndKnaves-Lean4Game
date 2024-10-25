@@ -1,5 +1,13 @@
 import Game.Metadata
 
+World "KnightsAndKnavesAndNormals" 
+Level 2
+
+Title "" 
+
+Introduction 
+"
+"
 example 
   --sets
 
@@ -60,3 +68,4 @@ example
       assumption
       assumption
 
+Conclusion ""

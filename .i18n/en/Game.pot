@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Tue Oct 15 02:10:30 2024\n"
+"POT-Creation-Date: Sat Oct 26 02:09:37 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -800,7 +800,11 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L01_whydisjoint
-msgid "We can think of the set of knights and the set of knaves, denoted `Knights`, `Knaves` respectively. A set is a collection of 'entities' with a specified property. The set `Knight` would be the set of inhabitants of the island that are knights i.e satisfying the property of always telling the truth, the set `Knave` being the set of inhabitatns of the island that are knives i.e the ones that always lie. \n"
+msgid "Before diving into an actual knights and knaves puzzle, lets explore basic results implied by the assumptions of this puzzle.\n"
+"\n"
+"We will first look at the assumption that no one can be a knight and a knave at the same time.\n"
+"\n"
+"We can think of the set of knights and the set of knaves, denoted `Knights`, `Knaves` respectively. A set is a collection of 'entities' with a specified property. The set `Knight` would be the set of inhabitants of the island that are knights i.e satisfying the property of always telling the truth, the set `Knave` being the set of inhabitatns of the island that are knives i.e the ones that always lie. \n"
 "\n"
 "Note that in Lean, `Set K` means the set of objects of type `K`( this can be changed to something clearer?? think of clarity benefits of a change). Note that in each level, we will be considering two or three inhabitants of the island and will not be reasoning about the sets themselves but about these fixed inhabitants named `A`, `B`, `C`.\n"
 "\n"
@@ -838,7 +842,29 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L02_inleft
-msgid "We will use this to prove several helpful lemmas in the context of the knights and knaves puzzle. Note that these lemmas apply to any two sets."
+msgid "We will use this to prove several helpful lemmas in the context of the knights and knaves puzzle. Note that these lemmas apply to any two sets.\n"
+"\n"
+"The reasoning goes as follows:\n"
+"Assume `A ∈ right`.\n"
+"Then `A ∈ left ∩ right` \n"
+"But `left ∩ right = ∅ `, so `A ∈ ∅`. \n"
+"This is a contradiction"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L02_inleft
+msgid "Assume `A ∈ right` using `intro`"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L02_inleft
+msgid "We know that `A ∈ left`, `A ∈ right`. So `A ∈ left ∩ right`."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L02_inleft
+msgid "But left ∩ right is empty. So , A ∈ ∅"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L02_inleft
+msgid "this is a contradiction of course"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L02_inleft
@@ -868,7 +894,13 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L03_inright
-msgid ""
+msgid "This has a very similar reasoning to inleft.\n"
+"\n"
+"The reasoning goes as follows:\n"
+"Assume `A ∈ left`.\n"
+"Then `A ∈ left ∩ right` \n"
+"But `left ∩ right = ∅ `, so `A ∈ ∅`. \n"
+"This is a contradiction"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L03_inright
@@ -880,7 +912,7 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L03_Knave_NotKnight
-msgid ""
+msgid "Note that this is just like the previous level."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L03_Knave_NotKnight
@@ -1027,29 +1059,28 @@ msgid "Let's solve the previously mentioned 'I am a knave' puzzle.\n"
 "\n"
 "Merely uttering this statement is a contradiction. This is equivalent to the liars paradox(https://en.wikipedia.org/wiki/Liar_paradox). A saying 'I am a knave' is like A saying 'I am a liar' or 'I am lying'. \n"
 "\n"
-"If A were telling the truth(i.e a knight), then A would be lying which is a contradiction. \n"
+"If `A` were telling the truth(i.e a knight), then `A` would be lying which is a contradiction. \n"
 "\n"
-"Similarly if A were lying(i.e a knave) then A would be telling the truth. \n"
+"Similarly if `A` were lying(i.e a knave) then A would be telling the truth. \n"
 "\n"
-"Regardless of what A is, we fall into contradiction. The proof will take all cases for A, which are either the fact of always telling the truth(Knight) or always lying(Knave) and will show this contradiction(Knave) and will show this contradiction.\n"
+"Regardless of what A is, we fall into contradiction. The proof will take all cases for A, which are either the fact of always telling the truth(Knight) or always lying(Knave) and will show this contradiction.\n"
 "\n"
-"Remember that is either a knight or a knave, represented by `h1` , and our reasoning was taking every case and showing that we reach the same conclusion in both. This is a proof by cases.\n"
+"Remember that `A` is either a knight or a knave, represented by `h1` , and our reasoning was taking every case and showing that we reach the same conclusion in both(which is a contradiction i.e `False`). This is known as a proof by cases.\n"
 "\n"
 "For this, we need the `cases` tactic. Try `cases h1` and see what happens"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.L01_IamKnave
-msgid "Notice that `h1` is now replaced by `h_1`, and we have two goals to prove instead of one. The difference between each is that in the first, A is a knight and in the second A is a knave.  \n"
+msgid "Notice that `h1` is now replaced by `h_1`, and we have two goals to prove instead of one. \n"
+"The difference between each is that in the first, A is a knight(`h_1 : A ∈ Knight`) and in the second A is a knave(`h_1 : A ∈ Knave`).  \n"
 "\n"
-"Use the fact that A is a knight to conclude..."
+"Combine the statement of `A` and the fact `A` is a knight to conclude the truth of `A`'s statement."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.L01_IamKnave
-msgid "So now we have that A is a knight, A is a knave. But this contradicts the fact that these two sets are disjoint."
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves.L01_IamKnave
-msgid "Notice that h_1 is now `A ∈ Knave`. There are multiple ways to get a contradiction here. Either by concluding `A ∉ Knave` from `stAn` or by concluding `A ∈ Knight` from `stA` which would be identical."
+msgid "So now we have that A is a knave, in addition to what we already knew (A being a knight). \n"
+"\n"
+"But this contradicts the fact that these two sets are disjoint."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.L01_IamKnave
@@ -1071,6 +1102,37 @@ msgid "Three of the inhabitants A, B, and C were standing together in a garden. 
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.prob26
+msgid "We know that `A` saying 'I am a knave' leads to contradiction. So assuming that 'B' is a knight would lead to contradiction. So `B` is not a knight. To arrive at this conclusion formally, first you can prove the right hand side of stBn which would then give you B ∈ Knave.\n"
+"\n"
+"Most of the work here has already been done, we have the following theorem from the previous level(ignoring implicit arguments): \n"
+"IamKnave : Knight ∩ Knave = ∅ → A ∈ Knight ∨ A ∈ Knave → (A ∈ Knight ↔ A ∈ Knave) → False\n"
+"\n"
+"notice that ..."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.prob26
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.IKnaveOrKnave
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.IKnaveOrKnave
+msgid "A says I am a knave or B is a knave. Notice stAn, which represents the fact that A's statement is false when A is a knave ( and viceversa of course). So the statement 'A is a knave or B is a knave' is false. What does it mean for an or expression to be false. It means that both sides are false.\n"
+"\n"
+"\n"
+"--------------------- put these in hints\n"
+"If A is a knave, then the statement 'A is a knave or B is a knave' is false which means that A is not a knave and B is not knave. A is not a knave but we previously assumed that A is a knave. Assuming A is a knave gives us a contradiction which means that A is not a knave.\n"
+"\n"
+"This is the first part of the proof.\n"
+"\n"
+"Now that we know that A is not a knave, then A is a knight. So we can conclude A is a knave or B is a knave. Since A is not a knave, we are left with one option which is B being a knave.\n"
+"\n"
+"This concludes the proof."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.IKnaveOrKnave
 msgid ""
 msgstr ""
 
@@ -1150,6 +1212,50 @@ msgstr ""
 
 #: Game.Levels.KnightsAndKnaves2
 msgid "Knights and Knaves, second approach"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.prob39
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.prob39
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.prob39
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.prob40
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.prob40
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.prob40
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.prob41
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.prob41
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.prob41
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesAndNormals
+msgid "Knights And Knaves"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesAndNormals
+msgid ""
 msgstr ""
 
 #: Game

@@ -15,12 +15,13 @@ Title ""
 
 Introduction 
 "
-We can think of the set of knights and the set of knaves, denoted `Knights`, `Knaves` respectively. A set is a collection of 'entities' with a specified property. The set `Knight` would be the set of inhabitants of the island that are knights i.e satisfying the property of always telling the truth, the set `Knave` being the set of inhabitatns of the island that are knives i.e the ones that always lie. 
+Before diving into an actual knights and knaves puzzle, lets explore basic results implied by the assumptions of this puzzle.
 
-Note that in Lean, `Set K` means the set of objects of type `K`( this can be changed to something clearer?? think of clarity benefits of a change). Note that in each level, we will be considering two or three inhabitants of the island and will not be reasoning about the sets themselves but about these fixed inhabitants named `A`, `B`, `C`.
-
-
-
+We will first look at the assumption that no one can be a knight and a knave at the same time.
+It is represented as:
+```
+h : Knight ∩ Knave = ∅ 
+```
 
 
 /-
