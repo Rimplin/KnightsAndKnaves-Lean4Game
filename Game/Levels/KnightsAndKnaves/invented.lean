@@ -57,8 +57,6 @@ Conclusion
 "
 "
 
-
-
 --A : All of us are knights
 --B: Exactly one of us is a knave
 theorem Ais_knave 
@@ -148,9 +146,6 @@ example {inst : DecidableEq Inhabitant}
       --
       --
       --· exact ⟨h7, h8⟩
-      
-    
-  
   -- A Knave
   · 
     have h4  := (stAn ).mp h_1
@@ -166,3 +161,28 @@ example {inst : DecidableEq Inhabitant}
       --exact ⟨h4, h7⟩
     }
   
+example {inst : DecidableEq Inhabitant}
+  {Knight : Finset Inhabitant} {Knave : Finset Inhabitant}
+{h : Knight ∩ Knave = ∅ }
+{Or : ∀(x :Inhabitant), x ∈ Knight ∨ x ∈ Knave}
+{stA : A ∈ Knight ↔ (B ∈ Knight) }
+{stAn : A ∈ Knave ↔ ¬ (B ∈ Knight) }
+{stB : B ∈ Knight ↔ A ∈ Knight ∧ B ∈ Knight ∧ C ∈ Knight}
+{stBn : B ∈ Knave ↔ ¬ (A ∈ Knight ∧ B ∈ Knight ∧ C ∈ Knight)}
+{stC : C ∈ Knight ↔ A ∈ Knight ∨ B ∈ Knight}
+{stCn : C ∈ Knave ↔ ¬ (A ∈ Knight ∨ B ∈ Knight)}
+: A ∈ Knight ∧ B ∈ Knight ∧ C ∈ Knight ∨ A ∈ Knave ∧ B ∈ Knave ∧ C ∈ Knave:= by 
+  have stB2 := stB
+  nth_rw 1 [stA.symm] at stB2 
+
+  cases Or A
+  · left 
+    exact stB2.mp h_1
+  · have BnKnight := stAn.mp h_1
+    simp [BnKnight] at stCn
+    have AKnave := h_1
+    rw [inright_notinleftIff (Or A) h] at h_1
+    have CKnave := stCn.mpr h_1
+    right
+    rw [notinleft_inrightIff (Or B) h] at BnKnight
+    exact And.intro AKnave (And.intro BnKnight CKnave)

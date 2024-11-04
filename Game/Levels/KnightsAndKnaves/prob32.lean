@@ -1,6 +1,5 @@
 import Game.Metadata
 
-
 World "KnightsAndKnaves" 
 Level 7
 
@@ -12,10 +11,8 @@ Introduction
 Suppose instead, A and B say the following: 
 A: All of us are knaves. 
 B: Exactly one of us is a knave. 
-Can it be determined what B is? Can it be determined what 
-C is?
+Can it be determined what B is? Can it be determined what C is?
 "
-
 
 Statement
   {inst : DecidableEq Inhabitant}
@@ -33,7 +30,6 @@ Statement
   : A ∈ Knave ∧ C ∈ Knight := by
 
   {
- -- constructor
   have AKnave : A ∈ Knave := by
     by_contra AKnight
     rw [notinright_inleftIff h1 h] at AKnight
@@ -70,7 +66,6 @@ Statement
     have CKnight := notleft_right BC this
     rw [inleft_notinrightIff h3 h] 
     assumption
-
 
   }
 
@@ -155,6 +150,7 @@ example
 -- saying there is one knight among us has the effect that everyone else is a knave, sounds like a nice level
 --Can it be determined what B is? Can it be determined what 
 --C is? 
+-- justify why taking cases of B
   cases h2
   · have oneknave := stB.mp h_1 
     -- knave already full so from oneknave and AKnave we can conclude Knave = {A}
@@ -164,6 +160,15 @@ example
     #check Finset.card_eq_one
     -- make a theorem that with all and Knave={A} ∨ Knave={B} ∨ Knave={C} ↔ ∃ a:Inhabitant , Knave ={a}
     -- can be made into a theorem
+-- replace stB with knave.card=1
+    have :Knave.card =1 := by sorry
+    rw [Finset.card_eq_one] at this 
+
+    have ⟨a,ha⟩ := this
+    -- now do cases all and show that Knave = {A}, so C must be a knight
+
+-------
+-- the all specifies that any inhabitant is either A,B,C and no one else. this is to anchor the context in which the problem is in. Moreover, we state that they ar enot the same inhabitant(use Lean is that picky). What we get from this is a series of theorems that intuitively hold true but you will not be bothered to prove them before using them........
     have : ∃a , Knave ={a} := by
       cases oneknave  
       use A
@@ -207,7 +212,39 @@ example
     #check univ_iff_all
 
     #check Finset.card_insert_le
-    have U: Finset.univ = {A, B, C} := univ_iff_all.mpr all 
+    have U: Finset.univ = {A, B, C} := (univ_iff_all inst2 inst).mpr all 
+    have knavesubU : Knave ⊆ {A,B,C} := by 
+      rw [←U]
+      apply Finset.subset_univ
+     
+    have knavenotall := stAn.mp AKnave
+    have CKnight : C ∈ Knight := by 
+      by_contra CKnave
+      rw [notinleft_inrightIff h3 h] at CKnave  
+      have : {A,B,C} ⊆ Knave := by
+        intro x
+        intro xIn
+        cases all x
+        · rw [h_2]
+          assumption
+        · cases h_2
+          · rw [h_3]
+            assumption
+          · rw [h_3]
+            assumption
+      #check Set.eq_of_subset_of_subset
+      #check Finset.eq_of_subset_of_card_le
+      have : Knave = {A,B,C}:= by 
+        --apply Finset.ext 
+        apply Finset.eq_of_subset_of_card_le
+        assumption
+        have := Finset.card_le_of_subset this
+        assumption
+      contradiction
+    exact And.intro AKnave CKnight 
+     /-
+     more complicated solution
+    have U: Finset.univ = {A, B, C} := (univ_iff_all inst2 inst).mpr all 
     have knavesubU : Knave ⊆ {A,B,C} := by 
       rw [←U]
       apply Finset.subset_univ
@@ -260,8 +297,7 @@ example
     -- and done............
     rw [notinright_inleftIff h3 h] at this
     exact And.intro AKnave this 
-
+-/
 Conclusion 
 "
 "
-

@@ -1,0 +1,16 @@
+/-
+precedence
+@[inherit_doc] infixr:35 " /\\ " => And
+@[inherit_doc] infixr:35 " ∧ "   => And
+@[inherit_doc] infixr:30 " \\/ " => Or
+@[inherit_doc] infixr:30 " ∨  "  => Or
+@[inherit_doc] notation:max "¬" p:40 => Not p
+
+@[inherit_doc] infix:20 " ↔ "   => Iff
+
+@[inherit_doc] infix:50 " ∈ " => Membership.mem
+/-- `a ∉ b` is negated elementhood. It is notation for `¬ (a ∈ b)`. -/
+notation:50 a:50 " ∉ " b:50 => ¬ (a ∈ b)
+
+-/
+

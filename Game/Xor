@@ -1,0 +1,36 @@
+
+#check Xor
+#check not_xor
+# Xor
+To introduce Xor, introduce as the negation of if and only if. Xor is inequivalence, Xor is such that exactly one of the propositions is truei.e exclusive or. 
+
+# How the proof will work(cases tactic)
+Take all possible cases for `x` and `y`. These cases are:
+```
+x ∈ Knight, y ∈ Knight
+x ∈ Knight, y ∈ Knave
+x ∈ Knave, y ∈ Knight
+x ∈ Knave, y ∈ Knave
+```
+
+
+/-
+def Xor' (a b : Prop) := (a ∧ ¬ b) ∨ (b ∧ ¬ a)
+
+# Exclusive Or 
+
+## Rewriting Xor'
+`Xor' p q` can be rewritten as:
+```
+(p ∧ ¬q) ∨ (¬p ∧ q)
+```
+To rewrite `Xor'` in the goal:
+```
+rw [Xor']
+```
+
+To rewrite `Xor'` in hypothesis `h`:
+```
+rw [Xor'] at h
+```
+-/

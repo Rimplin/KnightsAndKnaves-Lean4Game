@@ -1,7 +1,7 @@
 import Game.Metadata
 
 World "KnightsAndKnavesAndNormals" 
-Level 2
+Level 3
 
 Title "" 
 
@@ -9,8 +9,6 @@ Introduction
 "
 "
 example 
-  --sets
-
   [inst : DecidableEq K]
   (A B C : K)
 --  (AneB : A ≠ B)
@@ -27,7 +25,6 @@ example
 --{OneKnight : Finset.card ( Knight) =1 }
 --{OneKnave : Finset.card Knave =1 }
 --{OneNormal : Finset.card Normal =1 }
-
 {hKKn : Knight ∩ Knave = ∅ }
 {hKN : Knight ∩ Normal = ∅ }
 {hKnN : Knave ∩ Normal = ∅ }
@@ -55,12 +52,7 @@ example
   · rcases BKnaveNormal with BKnave|BNormal 
     · have := stBn BKnave
       contradiction
-      --have :=inright_notinleft hKKn BKnave
-      --right
-      --constructor
-      --assumption
-      --assumption
-      
+
     · have :=inright_notinleft hKnN BNormal
       right
       constructor

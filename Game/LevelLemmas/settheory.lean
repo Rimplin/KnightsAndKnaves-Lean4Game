@@ -364,7 +364,7 @@ theorem one_in_of_card_eq_one {A B C : K} {S : Finset K} {nonemp : S.Nonempty}  
   
 -- try using Set.univ as an axiom instead and see if there are any advantages
 #check Finset.univ
-theorem univ_iff_all {inst : Fintype K} {inst2 : DecidableEq K} {A B C : K}   : Finset.univ = ({A,B,C} : Finset K) ↔  ∀ (x : K), x = A ∨ x = B ∨ x = C:= by 
+theorem univ_iff_all (inst : Fintype K) (inst2 : DecidableEq K) {A B C : K}   : Finset.univ = ({A,B,C} : Finset K) ↔  ∀ (x : K), x = A ∨ x = B ∨ x = C:= by 
 --  #check Finset.univ
 --  #check Finset.toSet Finset.univ
 --  #check Finset.coe_inj
@@ -674,7 +674,7 @@ theorem S_union_S'_eq_univ
     intro inU
     rw [this]
     #check univ_iff_all
-    have Ueq : Finset.univ ={A,B,C}:= univ_iff_all.mpr all
+    have Ueq : Finset.univ ={A,B,C}:= (univ_iff_all inst2 inst).mpr all
     rw [←Ueq]
     trivial
 
@@ -686,7 +686,7 @@ theorem empty_eq_all {inst : DecidableEq K} {A B C : K} {S S' : Finset K}
   #check S_union_S'_eq_univ
   have : S ∪ S' = Finset.univ := S_union_S'_eq_univ all Or
   #check univ_iff_all
-  have U: Finset.univ = {A,B,C} := univ_iff_all.mpr all
+  have U: Finset.univ = {A,B,C} := (univ_iff_all inst2 inst).mpr all
   rw [U] at this
   rw [Semp] at this
   simp at this
@@ -779,7 +779,7 @@ theorem univ_set_iff_or {inst : DecidableEq K} {A B C : K}
   #check univ_iff_all
   constructor 
   · intro all
-    have U : Finset.univ = {A, B, C} := (univ_iff_all).mpr all
+    have U : Finset.univ = {A, B, C} := (univ_iff_all inst2 inst).mpr all
     rw [←U]
     exact Finset.mem_univ x
   -- doesn't work, doesn't make sense
@@ -791,7 +791,7 @@ theorem set_subset_univ {inst : DecidableEq K} {A B C : K} {S : Finset K}
 {inst2 : Fintype K}
 {all : ∀ (x : K), x = A ∨ x = B ∨ x = C}
 : S ⊆ {A,B,C} := by 
-  rw [univ_iff_all.symm] at all
+  rw [(univ_iff_all inst2 inst).symm] at all
   rw [←all]
   exact Finset.subset_univ S
 
@@ -801,7 +801,7 @@ theorem every_elt_in_univ {inst : DecidableEq K} {A B C : K}
 : ∀(x:K), x ∈ ({A,B,C} : Finset K) := by 
   #check univ_iff_all
   --have : Finset.univ = {A,B,C} := univ_iff_all.mpr all
-  rw [univ_iff_all.symm] at all
+  rw [(univ_iff_all inst2 inst).symm] at all
   rw [←all]
   intro x
   exact Finset.mem_univ x
@@ -864,7 +864,7 @@ theorem full2
     constructor 
     assumption 
     #check univ_iff_all 
-    rw [univ_iff_all.symm] at all
+    rw [(univ_iff_all inst2 inst).symm] at all
     have : {A,B,C} ⊆ S := by
       intro x
       intro hx

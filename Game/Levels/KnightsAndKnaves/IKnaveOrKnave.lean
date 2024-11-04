@@ -1,13 +1,11 @@
 import Game.Metadata
 
-
 World "KnightsAndKnaves" 
 Level 3
 
 Title "" 
 
 Introduction 
-
 "
 A says I am a knave or B is a knave. Notice stAn, which represents the fact that A's statement is false when A is a knave ( and viceversa of course). So the statement 'A is a knave or B is a knave' is false. What does it mean for an or expression to be false. It means that both sides are false.
 
@@ -22,10 +20,8 @@ Now that we know that A is not a knave, then A is a knight. So we can conclude A
 This concludes the proof.
 "
 
-
-
 -- A says I am a knave or B is a knave
-example 
+Statement 
 {inst : DecidableEq Inhabitant}
   {Knight : Finset Inhabitant} {Knave : Finset Inhabitant}
 {h : Knight ∩ Knave = ∅ }

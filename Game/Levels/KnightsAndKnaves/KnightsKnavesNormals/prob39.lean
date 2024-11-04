@@ -1,21 +1,22 @@
 import Game.Metadata
-import Mathlib.Data.Finset.Basic
 #check Finset.mem_def
 #check Set.toFinset
-
 #check Finset.instCoeSortFinsetType
 -- should be available, #check Finset.instCoeSortType
 
-
 World "KnightsAndKnavesAndNormals" 
-Level 1
+Level 2
 
 Title "" 
 
 Introduction 
 "
+We are given three people, A,B,C, one of whom is a knight, one a knave, and one normal (but not necessarily in that order). 
+They make the following statements: 
+A: I am normal. 
+B: That is true. 
+C: I am not normal. 
 "
-
 
 Statement 
   [inst : DecidableEq K]
@@ -60,6 +61,11 @@ Statement
     --exact disjointfinset hKN AKnight ANormal
   }
 
+  have CnKnave : C ∉ Knave := by 
+    intro CKnave
+    have CNormal := stCn CKnave 
+    exact disjoint hKnN CKnave CNormal
+   
   -- because AnKnight, then A either knave or normal
   -- AnNormal, if A were normal then BnKnave(maybe make a told the truth thing that would return A knight or normal)
   have AnNormal : A ∉ Normal := by
@@ -130,6 +136,34 @@ Statement
   --  · assumption
 
 
+example 
+  [inst : DecidableEq K]
+  (A B C : K)
+  (AneB : A ≠ B)
+  (BneC : B ≠ C)
+  (AneC : A ≠ C)
+  (Knight : Finset K ) 
+  (Knave : Finset K)
+  {Normal : Finset K}
+{OneKnight :  Knight.card =1 }
+{OneKnave : Knave.card =1 }
+{OneNormal : Normal.card =1 }
+
+{hKKn : Knight ∩ Knave = ∅ }
+{hKN : Knight ∩ Normal = ∅ }
+{hKnN : Knave ∩ Normal = ∅ }
+{h1 : A ∈ Knight ∨ A ∈ Knave ∨ A ∈ Normal }
+{h2 : B ∈ Knight ∨ B ∈ Knave ∨ B ∈ Normal }
+{h3 : C ∈ Knight ∨ C ∈ Knave ∨ C ∈ Normal}
+{stA : A ∈ Knight → (A ∈ Normal) } 
+{stAn : A ∈ Knave → ¬ (A ∈ Normal) }
+{stB : B ∈ Knight → (A ∈ Normal)}
+{stBn : B ∈ Knave → ¬(A ∈ Normal)}
+{stC : C ∈ Knight → C ∉ Normal}
+{stCn : C ∈ Knave → C ∈ Normal}
+: A ∈ Knave ∧ B ∈ Normal ∧ C ∈ Knight := by 
+   
+  sorry
 #check Membership
 #check Finset.instMembershipFinset
 #check Set.mem_toFinset

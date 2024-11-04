@@ -1,12 +1,14 @@
 import Game.Metadata
 
 World "KnightsAndKnavesAndNormals" 
-Level 3
+Level 4
 
 Title "" 
 
 Introduction 
 "
+A: B is a knight. 
+B: A is a knave, 
 "
 
 

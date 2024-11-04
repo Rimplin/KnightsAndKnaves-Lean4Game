@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Sat Oct 26 02:09:37 2024\n"
+"POT-Creation-Date: Mon Nov  4 01:17:56 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -803,13 +803,10 @@ msgstr ""
 msgid "Before diving into an actual knights and knaves puzzle, lets explore basic results implied by the assumptions of this puzzle.\n"
 "\n"
 "We will first look at the assumption that no one can be a knight and a knave at the same time.\n"
-"\n"
-"We can think of the set of knights and the set of knaves, denoted `Knights`, `Knaves` respectively. A set is a collection of 'entities' with a specified property. The set `Knight` would be the set of inhabitants of the island that are knights i.e satisfying the property of always telling the truth, the set `Knave` being the set of inhabitatns of the island that are knives i.e the ones that always lie. \n"
-"\n"
-"Note that in Lean, `Set K` means the set of objects of type `K`( this can be changed to something clearer?? think of clarity benefits of a change). Note that in each level, we will be considering two or three inhabitants of the island and will not be reasoning about the sets themselves but about these fixed inhabitants named `A`, `B`, `C`.\n"
-"\n"
-"\n"
-"\n"
+"It is represented as:\n"
+"```\n"
+"h : Knight ∩ Knave = ∅ \n"
+"```\n"
 "\n"
 "\n"
 "/-\n"
@@ -1026,6 +1023,11 @@ msgid "-- maybe indicate stuff with headings, seems to get into it too quickly\n
 "The setting is an island  in which certain inhabitants called 'knights' always tell the truth, and others called 'knaves' always lie.\n"
 "Every inhabitant is either a knight or a knave, there is no third option.\n"
 "\n"
+"/-\n"
+"We can think of the set of knights and the set of knaves, denoted `Knights`, `Knaves` respectively. A set is a collection of 'entities' with a specified property. The set `Knight` would be the set of inhabitants of the island that are knights i.e satisfying the property of always telling the truth, the set `Knave` being the set of inhabitatns of the island that are knives i.e the ones that always lie. \n"
+"\n"
+"Note that in Lean, `Set K` means the set of objects of type `K`( this can be changed to something clearer?? think of clarity benefits of a change). Note that in each level, we will be considering two or three inhabitants of the island and will not be reasoning about the sets themselves but about these fixed inhabitants named `A`, `B`, `C`.\n"
+"-/\n"
 "Let `Knight` be the set of inhabitants that are knights, i.e always tell the truth.\n"
 "Let `Knave` be the set of inhabitants that are knaves, i.e always lies.\n"
 "In a proof state, this would look like:\n"
@@ -1188,8 +1190,7 @@ msgstr ""
 msgid "Suppose instead, A and B say the following: \n"
 "A: All of us are knaves. \n"
 "B: Exactly one of us is a knave. \n"
-"Can it be determined what B is? Can it be determined what \n"
-"C is?"
+"Can it be determined what B is? Can it be determined what C is?"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.prob32
@@ -1210,16 +1211,55 @@ msgid "It is recommended to solve the problems in this world while in editor mod
 "The two can be combined as `A ∈ Knight ↔ A ∈ Knave`"
 msgstr ""
 
+#: Game.Levels.KnightsAndKnaves2.L01_Introduction
+msgid "Intro"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L01_Introduction
+msgid "A ⇔ (B ∧ C)\n"
+"B ⇔ (C ∧ ¬A)\n"
+"A: B is a knight and C is a knight.\n"
+"B: C is a knight and A is a knave."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L02_iff
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L02_iff
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L02_iff
+msgid ""
+msgstr ""
+
 #: Game.Levels.KnightsAndKnaves2
 msgid "Knights and Knaves, second approach"
 msgstr ""
 
-#: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.prob39
+#: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.IamKnave
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.IamKnave
+msgid "A : I am  knave"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.IamKnave
 msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.prob39
 msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.prob39
+msgid "We are given three people, A,B,C, one of whom is a knight, one a knave, and one normal (but not necessarily in that order). \n"
+"They make the following statements: \n"
+"A: I am normal. \n"
+"B: That is true. \n"
+"C: I am not normal."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.prob39
@@ -1243,7 +1283,8 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.prob41
-msgid ""
+msgid "A: B is a knight. \n"
+"B: A is a knave,"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.prob41

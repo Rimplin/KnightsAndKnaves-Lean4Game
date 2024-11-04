@@ -8,22 +8,7 @@ import Game.Metadata
 --
 --Can you determine who is a knight and who is a knave?
 
---def Joe: Prop :=sorry
---def Bob : Prop:=sorry
---def Ted: Prop :=sorry
---def Zippy : Prop:=sorry
---def Alice: Prop :=sorry
---def Zoey : Prop:=sorry
-variable ( Joe Bob Ted Zippy Alice Zoey : Prop)
---def knight(x:Prop):=x
---def knave(x:Prop):=¬x
---axiom Joe_stat:Joe  ↔  Joe ∨ ¬ Alice
---axiom Bob_stat: Bob  ↔  Zippy
---axiom Ted_stat: Ted  ↔ ( Zippy ∧ ¬ Alice)
---axiom Zippy_stat: Zippy  ↔  Bob
---axiom Alice_stat: Alice  ↔  (¬ Zippy ∨ Zoey)
---axiom Zoey_stat: Zoey  ↔ Joe
-
+--axiom
 /-
 prolog 
 sat( (Joe =:= (Joe + ~Alice)) * (Bob =:= (Zippy)) * (Ted =:= (Zippy * ~Alice) * (Zippy =:= Bob)) * (Alice =:= (~Zippy + Zoey)) * (Zoey =:= Joe) ), labeling([Joe,Alice,Bob,Zippy,Zoey,Ted]).
@@ -33,9 +18,7 @@ Alice = 1 .
 
 -/
 
-
-
-example
+example( Joe Bob Ted Zippy Alice Zoey : Prop)
 (Joe_stat:Joe  ↔  Joe ∨ ¬ Alice)
 (Bob_stat: Bob  ↔  Zippy)
 (Ted_stat: Ted  ↔ ( Zippy ∧ ¬ Alice))
@@ -90,6 +73,15 @@ example
         contradiction
      
 
+example
+(Joe_stat:Joe  ↔  Joe ∨ ¬ Alice)
+(Bob_stat: Bob  ↔  Zippy)
+(Ted_stat: Ted  ↔ ( Zippy ∧ ¬ Alice))
+(Zippy_stat: Zippy  ↔  Bob)
+(Alice_stat: Alice  ↔  (¬ Zippy ∨ Zoey))
+(Zoey_stat: Zoey  ↔ Joe)
+:(Alice ∧ ¬Ted) := by 
+  sorry
 --You have met a group of 3 islanders. Their names are Oberon, Tracy, and Wendy.
 --
 --    Tracy says: Wendy is untruthful.
@@ -176,79 +168,133 @@ example
 ----exists(λ p,match p with | Tracy =>knave|Oberon=>knave | Wendy => knight ),split { refl}, split, { refl }, { refl } 
 
 
-
---Here is your puzzle:
---
---You have met a group of 3 islanders. Their names are Xavier, Gary, and Alice.
-
-
-
-
---
---    Gary says: Alice is my type.   Alice says: Gary never lies.    Gary says: Xavier never lies.
---solution:    A knight or a knave will say they are the same type as a knight. So when Gary says they are the same type as Alice, we know that Alice is a knight.
---    All islanders will call one of their same kind a knight. So when Alice says that Gary is a knight, we know that Gary and Alice are the same type. Since Alice is a knight, then Gary is a knight.
---    All islanders will call one of their same kind a knight. So when Gary says that Xavier is a knight, we know that Xavier and Gary are the same type. Since Gary is a knight, then Xavier is a knight.
---
---For these reasons we know there were no knaves , and the knights were Alice, Xavier, and Gary.
-example
-  --sets
-  {Gary Alice Xavier: Inhabitant}
-  {Knight : Set Inhabitant} {Knave : Set Inhabitant}
-{h : Knight ∩ Knave = ∅ }
-{Or : ∀(x :Inhabitant), x ∈ Knight ∨ x ∈ Knave}
-{stG1 : Gary ∈ Knight  ↔ (Alice ∈ Knight) }
-{stGn1 : Gary ∈ Knave  ↔ (Alice ∈ Knight) }
-{stG2 : Gary ∈ Knight  ↔ (Xavier ∈ Knight) }
-{stGn2 : Gary ∈ Knave  ↔ (Xavier ∈ Knave) }
-{stA : Alice ∈ Knight ↔ (Gary ∈ Knight)}
-{stAn : Alice ∈ Knave ↔ (Gary ∈ Knave)} : Gary ∈ Knight ∧ Alice ∈ Knight ∧ Xavier ∈ Knight := by{
-  rcases Or Gary with GaryKnight|GaryKnave
-  · have AliceKnight:= stG1.mp GaryKnight
-    have XavierKnight := stG2.mp GaryKnight
-    constructor
-    assumption
-    constructor
-    assumption
-    assumption
-
-  · have AliceKnight := stGn1.mp GaryKnave
-    have GaryKnight := stA.mp AliceKnight
-    exfalso
-    exact disjoint h GaryKnight GaryKnave
-}
-
-
-
-
 ------------------
---Here is your puzzle:
---
---You have met a group of 2 islanders. Their names are Robert and Ira.
---
---    Robert says: Ira is my type.
---    Ira says: Robert is truthful.
---solution:     A knight or a knave will say they are the same type as a knight. So when Robert says they are the same type as Ira, we know that Ira is a knight.
---    All islanders will call one of their same kind a knight. So when Ira says that Robert is a knight, we know that Robert and Ira are the same type. Since Ira is a knight, then Robert is a knight.
---
---For these reasons we know there were no knaves , and the knights were Robert and Ira.
-example
-  --sets
-  {Robert Ira: Inhabitant}
-  {Knight : Set Inhabitant} 
-  {Knave : Set Inhabitant}
-  {h : Knight ∩ Knave = ∅ }
-  {Or : ∀(x :Inhabitant), x ∈ Knight ∨ x ∈ Knave}
-  {stR : Robert ∈ Knight ↔ Ira ∈ Knight}
-  {stRn : Robert ∈ Knave ↔ Ira ∈ Knight}
-  {stI : Ira ∈ Knight ↔ Robert ∈ Knight}
-  {stIn : Ira ∈ Knave ↔ Robert ∈ Knave} : Robert ∈ Knight ∧ Ira ∈ Knight := by 
-    have IraKnight : Ira ∈ Knight := by 
-      
-      cases Or Robert
-      · exact stR.mp h_1
-      · exact stRn.mp h_1
-    constructor
-    · exact stI.mp IraKnight
-    · assumption
+-- inverse direction is obvious...
+example (A : Finset K) (ge1 : A.card ≥ 1) : ∃ a:K, {a} ⊆ A := by 
+  --rw [] at ge1 
+  --by_contra h
+  --push_neg at h
+  #check gt_or_eq_of_le
+  #check lt_iff_not_ge
+  #check Finset.card_eq_zero
+  #check Finset.nonempty_iff_ne_empty
+  #check Function.mt Finset.ne_empty_of_mem
+  #check Finset.card_empty
+  #check Finset.card_eq_zero
 
+  #check Finset.erase_eq_empty_iff
+  #check gt_of_gt_of_ge
+  #check gt_of_ge_of_gt
+  #check gt_of_ge_of_gt
+  #check not_iff_not.mpr Finset.card_le_one_iff_subset_singleton
+  have := gt_or_eq_of_le ge1
+  cases this
+  · #check Finset.card_le_of_subset 
+    #check Finset.subset_iff_eq_of_card_le
+    sorry
+  · rw [Finset.card_eq_one] at h
+    have ⟨a,ha⟩ := h
+    use a
+    rw [ha]
+
+/-
+A: If C is a knave, then B is a knight.
+B: A is a knight or C is a knight.
+C: B is a knave, if and only if A is a knight.
+
+A: C*  B
+B: A ∨ C
+C: B* ⇔ A
+-/
+
+/-
+A,B,C either knight or knave. no normal
+A ⇔ (¬B ∧ ¬C)
+B ⇔ (A ∨ C)
+A: B is a knave and C is a knave.
+B: A is a knight or C is a knight.
+-/
+example {A B C :Prop} 
+{stA : A ↔ (¬B ∧ ¬C)}
+{stAn : ¬A ↔ ¬(¬B ∧ ¬C)}
+{stB : B ↔ (A ∨ C)}
+{stBn : ¬B ↔ ¬(A ∨ C)}
+: ¬A ∧ B ∧ C := by 
+  have nA: ¬A := by
+   intro hA 
+   have nBnC := stA.mp hA
+   have nAnC := stBn.mp nBnC.left
+   push_neg at nAnC
+   exact nAnC.left hA
+
+  have BC := stAn.mp nA
+  have nB : B := by
+    by_contra hB
+    have nAnC := stBn.mp hB
+    push_neg at nAnC
+    #check stA.mpr
+    have hA := stA.mpr (And.intro hB nAnC.right)
+    contradiction
+
+  simp [nA] at stB  
+  rw [←stB]
+  constructor
+  assumption
+  constructor
+  assumption ; assumption
+
+
+example
+ {A B C P : Prop}
+ {h1 : A  ↔ (¬B ∧ ¬C)}
+{ h2 : B ↔ (A ∨ C)} 
+ {h12 : ¬A  ↔ ¬(¬B ∧ ¬C)}
+:  ¬A ∧ B ∧ C := by
+ -- have h4 : B ↔ (¬A ∨ ¬C), from h2,
+  --rw [h1] at h2
+  rw [h2] at h1
+  push_neg at h1
+  have : ¬A := by 
+    intro a
+    have := h1.mp a
+    exact this.left.left a
+  have h2' := h2
+  simp [this] at h2
+  have : B := by
+    by_contra hB
+    have nc := (not_iff_not.mpr h2).mp hB
+    simp [*] at h1
+  -- now i have C
+  sorry
+
+/-
+A: B* ⇔ C
+B: A ∧ C
+C: A*  B*
+
+A: B is a knave, if and only if C is a knight.
+B: A is a knight and C is a knight.
+C: If A is a knave, then B is a knave.
+-/
+example
+  {inst : DecidableEq Inhabitant}
+  {inst2 : Fintype Inhabitant}
+  {Knight : Finset Inhabitant} {Knave : Finset Inhabitant}
+  {Normal : Finset Inhabitant} 
+{hKKn : Knight ∩ Knave = ∅ }
+{hKN : Knight ∩ Normal = ∅ }
+{hKnN : Knave ∩ Normal = ∅ }
+{all2 : ∀ (x : Inhabitant), x = A ∨ x = B ∨ x = C}
+{Or : ∀(x :Inhabitant), x ∈ Knight ∨ x ∈ Knave ∨ x ∈ Normal}
+{stA : A ∈ Knight → (B ∈ Knave ↔ C ∈ Knight) }
+{stAn : A ∈ Knave → ¬ (B ∈ Knave ↔ C ∈ Knight) }
+
+{stB: B ∈ Knight → (A ∈ Knight ∧  C ∈ Knight) }
+{stBn: B ∈ Knave → ¬ (A ∈ Knight ∧  C ∈ Knight) }
+
+{stC: C ∈ Knight → (A ∈ Knave → B ∈ Knave) }
+{stCn: C ∈ Knave → ¬ (A ∈ Knave → B ∈ Knave) }
+{atleastK : Knight.card ≥ 1}
+{atleastKn : Knave.card ≥ 1} : A ∈ Normal ∧ B ∈ Knave ∧ C ∈ Knight := by 
+  -- B ∉ Knight
+  sorry

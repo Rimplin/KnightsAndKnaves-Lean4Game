@@ -111,8 +111,6 @@ $
 You could have also solved it by just writing `contradiction`. Contradiction is a tactic that detects if you have contradictory assumptions and if so, closes the goal. Try it if you want.
 "
 
-/- Use these commands to add items to the game's inventory. -/
-
 NewTactic contradiction
 -- NewLemma Nat.add_comm Nat.add_assoc
 -- NewDefinition Nat Add Eq
