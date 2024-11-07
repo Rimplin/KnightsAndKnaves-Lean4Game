@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Mon Nov  4 01:17:56 2024\n"
+"POT-Creation-Date: Fri Nov  8 00:24:28 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -1046,7 +1046,11 @@ msgid "-- maybe indicate stuff with headings, seems to get into it too quickly\n
 "- Every inhabitant of the island is either a knight or a knave which is expressed as : A ∈ Knight ∨ A ∈ Knave.\n"
 "- 'Knights' always tell the truth and 'Knaves' always lie. Clearly, no inhabitant can be both a knight and a knave. So the intersection of bothe sets is empty. Knight ∩ Knave = ∅. The two sets Knight Knave are disjoint.\n"
 "\n"
-"The objective is to conclude who is a knight and who is a knave, based on the statements of several inhabitants. This will be done using logical reasoning. Every inhabitant will make at most one statement."
+"The objective is to conclude who is a knight and who is a knave, based on the statements of several inhabitants. This will be done using logical reasoning. Every inhabitant will make at most one statement.\n"
+"\n"
+"get a taste:\n"
+"Logic Puzzles: Knights and Knaves - YouTube\n"
+"https://www.youtube.com/watch?v=jY6dvQUHIOs"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.L01_IamKnave
@@ -1216,10 +1220,27 @@ msgid "Intro"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves2.L01_Introduction
-msgid "A ⇔ (B ∧ C)\n"
-"B ⇔ (C ∧ ¬A)\n"
-"A: B is a knight and C is a knight.\n"
-"B: C is a knight and A is a knave."
+msgid "A: B is a knight and C is a knight.\n"
+"\n"
+"B: C is a knight and A is a knave.\n"
+"\n"
+"The reasoning that gives us `¬A` is as follows:\n"
+"Assuming `A` is true:\n"
+"- `B ∧ C` from `stA` using `A`\n"
+"- `C ∧ ¬A` from `stB` using `B`\n"
+"- `False` from `A`,`¬A`.\n"
+"\n"
+"The reasoning that gives us `¬C` is as follows:\n"
+"Assuming `C` is true:\n"
+"- `B` from `stB` using `C ∧ ¬A`\n"
+"- `A` from `stA` using `B ∧ C`\n"
+"- `False` from `A`,`¬A`\n"
+"\n"
+"Using `¬C`, we get `¬C ∨ A` which gives `¬B` using `stBn`.\n"
+"\n"
+"You have the freedom of doing whatever(or maybe impose something using Template).\n"
+"\n"
+"use template"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves2.L02_iff
@@ -1227,15 +1248,98 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves2.L02_iff
-msgid ""
+msgid "A: C is a knight or B is a knight.\n"
+"B: A is a knight, if and only if C is a knight.\n"
+"\n"
+"Assuming ¬A,\n"
+"¬C ∧ ¬B from stAn\n"
+"¬(A ↔ C) from stBn\n"
+"(A ↔ C) from ¬A, ¬C\n"
+"False from ¬(A ↔ C) , (A ↔ C)\n"
+"\n"
+"Notice that ¬A means ¬C, ¬B where ¬B gives that A and C dont have the same type. This is a contradiction of course so the proposition ¬A is not true which means that A is true.  \n"
+"\n"
+"Now we know A, which gives C ∨ B\n"
+"¬B means C, and it also means ¬(A ↔ C). But we know A ↔ C from A,C so we get a contradiction.\n"
+"\n"
+"lets take cases for C ∨ B. Having C gives us (A ↔ C) which gives us B. So we get as a final answer, A ∧ B ∧ C. \n"
+"Having B, we get that (A ↔ C) which gives us C. The final answer is A ∧ B ∧ C.\n"
+"\n"
+"Now we know A,B. From B we get that A ↔ C, which means C.\n"
+"\n"
+"Now we know A,B,C."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves2.L02_iff
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L03_
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L03_
+msgid "similar explanation to lvl 2"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L03_
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L04_orIff
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L04_orIff
+msgid "A: B is a knight or C is a knight.\n"
+"B: C is a knave, if and only if A is a knave"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L04_orIff
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L05_imp
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L05_imp
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L05_imp
 msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves2
 msgid "Knights and Knaves, second approach"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2
+msgid "In this world, we deal with the knights and knaves puzzle but the difference is how we translate and represent the problem in Lean.(an arguably cleaner representation/translation)\n"
+"\n"
+"The setup is as follows:\n"
+"We exploit the binary nature of an inhabitant. An inhabitant can be either/or. There are two options and no third, either a knight or a knave. So, we declare as variables a proposition for every inhabitant. Say we have three inhabitants A,B,C , we declare the following propositions:\n"
+"```\n"
+"variable {A B C : Prop}\n"
+"```\n"
+"Now we intrepret having a proof of `A` as `A` being a knight, and having a proof of `¬A` as `A` being a knave.\n"
+"\n"
+"The translation of statements made by each inhabitant into a propositional formula remains the same, using `↔` but of course instead of `A ∈ Knight` we just have `A` and instead of `A ∈ Knave` we just have `¬A`.\n"
+"\n"
+"-- correspondence\n"
+"Notice that there are no explicit assumptions in this representation, but that doesn't mean that this representation is less faithful. We know that any proposition is either true or false, in our context this would translate to every inhabitant is either a knight or a knave. Moreoever, we know that p ∧ ¬p is false, which would translate to the fact that no inhabitant can be both a knight or a knave(which within the previous representation of finite sets, would mean that the set knight and the set knave are disjoint). \n"
+"we can also do 1's and zero's stuff, more related to smt solvers. if your interestedyou can check this really short video that would present the idea.\n"
+"include these videos:\n"
+"knights and knaves prolog - Invidious\n"
+"https://yewtu.be/search?q=knights+and+knaves+prolog\n"
+"\n"
+"\n"
+"Knights and Knaves in Prolog - YouTube\n"
+"https://www.youtube.com/watch?v=oEAa2pQKqQU\n"
+"\n"
+"\n"
+"All puzzles were generated(and possibly modified) from https://www.wolframcloud.com/objects/demonstrations/KnightsAndKnavesPuzzleGenerator-source.nb."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.IamKnave

@@ -46,4 +46,8 @@ Representing this more formally:
 - 'Knights' always tell the truth and 'Knaves' always lie. Clearly, no inhabitant can be both a knight and a knave. So the intersection of bothe sets is empty. Knight ∩ Knave = ∅. The two sets Knight Knave are disjoint.
 
 The objective is to conclude who is a knight and who is a knave, based on the statements of several inhabitants. This will be done using logical reasoning. Every inhabitant will make at most one statement.
+
+get a taste:
+Logic Puzzles: Knights and Knaves - YouTube
+https://www.youtube.com/watch?v=jY6dvQUHIOs
 "

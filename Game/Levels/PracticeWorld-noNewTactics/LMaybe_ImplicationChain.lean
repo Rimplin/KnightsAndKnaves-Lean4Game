@@ -48,9 +48,4 @@ So, We know `S`
 So, We know `T` which is out goal
 "
 
-/- Use these commands to add items to the game's inventory. -/
 OnlyTactic apply assumption
---NewTactic 
--- NewTheorem Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq
-

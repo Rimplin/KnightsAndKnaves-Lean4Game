@@ -5,9 +5,94 @@ Level 2
 
 Title "" 
 
+/-
+wolfram generated
+A ⇔ (C ∨ B)
+B ⇔ (A ⇔ C)
+
+-/
 Introduction 
 "
+A: C is a knight or B is a knight.
+B: A is a knight, if and only if C is a knight.
+
+Assuming ¬A,
+¬C ∧ ¬B from stAn
+¬(A ↔ C) from stBn
+(A ↔ C) from ¬A, ¬C
+False from ¬(A ↔ C) , (A ↔ C)
+
+Notice that ¬A means ¬C, ¬B where ¬B gives that A and C dont have the same type. This is a contradiction of course so the proposition ¬A is not true which means that A is true.  
+
+Now we know A, which gives C ∨ B
+¬B means C, and it also means ¬(A ↔ C). But we know A ↔ C from A,C so we get a contradiction.
+
+lets take cases for C ∨ B. Having C gives us (A ↔ C) which gives us B. So we get as a final answer, A ∧ B ∧ C. 
+Having B, we get that (A ↔ C) which gives us C. The final answer is A ∧ B ∧ C.
+
+Now we know A,B. From B we get that A ↔ C, which means C.
+
+Now we know A,B,C.
 "
+Statement {A B C : Prop}
+{stA : A ↔ (C ∨ B)}
+{stAn : ¬A ↔ ¬(C ∨ B)}
+{stB : B ↔ (A ↔ C)}
+{stBn : ¬B ↔ ¬(A ↔ C)}
+: A ∧ B ∧ C := by 
+   
+  have stAn2 := stAn
+  rw [stB] at stAn 
+  rw [not_or] at stAn
+  have hA: A := by 
+    by_contra nA 
+    have ⟨nC,AdiffC⟩ := stAn.mp nA
+    rw [not_iff] at AdiffC
+    have hC := AdiffC.mp nA 
+    exact nC hC
+  
+  -- explore cases
+  -- now we have that C ∨ B. Looking at the case where B is true, doesn't seem to contradict anything and we don't have enough information to make a conclusion. Looking at the case where ¬B is true, we have that C must be true from the C ∨ B,and from stBn we conclude that A,C dont have the same type. So ¬C must be true as well which is a contradiction. 
+  have CorB := stA.mp hA 
+
+  -- another strat, cases CorB
+  cases CorB
+  · simp [h,hA] at stB 
+    -- done
+    exact ⟨hA,stB,h⟩  
+  · simp [hA,h] at stB 
+    -- done
+    exact ⟨hA,h,stB⟩ 
+
+example {A B C : Prop}
+{stA : A ↔ (C ∨ B)}
+{stAn : ¬A ↔ ¬(C ∨ B)}
+{stB : B ↔ (A ↔ C)}
+{stBn : ¬B ↔ ¬(A ↔ C)}
+: A ∧ B ∧ C := by 
+  have hA : A := by 
+    by_contra nA 
+    have nCnB := stAn.mp nA 
+    push_neg at nCnB
+    have nC := nCnB.left
+    have : A ↔ C := by 
+    -- when proof of something is based on truth table, usually simp can do it
+      simp [nA,nC]
+      --exact (iff_true_right nC).mpr nA
+    have nAiffC := stBn.mp nCnB.right 
+    contradiction
+
+  have hB : B := by 
+    by_contra nB
+    simp [nB] at stA 
+    have := stBn.mp nB
+    contradiction
+
+  have AiffC := stB.mp hB
+  have hC := AiffC.mp hA
+  exact ⟨hA,hB,hC⟩ 
+
+
 
 /-
 wolfram generated
@@ -47,43 +132,6 @@ example {A B C : Prop}
     assumption
 
   exact ⟨nA,nB,hC⟩ 
-
-/-
-wolfram generated
-A ⇔ (C ∨ B)
-B ⇔ (A ⇔ C)
-
-A: C is a knight or B is a knight.
-B: A is a knight, if and only if C is a knight.
--/
-Statement {A B C : Prop}
-{stA : A ↔ (C ∨ B)}
-{stAn : ¬A ↔ ¬(C ∨ B)}
-{stB : B ↔ (A ↔ C)}
-{stBn : ¬B ↔ ¬(A ↔ C)}
-: A ∧ B ∧ C := by 
-  have hA : A := by 
-    by_contra nA 
-    have nCnB := stAn.mp nA 
-    push_neg at nCnB
-    have nC := nCnB.left
-    have : A ↔ C := by 
-    -- when proof of something is based on truth table, usually simp can do it
-      simp [nA,nC]
-      --exact (iff_true_right nC).mpr nA
-    have nAiffC := stBn.mp nCnB.right 
-    contradiction
-
-  have hB : B := by 
-    by_contra nB
-    simp [nB] at stA 
-    have := stBn.mp nB
-    contradiction
-
-  have AiffC := stB.mp hB
-  have hC := AiffC.mp hA
-  exact ⟨hA,hB,hC⟩ 
-
 
 --https://philosophy.hku.hk/think/logic/knights.php
 -- translation of this puzzle is tricky

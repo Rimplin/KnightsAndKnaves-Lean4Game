@@ -8,3 +8,10 @@ big disadvantage: goes against all the previous build up... remember that the ga
 inductive Xor'' (P Q : Prop) : Prop
 | introL (p : P) (np : ¬Q) 
 | introR (q : Q) (nq : ¬P) 
+
+  -- maybe do Knights and Knaves thing as inductive type...
+  /-
+  inhabitant
+  | Knight
+  | Knave
+  -/

@@ -7,6 +7,9 @@ Level 4
 Title "Implication, →" 
 #check Function.mt
 #check Function.mtr
+
+#check and_imp
+ 
 Introduction 
 "
 In this leve, we introduce the logical implication `→` connective.
