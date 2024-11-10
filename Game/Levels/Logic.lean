@@ -64,16 +64,6 @@ The atomic propositions in the compound proposition `p ∧ q` are : `p`, `q`. Of
 The truth table of a logical connective illustrates the rule for that logical connective , i.e the truth value of the compound statement depending on the truth value of the atomic propositions.
 The following truth table illustrates this for the prevously discussed `∧` connective.
 
-`T` stands for true
-`F` stands for false
-```
-| P | Q | P ∧ Q  |
-|---|---|--------|
-| T | T |   T    |
-| T | F |   F    |
-| F | T |   F    |
-| F | F |   F    |
-```
 
 # truth tables for the logical connectives
 You can find these truth tables in the documentation in the right side pane. This world will focus on the introduction and elimination rules of various logical connectives.

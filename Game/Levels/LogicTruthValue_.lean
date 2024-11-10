@@ -24,12 +24,21 @@ World "LogicTruthValue_"
 Title "Logic Truth Value_"
 Introduction 
 "
--- these are the most important points that need to be focused on but switching to a truth value perspective disrupts this... truth value perspective should be introduced to show the brute force way of solving knights and knaves puzzles.
 In this world, we will be dealing with `Objects` of type `Prop` i.e propositions. You can think of a proposition as a statement that is either true or false(obviously, it can't be both at the same time). You have seen propositions before like `x=2`, `4*y=16` etc..
 
-We construct new propositions from old ones. For example, denoting `x=2` by `P` and `4*y=16` by `Q`, we can construct a new proposition `P ∧ Q` which is read as `x=2 and 4*y=16`. 
-
 Having an object `h` of type `P` where `P` is of type `Prop` means that `h` is a proof of `P`. You have seen a special case of this for `x=2` for example, but this applies for any proposition.
+When you have `h : P` where `P : Prop` , then we say `h` is a proof of the statement `P`(imagine `x=2` instead of `P`).
+
+We can construct new propositions from old ones.
+
+Here's an example in natural language, given the two propositions 'The sun is shining' , 'It is Monday', you can construct 'The sun is shining and it is monday'. 
+For example, having the following:
+```
+h : `x=2`
+h' : `4*y=16`
+```
+denoting `x=2` by `P` and `4*y=16` by `Q`, we can construct a new proposition `P ∧ Q` which is read as `x=2 and 4*y=16`. 
+
 
 -----------------------------
 This world will heavily rely on the truth table perspective of propositions and the various logical connective to provide an intuitive foundation for explaining the validity of various rules in propositional logic. 'Propositions' will be explained here, and the rest will be hinted at here but fully explained throught the levels.

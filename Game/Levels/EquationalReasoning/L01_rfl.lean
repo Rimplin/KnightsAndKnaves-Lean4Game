@@ -12,7 +12,6 @@ Introduction "In this exercise, we will prove `2 = 2`
 
 `rfl` is short for reflexivity, which is the property that for any number `a`, `a = a`
 
-`rfl` also applies more generally, `rfl` will close any goal of the form `A=B` where `A`,`B` are identical. If needed, `rfl` will unfold both sides into their definitions and then check if they are equal. In other words, `rfl` can prove the equality of two things that are 'equal by definition'.
 "
 
 Statement 

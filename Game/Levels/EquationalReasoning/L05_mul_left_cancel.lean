@@ -9,31 +9,30 @@ Title "some title"
 
 Introduction 
 "
-Here we introduce the `have` tactic which allows to add theorems to the context(which you would have to prove, of course). The `mul_left_cancel₀` will not be used in future levels, but is given here for the sake of having a familiar example.
+Here we introduce the `have` tactic which allows us to add theorems to the context(which you would have to prove, of course). 
 
-Proving the goal will go as follows:
+We will add the theorem `16=4*4` to the proof state, and use it to prove the goal.
 
-1- Prove that `16=4*4`
-
-2- Replace the `16` in `h` by `4*4`
-
-3- Cancel the `4` on both sides of `h` obtaining `y=4` which is the goal. (using the theorem `mul_left_cancel₀`)
-
-Step 1: ***Proving `16=4*4`***.
-We need to construct an object of type `16 = 4 * 4`. Lean does not have such an object in its math library so we will have to prove it ourselves and add it to the current proof state. 
-This is exactly what `have` does, which obeys the following syntax:
+Heres an example:
+`have twoEqualstwo : 2=2 := by rfl` will add an object named `twoEqualstwo` of type `2=2` to the proof state which would look as follows:
 ```
-`have name-of-object : type := by ...` 
+Assumptions:
+twoEqualstwo : 2=2
 ```
-where `...` is the proof.
-`name-of-object` can be whatever you want, leaving it empty would  give the theorem a name automatically. The `type` in this case is the statement we want to prove , i.e `16=4*4`. For the proof, we need to carry out the calculation of `4 * 4` and as in the previous level, the tactic for that is `norm_num`. Typing that as the proof will work. 
+
+You can choose any name after `have` and any type after `:`.
+
+For this problem, we want `16=4*4` instead of `2=2`.
+Adapt this example to `16 = 4*4` and include after `by` its proof.
+
+
 "
 
-/-
-There is an alternative syntax for `have` which you can view in the right side pane. In any case, it will be introduced later on when its more convenient to use.
-`have name := ........`
--/
 Statement (h : 4*y=16) : y = 4 := by{
+  Hint (hidden := true) 
+  "
+  For the proof, we need to carry out the calculation of `4 * 4` and as in the previous level, the tactic for that is `norm_num`. Typing that as the proof will work. 
+  "
   --Template
  -- have helper: 16=4*4 := by norm_num
  -- --Hole
@@ -41,48 +40,75 @@ Statement (h : 4*y=16) : y = 4 := by{
  -- exact mul_left_cancel₀ four_ne_zero h
  
   --Hint (hidden := true) (strict := true) "Try `have helper : 16=4*4 := by norm_num`" 
+  -- Notice that if `16` were in the goal, you would do `rw [{helper}]` to replace `16` with with `4*4`. We want to do the same thing at `h`. So, `rw ... at h` will do it. 
   have helper : 16=4*4 := by norm_num 
-  Hint "Now we want to replace the `16` in `h` with `4 * 4`. "
+  Hint "Now, using `rw`, we want to replace the `16` in `h` with `4 * 4`. "
   -- In other words, we want to do `rw [{helper}]` and have it be applied on h. 
   Hint (hidden := true) "`rw [{helper}] at h`" 
   rw [helper] at h 
   Hint "
-  Now that we have `4` on both sides, we want to cancel this `4`
+ Using `mul_left_cancel₀`, cancel the `4` on both sides of `h` obtaining `y=4` which is the goal.
 
-  This is possible using the theorem `mul_left_cancel₀` which has the following type :
+  For example, given the following proof state:
   ```
-  mul_left_cancel₀(ha : a ≠ 0) (h : a * b = a * c) : b = c
+  equation : 2*x = 2*3
   ```
-  `mul_left_cancel₀` takes two arguments which are:
-   - a proof that what you want to cancel is not equal to zero (in this case `a`).
-   - the equation you are working with.
-   The theorem then cancels `a` from both sides giving a proof of `b=c`. This is exactly what we want to prove the goal.
+  `mul_left_cancel₀` is of the form:
+  ```
+  mul_left_cancel₀ firstArgument secondArgument
+  ```
 
-  To write the subscript in `mul_left_cancel₀`, do backslash zero. \\0 `mul_left_cancel₀` is written as `mul_left_cancel\\0`
-  Lean has the theorem `four_ne_zero : 4≠0` which you need.
+  The following expression cancels `3` from both sides of `equation`:
+  ```
+  (mul_left_cancel₀ two_ne_zero equation) : x =3 
+  ```
+
+  Note that:
+  ```
+  two_ne_zero : 2 ≠ 0
+  ```
+  where 'ne' stands for not equal.
+
+  Arguments are given without paranthesis
+  is the first argument given to `mul_left_cancel₀` and `equation` is the second.
+
+  Adapt this to the current problem.
   "
+  /-
+   Arguments are given without parenthesis, for example :
+   ```
+   mul_left_cancel₀ ha h
+   ```
+   The theorem then cancels `a`(`4`) from both sides giving a proof of `b=c`(`y=4`). This is exactly what we want to prove the goal.
+  -/
   Hint (hidden:=true) "
   Notice that `mul_left_cancel₀ four_ne_zero h` has type `y = 4`. So, `exact mul_left_cancel₀ four_ne_zero h` will do it."
   exact mul_left_cancel₀ four_ne_zero h
 }
 
-Conclusion ""
+Conclusion 
+"
+Here is the type signature of mul_left_cancel\\0:
+  ```
+  mul_left_cancel\\0 (ha : a ≠ 0) (h : a * b = a * c) : b = c
+  ```
+  `mul_left_cancel₀` takes two arguments which are:
+   - `ha`, a proof that some number `a` is not equal to zero. 
+   - `h`, the equation which has `a` on both sides of the equation multiplied on the left.
 
+  The result is canceling `a` from both sides of the equation.
+"
+--In our case `h` is the `h` in our assumptions and `a` is `4`, `four_ne_zero` is the argument you should give.
+--you want to cancel from both sides of `h` is 
 #check add_mul
 NewTactic «have» 
-/- Focus on the type of `four_pos : 0 < 4`. The rest is just arguments that if you don't pass to Lean, Lean will deduce automatically. You can always learn what they mean by refering to the mathlib documentation -/
---TheoremDoc four_pos as "four_pos" in ">0"
 
-/-
+#check Nat.mul_left_cancel
+#check mul_left_cancel
 
-  `Nat.mul_left_cancel` takes two arguments, the first `np` is a proof that what you are cancelling from both sides of the equation is positive, and the second `h` is the equation itself. Its type is the equation `h` with `n` cancelled from both sides.
-
-  In our cases, we want a proof that `4` is positive which is `four_pos : 0 < 4` and the equation we are working with which is `h`
--/
 /-- [[mathlib_doc]] -/
 TheoremDoc mul_left_cancel₀ as "mul_left_cancel₀" in "*"
 NewTheorem mul_left_cancel₀ four_ne_zero
--- NewDefinition Nat Add Eq
 
 /--
 

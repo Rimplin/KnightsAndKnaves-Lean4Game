@@ -9,10 +9,21 @@ Introduction
 "
 In this level, we introduce the `∨` logical connective read as 'or'.
 
-left, apply Or.inl are the same thing.
+Its truth table is as follows:
+```
+| P | Q | P ∨ Q  |
+|---|---|--------|
+| T | T |   T    |
+| T | F |   T    |
+| F | T |   T    |
+| F | F |   F    |
+```
+The goal involves `∨`, and so (similar to `∧`) we need to use an introduction rule. Specifically, the `Or` introduction rule.
 There are two `∨` introduction rules: 
-The goal involves `∨`, and so (similar to `∧`) we need to use an introduction rule. Specifically, the `Or` introduction rule. 
-There are two introduction rules:
+Or.intro_left {a : Prop} (b : Prop) (h : a) : a ∨ b
+
+Curly braces are for implicit arguments that you don't have to enter, paranthesis are for explicit ones you have to enter. What this theorem means is that you enter the proposition you want to the right of `∨` and a proof of the proposition you want on the left. In other words, proving a proposition gives you `that prop ∨ anything you want`......
+
 ```
 Or.intro_left (b : Prop) (h : a) : a ∨ b
 ```
@@ -23,12 +34,13 @@ Or.intro_right (a : Prop) (h : b) : a ∨ b
 
 Pick the appropriate one.
 "
+-- left, apply Or.inl are the same thing.
+
 #check Or.inl
 #check Or.intro_right
 Statement (hP : P)  
   : P ∨ Q  := by
 {
-
 /-
 ```lean
 Or.intro_left {a : Prop} (b : Prop) (h : a) : a ∨ b
@@ -36,21 +48,17 @@ Or.intro_left {a : Prop} (b : Prop) (h : a) : a ∨ b
 ***
 Alias for `Or.inl`. 
 ***
-*import Init.Prelude*
-  -/
---    exact Or.intro_left Q hP
-
+-/
 
     exact Or.intro_left Q hP
-    /-
+/-
 ```lean
 Or.inl {a b : Prop} (h : a) : a ∨ b
 ```
 ***
 `Or.inl` is "left injection" into an `Or`. If `h : a` then `Or.inl h : a ∨ b`. 
 ***
-*import Init.Prelude*
-    -/
+-/
 }
 
 Conclusion 

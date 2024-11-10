@@ -15,37 +15,41 @@ Introduction
 "
 This is a gamification of mathematical proofs. Every level has a `Goal`, which is what you are trying to prove. Closing the `Goal` means you have proved the theorem and there is nothing else to do.
 
-You will use the Lean theorem prover, and its mathematical library mathlib.
+You will use the `Lean` theorem prover, and its mathematical library `mathlib`.
 
 # Right Side Pane
 Let's explain what's going on in the right side pane.
 
-Anything you click on will display an overview and some examples. This will be available to you at all times when working on the levels. Refer back to it whenever you need to.
+This is where you can find the tactics, definitions, and theorems at your disposal which were introduced in previous levels.
 
-Anything new tactic, theorem, or definition introduced in a level will be highlighted in a yellow color.
+Clicking on one will display an overview and some examples. This will be available to you at all times when working on the levels. Refer back to it whenever you need to.
+
+Any new tactic, theorem, or definition introduced in a level will be highlighted in a yellow color.
+
+We know discuss each section in the right side pane.
 ## Tactics
 In this puzzle game, you will use tactics to manipulate the `Goal` and close it, essentially proving the `Goal`. Tactics will be incrementally introduced, and tactics that haven't been introduced yet will have a lock icon which means you can't use them yet. 
 
 ## Definitions
-The point of this game is not just to showcase ***Lean***, but also to learn some mathematics. Relevant definitions will be displayed here
+The point of this game is not just to showcase ***Lean***, but also to learn some mathematics. Relevant definitions will be displayed here.
 
 ## Theorems
-Here is listed theorems to use throughout the levels. Some you would have proved in previous levels and others are presented for you to use but without proof.
+Here is listed theorems to use throughout the levels. Some you would have proved in previous levels and others are presented for you to use but without having proved them. An intuitive definition of why the theorem makes sense will be presented as well when it is introduced.
 
 # Level Structure
-Within every level, the `Objects`, `Assumptions`, and `Goal` for the current level. This is called the initial proof state. There will also be a text input to execute tactics accordingly.
-***Lean*** tracks the proof state as you execute tactics. 
-You will execute tactics one by one until Lean tells you that have closed the goal.
+Within every level, you have the `Objects`(if any), `Assumptions`(if any), and `Goal` for the current level. This is called the initial proof state. 
+
+There will also be a text input to execute tactics accordingly.
+
+***Lean*** tracks the proof state as you execute tactics and makes sure you made no mistakes.
+You will execute tactics one by one until Lean tells you that you have closed the goal.
 
 # More info
 You can click the hamburger menu in the top right then 'Game Info' for more information.
 
-# Terminlogy
 "
 
 Info "
-Here you can put additional information about the game. It is accessible
-from the starting through the drop-down menu.
 
 For example: Game version, Credits, Link to Github and Zulip, etc.
 

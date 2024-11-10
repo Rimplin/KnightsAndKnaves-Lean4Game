@@ -8,10 +8,14 @@ Title "Intro"
 
 Introduction
 " 
-This should look familiar. `hP` is of type `P` and `P` is of type `Prop`. So, `hP` is a proof of `P`. Our goal is to prove `P`. The type of `hP` EXACTLY matches the goal.
+This should look familiar.
 
-`hP` 'exactly' matches the goal. `hP` is 'exactly' what you need to close the goal. This is to emphasize that for the tactic `exact h`, the type of h doesn't matter.
+If it doesn't, then replace `P` by `x=2`.
+
+`hP` is of type `P` and `P` is of type `Prop`. So, `hP` is a proof of `P`. Our goal is to prove `P`. We already have such a proof which is `hP`, `hP` is EXACTLY what we need to prove the goal. The type of `hP` EXACTLY matches the goal.
 "
+
+--This is to emphasize that for the tactic `exact h`, the type of h doesn't matter.
 --<img src=\"data/g/JadAbouHawili/testing-leangame/Truth-Table-And.png\"/>
 --
 --$\\displaystyle {\\frac {P\\lor Q,\\neg P}{\\therefore Q}}$
@@ -187,17 +191,15 @@ example : ¬ (¬ P) ↔ P := by
     push_neg 
     exact h
 
-Conclusion "Notice that `hQ` and `hR` were not used. We couldn't use them in any case because `Q` and `R` are not related to `P`. In the next levels, we will discuss how to construct new propositions from old ones which would in a sense depend on the old ones. "
+Conclusion 
+"
+In the next levels, we will discuss how to construct new propositions from old ones whose meaning and truth value would depend on those old ones. 
+"
 
 /-
 ## Overview
 Having h : P and P as your goal, exact h will close the goal. exact h asserts that h is exactly whats needed to prove the goal which makes sense because h is a proof of P.(It doesn't matter what P is)
 -/
 NewTactic intro
-/--
-You can think of a proposition as a statement that is either true or false(obviously, it can't be both at the same time).
 
-For an object of type P where P is of type Prop, i.e `h : P` where `P : Prop`, `h` would be a proof or a witness that `P` is true. Equivalently, from `h` we can construct a term `h' := eq_true h of type `h' : P = True` which would be a proof that P is true as well. Both perspectives are interchangeable and equivalent.
--/
-DefinitionDoc «Prop» as "Prop"
 NewDefinition «Prop»
