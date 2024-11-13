@@ -58,7 +58,6 @@ https://start.duckduckgo.com/lite/?q=biconditional
 
 Logical biconditional - Wikipedia
 https://en.wikipedia.org/wiki/Logical_biconditional#Colloquial_usage
-
 -/
 
 /-
@@ -77,19 +76,11 @@ If `¬P` is False, then `P` is True.
 Two nots give a true. Double negatives. Two negatives make/resolve into a positive.
 Intuitvely, this fits how negation or 'not' works in language.
 
-If `P` then `False`.
-
 # What is `False` exactly? 
 
 ## How to prove `False` and what are the consequences? -- this has been introduced in the previous level...
 This is what you did in the previous level. This section is just reiterating that point. 
 
-Well, when was the first time you saw `False`?
-
-Here:
-'
-Negation of a proposition `P`, denoted `¬P`, is defined as `P → False`. 
-'
 It should be clear that to get to false, you would need to prove `¬P`, and `P`. Then given such a proof state:
 ```
 hnP : ¬P
@@ -102,8 +93,6 @@ Proving a proposition and its negation is a special case of 'deriving a contradi
 
 ## But what is `False` exactly?(now we know what `False` is from the truth value perspective so this would need a rewrite in logic world, no it doesn't because we were dealing with `= False` but now we are dealing with `→ False`).
 For now, just know that `False` is a type that has no introduction rule and that proving `False` means deriving a contradiction. So, to prove `¬p` , you must assume `p` and derive a contradiction. We will explain in more detail what is meant by 'contradiction'.
-
-To emphasize the fact that negation is an implication, you have to go through this simple level.
 -/
 
 Introduction 
@@ -112,13 +101,13 @@ In this level we introduce the negation, the `¬` connective (read as 'not').
 
 Notice that this is the first logical connective that applies on one proposition only and not two.
 
-We want an operator which flips the value of a proposition `P`. Lets call this operator `Not` represented as `¬`. In other words, if `P` were true then `¬P` would be false and vice versa. 
 The job of this connective(as the name implies), is to negate a proposition meaning that:
-- For `P` true, `¬P` false.
-- For `P` false, `¬P` true.
+- For `P` true, `¬P` is false.
+- For `P` false, `¬P` is true.
+
 In truth table form:
 $
-\\begin{array}{|c c|c|} 
+\\begin{array}{|c|c|} 
 \\hline
 P & ¬P \\\\
 \\hline
@@ -129,8 +118,8 @@ F & T \\\\
 $
 
 But we don't need to introduce a new symbol, it can be defined in terms of what we already know.
-Notice that `¬P` is the same as `P → False`. We say that these two expressions are logically equivalent, which we will discuss in future levels.
-Defining `¬P` as `P → False` would accomplish this. 
+
+Consider the following truth table: 
 $
 \\begin{array}{|c|c|} 
 \\hline
@@ -141,22 +130,23 @@ F & T  \\\\
 \\hline
 \\end{array}
 $
-Notice that this definition is an implication and that the truth table with `¬P` and the truth table with `P → False` are identical which means that the implication definition captures what we want `¬` to mean.
 
-In fact, this is how `¬P` is defined in Lean. Having `¬P` as a goal, you have to start the proof with `intro` because you are proving an implication.
+Notice that regardless of the truth value of `P`, the two propositions `¬P` and `P → False` have the same truth table. Therefore, they can be used interchangeably.(we say that these two expressions are logically equivalent, but let's leave this to a future level)
 
-`¬P` in Lean is defined as `P → False`. What this means is that we prove `¬P` by assuming `P` and deriving a contradiction i.e constructing an object of type `False`. 
+In fact, this is how `¬P` is defined in Lean.
 
-In this level, we have that `P ∧ ¬P` is true. This means that `P`,`¬P` which is `P → False` is true. `¬P` being true tells us that a proof of `P` gives us a proof of `False. We have a proof of `P`. Therefore we can obtain a proof of `False` which is the goal.
+`¬P` being true tells us that a proof of `P` gives us a proof of `False`. We have a proof of `P`. Therefore we can obtain a proof of `False` which is the goal.
+"
+
+/-
 It should be clear that to get to false, you would need to prove `¬P`, and `P`. Then given such a proof state:
 ```
 hnP : ¬P
 hP : P
 ```
 we can obtain false by `hnP hP`.
-"
 
-/-
+
 Note that `¬P` is also a proposition, so `¬ (¬P)` is a valid expression. Moreover, `¬ (¬P)` is a proposition so `¬ (¬ (¬P))` or `¬¬¬P` is a valid expression (and so on).
 
 The empty type. It has no constructors.
@@ -181,13 +171,6 @@ Another meaning for the term contradiction to refer to the assertion or proof of
 ## How to prove `False` and what are the consequences? -- this has been introduced in the previous level...
 This is what you did in the previous level. This section is just reiterating that point. 
 
-Well, when was the first time you saw `False`?
-
-Here:
-'
-Negation of a proposition `P`, denoted `¬P`, is defined as `P → False`. 
-'
-
 Proving a proposition and its negation is a special case of 'deriving a contradiction' because we have proven `p ∧ ¬p` which is always false. A logical system that has this quality is called an inconsistent system.
 
 ## Principle of explosion
@@ -196,9 +179,13 @@ Moreover, `False` has no introduction rule , so the reasoning described above is
 
 #check not_of_eq_false
 #check eq_false
-Statement (hPnp : P ∧ ¬P )
+Statement {P: Prop}
+{hP : P} {hnP : ¬P}
+: False := by{
+  exact hnP hP 
+ } 
+example (hPnp : P ∧ ¬P )
   : False  := by
-
   {
    exact hPnp.right hPnp.left
    --trivial
@@ -232,10 +219,12 @@ theorem add_right_neg (a : R) : a + -a = 0 := by rw [add_comm, add_left_neg]
 #check add_zero
 end MyRing
 
-
 theorem mul_zero (a : R) : a * 0 = 0 := by
   have h : a * 0 + a * 0 = a * 0 + 0 := by
     rw [←mul_add, add_zero, add_zero]
   rw [add_left_cancel h]
 
-Conclusion ""
+Conclusion 
+"
+In the next level, we will explore what it means to have proven `False`.
+"

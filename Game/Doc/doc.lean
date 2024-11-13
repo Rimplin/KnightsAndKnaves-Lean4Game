@@ -15,6 +15,25 @@ F & T \\
 \hline
 \end{array}
 $
+
+Notice that this definition is an implication and that the truth table with `¬P` and the truth table with `P → False` are identical.
+
+What this means is that to prove `¬P`, we assume `P` and derive a contradiction i.e constructing an object of type `False`. 
+In other words, having `¬P` as a goal, you have to start the proof with `intro` because you are proving an implication.
+
+
+
+It represents a contradiction. `False` elimination rule, `False.rec`,
+expresses the fact that anything follows from a contradiction.
+This rule is sometimes called ex falso (short for ex falso sequitur quodlibet),
+or the principle of explosion.
+For more information: [Propositional Logic](https://lean-lang.org/theorem_proving_in_lean4/propositions_and_proofs.html#propositional-logic)
+
+`False` is an 'empty' type that has no introduction rule. 
+
+`False` is the empty proposition. Thus, it has no introduction rules.
+
+Proving `False` means deriving a contradiction. So, to prove `¬p` , you must assume `p` and derive a contradiction. 
 -/
 DefinitionDoc Not as "¬"
 
