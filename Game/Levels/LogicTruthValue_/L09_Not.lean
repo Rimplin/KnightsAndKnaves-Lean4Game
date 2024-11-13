@@ -1,6 +1,5 @@
 import Game.Metadata
 
-
 World "Logic" 
 Level 6
 
@@ -8,20 +7,6 @@ Title "Not, ¬"
 
 Introduction 
 "
-
-$
-\\begin{array}{|c c|c|} 
-\\hline
-a & b & F \\\\
-\\hline
-0 & 0 & 0 \\\\
-0 & 1 & 0 \\\\
-1 & 0 & 0 \\\\
-1 & 1 & 1 \\\\
-\\hline
-\\end{array}
-$
-
 `¬P` in Lean is defined as `P → False`. What this means is that we obtain `¬P` by assuming `P` and deriving a contradiction i.e constructing an object of type `False` i.e proving `False` which means that `False` is also true. 
 
 `False` is the empty proposition, thus it has no introduction rule. It represents a contradiction.
@@ -40,25 +25,6 @@ $
 
 Another meaning for the term contradiction to refer to the assertion or proof of a propositional statement that is false for all possible values of its variables. We will use both interchangeably. So, deriving a contradiction means constructing such a proof.
 
-# What is `False` exactly? 
-
-## How to prove `False` and what are the consequences? -- this has been introduced in the previous level...
-This is what you did in the previous level. This section is just reiterating that point. 
-
-Well, when was the first time you saw `False`?
-
-Here:
-'
-Negation of a proposition `P`, denoted `¬P`, is defined as `P → False`. 
-'
-It should be clear that to get to false, you would need to prove `¬P`, and `P`. Then given such a proof state:
-```
-hnP : ¬P
-hP : P
-```
-we can obtain false by `hnP hP`.
-Proving a proposition and its negation is a special case of 'deriving a contradiction' because we have proven `p ∧ ¬p` which is always false. A logical system that has this quality is called an inconsistent system.
-
 "
 
 /-
@@ -74,8 +40,7 @@ Statement (hP : P)
   : P  := by
 
   {
-   exact hP
-   --trivial
+   trivial
   }
 
 variable (R : Type*) [Ring R]
@@ -113,8 +78,3 @@ theorem mul_zero (a : R) : a * 0 = 0 := by
   rw [add_left_cancel h]
 
 Conclusion ""
-
-/- Use these commands to add items to the game's inventory. -/
-
--- NewLemma Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq

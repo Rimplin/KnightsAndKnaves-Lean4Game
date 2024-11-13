@@ -1,7 +1,7 @@
 import Game.Metadata
 
 World "LogicTruthValue_" 
-Level 5
+Level 6
 
 Title "Not Connective, ¬" 
 
@@ -60,9 +60,11 @@ Logical biconditional - Wikipedia
 https://en.wikipedia.org/wiki/Logical_biconditional#Colloquial_usage
 
 -/
-Introduction 
-"
+
+/-
 Another way to say that `P = False` is by saying `¬P = True`. These two statements say the same thing. This is how we will define `¬`.
+
+
 `¬` is defined to satisfy the following properties:
 `(P = True) → (¬P = False)`
 `(P = False) → (¬P = True)`
@@ -73,33 +75,90 @@ If `¬P` is False, then `P` is True.
 If `¬P` is False, then `P` is True.
 
 Two nots give a true. Double negatives. Two negatives make/resolve into a positive.
-
 Intuitvely, this fits how negation or 'not' works in language.
-
-Notice that this is the first logical connective that applies on one proposition only and not two.
 
 If `P` then `False`.
 
-------
-this is enough
+# What is `False` exactly? 
+
+## How to prove `False` and what are the consequences? -- this has been introduced in the previous level...
+This is what you did in the previous level. This section is just reiterating that point. 
+
+Well, when was the first time you saw `False`?
+
+Here:
+'
+Negation of a proposition `P`, denoted `¬P`, is defined as `P → False`. 
+'
+It should be clear that to get to false, you would need to prove `¬P`, and `P`. Then given such a proof state:
+```
+hnP : ¬P
+hP : P
+```
+we can obtain false by `hnP hP`.
+Proving a proposition and its negation is a special case of 'deriving a contradiction' because we have proven `p ∧ ¬p` which is always false. A logical system that has this quality is called an inconsistent system.
+
+# Defining `¬`
+
+## But what is `False` exactly?(now we know what `False` is from the truth value perspective so this would need a rewrite in logic world, no it doesn't because we were dealing with `= False` but now we are dealing with `→ False`).
+For now, just know that `False` is a type that has no introduction rule and that proving `False` means deriving a contradiction. So, to prove `¬p` , you must assume `p` and derive a contradiction. We will explain in more detail what is meant by 'contradiction'.
+
+To emphasize the fact that negation is an implication, you have to go through this simple level.
+-/
+
+Introduction 
+"
+In this level we introduce the negation, the `¬` connective (read as 'not').
+
+Notice that this is the first logical connective that applies on one proposition only and not two.
+
+We want an operator which flips the value of a proposition `P`. Lets call this operator `Not` represented as `¬`. In other words, if `P` were true then `¬P` would be false and vice versa. 
+The job of this connective(as the name implies), is to negate a proposition meaning that:
+- For `P` true, `¬P` false.
+- For `P` false, `¬P` true.
+In truth table form:
 $
 \\begin{array}{|c c|c|} 
 \\hline
-a & b & F \\\\
+P & ¬P \\\\
 \\hline
-0 & 0 & 0 \\\\
-0 & 1 & 0 \\\\
-1 & 0 & 0 \\\\
-1 & 1 & 1 \\\\
+T & F \\\\
+F & T \\\\
 \\hline
 \\end{array}
 $
 
-`¬P` in Lean is defined as `P → False`. What this means is that we obtain `¬P` by assuming `P` and deriving a contradiction i.e constructing an object of type `False`. 
+But we don't need to introduce a new symbol, it can be defined in terms of what we already know.
+Notice that `¬P` is the same as `P → False`. We say that these two expressions are logically equivalent, which we will discuss in future levels.
+Defining `¬P` as `P → False` would accomplish this. 
+$
+\\begin{array}{|c|c|} 
+\\hline
+P & P → False \\\\
+\\hline
+T & F  \\\\
+F & T  \\\\
+\\hline
+\\end{array}
+$
+Notice that this definition is an implication and that the truth table with `¬P` and the truth table with `P → False` are identical which means that the implication definition captures what we want `¬` to mean.
+
+In fact, this is how `¬P` is defined in Lean. Having `¬P` as a goal, you have to start the proof with `intro` because you are proving an implication.
+
+`¬P` in Lean is defined as `P → False`. What this means is that we prove `¬P` by assuming `P` and deriving a contradiction i.e constructing an object of type `False`. 
 
 In this level, we have that `P ∧ ¬P` is true. This means that `P`,`¬P` which is `P → False` is true. `¬P` being true tells us that a proof of `P` gives us a proof of `False. We have a proof of `P`. Therefore we can obtain a proof of `False` which is the goal.
+It should be clear that to get to false, you would need to prove `¬P`, and `P`. Then given such a proof state:
+```
+hnP : ¬P
+hP : P
+```
+we can obtain false by `hnP hP`.
+"
 
----------------------------------
+/-
+Note that `¬P` is also a proposition, so `¬ (¬P)` is a valid expression. Moreover, `¬ (¬P)` is a proposition so `¬ (¬ (¬P))` or `¬¬¬P` is a valid expression (and so on).
+
 The empty type. It has no constructors.
 `False` is the empty proposition, thus it has no introduction rule. It represents a contradiction. Finding a 
 What is a contradiction? Well, it is a propostional statement that is false for all possible values of its variables. Constructing a term(i.e a proof) of this type is proving something that is false. The standard example of a contradiction is the following: 
@@ -128,30 +187,11 @@ Here:
 '
 Negation of a proposition `P`, denoted `¬P`, is defined as `P → False`. 
 '
-It should be clear that to get to false, you would need to prove `¬P`, and `P`. Then given such a proof state:
-```
-hnP : ¬P
-hP : P
-```
-we can obtain false by `hnP hP`.
+
 Proving a proposition and its negation is a special case of 'deriving a contradiction' because we have proven `p ∧ ¬p` which is always false. A logical system that has this quality is called an inconsistent system.
 
 ## Principle of explosion
 Moreover, `False` has no introduction rule , so the reasoning described above is the only way to obtain an object of type `False`. If you were able to find `h:False` i.e prove `False` then our system is worthless because we can prove anything. To reiterate, such a system would be called an inconsistent system because of a contradiction.
-
--- rules of inference like modus ponens need to be emphasized to make this understsanble. Also we can make the user prove the principle of explosion using modus ponens.
-will be discussed in previous, but the basic idea is that if you have in your proof state an `h` such that `h:False` then you can prove any proposition you want. In other words, within this proof state, all propositions are true. This is obviously absurd because it would mean for every proposition `p`, `p` is true and also `¬p` is true.
-
-So this is pretty good because now you can effortlessly prove anything you want!!!!! But this is also pretty bad because you can't really trust any of the results you obtain within an inconsistent system, can you?
-"
-
-/-
-# what is false exactly
-
--- not a good explanation
-## As a type
--- this is obviously not true???
---`False : Prop` is the type that has no inhabitants, i.e there is no object, say `h`, that is of type `False`. In other words, we cannot find an `h` such that `h :False`. This makes sense when considering that finding an `h:False` would mean we have proved something that is false. 
 -/
 
 #check not_of_eq_false

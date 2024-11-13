@@ -10,14 +10,29 @@ Introduction
 In this level, we introduce the `∨` logical connective read as 'or'.
 
 Its truth table is as follows:
-```
-| P | Q | P ∨ Q  |
-|---|---|--------|
-| T | T |   T    |
-| T | F |   T    |
-| F | T |   T    |
-| F | F |   F    |
-```
+$
+\\begin{array}{|c|c|c|} 
+\\hline
+P & Q & P ∨ Q \\\\
+\\hline
+T & T & T \\\\
+\\hline
+T & F & T \\\\
+\\hline
+F & T & T \\\\
+\\hline
+F & F & F \\\\
+\\hline
+\\end{array}
+$
+
+From this truthtable, we conclude that we must be able to prove `P ∨ Q`  if `P` is true or `Q` is true or both.
+
+You can tell Lean which side of `∨` you want to prove by simply executing 'left' or 'right'.
+
+------------
+The `∨` introduction rule works as described above:
+
 The goal involves `∨`, and so (similar to `∧`) we need to use an introduction rule. Specifically, the `Or` introduction rule.
 There are two `∨` introduction rules: 
 Or.intro_left {a : Prop} (b : Prop) (h : a) : a ∨ b

@@ -42,8 +42,6 @@ Statement (hP : P) (hQ : Q)
     exact hQ
   }
 
-
--- try it 
 --open Classical
 
 -- distributivity
@@ -88,13 +86,6 @@ example (p q : Prop) : ¬(p ∧ ¬q) → (p → q) :=
     Or.elim (Classical.em q)
       (fun hq : q => hq)
       (fun hnq : ¬q => absurd (And.intro hp hnq) h)
-
-
-
-
-
-
-
 
 
 example (p q : Prop) : ¬(p ∧ ¬q) → (p → q) :=
@@ -243,9 +234,4 @@ Conclusion
 "
 "
 
-/- Use these commands to add items to the game's inventory. -/
-
 NewTactic And.intro constructor
--- NewLemma Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq
-

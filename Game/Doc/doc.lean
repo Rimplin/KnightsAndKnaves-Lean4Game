@@ -4,6 +4,17 @@ import Game.Metadata
 Unfoldable:
 unfold Not at ...
 ¬P is P → False
+
+$
+\begin{array}{|c c|c|} 
+\hline
+P & ¬P \\
+\hline
+T & F \\
+F & T \\
+\hline
+\end{array}
+$
 -/
 DefinitionDoc Not as "¬"
 
@@ -11,8 +22,66 @@ DefinitionDoc Not as "¬"
 You can think of a proposition as a statement that is either true or false(obviously, it can't be both at the same time).
 
 For an object of type P where P is of type Prop, i.e `h : P` where `P : Prop`, `h` would be a proof or a witness that `P` is true. Equivalently, from `h` we can construct a term `h' := eq_true h of type `h' : P = True` which would be a proof that P is true as well. Both perspectives are interchangeable and equivalent.
+
+# Constructing new propositions from old ones
+The atomic propositions in the compound proposition `p ∧ q` are : `p`, `q`. Of course, `p ∧ q` can be used to construct more complicated propositions.
+
+
+
+## Connecting Propositions With A Logical Connective
+It is important to note that connecting two proposition via a logic connective results in a proposition as well. If this wasn't the case, then how could we talk about the truth value of `P ∧ Q` if `P ∧ Q` were not a proposition! This proposition constructed using a logical connective and other propositions, like any other proposition, has a truth value. This truth value depends on the truth value of the propositions it was built out of and the rules of the logical connective. This is clearly illustrated in a truth table. 
+
+
+# Truth table
+The truth table of a logical connective illustrates the rule for that logical connective , i.e the truth value of the compound statement depending on the truth value of the propositions it connects.
+
 -/
 DefinitionDoc «Prop» as "Prop"
+
+
+/-- 
+# truth table
+$
+\begin{array}{|c|c|c|} 
+\hline
+P & Q & P → Q \\
+\hline
+T & T & T \\
+\hline
+T & F & F \\\\
+\hline
+F & T & T \\\\
+\hline
+F & F & T \\\\
+\hline
+\end{array}
+$
+-/
+DefinitionDoc imp as "→"
+
+/--
+
+`And.intro` takes a proof of `P`, a proof of `Q`, and transforms/evaulates them to a proof of `P ∧ Q` where `P Q : Prop`.
+
+Truth table:
+
+$
+\begin{array}{|c|c|c|} 
+\hline
+P & Q & P ∧ Q \\
+\hline
+T & T & T \\
+\hline
+T & F & F \\
+\hline
+F & T & T \\
+\hline
+F & F & T \\
+\hline
+\end{array}
+$
+-/
+DefinitionDoc and as "∧" 
 
 /--
 `rfl` is short for reflexivity. In the context of numbers, it is the property that for any number `a`, `a = a`.

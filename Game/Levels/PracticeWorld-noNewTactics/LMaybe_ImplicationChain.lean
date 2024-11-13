@@ -1,6 +1,5 @@
 import Game.Metadata
 
-
 World "LogicAlternative" 
 Level 6
 
@@ -23,10 +22,6 @@ Statement (hP: P) (PtoQ : P → Q) (QtoR : Q → R) (RtoS : R → S) (StoT : S �
     apply PtoQ
     assumption
   }
-
-
-
-
 
 Conclusion 
 "

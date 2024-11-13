@@ -80,10 +80,8 @@ Statement (P Q : Prop)
   {
     #check em
     cases em P
-    
   }
-  -/
-
+-/
 
 -- represent the truth table as a conjunction of implications, would need to resort to the truh value perspective and deal with those rules manually, maybe put it in an optional world.
 

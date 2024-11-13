@@ -1,7 +1,7 @@
 import Game.Metadata
 
 World "LogicTruthValue_" 
-Level 6
+Level 7
 
 Title "asdf" 
 
@@ -10,16 +10,54 @@ Introduction
 We proved `False`, what does this mean? What can we conclude? What does `False` IMPLY?
 Let's check the `→` truth table:
 truthtable
-we have that the implication `False → Q` is true regardless whether `Q` is true or is false. 
-So `False` implies anything. From contradiction anything follows.
 
+$$
+\\begin{array}{|c|c|c|} 
+\\hline
+P & Q & P → Q \\\\
+\\hline
+T & T & T \\\\
+\\hline
+T & F & F \\\\
+\\hline
+F & T & T \\\\
+\\hline
+F & F & T \\\\
+\\hline
+\\end{array}
+$$
 
+-- Also we can make the user prove the principle of explosion using modus ponens. `False → Q` is true, modus ponens gives `Q` which is anything.
+Let's focus on part of the truth table where `P` is `False`, because we want to see what `False` implies.
+$$
+\\begin{array}{|c|c|c|} 
+\\hline
+Q & False → Q \\\\
+\\hline
+T & T \\\\
+\\hline
+F & T \\\\
+\\hline
+\\end{array}
+$$
+
+# consequence of proving false
+we have that the implication `False → Q` is true regardless what `Q` represents and regardless whether `Q` is true or is false. 
+So `False` implies any proposition. This principle is known as: From contradiction anything follows.
+It represents a contradiction. `False` elimination rule, `False.rec`,
+expresses the fact that anything follows from a contradiction.
+This rule is sometimes called ex falso (short for ex falso sequitur quodlibet),
+or the principle of explosion.
+For more information: [Propositional Logic](https://lean-lang.org/theorem_proving_in_lean4/propositions_and_proofs.html#propositional-logic)
+
+## bad consequence, the system is worthless
+So this is pretty good because now you can effortlessly prove anything you want!!!!! But this is also pretty bad because you can't really trust any of the results you obtain within an inconsistent system, can you?
+
+In other words, within this proof state, all propositions are true. This is obviously absurd because it would mean for every proposition `p`, `p` is true and also `¬p` is true.
 
 ----
 
-Our goal is to prove `False`. This looks problematic from the get go, and we will go into the details of that in this level. But, let's first go discuss what `False` is as a type.
-
-
+-- the following uses the definition of ¬ as an implication, so it doesn't avoid it. it can't be avoided
 `False` is an 'empty' type that has no introduction rule. Then how can we prove `False`? Now explain negation and stuff.... We know that `False ≠ True` and its proof in Lean is:
 ```
 false_ne_true : False ≠ True
@@ -27,46 +65,12 @@ false_ne_true : False ≠ True
 i.e ¬(False = True) which is read as: 'it is not the case that `False = True`'.
 In this proof state, we can prove that `False = True`. Replace the `p` in `hp` by `False` using `hnp`.
 
-
 `False` is the empty proposition. Thus, it has no introduction rules.
-It represents a contradiction. `False` elimination rule, `False.rec`,
-expresses the fact that anything follows from a contradiction.
-This rule is sometimes called ex falso (short for ex falso sequitur quodlibet),
-or the principle of explosion.
-For more information: [Propositional Logic](https://lean-lang.org/theorem_proving_in_lean4/propositions_and_proofs.html#propositional-logic)
 
 Proving `False` means deriving a contradiction. So, to prove `¬p` , you must assume `p` and derive a contradiction. We will explain in more detail what is meant by 'contradiction'.
 ----------------------------
+
 # Truth Table
-We want an operator which flips the value of a proposition `P`. Lets call this operator `Not` represented as `¬`. In other words, if `P` were true then `¬P` would be false and vice versa. 
-Note that `¬P` is also a proposition, so `¬ (¬P)` is a valid expression. Moreover, `¬ (¬P)` is a proposition so `¬ (¬ (¬P))` or `¬¬¬P` is a valid expression (and so on).
-
-
-This is what the truth table would look like.
-$$
-\\begin{array}{|c|c|} 
-\\hline
-P & ¬P \\\\
-\\hline
-T & F  \\\\
-F & T  \\\\
-\\hline
-\\end{array}
-$$
-
-But we don't need to introduce a new symbol, it can be defined in terms of what we already know.
-Defining `¬P` as `P → False` would accomplish this. 
-$
-\\begin{array}{|c|c|} 
-\\hline
-P & P → False \\\\
-\\hline
-T & F  \\\\
-F & T  \\\\
-\\hline
-\\end{array}
-$
-Notice that this definition is an implication which you have learned to deal with in the previous level and that the truth table with `¬P` and the truth table with `P → False` are identical which means that the implication definition captures what we want `¬` to mean.
 
 # Natural Language Example
 Let `P` denote the assertion 'Today is Monday'. `¬P` would then denote the assertion 'Today is not Monday'. You could also say that `¬P` denotes 'Today is Tuesday or Wednsday or Thursday or Friday or Saturday or Sunday'. Both assertions express the same thing (assuming there are 7 days of the week and these are their names) so either one is acceptable.
@@ -76,14 +80,7 @@ Now we can construct propositional statements that are always false regardless o
 
 Such a statement is called a contradiction and is equal to `False` regardless of the proof state. Moreover, it is not something we assume to be true but something that is always true.
 --------------------------------
-# Defining `¬`
-
-## But what is `False` exactly?(now we know what `False` is from the truth value perspective so this would need a rewrite in logic world, no it doesn't because we were dealing with `= False` but now we are dealing with `→ False`).
-For now, just know that `False` is a type that has no introduction rule and that proving `False` means deriving a contradiction. So, to prove `¬p` , you must assume `p` and derive a contradiction. We will explain in more detail what is meant by 'contradiction'.
-
-To emphasize the fact that negation is an implication, you have to go through this simple level.
 "
--- : False = True
 
 example (hnp:p=False) (hp:p=True) (hnnp:¬p=True) (h' : (p = True)) : False    := by 
   Hint 
@@ -132,11 +129,7 @@ Conclusion
 In the next level, we will explore what it means to have proven `False`(pretty bad, or pretty good depending on how you look at it).
 "
 
-/- Use these commands to add items to the game's inventory. -/
-
 NewTactic unfold rcases
 NewTheorem false_ne_true 
 
-DefinitionDoc Not as "¬" 
 NewDefinition Not  
---TheoremDoc mul_left_cancel as "mul_left_cancel" in "*"
