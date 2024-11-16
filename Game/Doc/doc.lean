@@ -103,6 +103,18 @@ $
 DefinitionDoc and as "∧" 
 
 /--
+`∩` is an operator on sets.
+
+Applying it to two sets `A`,`B`:
+```
+A ∩ B
+```
+
+`A ∩ B` is itself another set, containing elements that are in both `A` and `B`.
+-/
+DefinitionDoc inter as "∩"
+
+/--
 `rfl` is short for reflexivity. In the context of numbers, it is the property that for any number `a`, `a = a`.
 
 More generally, the `rfl` tactic will close all goals of the form `X=X`, regardless of what `X` is, `X=Y` where `X` and `Y` are identical. rfl can also prove the equality of two things that are 'equal by definition'.
@@ -149,6 +161,7 @@ over numerical types such as `ℕ`, `ℤ`, `ℚ`, `ℝ`, `ℂ`.
 
 -/
 TacticDoc norm_num
+
 /--
 ```
 `have name-of-object : type := by ...` 
@@ -157,6 +170,26 @@ where `...` is the proof.
 `name-of-object` can be whatever you want, leaving it empty would  give the theorem a name automatically. The `type` in this case is the statement we want to prove. 
 -/
 TacticDoc «have» 
+
+/--
+The `contradiction` tactic works for the following proofs states:
+```
+h : False
+```
+
+```
+hP : P
+hnP : ¬P
+```
+
+and
+```
+hP : P
+```
+where Lean knows that `¬P` is true.
+-/
+TacticDoc contradiction
+
 /--
 
 # Truth table
@@ -186,5 +219,39 @@ A summary of all the terminology presented throughout the game, in order of appe
 -
 -/
 DefinitionDoc Terminology as "Terminology"
+/--
+A set is a collection of 'entities' with a specified property. The set `Knight` would be the set of inhabitants of the island that are knights i.e satisfying the property of always telling the truth, the set `Knave` being the set of inhabitatns of the island that are knives i.e the ones that always lie. 
+
+Note that in Lean, `Set K` means the set of objects of type `K`( this can be changed to something clearer?? think of clarity benefits of a change). Note that in each level, we will be considering two or three inhabitants of the island and will not be reasoning about the sets themselves but about these fixed inhabitants named `A`, `B`, `C`.
+
+-/
+DefinitionDoc Finset as "Finset"
 
 
+
+--/--
+
+--# Xor
+--To introduce Xor, introduce as the negation of if and only if. Xor is inequivalence, Xor is such that exactly one of the propositions is truei.e exclusive or. 
+--
+--def Xor' (a b : Prop) := (a ∧ ¬ b) ∨ (b ∧ ¬ a)
+--
+--# Exclusive Or 
+--
+--## Rewriting Xor'
+--`Xor' p q` can be rewritten as:
+--```
+--(p ∧ ¬q) ∨ (¬p ∧ q)
+--```
+--To rewrite `Xor'` in the goal:
+--```
+--rw [Xor']
+--```
+--
+--To rewrite `Xor'` in hypothesis `h`:
+--```
+--rw [Xor'] at h
+--```
+---/
+--DefinitionDoc Xor' as "Xor'" 
+--NewDefinition Xor' 

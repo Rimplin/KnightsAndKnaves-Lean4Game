@@ -1,6 +1,5 @@
 import Game.Metadata
 
-
 World "KnightsAndKnavesLemmas" 
 Level 2
 
@@ -16,26 +15,29 @@ Then `A ∈ left ∩ right`
 But `left ∩ right = ∅ `, so `A ∈ ∅`. 
 This is a contradiction
 "
+
 #check inleft_notinright
 Statement inleft_notinright
-  --sets
-  {left : Set K} {right : Set K}
+  {left : Finset K} {right : Finset K}
+{inst : DecidableEq K}
 (h : left ∩ right = ∅ )
 (h' : A ∈ left) : A ∉ right := by
   Hint "Assume `A ∈ right` using `intro`"
   intro a 
-  Hint 
-  "
-  We know that `A ∈ left`, `A ∈ right`. So `A ∈ left ∩ right`.
-  "
-  have := Set.mem_inter h' a
-  Hint " But left ∩ right is empty. So , A ∈ ∅ "
-  rw [h] at this
-  Hint "this is a contradiction of course"
-  #check Set.mem_empty_iff_false
-  #check Set.not_mem_empty 
-  -- let preamble execute this in a have so in appears in the assumptions...
-  contradiction
+  Hint "Look familiar?"
+  exact disjoint h h' a
+  --   Hint 
+--  "
+--  We know that `A ∈ left`, `A ∈ right`. So `A ∈ left ∩ right`.
+--  "
+
+  ----
+  --have := Set.mem_inter h' a
+  --Hint " But left ∩ right is empty. So , A ∈ ∅ "
+  --rw [h] at this
+  --Hint "this is a contradiction of course"
+  ---- let preamble execute this in a have so in appears in the assumptions...
+  --contradiction
 
 Conclusion 
 "

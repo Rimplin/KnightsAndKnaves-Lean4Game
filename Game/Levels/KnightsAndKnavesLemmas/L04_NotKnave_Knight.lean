@@ -32,14 +32,12 @@ Statement
 (h'' : ∀ (x: K), x ∈ Knight ∨ x ∈ Knave)
   :  B ∈ Knight := by
 {
+-- simp
   have BKK := h'' B
   cases BKK
   assumption
   contradiction
   -- use this exercise to introduce disjucntive syllogism and say that this reasoning is true in general(if needed by future levels).
-
-  -- explain precedence so users can understand the unfolded result.
---  unfold Xor' at h1
 
   -- introduce ¬¬ p → p
   -- first approach by contradiction
@@ -63,9 +61,7 @@ Conclusion
 "
 "
 
-#check Set.not_mem_empty
 /-
-
 @[inherit_doc] infixr:35 " /\\ " => And
 @[inherit_doc] infixr:35 " ∧ "   => And
 @[inherit_doc] infixr:30 " \\/ " => Or
@@ -78,26 +74,3 @@ Conclusion
 /-- `a ∉ b` is negated elementhood. It is notation for `¬ (a ∈ b)`. -/
 notation:50 a:50 " ∉ " b:50 => ¬ (a ∈ b)
 -/
-
---/--
---def Xor' (a b : Prop) := (a ∧ ¬ b) ∨ (b ∧ ¬ a)
---
---# Exclusive Or 
---
---## Rewriting Xor'
---`Xor' p q` can be rewritten as:
---```
---(p ∧ ¬q) ∨ (¬p ∧ q)
---```
---To rewrite `Xor'` in the goal:
---```
---rw [Xor']
---```
---
---To rewrite `Xor'` in hypothesis `h`:
---```
---rw [Xor'] at h
---```
----/
---DefinitionDoc Xor' as "Xor'" 
---NewDefinition Xor' 

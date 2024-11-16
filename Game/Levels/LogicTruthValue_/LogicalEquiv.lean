@@ -6,6 +6,8 @@ Level 7
 
 Title "" 
 
+#check propext
+  -- axioms and computations, theorem proving in lean 4
 Introduction 
 "
 `P ↔ Q`  is defined as `(P → Q) ∧ (Q → P)`. But what does it mean? Let's construct its truth table and find out.(make it as the level itself??)

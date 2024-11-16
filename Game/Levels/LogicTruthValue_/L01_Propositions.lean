@@ -1,12 +1,10 @@
 import Game.Metadata
 
-
 World "LogicTruthValue_" 
 Level 1
 
 Title "" 
 
-#check tactics subst
 Introduction 
 "
 <img src=\"https://pixabay.com/vectors/cat-kitty-child-animal-cute-baby-8943928\"/>
@@ -39,9 +37,6 @@ Notice that `P=True` is of type Prop which means that it is an assertion that is
 Note that a proof of `x = 2` was an `h : x = 2` and not `h : (x = 2) = True`. Here however, a proof of an arbitrary proposition `P` is `h : P = True` and not `h : P`. The latter would work as well, and you can go between the two using an appropriate theorem. The first perspective is emphasized in this world, and the second is emphasized in the world that follows.
 The truth table perspective will make this less confusing.
 Whenever you are done, replace `sorry` with `rfl` to close the goal and move on.
-
-
-
 
 -------------------------
 
