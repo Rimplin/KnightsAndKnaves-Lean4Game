@@ -7,7 +7,6 @@ Title ""
 
 Introduction 
 "
-Before starting the riddles, some new concepts have to be clarified.
 It is obvious that no one can be a knight and a knave at the same time. If some is not a knave then they are a knight.
 
 You need to show that having two sets being disjoint (i.e sharing no common element) and having a common element is a contradiction.
@@ -16,12 +15,9 @@ For the contradiction
 This is not an obvious contradiction (like p , ¬p) for the `contradiction` tactic to work. 
 Some work needs to be done to get to that point.
 We can get that `A ∈ ∅` and we know that
-```
-Set.not_mem_empty.{u} {α : Type u} (x : α) : x ∉ ∅
-```
 
 Hint: the goal is to get something that contradicts not_mem_empty. Since x belong to Knight and Knave then it belongs to their intersection which is equal to the empty set contradiction not_mem_empty. Let's do this step by step. (Make it feel like the player discovered this:
-Notice that the only information we can derive is that x is in the intersection. Do we have information about the intersection? Well yes. its empty set so x ∈ empty set. Execute the finishing blow. 
+Notice that the only information we can derive is that x is in the intersection. Do we have information about the intersection? Well yes. its empty set so x ∈ empty set. Execute the finishing blow.
 "
 
 Statement  

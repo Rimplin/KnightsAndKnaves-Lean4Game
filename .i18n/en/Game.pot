@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Sat Nov 16 12:03:19 2024\n"
+"POT-Creation-Date: Mon Nov 18 20:37:24 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -186,7 +186,11 @@ msgid "The `contradiction` tactic works for the following proofs states:\n"
 "```\n"
 "hP : P\n"
 "```\n"
-"where Lean knows that `¬P` is true."
+"where Lean knows that `¬P` is true.\n"
+"\n"
+"Example:\n"
+"-- disjoint\n"
+"You need to show that having two sets being disjoint (i.e sharing no common element) and having a common element is a contradiction."
 msgstr ""
 
 #: Game.Doc.doc
@@ -966,17 +970,7 @@ msgid "Before diving into an actual knights and knaves puzzle, lets explore basi
 "```\n"
 "Finset.mem_inter : a ∈ s₁ ∩ s₂ ↔ a ∈ s₁ ∧ a ∈ s₂\n"
 "```\n"
-"Use `have` so it would be added to the assumptions.\n"
-"\n"
-"use hint to do rw\n"
-"\n"
-"--------------------\n"
-"You need to show that having two sets being disjoint (i.e sharing no common element) and having a common element is a contradiction.\n"
-"-- more general setting\n"
-" This is not an obvious contradiction( like p , ¬p) for the `contradiction` tactic to work. Some work needs to be done to get to that point.\n"
-"\n"
-"Hint: the goal is to get something that contradicts not_mem_empty. Since x belong to Knight and Knave then it belongs to their intersection which is equal to the empty set contradiction not_mem_empty. Let's do this step by step. (Make it feel like the player discovered this:\n"
-"Notice that the only information we can derive is that x is in the intersection. Do we have information about the intersection? Well yes. its empty set so x ∈ empty set. Execute the finishing blow."
+"Use `have` so it would be added to the assumptions."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L01_whydisjoint
@@ -1005,90 +999,94 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L02_inleft
-msgid "We will use this to prove several helpful lemmas in the context of the knights and knaves puzzle. Note that these lemmas apply to any two sets.\n"
+msgid "The lemma `inleft_notinright` in this level applies to any two sets that are disjoint. The two we are interested in of course are `Knight`,`Knave`.\n"
 "\n"
 "The reasoning goes as follows:\n"
-"Assume `A ∈ right`.\n"
-"Then `A ∈ left ∩ right` \n"
-"But `left ∩ right = ∅ `, so `A ∈ ∅`. \n"
-"This is a contradiction"
-msgstr ""
-
-#: Game.Levels.KnightsAndKnavesLemmas.L02_inleft
-msgid "Assume `A ∈ right` using `intro`"
-msgstr ""
-
-#: Game.Levels.KnightsAndKnavesLemmas.L02_inleft
-msgid "Look familiar?"
-msgstr ""
-
-#: Game.Levels.KnightsAndKnavesLemmas.L02_inleft
-msgid ""
-msgstr ""
-
-#: Game.Levels.KnightsAndKnavesLemmas.L02_Knight_NotKnave
-msgid ""
-msgstr ""
-
-#: Game.Levels.KnightsAndKnavesLemmas.L02_Knight_NotKnave
-msgid "Note that this level is identical to the previous one except the fact that the set `left` is now called `Knight` and the set `right` is now called `Knave`. This level is to emphasize this pattern of reasoning that you will need to solve knights and knaves puzzles.\n"
 "\n"
-"If you are a knight, then you are definitely not a knave. Recall that knights always tell the truth and knaves always lie."
+"Assume `A ∈ right`. This is done using `intro` tactic."
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L02_Knight_NotKnave
+#: Game.Levels.KnightsAndKnavesLemmas.L02_inleft
+msgid "Look familiar? This is exactly like the previous level which gave us `disjoint` theorem."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L02_inleft
+msgid "In the next level, you will use this theorem to prove that if `A` is a knight, then `A` is not a knave."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L03_Knight_NotKnave
 msgid ""
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L03_inright
+#: Game.Levels.KnightsAndKnavesLemmas.L03_Knight_NotKnave
+msgid "If you are a knight, then you are definitely not a knave. Recall that knights always tell the truth and knaves always lie.\n"
+"\n"
+"This is implied by the assumption:\n"
+"```\n"
+"h : Knight ∩ Knave = ∅ \n"
+"```\n"
+"\n"
+"Note that this level is identical to the previous one except the fact that the set `left` is now called `Knight` and the set `right` is now called `Knave`.\n"
+"\n"
+"This doesn't change anything of course, what changes are the names you and Lean would be seeing. If everything is renamed consistently, nothing changes.\n"
+"\n"
+"You can use the theorem proved in the previous level `inleft_notinright` giving it the necessary arguments."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L03_Knight_NotKnave
 msgid ""
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L03_inright
-msgid "This has a very similar reasoning to inleft.\n"
+#: Game.Levels.KnightsAndKnavesLemmas.L04_inright
+msgid ""
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L04_inright
+msgid "The lemma `inright_notinleft` in this level applies to any two sets that are disjoint. The two we are interested in of course are `Knight`,`Knave`.\n"
 "\n"
 "The reasoning goes as follows:\n"
-"Assume `A ∈ left`.\n"
-"Then `A ∈ left ∩ right` \n"
-"But `left ∩ right = ∅ `, so `A ∈ ∅`. \n"
-"This is a contradiction"
+"\n"
+"Assume `A ∈ left`. This is done using `intro` tactic."
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L03_inright
+#: Game.Levels.KnightsAndKnavesLemmas.L04_inright
+msgid "Look familiar? This is exactly like the previous level which gave us `disjoint` theorem."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnavesLemmas.L04_inright
 msgid ""
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L03_Knave_NotKnight
+#: Game.Levels.KnightsAndKnavesLemmas.L05_Knave_NotKnight
 msgid ""
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L03_Knave_NotKnight
+#: Game.Levels.KnightsAndKnavesLemmas.L05_Knave_NotKnight
 msgid "Note that this is just like the previous level."
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L03_Knave_NotKnight
+#: Game.Levels.KnightsAndKnavesLemmas.L05_Knave_NotKnight
 msgid ""
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L04_notinright
+#: Game.Levels.KnightsAndKnavesLemmas.L06_notinright
 msgid ""
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L04_notinright
+#: Game.Levels.KnightsAndKnavesLemmas.L06_notinright
 msgid "Remember notright_left from logic world. You can go back if you wish before proceeding with this level: link to prev level."
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L04_notinright
+#: Game.Levels.KnightsAndKnavesLemmas.L06_notinright
 msgid ""
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L04_NotKnave_Knight
+#: Game.Levels.KnightsAndKnavesLemmas.L07_NotKnave_Knight
 msgid ""
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L04_NotKnave_Knight
-msgid "Before starting the riddles, some new concepts have to be clarified.\n"
-"It is obvious that no one can be a knight and a knave at the same time. If some is not a knave then they are a knight.\n"
+#: Game.Levels.KnightsAndKnavesLemmas.L07_NotKnave_Knight
+msgid "It is obvious that no one can be a knight and a knave at the same time. If some is not a knave then they are a knight.\n"
 "\n"
 "You need to show that having two sets being disjoint (i.e sharing no common element) and having a common element is a contradiction.\n"
 "\n"
@@ -1096,39 +1094,36 @@ msgid "Before starting the riddles, some new concepts have to be clarified.\n"
 "This is not an obvious contradiction (like p , ¬p) for the `contradiction` tactic to work. \n"
 "Some work needs to be done to get to that point.\n"
 "We can get that `A ∈ ∅` and we know that\n"
-"```\n"
-"Set.not_mem_empty.{u} {α : Type u} (x : α) : x ∉ ∅\n"
-"```\n"
 "\n"
 "Hint: the goal is to get something that contradicts not_mem_empty. Since x belong to Knight and Knave then it belongs to their intersection which is equal to the empty set contradiction not_mem_empty. Let's do this step by step. (Make it feel like the player discovered this:\n"
 "Notice that the only information we can derive is that x is in the intersection. Do we have information about the intersection? Well yes. its empty set so x ∈ empty set. Execute the finishing blow."
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L04_NotKnave_Knight
+#: Game.Levels.KnightsAndKnavesLemmas.L07_NotKnave_Knight
 msgid ""
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.notinleft
+#: Game.Levels.KnightsAndKnavesLemmas.L08_notinleft
 msgid ""
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.notinleft
+#: Game.Levels.KnightsAndKnavesLemmas.L08_notinleft
 msgid ""
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.notinleft
+#: Game.Levels.KnightsAndKnavesLemmas.L08_notinleft
 msgid ""
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L05_NotKnight_Knave
+#: Game.Levels.KnightsAndKnavesLemmas.L09_NotKnight_Knave
 msgid ""
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L05_NotKnight_Knave
+#: Game.Levels.KnightsAndKnavesLemmas.L09_NotKnight_Knave
 msgid "Similar to the previous level"
 msgstr ""
 
-#: Game.Levels.KnightsAndKnavesLemmas.L05_NotKnight_Knave
+#: Game.Levels.KnightsAndKnavesLemmas.L09_NotKnight_Knave
 msgid "Let's recap what we have proven in the last four levels.\n"
 "\n"
 "Given the following proof state:\n"

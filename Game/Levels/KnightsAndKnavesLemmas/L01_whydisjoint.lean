@@ -34,16 +34,6 @@ To show `A ∈ left ∩ right`, use the following
 Finset.mem_inter : a ∈ s₁ ∩ s₂ ↔ a ∈ s₁ ∧ a ∈ s₂
 ```
 Use `have` so it would be added to the assumptions.
-
-use hint to do rw
-
---------------------
-You need to show that having two sets being disjoint (i.e sharing no common element) and having a common element is a contradiction.
--- more general setting
- This is not an obvious contradiction( like p , ¬p) for the `contradiction` tactic to work. Some work needs to be done to get to that point.
-
-Hint: the goal is to get something that contradicts not_mem_empty. Since x belong to Knight and Knave then it belongs to their intersection which is equal to the empty set contradiction not_mem_empty. Let's do this step by step. (Make it feel like the player discovered this:
-Notice that the only information we can derive is that x is in the intersection. Do we have information about the intersection? Well yes. its empty set so x ∈ empty set. Execute the finishing blow. 
 "
 
 #check xor_iff_not_iff
@@ -51,15 +41,13 @@ Notice that the only information we can derive is that x is in the intersection.
 /- (a ∧ ¬ b) ∨ (b ∧ ¬ a) -/
 #check not_iff
 /-
-A ∈ Knight ∧ A ∉ Knave ∨ A ∈ Knave ∧ A ∉ Knight.
+A ∈ Knight ∧ A ∉ Knave ∨ A ∈ Knave ∧ A ∉ Knight
 -/
 
 /-
 journey of formalization:
 The two sets Knight and Knave must be disjoint. You can't telll the truth and lie at the same time because if that is true, then you would be asserting `p ∧ ¬p` which can be used to derive `False` i.e a contradiction( you have shown in a previous level that `p ∧ ¬p → False`. This is not something we want, the puzzles would be meaningless.
 -/ 
-
--- simplifying the conditions, also the Xor' conditions won't be necessary after the notKnave_Knight (etc ...) stuff
 
 -- steps for showcasing formalization
 /-

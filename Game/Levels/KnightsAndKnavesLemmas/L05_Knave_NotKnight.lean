@@ -16,7 +16,6 @@ Statement
 (h : Knight ∩ Knave = ∅ )
 (h' : A ∈ Knave)
   : ¬ (A ∈ Knight) := by
-
   {
     exact inright_notinleft h h'
   }

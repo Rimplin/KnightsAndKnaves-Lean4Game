@@ -187,6 +187,10 @@ and
 hP : P
 ```
 where Lean knows that `¬P` is true.
+
+Example:
+-- disjoint
+You need to show that having two sets being disjoint (i.e sharing no common element) and having a common element is a contradiction.
 -/
 TacticDoc contradiction
 

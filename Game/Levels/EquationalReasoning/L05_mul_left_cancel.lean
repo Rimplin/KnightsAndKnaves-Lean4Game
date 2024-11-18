@@ -29,6 +29,7 @@ Adapt this example to `16 = 4*4` and include after `by` its proof.
 "
 
 Statement (h : 4*y=16) : y = 4 := by{
+  
   Hint (hidden := true) 
   "
   For the proof, we need to carry out the calculation of `4 * 4` and as in the previous level, the tactic for that is `norm_num`. Typing that as the proof will work. 
