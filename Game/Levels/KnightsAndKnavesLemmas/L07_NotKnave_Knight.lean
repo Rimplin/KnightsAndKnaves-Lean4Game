@@ -7,6 +7,9 @@ Title "If you're not a knave, then the only option left is a knight."
 
 Introduction 
 "
+You are either a knight or a knave (`h`). If you are not a knave (`h'`), then the only option left is being a knight.
+
+In other words, 
 "
 
 Statement
@@ -17,7 +20,9 @@ Statement
 (h'' : B ∈ Knight ∨ B ∈ Knave)
   :  B ∈ Knight := by
 {
-  exact notinright_inleft h'' h'
+  -- use this instead?
+  exact notright_left h'' h'
+  --exact notinright_inleft h'' h'
 }
 -- use this exercise to introduce disjucntive syllogism and say that this reasoning is true in general(if needed by future levels).
 
@@ -26,7 +31,6 @@ Statement
   --rw [h'] at h1
   --simp at h1
   --assumption
-
 
 Conclusion 
 "

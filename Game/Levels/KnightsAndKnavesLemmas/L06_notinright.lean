@@ -5,7 +5,7 @@ Level 6
 
 Title "`notinright_inleft`" 
 
-Introduction 
+Introduction
 "
 This lemma applies to any two finite sets `left`,`right` given that `A` is in either in `left` or in `right`.
 
@@ -13,7 +13,7 @@ Remember notright_left from logic world. You can go back if you wish before proc
 
 Truth table:
 $
-\\begin{array}{|c c|c|} 
+\\begin{array}{|c|c|} 
 \\hline
 P  & P ∨ False \\\\
 \\hline
