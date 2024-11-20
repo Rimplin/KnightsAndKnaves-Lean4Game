@@ -3,7 +3,7 @@ import Game.Metadata
 World "KnightsAndKnavesLemmas" 
 Level 2
 
-Title "" 
+Title "`inleft_notinright`" 
 
 Introduction 
 "

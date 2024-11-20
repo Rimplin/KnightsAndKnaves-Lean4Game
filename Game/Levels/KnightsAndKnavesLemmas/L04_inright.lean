@@ -3,9 +3,9 @@ import Game.Metadata
 World "KnightsAndKnavesLemmas" 
 Level 4
 
-Title ""
+Title "`inright_notinleft`"
 
-Introduction 
+Introduction
 "
 The lemma `inright_notinleft` in this level applies to any two sets that are disjoint. The two we are interested in of course are `Knight`,`Knave`.
 

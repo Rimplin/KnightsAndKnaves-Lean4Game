@@ -111,6 +111,8 @@ A ∩ B
 ```
 
 `A ∩ B` is itself another set, containing elements that are in both `A` and `B`.
+
+`A ∩ B = ∅` means that `A` and `B` have no common element i.e no element of `A` belongs to both and no element of `B` belongs to both.
 -/
 DefinitionDoc inter as "∩"
 
@@ -220,20 +222,96 @@ TheoremDoc And as "And" in "Logic"
 /--
 A summary of all the terminology presented throughout the game, in order of appearance.
 
--
+Theorems represent an implication say:
+```
+thm : P → Q
+```
+
+They work for `P`,`Q` of any type. What `thm` means is the following, give me an object of type `P` and i will return an object of type `Q`. 
+
+Therefore, theorems expect arguments given in a specific order after which the obtained expression is an object which has the conclusion as its type.
+
+For
+```
+thm : P → Q
+hP : P
+```
+`(thm hP) : Q`
+
+For the special case where `P : Prop`, `Q : Prop` ,the interpretation of `thm` is what implication in logic means.  
+
+What `thm` means is the following, give me an object of type `P` which in this case is a proof of `P` and i will return an object of type `Q` which in this case is a proof of `Q`. 
+
+In other words, `thm` means 'If P is true, then Q is true'.
 -/
 DefinitionDoc Terminology as "Terminology"
+
 /--
-A set is a collection of 'entities' with a specified property. The set `Knight` would be the set of inhabitants of the island that are knights i.e satisfying the property of always telling the truth, the set `Knave` being the set of inhabitatns of the island that are knives i.e the ones that always lie. 
+## Definition
+A set is a collection of 'entities' or 'objects' that satisfy a certain property. The objects in a set are called 'elements' of the set.
 
-Note that in Lean, `Set K` means the set of objects of type `K`( this can be changed to something clearer?? think of clarity benefits of a change). Note that in each level, we will be considering two or three inhabitants of the island and will not be reasoning about the sets themselves but about these fixed inhabitants named `A`, `B`, `C`.
+A finite set is a set with finitely many elements.
 
+## Examples
+The set `Knight` would be the set of inhabitants of the island that are knights i.e satisfying the property of always telling the truth, the set `Knave` being the set of inhabitants of the island that are knives i.e the ones that always lie. 
+
+## In Lean
+```
+Set K
+```
+
+```
+Finset K
+```
 -/
 DefinitionDoc Finset as "Finset"
 
+/--
+## Objects
 
+The objects involved are:
+- of type inhabitant indicated by a capital letter
+- the two finite sets `Knight` , `Knaves`.
 
---/--
+As a proof state:
+```
+Objects
+A : Inhabitant
+B : Inhabitant 
+C : Inhabitant
+Knight : Finset Inhabitant
+Knave : Finset Inhabitant
+```
+There will be at most three inhabitants in the puzzles for simplicity, but you can ofcourse have more.
+
+## Assumptions
+Knights tell the true and knaves lie. So no one can be both at the same time i.e `Knight ∩ Knave = ∅`
+
+Moreover, every inhabitant is either a knight or a knave i.e `A ∈ Knight ∨ A ∈ Knave` for any `A : Inhabitant`.
+
+As a proof state:
+```
+Assumptions:
+h : Knight ∩ Knave = ∅ 
+Or : A ∈ Knight ∨ A ∈ Knave
+```
+
+## Summary
+Putting every together:
+```
+Objects
+A : Inhabitant
+B : Inhabitant 
+C : Inhabitant
+Knight : Finset Inhabitant
+Knave : Finset Inhabitant
+
+Assumptions
+h : Knight ∩ Knave = ∅ 
+Or : A ∈ Knight ∨ A ∈ Knave
+```
+-/
+DefinitionDoc KnightsKnaves as "Knights and Knaves"
 
 --# Xor
 --To introduce Xor, introduce as the negation of if and only if. Xor is inequivalence, Xor is such that exactly one of the propositions is truei.e exclusive or. 

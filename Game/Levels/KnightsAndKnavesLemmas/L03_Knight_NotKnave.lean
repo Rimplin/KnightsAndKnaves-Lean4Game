@@ -3,7 +3,7 @@ import Game.Metadata
 World "KnightsAndKnavesLemmas"
 Level 3
 
-Title ""
+Title "A Knight is not a knave."
 
 Introduction 
 "

@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Mon Nov 18 20:37:24 2024\n"
+"POT-Creation-Date: Wed Nov 20 14:40:56 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -217,13 +217,92 @@ msgstr ""
 #: Game.Doc.doc
 msgid "A summary of all the terminology presented throughout the game, in order of appearance.\n"
 "\n"
-"-"
+"Theorems represent an implication say:\n"
+"```\n"
+"thm : P → Q\n"
+"```\n"
+"\n"
+"They work for `P`,`Q` of any type. What `thm` means is the following, give me an object of type `P` and i will return an object of type `Q`. \n"
+"\n"
+"Therefore, theorems expect arguments given in a specific order after which the obtained expression is an object which has the conclusion as its type.\n"
+"\n"
+"For\n"
+"```\n"
+"thm : P → Q\n"
+"hP : P\n"
+"```\n"
+"`(thm hP) : Q`\n"
+"\n"
+"For the special case where `P : Prop`, `Q : Prop` ,the interpretation of `thm` is what implication in logic means.  \n"
+"\n"
+"What `thm` means is the following, give me an object of type `P` which in this case is a proof of `P` and i will return an object of type `Q` which in this case is a proof of `Q`. \n"
+"\n"
+"In other words, `thm` means 'If P is true, then Q is true'."
 msgstr ""
 
 #: Game.Doc.doc
-msgid "A set is a collection of 'entities' with a specified property. The set `Knight` would be the set of inhabitants of the island that are knights i.e satisfying the property of always telling the truth, the set `Knave` being the set of inhabitatns of the island that are knives i.e the ones that always lie. \n"
+msgid "## Definition\n"
+"A set is a collection of 'entities' or 'objects' that satisfy a certain property. The objects in a set are called 'elements' of the set.\n"
 "\n"
-"Note that in Lean, `Set K` means the set of objects of type `K`( this can be changed to something clearer?? think of clarity benefits of a change). Note that in each level, we will be considering two or three inhabitants of the island and will not be reasoning about the sets themselves but about these fixed inhabitants named `A`, `B`, `C`."
+"A finite set is a set with finitely many elements.\n"
+"\n"
+"## Examples\n"
+"The set `Knight` would be the set of inhabitants of the island that are knights i.e satisfying the property of always telling the truth, the set `Knave` being the set of inhabitants of the island that are knives i.e the ones that always lie. \n"
+"\n"
+"## In Lean\n"
+"```\n"
+"Set K\n"
+"```\n"
+"\n"
+"```\n"
+"Finset K\n"
+"```"
+msgstr ""
+
+#: Game.Doc.doc
+msgid "## Objects\n"
+"\n"
+"The objects involved are:\n"
+"- of type inhabitant indicated by a capital letter\n"
+"- the two finite sets `Knight` , `Knaves`.\n"
+"\n"
+"As a proof state:\n"
+"```\n"
+"Objects\n"
+"A : Inhabitant\n"
+"B : Inhabitant \n"
+"C : Inhabitant\n"
+"Knight : Finset Inhabitant\n"
+"Knave : Finset Inhabitant\n"
+"```\n"
+"There will be at most three inhabitants in the puzzles for simplicity, but you can ofcourse have more.\n"
+"\n"
+"## Assumptions\n"
+"Knights tell the true and knaves lie. So no one can be both at the same time i.e `Knight ∩ Knave = ∅`\n"
+"\n"
+"Moreover, every inhabitant is either a knight or a knave i.e `A ∈ Knight ∨ A ∈ Knave` for any `A : Inhabitant`.\n"
+"\n"
+"As a proof state:\n"
+"```\n"
+"Assumptions:\n"
+"h : Knight ∩ Knave = ∅ \n"
+"Or : A ∈ Knight ∨ A ∈ Knave\n"
+"```\n"
+"\n"
+"## Summary\n"
+"Putting every together:\n"
+"```\n"
+"Objects\n"
+"A : Inhabitant\n"
+"B : Inhabitant \n"
+"C : Inhabitant\n"
+"Knight : Finset Inhabitant\n"
+"Knave : Finset Inhabitant\n"
+"\n"
+"Assumptions\n"
+"h : Knight ∩ Knave = ∅ \n"
+"Or : A ∈ Knight ∨ A ∈ Knave\n"
+"```"
 msgstr ""
 
 #: Game.Levels.EquationalReasoning.L01_rfl
@@ -947,7 +1026,7 @@ msgid "This world will have the same exercises as the previous `Logic` world, bu
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L01_whydisjoint
-msgid ""
+msgid "`disjoint` theorem"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L01_whydisjoint
@@ -964,7 +1043,11 @@ msgid "Before diving into an actual knights and knaves puzzle, lets explore basi
 "Aleft: A ∈ left\n"
 "Aright: A ∈ right\n"
 "```\n"
-"This means that `A` belongs to both `left` and `right` i.e `A ∈ left ∩ right`. This would contradict `h` giving us `False` which is the goal.\n"
+"This means that `A` belongs to both `left` and `right` i.e `A ∈ left ∩ right`.\n"
+"\n"
+"So, we do have someone who is both a knight and a knave. This contradicts `h`.\n"
+"\n"
+"This would contradict `h` giving us `False` which is the goal.\n"
 "\n"
 "To show `A ∈ left ∩ right`, use the following\n"
 "```\n"
@@ -995,7 +1078,7 @@ msgid "This works for any two disjoint sets, specifically the two sets `Knight`,
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L02_inleft
-msgid ""
+msgid "`inleft_notinright`"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L02_inleft
@@ -1015,7 +1098,7 @@ msgid "In the next level, you will use this theorem to prove that if `A` is a kn
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L03_Knight_NotKnave
-msgid ""
+msgid "A Knight is not a knave."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L03_Knight_NotKnave
@@ -1038,7 +1121,7 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L04_inright
-msgid ""
+msgid "`inright_notinleft`"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L04_inright
@@ -1058,11 +1141,22 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L05_Knave_NotKnight
-msgid ""
+msgid "A Knave is not a knight."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L05_Knave_NotKnight
-msgid "Note that this is just like the previous level."
+msgid "If you are a knave, then you are definitely not a knight. Recall that knights always tell the truth and knaves always lie.\n"
+"\n"
+"This is implied by the assumption:\n"
+"```\n"
+"h : Knight ∩ Knave = ∅ \n"
+"```\n"
+"\n"
+"Note that this level is identical to the previous one except the fact that the set `left` is now called `Knight` and the set `right` is now called `Knave`.\n"
+"\n"
+"This doesn't change anything of course, what changes are the names you and Lean would be seeing. If everything is renamed consistently, nothing changes.\n"
+"\n"
+"You can use the theorem proved in the previous level `inright_notinleft` giving it the necessary arguments."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L05_Knave_NotKnight
@@ -1070,11 +1164,41 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L06_notinright
-msgid ""
+msgid "`notinright_inleft`"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L06_notinright
-msgid "Remember notright_left from logic world. You can go back if you wish before proceeding with this level: link to prev level."
+msgid "This lemma applies to any two finite sets `left`,`right` given that `A` is in either in `left` or in `right`.\n"
+"\n"
+"Remember notright_left from logic world. You can go back if you wish before proceeding with this level: link to prev level.\n"
+"\n"
+"Truth table:\n"
+"$\n"
+"\\begin{array}{|c c|c|} \n"
+"\\hline\n"
+"P  & P ∨ False \\\\\n"
+"\\hline\n"
+"T  & T \\\\\n"
+"F  & F \\\\\n"
+"\\hline\n"
+"\\end{array}\n"
+"$\n"
+"\n"
+"Notice that `P`, `P ∨ False` always have the same truth value.\n"
+"\n"
+"In this level, we know:\n"
+"```\n"
+"A ∈ left ∨ A ∈ right\n"
+"A ∉ right\n"
+"```\n"
+"In other words, we have that `P ∨ False` is true. So we must have `P`.\n"
+"\n"
+"Another way to express this is that you have two possibilities one of which(or both) is supposed to be true, and you know its definitely not the second option. All is left is the first option. \n"
+"\n"
+"Its either 'this' or 'that'. If its not 'that' then its definitely 'this'.\n"
+"\n"
+"\n"
+"-- let the user do the simplification manually... then in the conclusion introduce `simp`."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L06_notinright
@@ -1082,13 +1206,11 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L07_NotKnave_Knight
-msgid ""
+msgid "If you're not a knave, then the only option left is a knight."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L07_NotKnave_Knight
 msgid "It is obvious that no one can be a knight and a knave at the same time. If some is not a knave then they are a knight.\n"
-"\n"
-"You need to show that having two sets being disjoint (i.e sharing no common element) and having a common element is a contradiction.\n"
 "\n"
 "For the contradiction \n"
 "This is not an obvious contradiction (like p , ¬p) for the `contradiction` tactic to work. \n"
@@ -1104,7 +1226,7 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L08_notinleft
-msgid ""
+msgid "`notinleft_inright`"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L08_notinleft
@@ -1116,7 +1238,7 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L09_NotKnight_Knave
-msgid ""
+msgid "If you're not a knight, then the only option left is a knave."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L09_NotKnight_Knave
@@ -1166,7 +1288,7 @@ msgid "Knights and Knaves, lemmas"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas
-msgid "We will introduce the knights and knaves puzzle here. In this world, you will have to prove basic but important lemmas which will be used in the world after this one to solve actual knights and knaves puzzles.\n"
+msgid "We will introduce the knights and knaves puzzle here. In this world, you will have to prove basic but important theorems which will be used in the world after this one to solve actual knights and knaves puzzles.\n"
 "\n"
 "The setting is an island  in which certain inhabitants called 'knights' always tell the truth, and others called 'knaves' always lie.\n"
 "\n"
@@ -1185,7 +1307,7 @@ msgid "We will introduce the knights and knaves puzzle here. In this world, you 
 "`Knight` is a finite set where its elements are of type `Inhabitant` and these elements satisfy the propery of always telling the truth.\n"
 "`Knave` is a finite set where its elements are of type `Inhabitant` and these elements satisfy the property of always lying.\n"
 "\n"
-"Since knights always tell the truth and knaves always lie, no inhabitant can be both a knight and a knave. So the intersection of the two sets is empty i.e `Knight ∩ Knave = ∅`. We say the two sets Knight Knave are disjoint.\n"
+"Since knights always tell the truth and knaves always lie, no inhabitant can be both a knight and a knave. So the intersection of the two sets is empty i.e `Knight ∩ Knave = ∅`. We say the two sets `Knight`, `Knave` are disjoint.\n"
 "\n"
 "The statement `A ∈ Knight` is read as: `A` belongs to the finite set `Knight`(`A in Knight`), and it should be understood as 'A IS Knight' i.e 'A' always tells the truth.\n"
 "Similarly, the statement `A ∉ Knight` is read as: `A` doesn't belong to the finite set `Knight`(`A not in Knight`), and it should be understood as 'A ISNOT Knight'.\n"

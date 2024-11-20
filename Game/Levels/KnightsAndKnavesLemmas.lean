@@ -17,7 +17,7 @@ Title "Knights and Knaves, lemmas"
 #check Finset
 Introduction 
 "
-We will introduce the knights and knaves puzzle here. In this world, you will have to prove basic but important lemmas which will be used in the world after this one to solve actual knights and knaves puzzles.
+We will introduce the knights and knaves puzzle here. In this world, you will have to prove basic but important theorems which will be used in the world after this one to solve actual knights and knaves puzzles.
 
 The setting is an island  in which certain inhabitants called 'knights' always tell the truth, and others called 'knaves' always lie.
 
@@ -36,7 +36,7 @@ Knight Knave : Finset Inhabitant
 `Knight` is a finite set where its elements are of type `Inhabitant` and these elements satisfy the propery of always telling the truth.
 `Knave` is a finite set where its elements are of type `Inhabitant` and these elements satisfy the property of always lying.
 
-Since knights always tell the truth and knaves always lie, no inhabitant can be both a knight and a knave. So the intersection of the two sets is empty i.e `Knight ∩ Knave = ∅`. We say the two sets Knight Knave are disjoint.
+Since knights always tell the truth and knaves always lie, no inhabitant can be both a knight and a knave. So the intersection of the two sets is empty i.e `Knight ∩ Knave = ∅`. We say the two sets `Knight`, `Knave` are disjoint.
 
 The statement `A ∈ Knight` is read as: `A` belongs to the finite set `Knight`(`A in Knight`), and it should be understood as 'A IS Knight' i.e 'A' always tells the truth.
 Similarly, the statement `A ∉ Knight` is read as: `A` doesn't belong to the finite set `Knight`(`A not in Knight`), and it should be understood as 'A ISNOT Knight'.

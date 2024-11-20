@@ -3,11 +3,22 @@ import Game.Metadata
 World "KnightsAndKnavesLemmas"
 Level 5
 
-Title ""
+Title "A Knave is not a knight."
 
 Introduction 
 "
-Note that this is just like the previous level.
+If you are a knave, then you are definitely not a knight. Recall that knights always tell the truth and knaves always lie.
+
+This is implied by the assumption:
+```
+h : Knight ∩ Knave = ∅ 
+```
+
+Note that this level is identical to the previous one except the fact that the set `left` is now called `Knight` and the set `right` is now called `Knave`.
+
+This doesn't change anything of course, what changes are the names you and Lean would be seeing. If everything is renamed consistently, nothing changes.
+
+You can use the theorem proved in the previous level `inright_notinleft` giving it the necessary arguments.
 "
 
 Statement 

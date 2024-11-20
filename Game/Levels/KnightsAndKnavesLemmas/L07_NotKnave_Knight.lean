@@ -3,47 +3,23 @@ import Game.Metadata
 World "KnightsAndKnavesLemmas"
 Level 7
 
-Title ""
+Title "If you're not a knave, then the only option left is a knight."
 
 Introduction 
 "
-It is obvious that no one can be a knight and a knave at the same time. If some is not a knave then they are a knight.
-
-You need to show that having two sets being disjoint (i.e sharing no common element) and having a common element is a contradiction.
-
-For the contradiction 
-This is not an obvious contradiction (like p , ¬p) for the `contradiction` tactic to work. 
-Some work needs to be done to get to that point.
-We can get that `A ∈ ∅` and we know that
-
-Hint: the goal is to get something that contradicts not_mem_empty. Since x belong to Knight and Knave then it belongs to their intersection which is equal to the empty set contradiction not_mem_empty. Let's do this step by step. (Make it feel like the player discovered this:
-Notice that the only information we can derive is that x is in the intersection. Do we have information about the intersection? Well yes. its empty set so x ∈ empty set. Execute the finishing blow.
 "
 
-Statement  
-
-{Knight : Set K } {Knave : Set K}
+Statement
+{Knight : Finset Inhabitant } {Knave : Finset Inhabitant}
+{inst : DecidableEq Inhabitant}
 {h : Knight ∩ Knave = ∅ }
 (h' : ¬ (B ∈ Knave))
-(h'' : ∀ (x: K), x ∈ Knight ∨ x ∈ Knave)
+(h'' : B ∈ Knight ∨ B ∈ Knave)
   :  B ∈ Knight := by
 {
--- simp
-  have BKK := h'' B
-  cases BKK
-  assumption
-  contradiction
-  -- use this exercise to introduce disjucntive syllogism and say that this reasoning is true in general(if needed by future levels).
-
-  -- introduce ¬¬ p → p
-  -- first approach by contradiction
-  /-
-  by_contra h''
-  have h' := eq_false h'
-  have h'' := eq_false h''
-  rw [h',h''] at h1
-  simp at h1
-  -/
+  exact notinright_inleft h'' h'
+}
+-- use this exercise to introduce disjucntive syllogism and say that this reasoning is true in general(if needed by future levels).
 
   -- second approach, direct
   --have h' := eq_false h'
@@ -51,7 +27,6 @@ Statement
   --simp at h1
   --assumption
 
-}
 
 Conclusion 
 "

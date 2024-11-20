@@ -3,7 +3,7 @@ import Game.Metadata
 World "KnightsAndKnavesLemmas"
 Level 9
 
-Title ""
+Title "If you're not a knight, then the only option left is a knave."
 
 Introduction 
 "
@@ -32,7 +32,6 @@ Given the following proof state:
 (h : Knight ∩ Knave = ∅ )
 (h'' : ∀ (x: K), x ∈ Knight ∨ x ∈ Knave)
 ```
-
 
 We can conclude the following implications:
 A ∈ Knight → A ∉ Knave  

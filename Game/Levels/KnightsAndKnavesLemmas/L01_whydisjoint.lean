@@ -10,7 +10,7 @@ import Game.Metadata
 World "KnightsAndKnavesLemmas" 
 Level 1
 
-Title "" 
+Title "`disjoint` theorem"
 
 Introduction 
 "
@@ -27,7 +27,11 @@ In our problem, we have:
 Aleft: A ∈ left
 Aright: A ∈ right
 ```
-This means that `A` belongs to both `left` and `right` i.e `A ∈ left ∩ right`. This would contradict `h` giving us `False` which is the goal.
+This means that `A` belongs to both `left` and `right` i.e `A ∈ left ∩ right`.
+
+So, we do have someone who is both a knight and a knave. This contradicts `h`.
+
+This would contradict `h` giving us `False` which is the goal.
 
 To show `A ∈ left ∩ right`, use the following
 ```
@@ -53,7 +57,7 @@ The two sets Knight and Knave must be disjoint. You can't telll the truth and li
 /-
 the objects in question like A,B,C
 
-implication for their statements with the negated version then why the two sets are disjoint
+implication for their statements with the negated version
 -/
 
 -- prefered
@@ -91,6 +95,7 @@ Statement disjoint (preamble := have A_not_in_Empty := Finset.not_mem_empty A) {
 #check Finset.inter_eq_right
 -- Note that the forward direction is always true, and our assumption `h` wasn't used, but the backward direction is not always( We used `h` for that). This offers a simplification and decluttering of the proof state and will be followed from now on. The downside is an apparent loss of information, but the coming levels will show that this is not the case.
 
+example (P : Type) (h : P → Q) : P → Q := by sorry
 Conclusion 
 "
 This works for any two disjoint sets, specifically the two sets `Knight`,`Knave`.
@@ -100,6 +105,6 @@ Even if we didn't have `A_not_in_empty` in the assumptions, `contradiction` woul
 Finset.not_mem_empty.{u_1} {α : Type u_1} (a : α) : a ∉ ∅
 ```
 "
-
+#print disjoint
 NewTheorem Finset.mem_inter disjoint
-NewDefinition Finset inter
+NewDefinition Finset inter KnightsKnaves
