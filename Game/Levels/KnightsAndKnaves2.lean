@@ -26,10 +26,8 @@ include these videos:
 knights and knaves prolog - Invidious
 https://yewtu.be/search?q=knights+and+knaves+prolog
 
-
 Knights and Knaves in Prolog - YouTube
 https://www.youtube.com/watch?v=oEAa2pQKqQU
-
 
 All puzzles were generated(and possibly modified) from https://www.wolframcloud.com/objects/demonstrations/KnightsAndKnavesPuzzleGenerator-source.nb.
 "

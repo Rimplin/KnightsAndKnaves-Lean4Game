@@ -1,6 +1,5 @@
 import Game.Metadata
 
-
 World "KnightsAndKnaves"
 Level 1
 
@@ -23,13 +22,11 @@ Regardless of what A is, we fall into contradiction. The proof will take all cas
 
 Remember that `A` is either a knight or a knave, represented by `h1` , and our reasoning was taking every case and showing that we reach the same conclusion in both(which is a contradiction i.e `False`). This is known as a proof by cases.
 
-For this, we need the `cases` tactic. Try `cases h1` and see what happens
-
+For this, we need the `cases` tactic. Try `cases h1` and see what happens.
 "
 
 #check not_iff_self
 Statement IamKnave
-  --sets
   {inst : DecidableEq Inhabitant}
   {Knight : Finset Inhabitant} {Knave : Finset Inhabitant}
 {h : Knight ∩ Knave = ∅ }
@@ -85,12 +82,9 @@ example
     exact this
   }
 
-
-
 Conclusion 
 "
 "
-
 
 example 
   {inst : DecidableEq Inhabitant}

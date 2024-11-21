@@ -33,9 +33,10 @@ Statement
     exact notleft_right Or h'
   }
 
+#check iff_iff_implies_and_implies
 Conclusion 
 "
-Let's recap what we have proven in the last four levels.
+Let's recap what we have proven.
 
 Given the following proof state:
 ```
@@ -47,10 +48,14 @@ Given the following proof state:
 We can conclude the following implications:
 A ∈ Knight → A ∉ Knave (using `h`) 
 A ∉ Knave → A ∈ Knight (using `h''`)
-which can be combined into: A ∈ Knight ↔ A ∉ Knave (let the user actually do one of them)
+which can be combined into: A ∈ Knight ↔ A ∉ Knave.
+
 Similarly for the other two levels, we can conclude A ∉ Knight ↔ A ∈ Knave
 
-These two theorems will be very useful in the following world.
+These two theorems will be very useful in the following world. They are now unlocked as the following:
+```
+
+```
 
 ------------------------
 

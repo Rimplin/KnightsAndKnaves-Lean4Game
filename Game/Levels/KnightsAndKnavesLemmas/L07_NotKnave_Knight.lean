@@ -31,13 +31,6 @@ Statement
 {
   exact notright_left h'' h'
 }
--- use this exercise to introduce disjucntive syllogism and say that this reasoning is true in general(if needed by future levels).
-
-  -- second approach, direct
-  --have h' := eq_false h'
-  --rw [h'] at h1
-  --simp at h1
-  --assumption
 
 Conclusion 
 "

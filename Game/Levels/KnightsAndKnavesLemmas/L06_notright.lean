@@ -7,7 +7,9 @@ Title "`notright_left`"
 
 Introduction
 "
-Truth table:
+In this level, we have `P ∨ Q` which means that `P` is true or `Q` is true. Since we also know `¬Q` i.e `Q` is not true, the only option leftis `P` being true.
+
+As a truth table:
 $
 \\begin{array}{|c|c|} 
 \\hline
@@ -18,28 +20,39 @@ F  & F \\\\
 \\hline
 \\end{array}
 $
-
 Notice that `P`, `P ∨ False` always have the same truth value.
 
-Another way to express this is that you have two possibilities one of which(or both) is supposed to be true, and you know its definitely not the second option. All is left is the first option. 
+This truth table is represented as the following theorem:
+```
+or_false_iff (p : Prop) : p ∨ False ↔ p
+```
 
-Given the statement, its either 'this' or 'that'. If we know its not 'that' then its definitely 'this'.
+We will first start by transforming `P ∨ Q` into `P ∨ False` using `¬Q`.
+
+`¬Q` means that `Q` is False i.e `Q = False`.
+We have the following theorem:
+```
+eq_false {p : Prop} (h : ¬p) : p = False
+```
+
+Use `have` and `eq_false` to get `Q = False`.
+
 "
 
 #check or_false_iff
-
 #check or_iff_not_imp_left
 #check or_iff_not_imp_right
 #check notright_left
 Statement notright_left {P Q : Prop} (Or : P ∨ Q) (notright : ¬Q) : P := by
 {
   have := eq_false notright
+  Hint "Replace `Q` in `Or` with `False`"
   rw [this] at Or
-  rw [or_false] at Or
+  Hint "`P` and `P ∨ False` have the same truth value. We know `P ∨ False` is true, therefore `P` is true."
+  rw [or_false_iff] at Or
   assumption
 }
 
---This lemma applies to any two finite sets `left`,`right` given that `A` is in either in `left` or in `right`.
 --Statement notinright_inleft
 --  {A : K}
 --  {left : Finset K} {right : Finset K}
@@ -56,7 +69,9 @@ Instead of doing it manually, you can instead use `simp` tactic.
 
 The `simp` tactic uses lemmas and hypotheses to simplify the main goal target or some assumption.
 
-`simp [notright] at Or` does the job. `simp` will simplify `Or` with the theorems you gave, in this case `notright : ¬Q`. The resulting simplified expression would be `Or : P`.
+`simp [notright] at Or` does the job. It simplifies `Or` using `notright` and various theorems called 'simp lemmas' some of which are `eq_false`, `or_false_iff`.
+
+`simp` will simplify `Or` with the theorems you gave, in this case `notright : ¬Q`. The resulting simplified expression would be `Or : P`.
 "
 
 NewTheorem notright_left

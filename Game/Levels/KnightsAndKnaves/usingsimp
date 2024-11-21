@@ -1,2 +1,0 @@
-    -- instead of rewriting stuff in the = true world then using simplification lemmas directly like or_true, simp does it. First, let the user do the manual way then introduce this before knights and knaves and the user would use simp in knights and knaves
-

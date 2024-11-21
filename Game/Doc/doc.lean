@@ -21,8 +21,6 @@ Notice that this definition is an implication and that the truth table with `¬P
 What this means is that to prove `¬P`, we assume `P` and derive a contradiction i.e constructing an object of type `False`. 
 In other words, having `¬P` as a goal, you have to start the proof with `intro` because you are proving an implication.
 
-
-
 It represents a contradiction. `False` elimination rule, `False.rec`,
 expresses the fact that anything follows from a contradiction.
 This rule is sometimes called ex falso (short for ex falso sequitur quodlibet),
@@ -44,8 +42,6 @@ For an object of type P where P is of type Prop, i.e `h : P` where `P : Prop`, `
 
 # Constructing new propositions from old ones
 The atomic propositions in the compound proposition `p ∧ q` are : `p`, `q`. Of course, `p ∧ q` can be used to construct more complicated propositions.
-
-
 
 ## Connecting Propositions With A Logical Connective
 It is important to note that connecting two proposition via a logic connective results in a proposition as well. If this wasn't the case, then how could we talk about the truth value of `P ∧ Q` if `P ∧ Q` were not a proposition! This proposition constructed using a logical connective and other propositions, like any other proposition, has a truth value. This truth value depends on the truth value of the propositions it was built out of and the rules of the logical connective. This is clearly illustrated in a truth table. 
@@ -99,6 +95,25 @@ F & F & T \\
 \hline
 \end{array}
 $
+
+# Truth table
+The truth table of a logical connective illustrates the rule for that logical connective , i.e the truth value of the compound statement depending on the truth value of the propositions it connects.
+The following truth table illustrates this for the previously discussed `∧` connective.
+`T` stands for true
+`F` stands for false
+$
+\begin{array}{|c c|c|} 
+\hline
+P & Q & P ∧ Q \\
+\hline
+T & T & T \\
+T & F & F \\
+F & T & F \\
+F & F & F \\
+\hline
+\end{array}
+$
+Notice that `P ∧ Q` is true when both `P` is true and `Q` is true, being false otherwise.
 -/
 DefinitionDoc and as "∧" 
 
@@ -139,8 +154,6 @@ testing stuff, does importing work?!?!?!?!
 -/
 TacticDoc left
 
-
-
 /--
 [[mathlib_doc]]
 There is an alternative syntax for `have` which you can view in the right side pane. In any case, it will be introduced later on when its more convenient to use.
@@ -148,14 +161,11 @@ There is an alternative syntax for `have` which you can view in the right side p
 -/
 TacticDoc «have»
 
-
-
 /--
 ## Overview
 Having h : P and P as your goal, exact h will close the goal. exact h asserts that h is exactly whats needed to prove the goal which makes sense because h is a proof of P.(It doesn't matter what P is)
 -/
 TacticDoc exact
-
 
 /-- 
 Normalize numerical expressions. Supports the operations `+` `-` `*` `/` `⁻¹` `^` and `%`
@@ -197,27 +207,11 @@ You need to show that having two sets being disjoint (i.e sharing no common elem
 TacticDoc contradiction
 
 /--
+Another way to express this is that you have two possibilities one of which(or both) is supposed to be true, and you know its definitely not the second option. All is left is the first option. 
 
-# Truth table
-The truth table of a logical connective illustrates the rule for that logical connective , i.e the truth value of the compound statement depending on the truth value of the propositions it connects.
-The following truth table illustrates this for the previously discussed `∧` connective.
-`T` stands for true
-`F` stands for false
-$
-\begin{array}{|c c|c|} 
-\hline
-P & Q & P ∧ Q \\
-\hline
-T & T & T \\
-T & F & F \\
-F & T & F \\
-F & F & F \\
-\hline
-\end{array}
-$
-Notice that `P ∧ Q` is true when both `P` is true and `Q` is true, being false otherwise.
+Given the statement, its either 'this' or 'that'. If we know its not 'that' then its definitely 'this'.
 -/
-TheoremDoc And as "And" in "Logic"
+TheoremDoc notright_left as "notright_left" in "Logic"
 
 /--
 A summary of all the terminology presented throughout the game, in order of appearance.

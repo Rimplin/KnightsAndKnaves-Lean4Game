@@ -27,12 +27,6 @@ Statement notleft_right {P Q : Prop} (Or : P ∨ Q) (notleft : ¬P) : Q := by
   rw [false_or] at Or
   assumption
 }
---Statement notinleft_inright
---  {A : K}
---  {left : Finset K} {right : Finset K}
---  (LeftorRight : A ∈ left ∨ A ∈ right)
---(h' : A ∉ left) : A ∈ right := by
---  exact notleft_right LeftorRight h'
 
 Conclusion 
 "

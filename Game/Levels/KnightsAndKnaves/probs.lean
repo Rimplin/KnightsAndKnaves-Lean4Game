@@ -88,11 +88,11 @@ example
 --    Oberon says: Tracy is a knight and I am a knave.
 --    Wendy says: Oberon is a knave.  Solution :     Because Oberon said 'Tracy is a knight and I am a knave,' we know Oberon is not making a true statement. (If it was true, the speaker would be a knight claiming to be a knave, which cannot happen.) Therefore, Oberon is a knave and Tracy is a knave.
 --    All islanders will call a member of the opposite type a knave. So when Tracy says that Wendy is a knave, we know that Wendy and Tracy are opposite types. Since Tracy is a knave, then Wendy is a knight.
---
+
 example
-  --sets
   {Tracy Oberon Wendy: Inhabitant}
-  {Knight : Set Inhabitant} {Knave : Set Inhabitant}
+  {inst : DecidableEq Inhabitant}
+  {Knight : Finset Inhabitant} {Knave : Finset Inhabitant}
 {h : Knight ∩ Knave = ∅ }
 {Or : ∀(x :Inhabitant), x ∈ Knight ∨ x ∈ Knave}
 {stT : Tracy ∈ Knight  ↔ (Wendy ∈ Knave) }
@@ -102,17 +102,16 @@ example
 {stW : Wendy ∈ Knight ↔ Oberon ∈ Knave}
 {stWn : Wendy ∈ Knave ↔ ¬ (Oberon ∈ Knave)}
   : Tracy ∈ Knave ∧ Oberon ∈ Knave ∧ Wendy ∈ Knight := by
-
   {
     have OberonKnave : Oberon ∈ Knave := by {
       by_contra OberonKnight
-      rw [NotKnave_KnightIff h (Or Oberon)] at OberonKnight
+      rw [notinright_inleftIff (Or Oberon) h] at OberonKnight
       have := stO.mp OberonKnight
       exact disjoint h OberonKnight this.right
     }
     have WendyKnight := stW.mpr OberonKnave
     have TracyKnave : Tracy ∈ Knave := by {
-      rw [Knight_NotKnaveIff h (Or Wendy)] at WendyKnight
+      rw [inleft_notinrightIff (Or Wendy) h] at WendyKnight
       exact stTn.mpr WendyKnight 
     }
 
@@ -166,7 +165,6 @@ example
 --      -/
 --  -- and show the goal ... 
 ----exists(λ p,match p with | Tracy =>knave|Oberon=>knave | Wendy => knight ),split { refl}, split, { refl }, { refl } 
-
 
 ------------------
 -- inverse direction is obvious...
@@ -242,7 +240,6 @@ example {A B C :Prop}
   assumption
   constructor
   assumption ; assumption
-
 
 example
  {A B C P : Prop}
