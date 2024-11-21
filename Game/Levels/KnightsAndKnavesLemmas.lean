@@ -5,9 +5,9 @@ import Game.Levels.KnightsAndKnavesLemmas.L02_inleft
 import Game.Levels.KnightsAndKnavesLemmas.L03_Knight_NotKnave
 import Game.Levels.KnightsAndKnavesLemmas.L04_inright
 import Game.Levels.KnightsAndKnavesLemmas.L05_Knave_NotKnight
-import Game.Levels.KnightsAndKnavesLemmas.L06_notinright
+import Game.Levels.KnightsAndKnavesLemmas.L06_notright
 import Game.Levels.KnightsAndKnavesLemmas.L07_NotKnave_Knight
-import Game.Levels.KnightsAndKnavesLemmas.L08_notinleft
+import Game.Levels.KnightsAndKnavesLemmas.L08_notleft
 import Game.Levels.KnightsAndKnavesLemmas.L09_NotKnight_Knave
 
 World "KnightsAndKnavesLemmas"
