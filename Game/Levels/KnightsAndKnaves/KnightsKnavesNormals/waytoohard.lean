@@ -74,11 +74,10 @@ example
       have : A ∈ Knave → C ∈ Knave := by 
         exact fun _ => CKnave
       contradiction
-      
+
 --        rw [Finset.subset_insert_iff_of_not_mem CnKnight] at KU
 
       -- Finset.card_ge_one ∃ a , {a} ⊆ A
-       
   }
     have AnKnight : A ∉ Knight := by 
       intro AKnight 
@@ -160,7 +159,7 @@ example
       exact ⟨h,BKnave,CKnight⟩ 
     · have AC := stB h 
       have AnKnave := (Function.mt AC) CnKnave
-      have BnKnave := inleft_notinright hKKn h  
+      have BnKnave := inleft_notinright hKKn h
       rw [Finset.subset_insert_iff_of_not_mem AnKnave] at KnU
       rw [Finset.subset_insert_iff_of_not_mem BnKnave] at KnU
       rw [Finset.subset_singleton_iff] at KnU
@@ -170,5 +169,3 @@ example
       · have := mem_of_eq_singleton h_1
         contradiction
 }
-
-      #check Finset.card_eq_one

@@ -12,29 +12,15 @@ This level introduces automations for the kinds of algebra problems you have pre
 In fact, you have already seen automations. `norm_num` for example.
 "
 
-ring
-simp
+--ring
+--simp
 --omega
 --linarith
-Statement 
-  :  := by
 
-  {
-
-  }
-
-
-
-
-
-Conclusion 
-"
-"
 example (y : ℕ) (h:3*y=12) : y=4 := by
   apply Nat.mul_left_cancel three_pos
   rw [h]
   norm_num
-
 
 example (y : ℕ) (h:3*y=12) : y=4 := by
   qify at h ⊢
@@ -50,10 +36,3 @@ example (y : ℕ) (h:3*y=12) : y=4 := by
   exact h
   refine mul_right_injective₀ ?_
   norm_num
-
-/- Use these commands to add items to the game's inventory. -/
-
---NewTactic rw rfl
--- NewLemma Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq
-

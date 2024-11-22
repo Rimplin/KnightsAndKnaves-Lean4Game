@@ -150,6 +150,24 @@ x - 7 = x - 7
 TacticDoc rfl
 
 /--
+Given the following:
+```
+Assumptions:
+h : A = B
+
+Goal:
+some expression involving A
+```
+
+`rw [h]` would change the goal by replacing every occurrence of `A` with `B`.
+
+By default, rw uses an equation in the forward direction, matching the left-hand side of the equation with an occurrence of that in the goal, and replaces it with the right-hand side. 
+
+The notation ←t can be used to instruct the tactic to use the equality t in the reverse direction.
+-/
+TacticDoc rw
+
+/--
 testing stuff, does importing work?!?!?!?!
 -/
 TacticDoc left
@@ -162,17 +180,27 @@ There is an alternative syntax for `have` which you can view in the right side p
 TacticDoc «have»
 
 /--
+Refer to `Prop` documentation if you need to.
+
 ## Overview
-Having h : P and P as your goal, exact h will close the goal. exact h asserts that h is exactly whats needed to prove the goal which makes sense because h is a proof of P.(It doesn't matter what P is)
+For the following proof state:
+```
+Objects
+P : Prop
+
+Assumptions
+hP : P
+
+Goal:
+P
+```
+Remember that `hP : P` where `P : Prop` means `hP` is a proof of `P`.
+
+Since the goal is to prove `P`, the only thing we have to do is to let Lean know that we do have such a proof. In other words, `hP` is EXACTLY whats needd to prove the goal. The type of `hP` EXACTLY matches the goal.
+
+This is done by `exact h`.
 -/
 TacticDoc exact
-
-/-- 
-Normalize numerical expressions. Supports the operations `+` `-` `*` `/` `⁻¹` `^` and `%`
-over numerical types such as `ℕ`, `ℤ`, `ℚ`, `ℝ`, `ℂ`.
-
--/
-TacticDoc norm_num
 
 /--
 ```
@@ -331,3 +359,46 @@ DefinitionDoc KnightsKnaves as "Knights and Knaves"
 ---/
 --DefinitionDoc Xor' as "Xor'" 
 --NewDefinition Xor' 
+
+DefinitionDoc Nat as "ℕ"  
+
+
+/--
+### **Logic Constants & Operators**
+### **Equational Reasoning**
+| $Name~~~$ | $Ascii~~~$ | $Unicode$ | $Unicode Cmd$ |
+| --- | :---: | :---: | --- |
+|     |       |       | `mul_left_cancel\0`|
+| True | `True` |  |  |
+| False | `False` |  |  |
+| Not | `Not` | ¬ | `\n` `\not` `\neg` `\lnot` |
+| And | `/\` | ∧ | `\and` `\an` `\wedge` |
+| Or | `\/` | ∨ | `\v` `\or` `\vee` |
+| Implies | `->` | → | `\r` `\imp` `\->` `\to` `\r-` `\rightarrow` |
+| Iff | `<->` | ↔ | `\iff` `\lr-` `\lr` `\<->` `\leftrightarrow` |
+| For All | `foral` | ∀ | `\all` `\forall` |
+| Exists | `exists` | ∃ | `\ex` `\exists` |
+
+### **Other Unicode**
+| $Name$ | $Unicode~~~$ | $Unicode Cmd$ |
+| --- | :---: | --- |
+| Angle brackets | ⟨ ⟩ | `\<` `\>` `\langle` `\rangle` |
+| Subscript Numbers | ₁ ₂ ₃ ... | `\1` `\2` `\3` ... |
+| Left Arrow | ← | `\l` `\leftarrow` `\gets` `\<-` |
+| Turnstyle | ⊢ | `\│-` `\entails` `\vdash` `\goal` |
+
+$
+\begin{array}{|c|c|} 
+\hline
+Unicode & Text \\
+\hline
+\text{mul\_left\_cancel₀} & `mul\_left\_cancel\0` \\
+\hline
+\end{array}
+$
+mul_left_cancel₀ written as mul_left_cancel\0
+-/
+DefinitionDoc UnicodeSymbols as "Unicode Symbols"
+
+/-- [[mathlib_doc]] -/
+TheoremDoc Nat.mul_left_cancel as "Nat.mul_left_cancel" in "*"

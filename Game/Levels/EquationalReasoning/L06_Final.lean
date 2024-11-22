@@ -11,11 +11,8 @@ Introduction
 A similar problem to the previous one.
 "
 
---variable [IsLeftCancelMul ℤ] 
-/-
 variable {x y : ℚ }
 
--- a bit too complicated
 example  (h : 3*x - 2*y = 12) (k : y = 3) : x = 6 := by {
   calc  
    x = 3*x -2*y -2*x +2*y := by ring
@@ -25,7 +22,6 @@ example  (h : 3*x - 2*y = 12) (k : y = 3) : x = 6 := by {
    _ = 18 - (12)/(3/2) - 4*3/3 := by rw [h,k]
    _ = 6 := by ring
 }
--/
 
 variable {x y : ℤ}
 example  (h : 3*x - 2*y = 12) (k : y = 3) : x = 6 := by {
@@ -124,17 +120,8 @@ Statement (h : 4*y=16) : y = 4 := by{
   --linarith
 }
 
-
-
-
-
 Conclusion
 "
 "
 
-/- Use these commands to add items to the game's inventory. -/
-
---NewTactic rw rfl
--- NewLemma Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq
 NewTheorem eq_add_of_add_neg_eq three_ne_zero mul_left_cancel₀

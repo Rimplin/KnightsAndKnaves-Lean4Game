@@ -1,7 +1,5 @@
 import Game.Metadata
 
-
-
 World "EquationalReasoning" 
 Level 4
 

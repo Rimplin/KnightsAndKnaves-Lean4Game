@@ -6,10 +6,3 @@ norm_num                                                        not useful
 using a tactic at an assumption                                 useful
 introducing a new assumption using have                         useful
 mul_left_cancel\0                                               not useful
-
-
-What is needed for knights and knaves?
--
-- 
--
-- 

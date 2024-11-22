@@ -2,12 +2,12 @@ import Game.Metadata
 
 import Game.Doc.doc
 
-World "EquationalReasoning" 
-Level 5 
+World "EquationalReasoning"
+Level 5
 
-Title "some title" 
+Title "`Nat.mul_left_cancel` , Divide both sides of an equation"
 
-Introduction 
+Introduction
 "
 Here we introduce the `have` tactic which allows us to add theorems to the context(which you would have to prove, of course). 
 
@@ -24,12 +24,13 @@ You can choose any name after `have` and any type after `:`.
 
 For this problem, we want `16=4*4` instead of `2=2`.
 Adapt this example to `16 = 4*4` and include after `by` its proof.
-
-
 "
 
+example (h : 4*y=16) : y = 4 := by{
+  exact Nat.mul_left_cancel four_pos h
+}
+
 Statement (h : 4*y=16) : y = 4 := by{
-  
   Hint (hidden := true) 
   "
   For the proof, we need to carry out the calculation of `4 * 4` and as in the previous level, the tactic for that is `norm_num`. Typing that as the proof will work. 
@@ -48,30 +49,30 @@ Statement (h : 4*y=16) : y = 4 := by{
   Hint (hidden := true) "`rw [{helper}] at h`" 
   rw [helper] at h 
   Hint "
- Using `mul_left_cancel₀`, cancel the `4` on both sides of `h` obtaining `y=4` which is the goal.
+ Using `Nat.mul_left_cancel`, cancel the `4` on both sides of `h` obtaining `y=4` which is the goal.
 
   For example, given the following proof state:
   ```
   equation : 2*x = 2*3
   ```
-  `mul_left_cancel₀` is of the form:
+  `Nat.mul_left_cancel` is of the form:
   ```
-  mul_left_cancel₀ firstArgument secondArgument
+  Nat.mul_left_cancel firstArgument secondArgument
   ```
 
   The following expression cancels `3` from both sides of `equation`:
   ```
-  (mul_left_cancel₀ two_ne_zero equation) : x =3 
+  (Nat.mul_left_cancel two_pos equation) : x = 3
   ```
 
   Note that:
   ```
-  two_ne_zero : 2 ≠ 0
+  two_pos : 0 < 2
   ```
-  where 'ne' stands for not equal.
+  where 'pos' stands for positive.
 
   Arguments are given without paranthesis
-  is the first argument given to `mul_left_cancel₀` and `equation` is the second.
+  is the first argument given to `Nat.mul_left_cancel` and `equation` is the second.
 
   Adapt this to the current problem.
   "
@@ -84,69 +85,26 @@ Statement (h : 4*y=16) : y = 4 := by{
   -/
   Hint (hidden:=true) "
   Notice that `mul_left_cancel₀ four_ne_zero h` has type `y = 4`. So, `exact mul_left_cancel₀ four_ne_zero h` will do it."
-  exact mul_left_cancel₀ four_ne_zero h
+  exact Nat.mul_left_cancel four_pos h
 }
 
 Conclusion 
 "
-Here is the type signature of mul_left_cancel\\0:
+Here is the type signature of Nat.mul_left_cancel:
   ```
-  mul_left_cancel\\0 (ha : a ≠ 0) (h : a * b = a * c) : b = c
+Nat.mul_left_cancel {n m k : ℕ} (np : 0 < n) (h : n * m = n * k) : m = k
   ```
-  `mul_left_cancel₀` takes two arguments which are:
-   - `ha`, a proof that some number `a` is not equal to zero. 
-   - `h`, the equation which has `a` on both sides of the equation multiplied on the left.
+  `Nat.mul_left_cancel` takes two arguments which are:
+   - `np`, a proof that some number `n` is positive.
+   - `h`, the equation which has `n` on both sides of the equation multiplied on the left.
 
-  The result is canceling `a` from both sides of the equation.
+  The result is canceling `n` from both sides of the equation.
 "
+
 --In our case `h` is the `h` in our assumptions and `a` is `4`, `four_ne_zero` is the argument you should give.
 --you want to cancel from both sides of `h` is 
-#check add_mul
 NewTactic «have» 
 
-#check Nat.mul_left_cancel
-#check mul_left_cancel
+NewTheorem Nat.mul_left_cancel four_pos
 
-/-- [[mathlib_doc]] -/
-TheoremDoc mul_left_cancel₀ as "mul_left_cancel₀" in "*"
-NewTheorem mul_left_cancel₀ four_ne_zero
-
-/--
-
-
-### **Logic Constants & Operators**
-### **Equational Reasoning**
-| $Name~~~$ | $Ascii~~~$ | $Unicode$ | $Unicode Cmd$ |
-| --- | :---: | :---: | --- |
-|     |       |       | `mul_left_cancel\0`|
-| True | `True` |  |  |
-| False | `False` |  |  |
-| Not | `Not` | ¬ | `\n` `\not` `\neg` `\lnot` |
-| And | `/\` | ∧ | `\and` `\an` `\wedge` |
-| Or | `\/` | ∨ | `\v` `\or` `\vee` |
-| Implies | `->` | → | `\r` `\imp` `\->` `\to` `\r-` `\rightarrow` |
-| Iff | `<->` | ↔ | `\iff` `\lr-` `\lr` `\<->` `\leftrightarrow` |
-| For All | `foral` | ∀ | `\all` `\forall` |
-| Exists | `exists` | ∃ | `\ex` `\exists` |
-
-### **Other Unicode**
-| $Name$ | $Unicode~~~$ | $Unicode Cmd$ |
-| --- | :---: | --- |
-| Angle brackets | ⟨ ⟩ | `\<` `\>` `\langle` `\rangle` |
-| Subscript Numbers | ₁ ₂ ₃ ... | `\1` `\2` `\3` ... |
-| Left Arrow | ← | `\l` `\leftarrow` `\gets` `\<-` |
-| Turnstyle | ⊢ | `\│-` `\entails` `\vdash` `\goal` |
-
-$
-\begin{array}{|c|c|} 
-\hline
-Unicode & Text \\
-\hline
-\text{mul\_left\_cancel₀} & `mul\_left\_cancel\0` \\
-\hline
-\end{array}
-$
-mul_left_cancel₀ written as mul_left_cancel\0
--/
-DefinitionDoc UnicodeSymbols as "Unicode Symbols"
 NewDefinition UnicodeSymbols

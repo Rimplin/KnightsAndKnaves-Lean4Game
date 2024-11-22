@@ -3,7 +3,7 @@ import Game.Metadata
 World "EquationalReasoning" 
 Level 2
 
-Title "Introd" 
+Title "`exact` , goal is true by assumption"
 
 Introduction
 "
@@ -34,9 +34,9 @@ Statement (h : x=2)
 Conclusion 
 "
 The `exact` in `exact h` tells Lean that `h`'s type EXACTLY matches the goal. Lean verifies this and reports that there are no more goals to prove. We are done.
+
+The `assumption` tactic can also be used here which searches for an assumption that matches the goal, and closes the goal if it finds one.
 "
 
-NewTactic exact
-
-DefinitionDoc Nat as "ℕ"  
-NewDefinition Nat 
+NewTactic exact assumption
+NewDefinition Nat

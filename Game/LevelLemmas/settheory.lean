@@ -234,9 +234,6 @@ theorem univ_or  {A B C : K} :  (Set.univ)  = ({A,B,C} : Set K)  ↔  ∀ (x : K
 theorem card_eq_one_iff_singletons 
 {A B C : K} {S : Finset K} (h : S.Nonempty)
 (all : ∀(x : K), x = A ∨ x = B ∨ x = C)
---(AneB : A ≠ B)
---(BneC : B ≠ C)
---(AneC : A ≠ C)
 : S.card =1 ↔  S = {A} ∨ S = {B} ∨ S = {C}
   := by 
   constructor
@@ -262,10 +259,10 @@ theorem card_eq_one_iff_singletons
         right
         rw [h_2] at hx
         exact is_singleton hx OneS 
-         
+
   · intro singletons
     cases singletons
-    ·  
+    ·
       exact eq_singleton_card_one h_1
     · cases h_1
       · exact eq_singleton_card_one h_2
@@ -309,7 +306,7 @@ theorem mem_iff_or_finset {inst : DecidableEq K}
 {A B C: K} {x : K} : x ∈ ({A,B,C} : Finset K) ↔  x = A ∨ x =B ∨ x = C := by
   constructor
   · intro xIn
-    
+
     rw [Finset.mem_insert] at xIn
     rw [Finset.mem_insert] at xIn
     rw [Finset.mem_singleton] at xIn
@@ -338,7 +335,7 @@ theorem one_in_of_card_eq_one {A B C : K} {S : Finset K} {nonemp : S.Nonempty}  
   · left
     constructor
     · exact mem_of_eq_singleton h_1
-      
+
     · constructor
       ·         exact not_in_of_singleton h_1 (AneB.symm) 
       · exact not_in_of_singleton h_1 (AneC.symm)
@@ -378,9 +375,6 @@ theorem univ_iff_all (inst : Fintype K) (inst2 : DecidableEq K) {A B C : K}   : 
 --      rw [Fu]
 --    · sorry
 
-
-    --apply?
-
   constructor
   · intro U
     intro x
@@ -414,7 +408,6 @@ theorem univ_iff_all (inst : Fintype K) (inst2 : DecidableEq K) {A B C : K}   : 
 
     · exact fun a_1 => Finset.mem_univ a
 
-
 theorem univ_iff_all2 {inst : Fintype K} {inst2 : DecidableEq K} {A B : K}   : Finset.univ = ({A,B} : Finset K) ↔  ∀ (x : K), x = A ∨ x = B := by 
   constructor
   · 
@@ -438,7 +431,6 @@ theorem univ_iff_all2 {inst : Fintype K} {inst2 : DecidableEq K} {A B : K}   : F
     · rw [h]
       apply Finset.mem_insert_of_mem 
       rw [Finset.mem_singleton]
-    
 
     apply Finset.card_le_card
     apply Finset.subset_univ
