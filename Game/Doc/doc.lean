@@ -332,6 +332,65 @@ Assumptions
 h : Knight ∩ Knave = ∅ 
 Or : A ∈ Knight ∨ A ∈ Knave
 ```
+
+## Translating statements to formal notation
+Knight version...
+Given inhabitant `A`:
+
+The translation we use is based on the following:
+- If `A` is a knight, then `A`'s statement is true.
+- If `A`'s statement is true, then `A` is a knight.
+
+Formally:
+```
+A ∈ Knight → stA
+stA → A ∈ Knight
+```
+
+If,
+```
+A says B is a knave
+```
+
+then,
+```
+A ∈ Knight → B ∈ Knave
+B ∈ Knave → A ∈ Knight
+```
+
+Combining them using `↔`:
+```
+A ∈ Knight ↔ B ∈ Knave
+```
+
+### equivalent translations, using knaves
+Given inhabitant `A`:
+
+The translation we use is based on the following:
+- If `A` is a knave, then `A`'s statement is false, i.e its negation is true.
+- If `A`'s statement is false, then `A` is a knave.
+
+Formally:
+```
+A ∈ Knave → ¬stA
+¬stA → A ∈ Knave
+```
+
+If,
+```
+A says B is a knave
+```
+
+then,
+```
+A ∈ Knave → ¬(B ∈ Knave)
+¬(B ∈ Knave) → A ∈ Knave
+```
+
+Combining them using `↔`:
+```
+A ∈ Knave ↔ ¬(B ∈ Knave)
+```
 -/
 DefinitionDoc KnightsKnaves as "Knights and Knaves"
 

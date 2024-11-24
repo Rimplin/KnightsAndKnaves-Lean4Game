@@ -97,6 +97,7 @@ The consequence of having `False` is the following.
 Any proposition is true and studying the current system becomes worthless.
 "
 
+NewTactic «have»
 NewTactic unfold rcases contradiction
 NewTheorem false_ne_true 
 

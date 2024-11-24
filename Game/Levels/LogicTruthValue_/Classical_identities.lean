@@ -1,24 +1,5 @@
 import Game.Metadata
 
-
-World "Logic" 
-Level 2
-
-Title "adsf" 
-
-Introduction 
-"
-adf
-"
-
-Statement 
-  : 2=2 := by
-
-  {
-    rfl
-  }
-
-
 -- try it 
 open Classical
 
@@ -99,15 +80,3 @@ example : ¬(p ↔ ¬p) :=
   have hnp : ¬p := fun hp ↦ absurd hp (hpnp.mp hp)
   have hp : p := hpnp.mpr hnp
   absurd hp hnp
-
-
-Conclusion 
-"adf
-"
-
-/- Use these commands to add items to the game's inventory. -/
-
---NewTactic 
--- NewTheorem Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq
-

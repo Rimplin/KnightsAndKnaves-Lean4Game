@@ -38,7 +38,32 @@ To show `A ∈ left ∩ right`, use the following
 Finset.mem_inter : a ∈ s₁ ∩ s₂ ↔ a ∈ s₁ ∧ a ∈ s₂
 ```
 Use `have` so it would be added to the assumptions.
+
+Heres an example:
+`have twoEqualstwo : 2=2 := rfl` will add an object named `twoEqualstwo` of type `2=2` to the proof state which would look as follows:
+```
+Assumptions:
+twoEqualstwo : 2=2
+```
+
+You can choose any name after `have` and any type after `:`.
 "
+/-
+Heres an example,
+Given the following proof state:
+```
+Assumptions:
+four_pos : 0 < 4
+h : 4 * y = 16
+```
+`have yEqFour := Nat.mul_left_cancel four_pos h` will result in the following proof state:
+```
+Assumptions:
+four_pos : 0 < 4
+h : 4 * y = 16
+yEqFour : y = 4
+```
+-/
 
 #check xor_iff_not_iff
 #check Xor'
@@ -105,6 +130,8 @@ Even if we didn't have `A_not_in_empty` in the assumptions, `contradiction` woul
 Finset.not_mem_empty.{u_1} {α : Type u_1} (a : α) : a ∉ ∅
 ```
 "
+
 #print disjoint
 NewTheorem Finset.mem_inter disjoint
 NewDefinition Finset inter KnightsKnaves
+NewTactic «have» 

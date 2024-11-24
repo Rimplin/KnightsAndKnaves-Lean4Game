@@ -534,25 +534,6 @@ theorem disjoint {inst : DecidableEq K}  {left : Finset K} {right : Finset K}
   rw [h] at this
   contradiction
 
-theorem IamKnave
-  {A : Inhabitant}
-  [inst : DecidableEq Inhabitant]
-  {Knight : Finset Inhabitant} {Knave : Finset Inhabitant}
-(h : Knight ∩ Knave = ∅ )
-(h1 : A ∈ Knight ∨ A ∈ Knave )
-(stA : A ∈ Knight  ↔ (A ∈ Knave) )
-  : False := by
-
-  {
-    rcases h1 with AKnight|AKnave
-
-    · have := stA.mp AKnight
-      exact disjoint h AKnight this
-
-    · have := stA.mpr AKnave
-      exact disjoint h this AKnave
-  }
-
 -- simplifying the conditions, also the Xor' conditions won't be necessary after the notKnave_Knave (etc ...) stuff
 theorem XorToOr {inst : DecidableEq Inhabitant}{Knight : Finset Inhabitant } {Knave : Finset Inhabitant} (A : Inhabitant)
 (h : Knight ∩ Knave = ∅ ) : Xor' (A ∈ Knight) (A ∈ Knave) ↔ A ∈ Knight ∨ A ∈ Knave := by 

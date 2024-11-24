@@ -33,7 +33,7 @@ Statement (h : x=2)
 
 Conclusion 
 "
-The `exact` in `exact h` tells Lean that `h`'s type EXACTLY matches the goal. Lean verifies this and reports that there are no more goals to prove. We are done.
+The `exact` in `exact h` tells Lean that `h`'s type EXACTLY matches the goal. In other words, `h` is EXACTLY what we need to prove the goal. Lean verifies this and reports that there are no more goals to prove. We are done.
 
 The `assumption` tactic can also be used here which searches for an assumption that matches the goal, and closes the goal if it finds one.
 "

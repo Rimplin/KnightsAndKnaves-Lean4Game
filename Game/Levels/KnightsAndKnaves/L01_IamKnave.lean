@@ -108,3 +108,7 @@ example
     contradiction
   simp [*] at h1
   assumption
+
+NewTactic cases
+
+NewTheorem IamKnave
