@@ -61,7 +61,7 @@ example {inst : DecidableEq K}
  : B ∈ Knave ∧ C ∈ Knight := by{
   rw [( IamKnaveIffFalse h h1).symm] at stB 
 
-  sorry 
+  sorry
 }
 
 Statement
@@ -79,27 +79,55 @@ Statement
 
 We know that `A` saying 'I am a knave' leads to contradiction.
 
-So, ¬(A ∈ Knight ↔ A ∈ Knave) is true. Using stBn we get B ∈ knave 
----------
-  We know that `A` saying 'I am a knave' leads to contradiction. So assuming that 'B' is a knight would lead to contradiction. So `B` is not a knight. To arrive at this conclusion formally, first you can prove the right hand side of stBn which would then give you B ∈ Knave.
+In implication form, `IamKnave` is of the following form:
+```
+(Knight ∩ Knave = ∅) → 
+(A ∈ Knight ∨ A ∈ Knave) → 
+(A ∈ Knight ↔ A ∈ Knave) → False
+```
 
-  Most of the work here has already been done, we have the following theorem from the previous level(ignoring implicit arguments): 
-  IamKnave : Knight ∩ Knave = ∅ → A ∈ Knight ∨ A ∈ Knave → (A ∈ Knight ↔ A ∈ Knave) → False
+So, `IamKnave h h1` is of the following type:
+```
+(A ∈ Knight ↔ A ∈ Knave) → False
+```
+which is 
+```
+¬(A ∈ Knight ↔ A ∈ Knave)
+```
 
-  notice that ...
+Store this in an object using `have`, you don't have to specify the type.
+
   "
-
-  -- this is preferable so as not to have to use editor mode, also easier to have hints 
   #check IamKnave
-  have : ¬ (A ∈ Knight ↔ A ∈ Knave ) := IamKnave h h1  
-  have : ¬ (A ∈ Knight ↔ A ∈ Knave ) := by 
-  {
-    intro 
-    exact IamKnave h h1 a
-  } 
+  #check IamKnave h h1
+  have := IamKnave h h1
 
+  /-
+Use `have` with its type as `¬(A ∈ Knight ↔ A ∈ Knave)` to prove it.
+
+After you use `intro`, you can use `IamKnave` to close the goal. Check the documentation if you need to.
+  -/
+
+--  have : ¬ (A ∈ Knight ↔ A ∈ Knave ) := by 
+--  {
+--    intro 
+--    exact IamKnave h h1 a
+--  } 
+
+  Hint
+  "
+  Now that we know `¬ (A ∈ Knight ↔ A ∈ Knave )` , we can conclude `B ∈ Knave` using `stBn`.
+  "
   have BKnave := stBn.mpr this
+  Hint
+  "
+  Now that we know `B ∈ Knave`, we can conclude `C ∈ Knight` using `C`.
+  "
   have CKnight := stC.mpr BKnave
+  Hint
+  "
+  Now that we know `B ∈ Knave`, `C ∈ Knight`, we can conclude `B ∈ Knave ∧ C ∈ Knight` using both.
+  "
   exact And.intro BKnave CKnight
 }
 

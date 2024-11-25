@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Sun Nov 24 17:15:04 2024\n"
+"POT-Creation-Date: Mon Nov 25 17:21:47 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -437,6 +437,15 @@ msgstr ""
 
 #: Game.Doc.doc
 msgid "[[mathlib_doc]]"
+msgstr ""
+
+#: Game.Doc.doc
+msgid "As an implication\n"
+"```\n"
+"Knight ∩ Knave = ∅ →\n"
+"A ∈ Knight ∨ A ∈ Knave →\n"
+"(A ∈ Knight ↔ A ∈ Knave) → False\n"
+"```"
 msgstr ""
 
 #: Game.Levels.EquationalReasoning.L01_rfl
@@ -1457,14 +1466,35 @@ msgstr ""
 #: Game.Levels.KnightsAndKnaves.prob26
 msgid "We know that `A` saying 'I am a knave' leads to contradiction.\n"
 "\n"
-"So, ¬(A ∈ Knight ↔ A ∈ Knave) is true. Using stBn we get B ∈ knave \n"
-"---------\n"
-"We know that `A` saying 'I am a knave' leads to contradiction. So assuming that 'B' is a knight would lead to contradiction. So `B` is not a knight. To arrive at this conclusion formally, first you can prove the right hand side of stBn which would then give you B ∈ Knave.\n"
+"In implication form, `IamKnave` is of the following form:\n"
+"```\n"
+"(Knight ∩ Knave = ∅) → \n"
+"(A ∈ Knight ∨ A ∈ Knave) → \n"
+"(A ∈ Knight ↔ A ∈ Knave) → False\n"
+"```\n"
 "\n"
-"Most of the work here has already been done, we have the following theorem from the previous level(ignoring implicit arguments): \n"
-"IamKnave : Knight ∩ Knave = ∅ → A ∈ Knight ∨ A ∈ Knave → (A ∈ Knight ↔ A ∈ Knave) → False\n"
+"So, `IamKnave h h1` is of the following type:\n"
+"```\n"
+"(A ∈ Knight ↔ A ∈ Knave) → False\n"
+"```\n"
+"which is \n"
+"```\n"
+"¬(A ∈ Knight ↔ A ∈ Knave)\n"
+"```\n"
 "\n"
-"notice that ..."
+"Store this in an object using `have`, you don't have to specify the type."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.prob26
+msgid "Now that we know `¬ (A ∈ Knight ↔ A ∈ Knave )` , we can conclude `B ∈ Knave` using `stBn`."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.prob26
+msgid "Now that we know `B ∈ Knave`, we can conclude `C ∈ Knight` using `C`."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.prob26
+msgid "Now that we know `B ∈ Knave`, `C ∈ Knight`, we can conclude `B ∈ Knave ∧ C ∈ Knight` using both."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.prob26
