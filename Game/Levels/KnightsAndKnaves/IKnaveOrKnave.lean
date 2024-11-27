@@ -7,17 +7,16 @@ Title ""
 
 Introduction 
 "
-A says I am a knave or B is a knave. Notice stAn, which represents the fact that A's statement is false when A is a knave ( and viceversa of course). So the statement 'A is a knave or B is a knave' is false. What does it mean for an or expression to be false. It means that both sides are false.
+A says 'I am a knave or B is a knave'.
 
+Formally,
+```
+A ∈ Knave ↔ ¬ (A ∈ Knave ∨ B ∈ Knave)
+```
 
---------------------- put these in hints
-If A is a knave, then the statement 'A is a knave or B is a knave' is false which means that A is not a knave and B is not knave. A is not a knave but we previously assumed that A is a knave. Assuming A is a knave gives us a contradiction which means that A is not a knave.
+If `A ∈ Knave` then we get `A ∉ Knave` which is a contradiction.
 
-This is the first part of the proof.
-
-Now that we know that A is not a knave, then A is a knight. So we can conclude A is a knave or B is a knave. Since A is not a knave, we are left with one option which is B being a knave.
-
-This concludes the proof.
+So, we can conclude that `A ∉ Knave`.
 "
 
 -- A says I am a knave or B is a knave
@@ -43,8 +42,21 @@ Statement
 
    -- exact ABK.left AKnave
 
+  Hint
+  "
+Now that we know that `A` is not a knave, then `A` is a knight. 
+  "
   have AKnight := notinright_inleft (Or A)  AnKnave
+
+  Hint
+  "
+From this, we can conclude that `A ∈ Knave ∨ B ∈ Knave`. 
+  "
   have AorBKn := stA.mp AKnight
+  Hint
+  "
+Since `A ∉ Knave`, we can conclude `B ∈ Knave`.
+  "
   simp [AnKnave] at AorBKn
   constructor
   repeat assumption

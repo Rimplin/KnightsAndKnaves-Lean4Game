@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Mon Nov 25 17:21:47 2024\n"
+"POT-Creation-Date: Wed Nov 27 20:48:48 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -1490,7 +1490,7 @@ msgid "Now that we know `¬ (A ∈ Knight ↔ A ∈ Knave )` , we can conclude `
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.prob26
-msgid "Now that we know `B ∈ Knave`, we can conclude `C ∈ Knight` using `C`."
+msgid "Now that we know `B ∈ Knave`, we can conclude `C ∈ Knight` using `stC`."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.prob26
@@ -1506,17 +1506,28 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.IKnaveOrKnave
-msgid "A says I am a knave or B is a knave. Notice stAn, which represents the fact that A's statement is false when A is a knave ( and viceversa of course). So the statement 'A is a knave or B is a knave' is false. What does it mean for an or expression to be false. It means that both sides are false.\n"
+msgid "A says 'I am a knave or B is a knave'.\n"
 "\n"
+"Formally,\n"
+"```\n"
+"A ∈ Knave ↔ ¬ (A ∈ Knave ∨ B ∈ Knave)\n"
+"```\n"
 "\n"
-"--------------------- put these in hints\n"
-"If A is a knave, then the statement 'A is a knave or B is a knave' is false which means that A is not a knave and B is not knave. A is not a knave but we previously assumed that A is a knave. Assuming A is a knave gives us a contradiction which means that A is not a knave.\n"
+"If `A ∈ Knave` then we get `A ∉ Knave` which is a contradiction.\n"
 "\n"
-"This is the first part of the proof.\n"
-"\n"
-"Now that we know that A is not a knave, then A is a knight. So we can conclude A is a knave or B is a knave. Since A is not a knave, we are left with one option which is B being a knave.\n"
-"\n"
-"This concludes the proof."
+"So, we can conclude that `A ∉ Knave`."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.IKnaveOrKnave
+msgid "Now that we know that `A` is not a knave, then `A` is a knight."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.IKnaveOrKnave
+msgid "From this, we can conclude that `A ∈ Knave ∨ B ∈ Knave`."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.IKnaveOrKnave
+msgid "Since `A ∉ Knave`, we can conclude `B ∈ Knave`."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.IKnaveOrKnave
@@ -1528,8 +1539,23 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.prob33
-msgid "Suppose A says, 'I am a knave, but B is not.' \n"
-"What are A and B?"
+msgid "Suppose `A` says 'I am a knave, but B is not'.\n"
+"\n"
+"If we assume `A ∈ Knight`, then we get `A ∈ Knave` which is a contradiction.\n"
+"\n"
+"So `A ∉ Knight`."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.prob33
+msgid "So, `A ∈ Knave`."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.prob33
+msgid "Since `A ∈ Knave`, `A ∉ Knave ∨ B ∈ Knave`"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.prob33
+msgid "Since `A ∉ Knave ∨ B ∈ Knave` and `A ∈ Knave` then `B ∈ Knave`."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.prob33
@@ -1537,7 +1563,7 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.prob28
-msgid "lev 2"
+msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.prob28

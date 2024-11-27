@@ -24,17 +24,14 @@
 --    · have AknOrB := stA.mp AKnight
 --      exact notleft_right AknOrB AnKnave 
 --  }
---
-
 import Game.Metadata
-open Set
 
 variable {K : Type}
 
 World "KnightsAndKnaves"
 Level 5
 
-Title "lev 2"
+Title ""
 
 Introduction "In this problem, there are only two people, A and B, each of 
 whom is either a knight or a knave. A makes the following 
@@ -63,7 +60,6 @@ elab "show_goals " tacs:tacticSeq : tactic => do
     match t with
       | `(tactic| · $ts) => evalTactic (← `(tactic| · show_goals1 $(⟨ts.raw⟩)))
       | _ => evalTactic (← `(tactic| show_goals1 $(⟨t⟩)))
-
 
 --(uni : Knight ∪ Knave) 
 -- theres x and y, x says at least one of us is a knave

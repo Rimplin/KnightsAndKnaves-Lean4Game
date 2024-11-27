@@ -121,7 +121,7 @@ After you use `intro`, you can use `IamKnave` to close the goal. Check the docum
   have BKnave := stBn.mpr this
   Hint
   "
-  Now that we know `B ∈ Knave`, we can conclude `C ∈ Knight` using `C`.
+  Now that we know `B ∈ Knave`, we can conclude `C ∈ Knight` using `stC`.
   "
   have CKnight := stC.mpr BKnave
   Hint
@@ -142,11 +142,9 @@ example
 (h : Knight ∩ Knave = ∅ )
 (h1 : A ∈ Knight ∨ A ∈ Knave ) 
 (h2: B ∈ Knight ∨ B ∈ Knave )
--- instead of stB and stnB, we can use ↔ and the knowledge of negating both sides and all that
 (stB : B ∈ Knight ↔ ( A ∈ Knight ↔ A ∈ Knave  ) )
 (stC : C ∈ Knight ↔ B ∈ Knave)
  : B ∈ Knave ∧ C ∈ Knight := by{
- -- have this as its own level... 
  -- can i do this with one simp comamnd?
   -- should change goal to ¬(A ∈ Knight ↔ A ∈ Knave) 
   -- truth value variant first then this(?)
