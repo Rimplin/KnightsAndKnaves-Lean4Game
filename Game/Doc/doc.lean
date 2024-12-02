@@ -198,6 +198,7 @@ Remember that `hP : P` where `P : Prop` means `hP` is a proof of `P`.
 
 Since the goal is to prove `P`, the only thing we have to do is to let Lean know that we do have such a proof. In other words, `hP` is EXACTLY whats needd to prove the goal. The type of `hP` EXACTLY matches the goal.
 
+exact h asserts that h is exactly whats needed to prove the goal which makes sense because h is a proof of P.(It doesn't matter what P is)
 This is done by `exact h`.
 -/
 TacticDoc exact

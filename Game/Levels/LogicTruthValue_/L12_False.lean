@@ -1,11 +1,18 @@
 import Game.Metadata
 
-World "LogicTruthValue_" 
+World "LogicTruthValue_"
 Level 7
 
-Title "asdf" 
+Title "From `False`, anything follows."
 
-Introduction 
+--This principle asserts that if you have contradictory assumptions then you can prove anything.
+--Example of contradictory assumptions:
+--```
+--h: P
+--nh: ¬P
+--```
+-- principle of explosion
+Introduction
 "
 We proved `False`, what does this mean? What can we conclude? What does `False` IMPLY?
 
@@ -46,17 +53,27 @@ The tactic to achieve this is `contradiction`.
 Having a proof of `False`, the `contradiction` tactic will always close the goal.
 "
 
+Statement {Q : Prop} (h : False → Q) (hF : False) : Q := by 
+  exact h hF
+
+example : False → Q := by 
+  #check False.elim
+  intro h
+  exact False.elim h
+
+example (h : ∀(Q : Prop), False → Q) (hF : False) : x=2 := by 
+  exact h (x=2) hF 
+
 #check false_ne_true
 example (hnp:p=False) (hp:p=True) (hnnp:¬p=True) (h' : (p = True)) : False    := by 
-  Hint 
+  Hint
   "
   Since `p=False` and `p=True`, then `False` and `True` must be the same thing right? (i.e equal). Produce a `False = True`.
   "
   rw [hnp] at hp
-  Hint 
+  Hint
   -- prove ¬(P ∧ ¬P)
   "
-   
 So, we have that `p is the case` and that `p is not the case` where `p` denotes `False = True`. How can this be?
  So, is it both at the same time? For the world we live in, this wouldn't make much sense. This is like saying the door is open and closed at the same time. Or saying I am sick and I am not sick. For our world, asserting `P ∧ ¬P` for any proposition `P` is really weird. We say that `P` and `¬P` contradict each either, or that they are contradictory. And we say that proving `P ∧ ¬P`,`False`, or any other statement that is always `False` is deriving contradiction
  Ok... this one is going to be an exception, put the manipulation perspective first to define ¬ and show the truth table of ¬ and talk (maybe) a bit about False then put this level and talk about the rest of false....
@@ -96,9 +113,13 @@ The consequence of having `False` is the following.
 
 Any proposition is true and studying the current system becomes worthless.
 "
+-- absurdity of having `False` proven. inconsistent system
+-- If you were able to find `h:False` i.e prove `False` then our system is worthless because we can prove anything. To reiterate, such a system would be called an inconsistent system because of a contradiction.
+--will be discussed in previous, but the basic idea is that if you have in your proof state an `h` such that `h:False` then you can prove any proposition you want. In other words, within this proof state, all propositions are true. This is obviously absurd because it would mean for every proposition `p`, `p` is true and also `¬p` is true.
 
-NewTactic «have»
-NewTactic unfold rcases contradiction
+--  Contradiction is a tactic that detects if you have contradictory assumptions and if so, closes the goal.
+
+NewTactic «have» unfold rcases contradiction
 NewTheorem false_ne_true 
 
 NewDefinition Not

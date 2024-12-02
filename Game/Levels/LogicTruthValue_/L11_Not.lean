@@ -97,6 +97,8 @@ For now, just know that `False` is a type that has no introduction rule and that
 
 Introduction 
 "
+do unfold and link it to ptoq
+
 In this level we introduce the negation, the `¬` connective (read as 'not').
 
 Notice that this is the first logical connective that applies on one proposition only and not two.

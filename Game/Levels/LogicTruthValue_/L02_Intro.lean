@@ -1,11 +1,5 @@
 import Game.Metadata
 
-variable (P Q R : Prop)
-
-World "LogicTruthValue_"
-Level 1
-
-Title "Intro "
 
 Introduction
 " Notice that the objects of interest are now of type `Prop` (i.e proposition). A proposition is a statement/assertion that can take only one of two values, either true or false. Having `hP : P = true` means that we have a proof that `P` is true, and therefore you can think about this as `P` being true.
@@ -13,19 +7,14 @@ Moreover, having `hnP : P = false` means that we have a proof that `P` is false
 
 `hP` 'exactly' matches the goal. `hP` is 'exactly' what you need to close the goal. This is to emphasize that for the tactic `exact h`, the type of h doesn't matter.
 
-
 <img src=\"data/g/JadAbouHawili/testing-leangame/Truth-Table-And.png\"/>
 
 $\\displaystyle {\\frac {P\\lor Q,\\neg P}{\\therefore Q}}$
-
-
-
 
 $\\iff$
 "
 -- $ \\begin{tabular}{ c c c }cell1 & cell2 & cell3 \\ cell4 & cell5 & cell6 \\  cell7 & cell8 & cell9    \\end{tabular}$
 
---
 --``
 --<img src=\"https://url.com/to/image\"/>
 --```
@@ -39,7 +28,7 @@ $\\iff$
 --<img src='data/g/hhu-adam/testing-leangame/images/Truth-Table-And.png' />
 
 --<img src='images/Logic/Truth-Table-And.png' />
-Statement (hP: P=True) (hQ: Q=True) (hR : R=True)
+example (hP: P=True) (hQ: Q=True) (hR : R=True)
   : P=True := by
   {
   --  eq_true {p : Prop} (h : p) : p = True
@@ -197,20 +186,4 @@ example : ¬ (¬ P) ↔ P := by
     push_neg 
     exact h
 
-Conclusion "Notice that `hQ` and `hR` were not used. We couldn't use them in any case because `Q` and `R` are not related to `P`. In the next levels, we will discuss how to construct new propositions from old ones, where information about these building blocks would help us reason about the newly constructed propositions."
-
-/- Use these commands to add items to the game's inventory. -/
-
-
-
-/-
-is it working???
-## Overview
-Having h : P and P as your goal, exact h will close the goal. exact h asserts that h is exactly whats needed to prove the goal which makes sense because h is a proof of P.(It doesn't matter what P is)
--/
-/- TacticDoc «sorry»
- NewTactic «sorry»
- NewLemma Nat.add_comm Nat.add_assoc
--/
-NewTactic intro
-NewDefinition
+Conclusion "In the next levels, we will discuss how to construct new propositions from old ones, where information about these building blocks would help us reason about the newly constructed propositions."

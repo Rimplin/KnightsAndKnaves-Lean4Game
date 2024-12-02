@@ -1,66 +1,17 @@
 import Game.Metadata
 
-
-World "Logic" 
-Level 8
-
-Title "Principle Of Explosion" 
-
 Introduction 
 "
-Prove princpiple of explostion from truth value perspective...
+For your convenience, the contradiction tactic will be unlocked after this level so you don't have to do the same steps when there are contradictory assumptions.
 
-From `False` anything follows.
-Otherwise known as 'from contradiction, anything follows'. 
-This principle asserts that if you have contradictory assumptions then you can prove anything.
-Example of contradictory assumptions:
-```
-h: P
-nh: ¬P
-```
-
-Why is this principle valid? Well, this is what you will have to prove in this level. For your convenience, the contradiction tactic will be unlocked after this level so you don't have to do the same steps when there are contradictory assumptions.
-
-
-you can prove anything. 
 False.elim eliminates false and produces an object of any type you want!!!
-False implies anything.
-
-| P | Q | P & Q |
-|—|—|—|
-| T | T | T |
-| T | F | F |
-| F | T | F |
-| F | F | F |
-
-
-$
-\\begin{array}{|c c|c|} 
-\\hline
-a & b & F \\\\
-\\hline
-0 & 0 & 0 \\\\
-0 & 1 & 0 \\\\
-1 & 0 & 0 \\\\
-1 & 1 & 1 \\\\
-\\hline
-\\end{array}
-$
-
 
 $\\displaystyle {\\frac {P\\lor Q,\\neg P}{\\therefore Q}}$
 
-
 ## Principle of explosion
-Moreover, `False` has no introduction rule , so the reasoning described above is the only way to obtain an object of type `False`. If you were able to find `h:False` i.e prove `False` then our system is worthless because we can prove anything. To reiterate, such a system would be called an inconsistent system because of a contradiction.
-
--- rules of inference like modus ponens need to be emphasized to make this understsanble. Also we can make the user prove the principle of explosion using modus ponens.
-will be discussed in previous, but the basic idea is that if you have in your proof state an `h` such that `h:False` then you can prove any proposition you want. In other words, within this proof state, all propositions are true. This is obviously absurd because it would mean for every proposition `p`, `p` is true and also `¬p` is true.
-
-So this is pretty good because now you can effortlessly prove anything you want!!!!! But this is also pretty bad because you can't really trust any of the results you obtain within an inconsistent system, can you?
+Moreover, `False` has no introduction rule , so the reasoning described above is the only way to obtain an object of type `False`. 
 "
 
--- explanation
 /-
 we have proved a statement that is not true. Since we proved it, now it's also true? Let's denote this proposition as `Q`. So we have `Q ∧ ¬Q`. What does the truth table for this expression look like for any proposition `R`?
 $
@@ -73,39 +24,15 @@ F & T & F \\\\
 \\hline
 \\end{array}
 $
-This statement is always false regardless of the truth values of `R` but we were able to prove such a statement. How can this be?
-This is very bad because of the following: 
-For any propositioin `P`,
-$
-\\begin{array}{|c|c|} 
-\\hline
-P & False → P \\\\
-\\hline
-T  & T \\\\
-F  & T \\\\
-Notice that the implication `False → P` is always true. This means that proving `False` amounts to proving everything!!!
+This statement is always false regardless of the truth values of `R` but we were able to prove such a statement. we can write `R ∧ ¬R = False` from this truth table.
+
 The system you are working with quickly becomes trivial and loses its value. If you're objective is to reach truth, then there is nothing to do here because everything is true. There is nothing to study or investigate, its all true!
-\\hline
-\\end{array}
-$
 
-This is the meaning of `False ≠ True`, proving `False = True` gives a contradiction. A contradiction is when `p` and `¬p` are both true. `False ≠ True` is always true regardless of proof state, but in this state we also have `False = True` giving us a contradiction. Notice that even our starting point was of contradiction, where we had `p = True` and `p = False` i.e `¬p = True`.
--- truth table of `p ∧ ¬p`
+Proving `False` means deriving a contradiction.
+
+A contradiction is when `p` and `¬p` are both true. `False ≠ True` is always true regardless of proof state, but in this state we also have `False = True` giving us a contradiction. Notice that even our starting point was of contradiction, where we had `p = True` and `p = False` i.e `¬p = True`.
 -/
 
-
-
--- need to have disjunctive syllogism as an already established primitive , disjunctive syllogism would have to be explained here as well which might be a bit too much??
-/-
---will not prove, can be easily explained in a reasonable and convincing way
--/
-
-
-  /-
-   cases h 
-   have := np h_1  
-   contradiction
-   -/
 #check imp_false
 #check eq_false
 #check eq_false'
@@ -117,26 +44,9 @@ This is the meaning of `False ≠ True`, proving `False = True` gives a contradi
 #check false_iff
 #check iff_false
 #check Or.elim
+#check not_not
+
 variable {P Q:Prop} 
-
-Statement (h : P) (nh : ¬P)
-  : Q := by
-
-  {
-    have helper : P ∨ Q := Or.inl h
-    exact notleft_right helper nh
-  }
-
-
-example : ¬ (¬ P) ↔ P := by
-  constructor
-  · intro h 
-    apply Or.elim (Classical.em P)
-    sorry
-    sorry
-
-  · sorry
-
 example : ¬ (¬ P) ↔ P := by
   constructor
   · intro h
@@ -147,13 +57,11 @@ example : ¬ (¬ P) ↔ P := by
     push_neg
     assumption
 
-
 Conclusion 
 "
 We have proven that `P ∧ ¬P → Q` for any proposition `Q`. since `P ∧ ¬P` is always false, then the implication proved becomes `False → Q`.
 
-From contradiction, anything follows.
-There are more examples of contradictions like 
+There are more examples of contradictions like
 ¬(P ∨ ¬P)
 
 $
@@ -166,8 +74,4 @@ F & T & T & F \\\\
 \\hline
 \\end{array}
 $
-
-You could have also solved it by just writing `contradiction`. Contradiction is a tactic that detects if you have contradictory assumptions and if so, closes the goal. Try it if you want.
 "
-
-NewTactic contradiction

@@ -26,7 +26,7 @@ Clicking on one will display an overview and some examples. This will be availab
 
 Any new tactic, theorem, or definition introduced in a level will be highlighted in a yellow color.
 
-We know discuss each section in the right side pane.
+We now discuss each section in the right side pane.
 ## Tactics
 In this puzzle game, you will use tactics to manipulate the `Goal` and close it, essentially proving the `Goal`. Tactics will be incrementally introduced, and tactics that haven't been introduced yet will have a lock icon which means you can't use them yet. 
 

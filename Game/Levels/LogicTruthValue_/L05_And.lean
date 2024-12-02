@@ -29,9 +29,9 @@ T & T & T \\\\
 \\hline
 T & F & F \\\\
 \\hline
-F & T & T \\\\
+F & T & F \\\\
 \\hline
-F & F & T \\\\
+F & F & F \\\\
 \\hline
 \\end{array}
 $
@@ -49,9 +49,9 @@ T & T & T \\\\
 \\hline
 T & F & F \\\\
 \\hline
-F & T & T \\\\
+F & T & F \\\\
 \\hline
-F & F & T \\\\
+F & F & F \\\\
 \\hline
 \\end{array}
 $
@@ -59,18 +59,18 @@ $
 
 Notice that `P ∧ Q` is true when both `P` is true and `Q` is true, being false otherwise.
 
-
-
 From this, we conclude that we can introduce `∧` if we have a proof of `P` and a proof of `Q`. The `∧` introduction rule takes these two proofs giving us `P ∧ Q`:
 ```
   And.intro  (left : P) (right : Q) : P ∧ Q
 ```
 
+Use it to construct an object of type `P ∧ Q`, and use `exact` to close the goal.
+"
+/-
 In this level, we have a proof of `P`(i.e `P` is true), and a proof of `Q` (i.e `Q` is true). We want to construct a proof of `P ∧ Q`. 
 
 The `∧` introduction rule is perfect for the job. We can use it to obtain an object that EXACTLY matches the goal.
-"
-
+-/
 /-
 An example using it would be : 
 ```
@@ -97,17 +97,16 @@ Statement (P Q : Prop) (hP : P) (hQ : Q)
   : P ∧ Q  := by
   {
     Hint (hidden:=true) "Try `exact And.intro hP hQ` or `constructor`" 
-    Branch
-       exact And.intro hP hQ 
-    Hint 
-    "
-    The constructor tactic transformed the goal `P ∧ Q` into two subgoals the first being `P` and the second being `Q`. This way of doing things matches the meaning of the `∧` connective.
-    "
-    constructor
-    Hint "Notice that the goal is now `P`"
-    exact hP
-    Hint "After closing the goal `P`, you now have to close the goal `Q`"
-    exact hQ
+    exact And.intro hP hQ 
+    --Hint 
+    --"
+    --The constructor tactic transformed the goal `P ∧ Q` into two subgoals the first being `P` and the second being `Q`. This way of doing things matches the meaning of the `∧` connective.
+    --"
+    --constructor
+    --Hint "Notice that the goal is now `P`"
+    --exact hP
+    --Hint "After closing the goal `P`, you now have to close the goal `Q`"
+    --exact hQ
   }
 
 Conclusion 

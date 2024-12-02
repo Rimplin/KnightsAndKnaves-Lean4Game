@@ -1,30 +1,10 @@
 import Game.Metadata
 
-
-World "Logic" 
-Level 5
-
-Title "asdf" 
-
 Introduction 
 "
 # Truth Table
 We want an operator which flips the value of `P`. In other words, if `P` were true then `¬P` would be false and vice versa. 
-Lets call this operator `not` represented as `¬`. 
-
-This is what the truth table would look like.
-$$
-\\begin{array}{|c|c|} 
-\\hline
-P & ¬P \\\\
-\\hline
-T & F  \\\\
-F & T  \\\\
-\\hline
-\\end{array}
-$$
-
-To emphasize the fact that negation is an implication, you have to go through this simple level.
+Lets call this operator `not` represented as `¬`.
 "
 
 #check false_ne_true
@@ -54,9 +34,8 @@ example (hp:p=True) (hnp:p=False) (hnnp:¬p=True) (h' : (p = True) → (False = 
 }
 
 variable {p : Prop}
-Statement (hp:p) (hnp:¬p)
+example (hp:p) (hnp:¬p)
   :  False := by
-
   {
     -- We can use the definition of `¬` to rewrite `hnp` as `p → False`
     -- This is the same as saying that we have a proof of `p` and we want to prove `False`
@@ -66,17 +45,3 @@ Statement (hp:p) (hnp:¬p)
     Hint "Now, this is just like the previous level"
     exact hnp hp
   }
-
-Conclusion 
-"
-In the next level, we will explore what it means to have proven `False`(pretty bad, or pretty good depending on how you look at it).
-"
-
-/- Use these commands to add items to the game's inventory. -/
-
-NewTactic unfold
--- NewTheorem Nat.add_comm Nat.add_assoc
-
---DefinitionDoc Not as "¬" 
-NewDefinition Not  
---TheoremDoc mul_left_cancel as "mul_left_cancel" in "*"

@@ -1,12 +1,5 @@
 import Game.Metadata
 
-variable (P Q R : Prop)
-
-World "LogicTruthValue_" 
-Level 3
-
-Title "And" 
-
 Introduction 
 "
 In this level, we will learn about the `∧` logical connective, known as 'And'.
@@ -23,8 +16,7 @@ Combining these two prpositions together gives us the proposition `p ∧ q` whic
 "
 
 -- treat P, Q as variables. similar to x=2, not necessarily a unique perspective
-/-- testing wow -/
-Statement (hP : P=True) (hQ : Q=True) (hPQ: P ∧ Q)
+example (hP : P=True) (hQ : Q=True) (hPQ: P ∧ Q)
   : (P ∧ Q) = True  := by
 
   {
@@ -36,8 +28,8 @@ Statement (hP : P=True) (hQ : Q=True) (hPQ: P ∧ Q)
     #check P=True
    -- rw [hP,hQ]
    -- apply and_true 
-    Template
-      calc 
+
+    calc 
         (P ∧ Q) = (True ∧ Q) := by rw [hP]
         _ = (True ∧ True) := by rw [hQ] 
         _ = True := by exact and_true True
@@ -57,6 +49,3 @@ Conclusion
 "
 The constructor tactic transformed the goal `P ∧ Q` into two subgoals the first being `P` and the second being `Q`. This way of doing things matches the meaning of the `∧` connective.
 "
-
-NewTactic  constructor
-NewTheorem And and_true

@@ -52,7 +52,7 @@ Statement IamKnave
   But this contradicts the fact that these two sets are disjoint."
    exact disjoint h h_1 this
 
-  · 
+  ·
    --Hint "Notice that h_1 is now `A ∈ Knave`. There are multiple ways to get a contradiction here. Either by concluding `A ∉ Knave` from `stAn` or by concluding `A ∈ Knight` from `stA` which would be identical."
    have := stA.mpr h_1
    exact disjoint h this h_1
@@ -65,7 +65,6 @@ Statement IamKnave
    -- · have := stA.mpr AKnave
    --   exact disjoint h this AKnave
   }
-
 
 #check not_iff_self
 example

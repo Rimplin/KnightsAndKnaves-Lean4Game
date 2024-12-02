@@ -1,10 +1,5 @@
 import Game.Metadata
 
-World "Logic" 
-Level 6
-
-Title "Not, ¬" 
-
 Introduction 
 "
 `¬P` in Lean is defined as `P → False`. What this means is that we obtain `¬P` by assuming `P` and deriving a contradiction i.e constructing an object of type `False` i.e proving `False` which means that `False` is also true. 
@@ -36,7 +31,7 @@ Another meaning for the term contradiction to refer to the assertion or proof of
 --`False : Prop` is the type that has no inhabitants, i.e there is no object, say `h`, that is of type `False`. In other words, we cannot find an `h` such that `h :False`. This makes sense when considering that finding an `h:False` would mean we have proved something that is false. 
 -/
 
-Statement (hP : P)
+example (hP : P)
   : P  := by
 
   {
@@ -76,5 +71,3 @@ theorem mul_zero (a : R) : a * 0 = 0 := by
   have h : a * 0 + a * 0 = a * 0 + 0 := by
     rw [←mul_add, add_zero, add_zero]
   rw [add_left_cancel h]
-
-Conclusion ""

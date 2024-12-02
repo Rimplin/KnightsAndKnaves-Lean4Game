@@ -66,8 +66,6 @@ yEqFour : y = 4
 -/
 
 #check xor_iff_not_iff
-#check Xor'
-/- (a ∧ ¬ b) ∨ (b ∧ ¬ a) -/
 #check not_iff
 /-
 A ∈ Knight ∧ A ∉ Knave ∨ A ∈ Knave ∧ A ∉ Knight
@@ -120,8 +118,9 @@ Statement disjoint (preamble := have A_not_in_Empty := Finset.not_mem_empty A) {
 #check Finset.inter_eq_right
 -- Note that the forward direction is always true, and our assumption `h` wasn't used, but the backward direction is not always( We used `h` for that). This offers a simplification and decluttering of the proof state and will be followed from now on. The downside is an apparent loss of information, but the coming levels will show that this is not the case.
 
-example (P : Type) (h : P → Q) : P → Q := by sorry
-Conclusion 
+example (P : Type) (h : P → Q) : P → Q := by assumption
+
+Conclusion
 "
 This works for any two disjoint sets, specifically the two sets `Knight`,`Knave`.
 

@@ -5,6 +5,8 @@ Level 3
 
 Title "Or, `∨`" 
 
+#check or_not_of_imp
+#check imp_iff_not_or
 Introduction 
 "
 In this level, we introduce the `∨` logical connective read as 'or'.
@@ -26,9 +28,14 @@ F & F & F \\\\
 \\end{array}
 $
 
-From this truthtable, we conclude that we must be able to prove `P ∨ Q`  if `P` is true or `Q` is true or both.
+From this truthtable, we conclude that to prove `P ∨ Q`,  we need either `P` being true or `Q` being true or both.
 
-You can tell Lean which side of `∨` you want to prove by simply executing 'left' or 'right'.
+You can tell Lean which side of `∨` you want to prove by simply executing `left` or `right`.
+
+In our case, we know the left side of is true, so use `left`.
+"
+
+/-
 
 ------------
 The `∨` introduction rule works as described above:
@@ -48,7 +55,7 @@ Or.intro_right (a : Prop) (h : b) : a ∨ b
 ```
 
 Pick the appropriate one.
-"
+-/
 -- left, apply Or.inl are the same thing.
 
 #check Or.inl
@@ -64,8 +71,10 @@ Or.intro_left {a : Prop} (b : Prop) (h : a) : a ∨ b
 Alias for `Or.inl`. 
 ***
 -/
-
-    exact Or.intro_left Q hP
+      left
+      Hint "We have a proof that `P` is true, and we want to prove `P`"
+      assumption
+ --   exact Or.intro_left Q hP
 /-
 ```lean
 Or.inl {a b : Prop} (h : a) : a ∨ b
@@ -78,6 +87,8 @@ Or.inl {a b : Prop} (h : a) : a ∨ b
 
 Conclusion 
 "
+"
+/-
 Notice that in the type of `Or.intro_left`, you need to explicitly give the type that will be used to the right of the `∨` but you don't need to do this for the type to the left of `∨`. How does Lean what to do? Well, the type of `Or.intro_left` is in fact:
 ```
 Or.intro_left {a : Prop} (b : Prop) (h : a) : a ∨ b
@@ -94,6 +105,6 @@ You can avoid entering both `a` or `b` explicitly and instead use:
 Or.inl {a b : Prop} (h : a) : a ∨ b
 Or.inr {a b : Prop} (h : b) : a ∨ b
 ```
-"
-
+-/
 NewTheorem Or.inl Or.intro_left Or.intro_right Or.inr
+NewTactic left assumption

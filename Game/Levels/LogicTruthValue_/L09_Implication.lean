@@ -18,13 +18,12 @@ Title "Implication, →"
  
 Introduction 
 "
+put ptoq example in docs
+
 In this level, we introduce the logical implication `→` connective.
 Logical implication `P → Q` is made up of two components:
 - The premise, which in this case is `P`
 - The conclusion, which in this case is `Q`
-
-What logical implication does is that it takes evidence or proof for `P` and transforms it returning a proof of `Q`.
-The truth of `P` IMPLIES the truth of `Q`. A proof of `P` IMPLIES a proof of `Q`.
 
 # truth table
 $
@@ -41,6 +40,12 @@ F & F & T \\\\
 $
 
 A statement `P → Q` is false when `P` is true and `Q` false, it's true otherwise.
+
+
+What logical implication does is that it takes evidence or proof for `P` and transforms it returning a proof of `Q`.
+The truth of `P` IMPLIES the truth of `Q`. A proof of `P` IMPLIES a proof of `Q`.
+
+It acts like a function. If you give `P → Q` a proof of `P`, you get a proof of `Q`.
 "
 Statement  (p : P) (ptoq: P → Q) : Q := by 
   exact ptoq p 
