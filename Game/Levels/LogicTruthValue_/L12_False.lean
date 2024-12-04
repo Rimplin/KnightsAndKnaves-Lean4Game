@@ -47,10 +47,9 @@ F & T \\\\
 $$
 
 We have that the implication `False → Q` is true regardless what `Q` represents and regardless whether `Q` is true or is false. 
-So `False` implies any proposition. This principle is known as: From contradiction anything follows.
+So `False` implies any proposition. This principle is known as: 'From `False` anything follows'.
 
-The tactic to achieve this is `contradiction`.
-Having a proof of `False`, the `contradiction` tactic will always close the goal.
+Use this implication to prove `Q` where `Q` is any proposition.
 "
 
 Statement {Q : Prop} (h : False → Q) (hF : False) : Q := by 
@@ -82,10 +81,9 @@ Put truth table of `P ∧ ¬P` now?
 -------------------
    We know that `False` does not equal `True` but we were able to prove this. 
   "
-  -- assumption
   -- explanation that False=True, how could this be etc...
   exact false_ne_true hp
-Statement (hp:p=True) (hnp:p=False)
+example (hp:p=True) (hnp:p=False)
   :  False := by
 
   {
@@ -100,26 +98,21 @@ Statement (hp:p=True) (hnp:p=False)
 
     --have : (False = True) = False := by {
     --  rw [this]
-    --  
+    --
     --}
     --contradiction
     --exact hnp hp
   }
 
-Conclusion 
+Conclusion
 "
-Such a system having `False` or a contradiction is called an inconsistent system.
-The consequence of having `False` is the following. 
-
-Any proposition is true and studying the current system becomes worthless.
+Having proven `False`, instead of going through this to prove `Q` you can use the the `contradiction` tactic. If you were able to prove `False`, then the `contradiction` tactic will prove the goal regardless of what the goal because 'from `False`, anything follows'.
 "
 -- absurdity of having `False` proven. inconsistent system
 -- If you were able to find `h:False` i.e prove `False` then our system is worthless because we can prove anything. To reiterate, such a system would be called an inconsistent system because of a contradiction.
---will be discussed in previous, but the basic idea is that if you have in your proof state an `h` such that `h:False` then you can prove any proposition you want. In other words, within this proof state, all propositions are true. This is obviously absurd because it would mean for every proposition `p`, `p` is true and also `¬p` is true.
-
---  Contradiction is a tactic that detects if you have contradictory assumptions and if so, closes the goal.
+--the basic idea is that if you have in your proof state an `h` such that `h:False` then you can prove any proposition you want. In other words, within this proof state, all propositions are true. This is obviously absurd because it would mean for every proposition `p`, `p` is true and also `¬p` is true.
 
 NewTactic «have» unfold rcases contradiction
 NewTheorem false_ne_true 
 
-NewDefinition Not
+NewDefinition False Not

@@ -36,6 +36,12 @@ Proving `False` means deriving a contradiction. So, to prove `¬p` , you must as
 DefinitionDoc Not as "¬"
 
 /--
+Such a system having `False` or a contradiction is called an inconsistent system.
+
+Any proposition is true and studying the current system becomes worthless.
+-/
+DefinitionDoc False as "`False`"
+/--
 You can think of a proposition as a statement that is either true or false(obviously, it can't be both at the same time).
 
 For an object of type P where P is of type Prop, i.e `h : P` where `P : Prop`, `h` would be a proof or a witness that `P` is true. Equivalently, from `h` we can construct a term `h' := eq_true h of type `h' : P = True` which would be a proof that P is true as well. Both perspectives are interchangeable and equivalent.
@@ -71,6 +77,17 @@ F & F & T \\\\
 \hline
 \end{array}
 $
+
+Logical implication `P → Q` is made up of two components:
+- The premise, which in this case is `P`
+- The conclusion, which in this case is `Q`
+
+A statement `P → Q` is false when `P` is true and `Q` false, it's true otherwise.
+
+What logical implication does is that it takes evidence or proof for `P` and transforms it returning a proof of `Q`.
+The truth of `P` IMPLIES the truth of `Q`. A proof of `P` IMPLIES a proof of `Q`.
+
+In other words, it acts like a function. If you give `P → Q` a proof of `P`, you get a proof of `Q`.
 -/
 DefinitionDoc imp as "→"
 
@@ -148,6 +165,11 @@ x - 7 = x - 7
 `rfl` will close this goal.
 -/
 TacticDoc rfl
+
+/--
+Contradiction is a tactic that detects if you have contradictory assumptions and if so, closes the goal.
+-/
+TacticDoc contradiction
 
 /--
 Given the following:

@@ -18,8 +18,6 @@ Title "Implication, →"
  
 Introduction 
 "
-put ptoq example in docs
-
 In this level, we introduce the logical implication `→` connective.
 Logical implication `P → Q` is made up of two components:
 - The premise, which in this case is `P`
@@ -41,19 +39,18 @@ $
 
 A statement `P → Q` is false when `P` is true and `Q` false, it's true otherwise.
 
-
 What logical implication does is that it takes evidence or proof for `P` and transforms it returning a proof of `Q`.
 The truth of `P` IMPLIES the truth of `Q`. A proof of `P` IMPLIES a proof of `Q`.
 
-It acts like a function. If you give `P → Q` a proof of `P`, you get a proof of `Q`.
+In other words, it acts like a function. If you give `P → Q` a proof of `P`, you get a proof of `Q`.
 "
-Statement  (p : P) (ptoq: P → Q) : Q := by 
-  exact ptoq p 
+Statement {P Q : Prop}  (p : P) (ptoq: P → Q) : Q := by 
+  exact ptoq p
 
 Conclusion 
 "
-This is what is called an inference rule. It has two assumptions, `p : P` , `ptoq : P → Q` and the conclusion `Q`. It is an inference rule because we 'infer' a certain conclusion from assumptions or already established theorems.
-Usually presented in this format:
+In this level, you will learn how to deal with an implication as the goal you have to prove.
 "
+-- This is what is called an inference rule. It has two assumptions, `p : P` , `ptoq : P → Q` and the conclusion `Q`. It is an inference rule because we 'infer' a certain conclusion from assumptions or already established theorems.
 
 NewDefinition imp 
