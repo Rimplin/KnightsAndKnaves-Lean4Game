@@ -1,10 +1,7 @@
 import Game.Metadata
 
-
 World "LogicTruthValue_" 
 Level 5
-
-Title "" 
 
 Introduction 
 "
@@ -45,9 +42,6 @@ hint doesn't show up unless you type first, which defeats the whole point
 
 -- hint 2
 
--- asdf
-      
-
     · Hole
         sorry
 -- hint 3
@@ -86,9 +80,7 @@ hint doesn't show up unless you type first, which defeats the whole point
 #check true_ne_false
 #check not_true_eq_false
 #check refl
---#check true_eq_true
 #check eq_self
-#check eq_true
 -- p ∧ ¬p is a contradiction
   example : ((p = True) ∧ (p = False)) = False := by {
    cases emTruth p
@@ -126,7 +118,6 @@ hint doesn't show up unless you type first, which defeats the whole point
       symm at h'
       exact this h'
 
-
      -- difference between equality and equivalence (?)
      have this22 : False → (False = True) := by {
       intro h
@@ -140,13 +131,9 @@ hint doesn't show up unless you type first, which defeats the whole point
      #check trans
      rw [this3]
      --#check Implies
-    
 }
-
 
 Conclusion 
 "
 Note that we have not obtained a term of type `False` in our proof. We have only proved the above equality. To obtain `False` in our proof state, we would need to have a term of type `p ∧ ¬p` and then use the above theorem rewriting the previous expression to `False`. What happens if we have `False` in our proof state.(now explain stuff about `False` no introduction rule and so on).
 "
-
-NewTheorem not_true_eq_false false_and and_false

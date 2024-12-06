@@ -1,14 +1,9 @@
---import Game.Levels.LogicTruthValue_.L01_Propositions
---import Game.Levels.LogicTruthValue_.L02_Intro
-import Game.Levels.LogicTruthValue_.L03_Intro
---import Game.Levels.LogicTruthValue_.L04_And
-import Game.Levels.LogicTruthValue_.L05_And
+import Game.Levels.LogicTruthValue_.L01_Intro
+import Game.Levels.LogicTruthValue_.L02_And
 --import Game.Levels.LogicTruthValue_.L06_Or
 import Game.Levels.LogicTruthValue_.L07_Or
---import Game.Levels.LogicTruthValue_.L08_Implication
 import Game.Levels.LogicTruthValue_.L09_Implication
 import Game.Levels.LogicTruthValue_.L05_ImpGoal
-
 --import Game.Levels.LogicTruthValue_.L10_False
 import Game.Levels.LogicTruthValue_.L11_Not
 import Game.Levels.LogicTruthValue_.L12_False
@@ -21,11 +16,10 @@ import Game.Levels.LogicTruthValue_.L12_False
 --import Game.Levels.Logic.L06_Not
 --import Game.Levels.Logic.L07_contrapositive
 --import Game.Levels.Logic.L08_PrincipleOfExplosion
---Image "images/Logic/Truth-Table-And.png"
+
 World "LogicTruthValue_"
 Title "Logic Truth Value_"
 Introduction 
-
 "
 In this world, we will be dealing with `Objects` of type `Prop` i.e propositions. You can think of a proposition as a statement that is either true or false(obviously, it can't be both at the same time). You have seen propositions before like `x=2`, `y=6` etc..
 

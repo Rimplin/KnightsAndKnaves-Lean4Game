@@ -1,5 +1,6 @@
 import Game.Metadata
 
+#check iff_eq_eq.mp
 -- ((P = Q) ↔ (P ↔ Q)) = True
 example : ((P = Q) ↔ (P ↔ Q))  := by 
   rw [iff_def]

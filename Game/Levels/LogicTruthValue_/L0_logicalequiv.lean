@@ -1,11 +1,5 @@
 import Game.Metadata
 
-
-World "LogicTruthValue_" 
-Level 
-
-Title "" 
-
 #check iff_iff_implies_and_implies
 Introduction 
 "
@@ -28,7 +22,7 @@ this means `p`,`q` have the same truth value. Either they are both true or they 
 Do `rw` using `QiffP` or extract the forward direction of `PiffQ` and combine it with `hP` to prove `Q`.
 "
 
-Statement {P Q : Prop} (hP : P) (PiffQ : P ↔ Q) (QiffP : Q ↔ P)
+example {P Q : Prop} (hP : P) (PiffQ : P ↔ Q) (QiffP : Q ↔ P)
   : Q  := by
 
   {
@@ -46,7 +40,4 @@ exact PiffQ.mp hP
 rw [QiffP]
 exact hP
 ```
-
-Try the one which you didn't choose first.
-
 "

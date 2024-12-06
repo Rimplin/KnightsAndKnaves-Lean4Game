@@ -38,6 +38,9 @@ F & F & T \\\\
 $
 
 A statement `P → Q` is false when `P` is true and `Q` false, it's true otherwise.
+This is because this is the only case where the meaning of `P → Q` is violated i.e we have that `P` is true so `Q` is supposed to be true as well but its not.
+
+We know `P` (i.e `P = True`) , and we know `P → Q` (i.e `P = True → Q = True`). We can now conclude `Q` (i.e `Q = True`).
 
 What logical implication does is that it takes evidence or proof for `P` and transforms it returning a proof of `Q`.
 The truth of `P` IMPLIES the truth of `Q`. A proof of `P` IMPLIES a proof of `Q`.
@@ -53,4 +56,5 @@ In this level, you will learn how to deal with an implication as the goal you ha
 "
 -- This is what is called an inference rule. It has two assumptions, `p : P` , `ptoq : P → Q` and the conclusion `Q`. It is an inference rule because we 'infer' a certain conclusion from assumptions or already established theorems.
 
+#check imp_iff_not_or
 NewDefinition imp 

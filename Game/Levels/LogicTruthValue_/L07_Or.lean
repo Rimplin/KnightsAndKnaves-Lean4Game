@@ -32,7 +32,7 @@ From this truthtable, we conclude that to prove `P ∨ Q`,  we need either `P` b
 
 You can tell Lean which side of `∨` you want to prove by simply executing `left` or `right`.
 
-In our case, we know the left side of is true, so use `left`.
+In our case, we know the left side of `∨` is true, so use `left`.
 "
 
 /-

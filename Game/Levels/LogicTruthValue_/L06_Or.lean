@@ -1,22 +1,11 @@
 import Game.Metadata
 
+--```
+--Or.intro_left (b : Prop) (h : a) : a ∨ b
+--```
+--- `Or.intro_right`
 
-World "LogicTruthValue_" 
-Level 5 
-
-Title "Or, `∨`" 
-
-Introduction 
-"
-There are two `∨` introduction rules: 
- 
-```
-Or.intro_left (b : Prop) (h : a) : a ∨ b
-```
-- `Or.intro_right`
-"
-
-Statement (hP : P=True) (hQ : Q=True) 
+example (hP : P=True)
   : (P ∨ Q) = True := by
 
   {
@@ -46,10 +35,6 @@ Or.inl {a b : Prop} (h : a) : a ∨ b
     -/
   }
 
-
-
-
-
 Conclusion 
 "
 Notice that in the type of `Or.intro_left`, you need to explicitly give the type that will be used to the right of the `∨` but you don't need to do this for the type to the left of `∨`. How does Lean what to do? Well, the type of `Or.intro_left` is in fact:
@@ -63,12 +48,4 @@ You can avoid entering both `a` or `b` explicitly and instead use:
 Or.inl {a b : Prop} (h : a) : a ∨ b
 ```
 Here, Lean will infer what the propositions are automatically.
-
 "
-
-/- Use these commands to add items to the game's inventory. -/
-
-NewTheorem Or.inl Or.intro_left
--- NewTheorem Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq
-NewTheorem true_or or_true

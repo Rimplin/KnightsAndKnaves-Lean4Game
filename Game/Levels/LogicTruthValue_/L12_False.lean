@@ -64,53 +64,21 @@ example (h : ∀(Q : Prop), False → Q) (hF : False) : x=2 := by
   exact h (x=2) hF 
 
 #check false_ne_true
-example (hnp:p=False) (hp:p=True) (hnnp:¬p=True) (h' : (p = True)) : False    := by 
-  Hint
-  "
-  Since `p=False` and `p=True`, then `False` and `True` must be the same thing right? (i.e equal). Produce a `False = True`.
-  "
-  rw [hnp] at hp
-  Hint
   -- prove ¬(P ∧ ¬P)
-  "
-So, we have that `p is the case` and that `p is not the case` where `p` denotes `False = True`. How can this be?
- So, is it both at the same time? For the world we live in, this wouldn't make much sense. This is like saying the door is open and closed at the same time. Or saying I am sick and I am not sick. For our world, asserting `P ∧ ¬P` for any proposition `P` is really weird. We say that `P` and `¬P` contradict each either, or that they are contradictory. And we say that proving `P ∧ ¬P`,`False`, or any other statement that is always `False` is deriving contradiction
- Ok... this one is going to be an exception, put the manipulation perspective first to define ¬ and show the truth table of ¬ and talk (maybe) a bit about False then put this level and talk about the rest of false....
-
-Put truth table of `P ∧ ¬P` now?
--------------------
-   We know that `False` does not equal `True` but we were able to prove this. 
-  "
-  -- explanation that False=True, how could this be etc...
-  exact false_ne_true hp
-example (hp:p=True) (hnp:p=False)
-  :  False := by
-
-  {
-    -- We can use the definition of `¬` to rewrite `hnp` as `p → False`
-    -- This is the same as saying that we have a proof of `p` and we want to prove `False`
-    -- So, we can use `hp` to prove `False`
-    Hint (hidden:=true) "If you feel like seeing the implication definition of ¬ in the proof state would provide more clarity and make it easier to solve upcoming problems, you can always unfold ¬ to its implication form. Try `unfold Not at hnp`."
-    --unfold Not at hnp 
-    Hint "Now, this is just like the previous level"
-    have : False=True := by rw [←hnp]; rw [←hp] 
-    exact false_ne_true this
-
-    --have : (False = True) = False := by {
-    --  rw [this]
-    --
-    --}
-    --contradiction
-    --exact hnp hp
-  }
 
 Conclusion
 "
-Having proven `False`, instead of going through this to prove `Q` you can use the the `contradiction` tactic. If you were able to prove `False`, then the `contradiction` tactic will prove the goal regardless of what the goal because 'from `False`, anything follows'.
+Having proven `False`, instead of going through this to prove `Q` you can use the the `contradiction` tactic. If you were able to prove `False`, then the `contradiction` tactic will prove the goal regardless what the goal is because 'from `False`, anything follows'.
+
+Proving `False` is what's usually called deriving a contradiction, and note that to prove `False` you would first need to have a proof `P`, and a proof of `¬P` i.e `P → False`.
 "
 -- absurdity of having `False` proven. inconsistent system
 -- If you were able to find `h:False` i.e prove `False` then our system is worthless because we can prove anything. To reiterate, such a system would be called an inconsistent system because of a contradiction.
 --the basic idea is that if you have in your proof state an `h` such that `h:False` then you can prove any proposition you want. In other words, within this proof state, all propositions are true. This is obviously absurd because it would mean for every proposition `p`, `p` is true and also `¬p` is true.
+-- This is like saying the door is open and closed at the same time. 
+
+--Or saying I am sick and I am not sick. 
+--For our world, asserting `P ∧ ¬P` for any proposition `P` is really weird. We say that `P` and `¬P` contradict each either, or that they are contradictory. And we say that proving `P ∧ ¬P`,`False`, or any other statement that is always `False` is deriving contradiction.
 
 NewTactic «have» unfold rcases contradiction
 NewTheorem false_ne_true 

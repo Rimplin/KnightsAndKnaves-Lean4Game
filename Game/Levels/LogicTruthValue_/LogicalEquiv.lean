@@ -1,14 +1,9 @@
 import Game.Metadata
 
-
 World "LogicTruthValue_" 
-
 
 #check propext
   -- axioms and computations, theorem proving in lean 4
-Introduction 
-"
-"
 
 inductive Solution (Knight : Finset Inhabitant) (Knave : Finset Inhabitant)
 | submit (h : A ∈ Knave ∧ B ∈ Knight ∧ C ∈ Knave) : Solution (Knight) (Knave)
