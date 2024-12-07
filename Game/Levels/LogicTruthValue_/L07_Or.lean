@@ -36,7 +36,6 @@ In our case, we know the left side of `∨` is true, so use `left`.
 "
 
 /-
-
 ------------
 The `∨` introduction rule works as described above:
 
@@ -44,7 +43,7 @@ The goal involves `∨`, and so (similar to `∧`) we need to use an introductio
 There are two `∨` introduction rules: 
 Or.intro_left {a : Prop} (b : Prop) (h : a) : a ∨ b
 
-Curly braces are for implicit arguments that you don't have to enter, paranthesis are for explicit ones you have to enter. What this theorem means is that you enter the proposition you want to the right of `∨` and a proof of the proposition you want on the left. In other words, proving a proposition gives you `that prop ∨ anything you want`......
+Curly braces are for implicit arguments that you don't have to enter, paranthesis are for explicit ones you have to enter. What this theorem means is that you enter the proposition you want to the right of `∨` and a proof of the proposition you want on the left. In other words, proving a proposition gives you `that prop ∨ anything you want`
 
 ```
 Or.intro_left (b : Prop) (h : a) : a ∨ b
@@ -106,5 +105,6 @@ Or.inl {a b : Prop} (h : a) : a ∨ b
 Or.inr {a b : Prop} (h : b) : a ∨ b
 ```
 -/
-NewTheorem Or.inl Or.intro_left Or.intro_right Or.inr
+--NewTheorem Or.inl Or.intro_left Or.intro_right Or.inr
 NewTactic left assumption
+NewDefinition or

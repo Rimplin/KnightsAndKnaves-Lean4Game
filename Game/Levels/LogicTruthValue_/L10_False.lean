@@ -1,8 +1,5 @@
 import Game.Metadata
 
-World "LogicTruthValue_" 
-Level 5
-
 Introduction 
 "
 In this level, we will prove a statement that is always false i.e `= False`. To do this, we take all possible values of the propositional variable involved and show that the expression always evaluates to `False`.
@@ -14,9 +11,8 @@ two ways of showing that `P` and `¬P` is a contradiction, this is the first but
 "
 
 variable {emTruth : (P : Prop) → P = True ∨ P = False}
-Statement : (p ∧ ¬p) = False := by {
+example : (p ∧ ¬p) = False := by {
   -- to do, make a cases `Template` , with comments as hints instead of Hint
-  Template
     cases emTruth p 
     · sorry
 -- hint 1
@@ -135,5 +131,5 @@ hint doesn't show up unless you type first, which defeats the whole point
 
 Conclusion 
 "
-Note that we have not obtained a term of type `False` in our proof. We have only proved the above equality. To obtain `False` in our proof state, we would need to have a term of type `p ∧ ¬p` and then use the above theorem rewriting the previous expression to `False`. What happens if we have `False` in our proof state.(now explain stuff about `False` no introduction rule and so on).
+To obtain `False` in our proof state, we would need to have a term of type `p ∧ ¬p` and then use the above theorem rewriting the previous expression to `False`.
 "

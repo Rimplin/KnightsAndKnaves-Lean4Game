@@ -135,6 +135,32 @@ Notice that `P ∧ Q` is true when both `P` is true and `Q` is true, being false
 DefinitionDoc and as "∧" 
 
 /--
+# Truth Table
+$
+\begin{array}{|c|c|c|} 
+\hline
+P & Q & P ∨ Q \\
+\hline
+T & T & T \\
+\hline
+T & F & T \\
+\hline
+F & T & T \\
+\hline
+F & F & F \\
+\hline
+\end{array}
+$
+
+From the truth table, we can see that if one of `P`,`Q` is true then `P ∨ Q` is true. 
+
+Therefore, if we have `P ∨ Q` as our goal, it is enough to prove `P` or to prove `Q`.
+
+Having `P ∨ Q` as the goal, you can tell Lean that you want the left side by simply typing `left` or the right side by simply typing `right`.
+-/
+DefinitionDoc or as "∨"
+
+/--
 `∩` is an operator on sets.
 
 Applying it to two sets `A`,`B`:

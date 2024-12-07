@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Sat Dec  7 00:40:35 2024\n"
+"POT-Creation-Date: Sat Dec  7 23:13:44 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -145,6 +145,31 @@ msgid "`And.intro` takes a proof of `P`, a proof of `Q`, and transforms/evaulate
 "\\end{array}\n"
 "$\n"
 "Notice that `P ∧ Q` is true when both `P` is true and `Q` is true, being false otherwise."
+msgstr ""
+
+#: Game.Doc.doc
+msgid "# Truth Table\n"
+"$\n"
+"\\begin{array}{|c|c|c|} \n"
+"\\hline\n"
+"P & Q & P ∨ Q \\\\\n"
+"\\hline\n"
+"T & T & T \\\\\n"
+"\\hline\n"
+"T & F & T \\\\\n"
+"\\hline\n"
+"F & T & T \\\\\n"
+"\\hline\n"
+"F & F & F \\\\\n"
+"\\hline\n"
+"\\end{array}\n"
+"$\n"
+"\n"
+"From the truth table, we can see that if one of `P`,`Q` is true then `P ∨ Q` is true. \n"
+"\n"
+"Therefore, if we have `P ∨ Q` as our goal, it is enough to prove `P` or to prove `Q`.\n"
+"\n"
+"Having `P ∨ Q` as the goal, you can tell Lean that you want the left side by simply typing `left` or the right side by simply typing `right`."
 msgstr ""
 
 #: Game.Doc.doc
@@ -915,120 +940,6 @@ msgid "In this world, we will be dealing with `Objects` of type `Prop` i.e propo
 "h' : `y=6`\n"
 "```\n"
 "where `P` is `x=2` and `Q` is `y=6`, we can construct a new proposition `P ∧ Q` which is read as `x=2 and y=6`. Here we know what `P`,`Q` stand for. But, the proposition `P ∧ Q` can still be constructed and reasoned about regardless. Think of reasoning about unknown numbers like `x`,`y` etc..."
-msgstr ""
-
-#: Game.Levels.LogicAlternative.L01_assumption
-msgid "`assumption` tactic"
-msgstr ""
-
-#: Game.Levels.LogicAlternative.L01_assumption
-msgid "Let's introduce the first 'automation' tactic. \n"
-"The point behind such tactics is that there are tedious patterns of reasoning and automation tactics alleviate the burden of having to spell them out into Lean every time. \n"
-"\n"
-"Automations will sacrifice ... for brevity which is less tedious but might be more obfuscated.\n"
-"\n"
-"One pattern of reasoning you will almost always encounter is having an assumption of a type that 'exactly' matches the goal. The `exact` tactic suggests itself here, but you could just write `assumption`. The `assumption` tactic will use the assumptions in the proof state to prove the goal.\n"
-"\n"
-"Try it out!"
-msgstr ""
-
-#: Game.Levels.LogicAlternative.L01_assumption
-msgid "Informally, the `assumption` tactic looks through the assumptions in the proof state and tries to find one which has a type that matches the goal through the assumptions in the proof state and tries to find one that which has a type that matches the goal. In this case, that would be `hP` and the type would be `P`.\n"
-"\n"
-"The `assumption` tactic is capable of alot more, but it will not be used in this game. You can read more about these capabilities in the right side pane documentation\n"
-"\n"
-"The advantage of the `assumption` tactic over exact is that you don't have to spell out the assumption to Lean. However, it might be clearer to explicity do so. This is the tradeoff between brevity and ..."
-msgstr ""
-
-#: Game.Levels.LogicAlternative.L02_constructorNotation
-msgid "The `⟨⟩` notation"
-msgstr ""
-
-#: Game.Levels.LogicAlternative.L02_constructorNotation
-msgid "`⟨⟩` is another way to introduce `∧`.\n"
-"Consider the following proof state:\n"
-"```\n"
-"h1 : P\n"
-"h2 : Q\n"
-"```\n"
-"If your and introduction looks like the following:\n"
-"```\n"
-"And.intro h1 h2\n"
-"```\n"
-"then the equivalent `⟨⟩` syntax is:\n"
-"```\n"
-"⟨h1,h2⟩ \n"
-"```\n"
-"Both notations produce/construct an object of type `P ∧ Q`"
-msgstr ""
-
-#: Game.Levels.LogicAlternative.L02_constructorNotation
-msgid ""
-msgstr ""
-
-#: Game.Levels.LogicAlternative.L03_Or
-msgid "Or"
-msgstr ""
-
-#: Game.Levels.LogicAlternative.L03_Or
-msgid "In this level, you will learn about the `Or` logical connective.\n"
-"\n"
-"# truth table\n"
-"```\n"
-"| P | Q | P ∨ Q  |\n"
-"|---|---|--------|\n"
-"| T | T |   T    |\n"
-"| T | F |   T    |\n"
-"| F | T |   T    |\n"
-"| F | F |   F    |\n"
-"```\n"
-"\n"
-"From the truth table, we can see that if one of `P`,`Q` is true then `P ∨ Q` is true. \n"
-"Therefore, if we have `P ∨ Q` as our goal, it is enough to prove `P` or to prove `Q`.\n"
-"This is exactly what the `left` and `right` tactic does. \n"
-"The `left` tactic transforms our goal from `P ∨ Q` to `P` and similarily for the `right` tactic. This is because Lean understands that if `P` is true, then `P ∨ Q` is true."
-msgstr ""
-
-#: Game.Levels.LogicAlternative.L03_Or
-msgid "Use either `left` or `right`"
-msgstr ""
-
-#: Game.Levels.LogicAlternative.L03_Or
-msgid "`p` is exactly the goal"
-msgstr ""
-
-#: Game.Levels.LogicAlternative.L03_Or
-msgid "`q` is exactly the goal"
-msgstr ""
-
-#: Game.Levels.LogicAlternative.L03_Or
-msgid ""
-msgstr ""
-
-#: Game.Levels.LogicAlternative.L04_apply
-msgid "`apply` tactic"
-msgstr ""
-
-#: Game.Levels.LogicAlternative.L04_apply
-msgid "The `apply` tactic takes an implication as its argument where the conclusion of the implication matches the goal.\n"
-"Here is how `apply` 'thinks', and how it transforms the proof state:\n"
-"Since we can conclude the conclusion of the implication which is also our goal from its premise, our new goal becomes the premise. In a sense, the `apply` tactic sets up modus ponens for you and the missing piece is proving the premise of the implication\n"
-"\n"
-"remember the X Y problem"
-msgstr ""
-
-#: Game.Levels.LogicAlternative.L04_apply
-msgid ""
-msgstr ""
-
-#: Game.Levels.LogicAlternative.L04_apply
-msgid "The apply tactic takes a proof of a general statement or implication, tries to match the conclusion with the current goal,\n"
-"and leaves the hypotheses, if any, as new goals. If the given proof matches the goal exactly (modulo definitional equality),\n"
-"you can use the exact tactic instead of apply. So, all of these work:"
-msgstr ""
-
-#: Game.Levels.LogicAlternative
-msgid "This world will have the same exercises as the previous `Logic` world, but the difference will be the tactics used to solve them, which will change the reasoning process."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnavesLemmas.L01_whydisjoint

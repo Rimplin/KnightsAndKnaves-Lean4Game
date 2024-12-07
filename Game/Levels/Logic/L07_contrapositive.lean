@@ -1,15 +1,5 @@
 import Game.Metadata
 
-
-World "Logic" 
-Level 7
-
-Title "Contrapositive" 
-
-Introduction 
-"
-"
-variable { P Q : Prop }
 /-
 Statement  contrapositive
   : (P → Q) ↔ (¬Q → ¬P) := by
@@ -32,8 +22,6 @@ Statement  contrapositive
   }
 -/
 /-
-/--testssstsgasdfa-/
-TheoremDoc contrapositive as "contrapositive" in "logic"
 Statement (forward: (P → Q))
   : (¬Q → ¬P) := by
 
@@ -50,13 +38,6 @@ Statement (forward: (P → Q))
 }
 -/
 
-Statement  (forward: (P → Q))
-  : (¬Q → ¬P) := by
-
-  {
-    have := Function.mt forward
-    assumption
-
     /-
     intro nq
     intro p
@@ -67,5 +48,4 @@ Statement  (forward: (P → Q))
    --intro nq
 
    --intro p 
-   --exact nq (h p)  
-}
+   --exact nq (h p)

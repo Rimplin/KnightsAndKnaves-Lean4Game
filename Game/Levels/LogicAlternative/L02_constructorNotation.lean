@@ -1,9 +1,5 @@
 import Game.Metadata
 
-
-World "LogicAlternative" 
-Level 2
-
 Title "The `⟨⟩` notation" 
 
 Introduction 
@@ -25,22 +21,8 @@ then the equivalent `⟨⟩` syntax is:
 Both notations produce/construct an object of type `P ∧ Q`
 "
 
- 
-Statement (hP : P) (hQ : Q)
+example (hP : P) (hQ : Q)
   : P ∧ Q  := by
 {
   exact ⟨hP, hQ⟩ 
 }
-
-
-
-Conclusion 
-"
-"
-
-/- Use these commands to add items to the game's inventory. -/
-
---NewTactic 
--- NewTheorem Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq
-
