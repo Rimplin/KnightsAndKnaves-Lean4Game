@@ -1,7 +1,7 @@
 import Game.Metadata
 
 
-World "LogicTruthValue_"
+World "Logic"
 Level 1
 
 Title "Intro"

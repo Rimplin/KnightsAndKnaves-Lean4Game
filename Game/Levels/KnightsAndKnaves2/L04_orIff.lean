@@ -13,7 +13,7 @@ B: C is a knave, if and only if A is a knave
 --A ⇔ (B ∨ C)
 --B ⇔ (¬C ⇔ ¬A)
 
-example {A B C : Prop}
+Statement {A B C : Prop}
 {stA : A ↔ (B ∨ C)}
 {stAn : ¬A ↔ ¬(B ∨ C)}
 {stB : B ↔ (¬C ↔ ¬A)}

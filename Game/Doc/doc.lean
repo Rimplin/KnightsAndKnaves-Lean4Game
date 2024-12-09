@@ -44,6 +44,8 @@ DefinitionDoc False as "`False`"
 /--
 You can think of a proposition as a statement that is either true or false(obviously, it can't be both at the same time).
 
+Moreover, these statements are denoted by a symbol like `P`,`Q`,`R`.
+
 For an object of type P where P is of type Prop, i.e `h : P` where `P : Prop`, `h` would be a proof or a witness that `P` is true. Equivalently, from `h` we can construct a term `h' := eq_true h of type `h' : P = True` which would be a proof that P is true as well. Both perspectives are interchangeable and equivalent.
 
 # Constructing new propositions from old ones
@@ -216,9 +218,22 @@ The notation ←t can be used to instruct the tactic to use the equality t in th
 TacticDoc rw
 
 /--
-testing stuff, does importing work?!?!?!?!
+Having the goal of the form:
+```
+P ∨ Q
+```
+for `P Q : Prop`, `left` transforms the goal to `P`.
 -/
 TacticDoc left
+
+/--
+Having the goal of the form:
+```
+P ∨ Q
+```
+for `P Q : Prop`, `right` transforms the goal to `Q`.
+-/
+TacticDoc right
 
 /--
 [[mathlib_doc]]

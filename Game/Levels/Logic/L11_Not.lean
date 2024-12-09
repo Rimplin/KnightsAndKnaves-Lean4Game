@@ -1,6 +1,6 @@
 import Game.Metadata
 
-World "LogicTruthValue_" 
+World "Logic" 
 Level 6
 
 Title "Not Connective, ¬" 

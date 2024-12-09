@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Sat Dec  7 23:13:44 2024\n"
+"POT-Creation-Date: Mon Dec  9 13:01:54 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -62,6 +62,8 @@ msgstr ""
 
 #: Game.Doc.doc
 msgid "You can think of a proposition as a statement that is either true or false(obviously, it can't be both at the same time).\n"
+"\n"
+"Moreover, these statements are denoted by a symbol like `P`,`Q`,`R`.\n"
 "\n"
 "For an object of type P where P is of type Prop, i.e `h : P` where `P : Prop`, `h` would be a proof or a witness that `P` is true. Equivalently, from `h` we can construct a term `h' := eq_true h of type `h' : P = True` which would be a proof that P is true as well. Both perspectives are interchangeable and equivalent.\n"
 "\n"
@@ -224,7 +226,19 @@ msgid "Given the following:\n"
 msgstr ""
 
 #: Game.Doc.doc
-msgid "testing stuff, does importing work?!?!?!?!"
+msgid "Having the goal of the form:\n"
+"```\n"
+"P ∨ Q\n"
+"```\n"
+"for `P Q : Prop`, `left` transforms the goal to `P`."
+msgstr ""
+
+#: Game.Doc.doc
+msgid "Having the goal of the form:\n"
+"```\n"
+"P ∨ Q\n"
+"```\n"
+"for `P Q : Prop`, `right` transforms the goal to `Q`."
 msgstr ""
 
 #: Game.Doc.doc
@@ -625,11 +639,11 @@ msgstr ""
 msgid "In this world, you will learn how to solve equations."
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L01_Intro
+#: Game.Levels.Logic.L01_Intro
 msgid "Intro"
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L01_Intro
+#: Game.Levels.Logic.L01_Intro
 msgid "This should look familiar.\n"
 "\n"
 "If it doesn't, then replace `P` by `x=2`.\n"
@@ -637,19 +651,19 @@ msgid "This should look familiar.\n"
 "`hP` is of type `P` and `P` is of type `Prop`. So, `hP` is a proof of `P`. Our goal is to prove `P`. We already have such a proof which is `hP`, `hP` is EXACTLY what we need to prove the goal. The type of `hP` EXACTLY matches the goal."
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L01_Intro
+#: Game.Levels.Logic.L01_Intro
 msgid "Type `exact hP`!"
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L01_Intro
+#: Game.Levels.Logic.L01_Intro
 msgid "In the next levels, we will discuss how to construct new propositions from old ones whose meaning and truth value would depend on those old ones."
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L02_And
+#: Game.Levels.Logic.L02_And
 msgid "And"
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L02_And
+#: Game.Levels.Logic.L02_And
 msgid "In this level, we introduce the `∧` logical connective (read as 'and'). You can think of `∧` as taking to input proposition and outputting a new proposition.\n"
 "\n"
 "Remember the example given at the beginning of the world? We restate it here:\n"
@@ -708,19 +722,19 @@ msgid "In this level, we introduce the `∧` logical connective (read as 'and').
 "Use it to construct an object of type `P ∧ Q`, and use `exact` to close the goal."
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L02_And
+#: Game.Levels.Logic.L02_And
 msgid "Try `exact And.intro hP hQ` or `constructor`"
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L02_And
+#: Game.Levels.Logic.L02_And
 msgid ""
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L07_Or
+#: Game.Levels.Logic.L07_Or
 msgid "Or, `∨`"
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L07_Or
+#: Game.Levels.Logic.L07_Or
 msgid "In this level, we introduce the `∨` logical connective read as 'or'.\n"
 "\n"
 "Its truth table is as follows:\n"
@@ -747,19 +761,19 @@ msgid "In this level, we introduce the `∨` logical connective read as 'or'.\n"
 "In our case, we know the left side of `∨` is true, so use `left`."
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L07_Or
+#: Game.Levels.Logic.L07_Or
 msgid "We have a proof that `P` is true, and we want to prove `P`"
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L07_Or
+#: Game.Levels.Logic.L07_Or
 msgid ""
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L09_Implication
+#: Game.Levels.Logic.L09_Implication
 msgid "Implication, →"
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L09_Implication
+#: Game.Levels.Logic.L09_Implication
 msgid "In this level, we introduce the logical implication `→` connective.\n"
 "Logical implication `P → Q` is made up of two components:\n"
 "- The premise, which in this case is `P`\n"
@@ -790,15 +804,15 @@ msgid "In this level, we introduce the logical implication `→` connective.\n"
 "In other words, it acts like a function. If you give `P → Q` a proof of `P`, you get a proof of `Q`."
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L09_Implication
+#: Game.Levels.Logic.L09_Implication
 msgid "In this level, you will learn how to deal with an implication as the goal you have to prove."
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L05_ImpGoal
+#: Game.Levels.Logic.L05_ImpGoal
 msgid ""
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L05_ImpGoal
+#: Game.Levels.Logic.L05_ImpGoal
 msgid "The goal, translated to normal english is: 'If P is true, then P is true'.\n"
 "\n"
 "To prove such a goal, we need to assume that `P` is true. Then, we have to prove that `P` is true.\n"
@@ -808,15 +822,15 @@ msgid "The goal, translated to normal english is: 'If P is true, then P is true'
 "After that , we have to prove the consequent."
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L05_ImpGoal
+#: Game.Levels.Logic.L05_ImpGoal
 msgid "use `intro name` to give the introduced hypothesis a name"
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L11_Not
+#: Game.Levels.Logic.L11_Not
 msgid "Not Connective, ¬"
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L11_Not
+#: Game.Levels.Logic.L11_Not
 msgid "In this level we introduce the negation, the `¬` connective (read as 'not').\n"
 "\n"
 "Notice that this is the first logical connective that applies on one proposition only and not two.\n"
@@ -860,15 +874,15 @@ msgid "In this level we introduce the negation, the `¬` connective (read as 'no
 "For this level, `¬P` being true tells us that a proof of `P` gives us a proof of `False`. We have a proof of `P`. Therefore we can obtain a proof of `False` which is the goal."
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L11_Not
+#: Game.Levels.Logic.L11_Not
 msgid "In the next level, we will explore what it means to have proven `False`."
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L12_False
+#: Game.Levels.Logic.L12_False
 msgid "From `False`, anything follows."
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L12_False
+#: Game.Levels.Logic.L12_False
 msgid "We proved `False`, what does this mean? What can we conclude? What does `False` IMPLY?\n"
 "\n"
 "Let's check the `→` truth table:\n"
@@ -907,17 +921,17 @@ msgid "We proved `False`, what does this mean? What can we conclude? What does `
 "Use this implication to prove `Q` where `Q` is any proposition."
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_.L12_False
+#: Game.Levels.Logic.L12_False
 msgid "Having proven `False`, instead of going through this to prove `Q` you can use the the `contradiction` tactic. If you were able to prove `False`, then the `contradiction` tactic will prove the goal regardless what the goal is because 'from `False`, anything follows'.\n"
 "\n"
 "Proving `False` is what's usually called deriving a contradiction, and note that to prove `False` you would first need to have a proof `P`, and a proof of `¬P` i.e `P → False`."
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_
-msgid "Logic Truth Value_"
+#: Game.Levels.Logic
+msgid "Logic"
 msgstr ""
 
-#: Game.Levels.LogicTruthValue_
+#: Game.Levels.Logic
 msgid "In this world, we will be dealing with `Objects` of type `Prop` i.e propositions. You can think of a proposition as a statement that is either true or false(obviously, it can't be both at the same time). You have seen propositions before like `x=2`, `y=6` etc..\n"
 "\n"
 "When you have `h : P` where `P : Prop` , then we say `h` is a proof of the statement `P`(imagine `x=2` instead of `P` if you wish). \n"
@@ -1449,52 +1463,6 @@ msgstr ""
 msgid ""
 msgstr ""
 
-#: Game.Levels.KnightsAndKnaves.prob28
-msgid ""
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves.prob28
-msgid "In this problem, there are only two people, A and B, each of \n"
-"whom is either a knight or a knave. A makes the following \n"
-"statement: 'At least one of us is a knave.' \n"
-"What are A and B?"
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves.prob28
-msgid "."
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves.prob31
-msgid ""
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves.prob31
-msgid "Again we have three people, A, B, C, each of whom is either \n"
-"a knight or a knave. A and B make the following statements: \n"
-"A: All of us are knaves. \n"
-"B: Exactly one of us is a knight. \n"
-"What are A, B, C?"
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves.prob31
-msgid ""
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves.prob32
-msgid ""
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves.prob32
-msgid "Suppose instead, A and B say the following: \n"
-"A: All of us are knaves. \n"
-"B: Exactly one of us is a knave. \n"
-"Can it be determined what B is? Can it be determined what C is?"
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves.prob32
-msgid ""
-msgstr ""
-
 #: Game.Levels.KnightsAndKnaves
 msgid "Knights And Knaves"
 msgstr ""
@@ -1685,67 +1653,6 @@ msgid "In this world, we deal with the knights and knaves puzzle but the differe
 "https://www.youtube.com/watch?v=oEAa2pQKqQU\n"
 "\n"
 "All puzzles were generated(and possibly modified) from https://www.wolframcloud.com/objects/demonstrations/KnightsAndKnavesPuzzleGenerator-source.nb."
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.IamKnave
-msgid ""
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.IamKnave
-msgid "A : I am  knave"
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.IamKnave
-msgid ""
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.prob39
-msgid ""
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.prob39
-msgid "We are given three people, A,B,C, one of whom is a knight, one a knave, and one normal (but not necessarily in that order). \n"
-"They make the following statements: \n"
-"A: I am normal. \n"
-"B: That is true. \n"
-"C: I am not normal."
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.prob39
-msgid ""
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.prob40
-msgid ""
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.prob40
-msgid ""
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.prob40
-msgid ""
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.prob41
-msgid ""
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.prob41
-msgid "A: B is a knight. \n"
-"B: A is a knave,"
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves.KnightsKnavesNormals.prob41
-msgid ""
-msgstr ""
-
-#: Game.Levels.KnightsAndKnavesAndNormals
-msgid "Knights And Knaves"
-msgstr ""
-
-#: Game.Levels.KnightsAndKnavesAndNormals
-msgid ""
 msgstr ""
 
 #: Game

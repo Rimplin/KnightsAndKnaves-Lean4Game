@@ -1,6 +1,6 @@
 import Game.Metadata
 
-World "LogicTruthValue_" 
+World "Logic" 
 Level 4
 
 Title "Implication, →" 

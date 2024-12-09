@@ -1,6 +1,6 @@
 import Game.Metadata
 
-World "LogicTruthValue_" 
+World "Logic" 
 Level 3 
 
 Title "Or, `∨`" 
@@ -106,5 +106,5 @@ Or.inr {a b : Prop} (h : b) : a ∨ b
 ```
 -/
 --NewTheorem Or.inl Or.intro_left Or.intro_right Or.inr
-NewTactic left assumption
+NewTactic left right
 NewDefinition or

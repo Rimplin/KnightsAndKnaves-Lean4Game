@@ -1,24 +1,5 @@
 import Game.Metadata
 
-
-World "Logic" 
-Level 2
-
-Title "adsf" 
-
-Introduction 
-"
-adf
-"
-
-Statement 
-  : 2=2 := by
-
-  {
-    rfl
-  }
-
-
 -- try it 
 open Classical
 
@@ -83,7 +64,7 @@ example : (¬q → ¬p) → (p → q) :=
   fun hnqnp ↦ fun hp ↦ 
   Or.elim (Classical.em q) (fun hq ↦ hq) (fun hnq ↦ absurd (hp) (hnqnp hnq))
 
-theorem a: p ∨ ¬p := Classical.em p
+example : p ∨ ¬p := Classical.em p
 
 example : (((p → q) → p) → p) := 
   fun hpqp ↦ Or.elim (Classical.em q)
@@ -94,20 +75,8 @@ example : (((p → q) → p) → p) :=
                              (fun hnp ↦ 
                              hpqp (falseAntecedent p q hnp)))
 
-theorem asdf: ¬(p ↔ ¬p) :=  
+example : ¬(p ↔ ¬p) :=  
   fun hpnp ↦ 
   have hnp : ¬p := fun hp ↦ absurd hp (hpnp.mp hp)
   have hp : p := hpnp.mpr hnp
   absurd hp hnp
-
-#print axioms asdf
-Conclusion 
-"adf
-"
-
-/- Use these commands to add items to the game's inventory. -/
-
---NewTactic 
--- NewTheorem Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq
-

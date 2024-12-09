@@ -11,7 +11,6 @@ import Game.LevelLemmas.Logical
 #check Finset.mem_singleton
 #check Set.eq_singleton_iff_unique_mem
 
-   
 #check Set.mem_singleton_iff
 #check Set.subset_insert_iff_of_not_mem
 
@@ -66,7 +65,7 @@ example (A B C: K) ( all : ∀(x : K), x = A ∨ x = B ∨ x = C) : @Set.univ K 
   --  by_contra
   --· exact fun a => trivial
 ---------------------------
-example (S : Set K) (h : S ⊆ {A,B,C}) (h': A ∉ S) : S ⊆ {B,C} := by   
+example (S : Set K) (h : S ⊆ {A,B,C}) (h': A ∉ S) : S ⊆ {B,C} := by
   exact (Set.subset_insert_iff_of_not_mem h').mp h
 
 -- ----------------------
@@ -204,7 +203,7 @@ theorem forward {A B C : K} (all : ∀ (x : K), x = A ∨ x = B ∨ x = C) : (Se
   -----
    --- exact fun ⦃a⦄ a_1 => all a
 
-  · 
+  ·
     #check Set.mem_univ
     intro x
     rw [eq_true (Set.mem_univ x)]
@@ -556,19 +555,6 @@ theorem XorToOr {inst : DecidableEq Inhabitant}{Knight : Finset Inhabitant } {Kn
       assumption
       exact inright_notinleft h h_1
 
-
-theorem IfToIff (h : p → q) (h' : ¬p → ¬q) : p ↔ q := by 
-  constructor
-  · assumption
-  · intro hq
-    exact (Function.mtr h') hq
-
-theorem IffToIf (h : p ↔ q) : (p → q) ∧ (¬p → ¬q) := by 
-  constructor
-  · exact h.mp
-  · exact Function.mt (h.mpr)
-
-
 #check Set.mem_compl
   #check Set.mem_compl_iff
   #check Set.inter_eq_compl_compl_union_compl
@@ -643,7 +629,7 @@ theorem S_union_S'_eq_univ
         #check Finset.mem_union 
         rw [Finset.mem_union]
         exact Or b
-         
+
     intro inU
     rw [this]
     #check univ_iff_all
@@ -784,7 +770,6 @@ theorem not_eq_singleton_of_not_mem {A : K} {S : Finset K} (h : A ∉ S) : S ≠
   have := mem_of_eq_singleton eq
   contradiction
 
-
 theorem already_full 
 {A B : K}
 {S : Finset K}
@@ -799,7 +784,6 @@ theorem already_full
   rw [Finset.mem_singleton] at hA
   exfalso 
   contradiction
-
 
 theorem full2 
 {A B C : K}
