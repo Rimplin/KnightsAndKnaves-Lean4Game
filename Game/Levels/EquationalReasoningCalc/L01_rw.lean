@@ -1,12 +1,11 @@
 import Game.Metadata
 
-
-World "EquationalReasoningCalc" 
+World "EquationalReasoningCalc"
 Level 1
 
-Title "" 
+Title ""
 
-Introduction 
+Introduction
 "
 addition associative to the left...
 This world is just:
@@ -83,10 +82,4 @@ Statement (h : x = 3) (g: y = 6) (i : z=10) : x + x = y := by
 Conclusion 
 "
 "
-
-/- Use these commands to add items to the game's inventory. -/
-
 NewTactic «calc»  
--- NewTheorem Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq
-

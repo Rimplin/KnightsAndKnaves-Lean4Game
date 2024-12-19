@@ -69,9 +69,9 @@ F & T & T & F & F \\\\
 F & F & T & T & T \\\\
 \\hline
 \\end{array}
+$
 
 So, `P ↔ Q` is true when `P,Q` are true or `P,Q` are false, i.e when `P` and `Q` have the same truth value. Therefore, `P` and `Q` are equivalent from a truth value perspective regardless what the statement of `P` and of `Q` is.
 
-To extract for example the forward direction `P → Q` from `h :P ↔ Q`, you do `h.mp`. This is a modus ponens version for `↔`. The reversed version `h.mpr` gives `Q → P`
-$
+To extract for example the forward direction `P → Q` from `h :P ↔ Q`, you do `h.mp`. This is a modus ponens version for `↔`. The reversed version `h.mpr` gives `Q → P`.
 "

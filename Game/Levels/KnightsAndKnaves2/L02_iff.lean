@@ -14,15 +14,20 @@ B ⇔ (A ⇔ C)
 Introduction 
 "
 A: C is a knight or B is a knight.
+
 B: A is a knight, if and only if C is a knight.
 
-Assuming ¬A,
-¬C ∧ ¬B from stAn
-¬(A ↔ C) from stBn
-(A ↔ C) from ¬A, ¬C
-False from ¬(A ↔ C) , (A ↔ C)
+Everytime you need to assume, and for every bullet point, you would need to use the `have` tactic.
 
-Notice that ¬A means ¬C, ¬B where ¬B gives that A and C dont have the same type. This is a contradiction of course so the proposition ¬A is not true which means that A is true.  
+Assuming `¬A`,
+- Prove `¬C ∧ ¬B` from `stAn`
+- Prove `¬(A ↔ C)` from `stBn`
+- Prove `A ↔ C` from `¬A, ¬C`
+- Prove `False` from `¬(A ↔ C) , (A ↔ C)`
+
+We have proven `¬A → False` which is `¬¬A` i.e `A`.
+
+Notice that `¬A` means `¬C, ¬B` where ¬B gives that A and C dont have the same type. This is a contradiction of course so the proposition ¬A is not true which means that A is true.  
 
 Now we know A, which gives C ∨ B
 ¬B means C, and it also means ¬(A ↔ C). But we know A ↔ C from A,C so we get a contradiction.
