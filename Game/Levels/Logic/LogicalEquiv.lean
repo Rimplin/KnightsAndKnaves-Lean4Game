@@ -1,7 +1,5 @@
 import Game.Metadata
 
-World "LogicTruthValue_" 
-
 #check propext
   -- axioms and computations, theorem proving in lean 4
 

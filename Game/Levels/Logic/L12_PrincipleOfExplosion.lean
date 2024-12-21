@@ -46,17 +46,6 @@ A contradiction is when `p` and `¬p` are both true. `False ≠ True` is always 
 #check Or.elim
 #check not_not
 
-variable {P Q:Prop} 
-example : ¬ (¬ P) ↔ P := by
-  constructor
-  · intro h
-    push_neg at h
-    assumption
-
-  · intro h
-    push_neg
-    assumption
-
 Conclusion 
 "
 We have proven that `P ∧ ¬P → Q` for any proposition `Q`. since `P ∧ ¬P` is always false, then the implication proved becomes `False → Q`.

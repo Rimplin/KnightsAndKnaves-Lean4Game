@@ -27,25 +27,6 @@ example (h : P) (nh : ¬P)
     exact notleft_right helper nh
   }
 
-example : ¬ (¬ P) ↔ P := by
-  constructor
-  · intro h 
-    apply Or.elim (Classical.em P)
-    sorry
-    sorry
-
-  · sorry
-
-example (P : Prop) : ¬ (¬ P) ↔ P := by
-  constructor
-  · intro h
-    push_neg at h
-    assumption
-
-  · intro h
-    push_neg
-    assumption
-
 Conclusion
 "
 We have proven that `P ∧ ¬P → Q` for any proposition `Q`. since `P ∧ ¬P` is always false, then the implication proved becomes `False → Q`.

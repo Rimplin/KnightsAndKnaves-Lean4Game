@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Wed Dec 11 22:30:21 2024\n"
+"POT-Creation-Date: Sat Dec 21 23:14:53 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -730,11 +730,11 @@ msgstr ""
 msgid ""
 msgstr ""
 
-#: Game.Levels.Logic.L07_Or
+#: Game.Levels.Logic.L03_Or
 msgid "Or, `∨`"
 msgstr ""
 
-#: Game.Levels.Logic.L07_Or
+#: Game.Levels.Logic.L03_Or
 msgid "In this level, we introduce the `∨` logical connective read as 'or'.\n"
 "\n"
 "Its truth table is as follows:\n"
@@ -761,19 +761,19 @@ msgid "In this level, we introduce the `∨` logical connective read as 'or'.\n"
 "In our case, we know the left side of `∨` is true, so use `left`."
 msgstr ""
 
-#: Game.Levels.Logic.L07_Or
+#: Game.Levels.Logic.L03_Or
 msgid "We have a proof that `P` is true, and we want to prove `P`"
 msgstr ""
 
-#: Game.Levels.Logic.L07_Or
+#: Game.Levels.Logic.L03_Or
 msgid ""
 msgstr ""
 
-#: Game.Levels.Logic.L09_Implication
+#: Game.Levels.Logic.L04_Implication
 msgid "Implication, →"
 msgstr ""
 
-#: Game.Levels.Logic.L09_Implication
+#: Game.Levels.Logic.L04_Implication
 msgid "In this level, we introduce the logical implication `→` connective.\n"
 "Logical implication `P → Q` is made up of two components:\n"
 "- The premise, which in this case is `P`\n"
@@ -804,7 +804,7 @@ msgid "In this level, we introduce the logical implication `→` connective.\n"
 "In other words, it acts like a function. If you give `P → Q` a proof of `P`, you get a proof of `Q`."
 msgstr ""
 
-#: Game.Levels.Logic.L09_Implication
+#: Game.Levels.Logic.L04_Implication
 msgid "In this level, you will learn how to deal with an implication as the goal you have to prove."
 msgstr ""
 
@@ -826,11 +826,11 @@ msgstr ""
 msgid "use `intro name` to give the introduced hypothesis a name"
 msgstr ""
 
-#: Game.Levels.Logic.L11_Not
+#: Game.Levels.Logic.L06_Not
 msgid "Not Connective, ¬"
 msgstr ""
 
-#: Game.Levels.Logic.L11_Not
+#: Game.Levels.Logic.L06_Not
 msgid "In this level we introduce the negation, the `¬` connective (read as 'not').\n"
 "\n"
 "Notice that this is the first logical connective that applies on one proposition only and not two.\n"
@@ -851,7 +851,9 @@ msgid "In this level we introduce the negation, the `¬` connective (read as 'no
 "\\end{array}\n"
 "$\n"
 "\n"
-"But we don't need to introduce a new symbol, it can be defined in terms of what we already know.\n"
+"Notice that since `P` is true, `¬P` should be false but in this proof state it is true (by `hnP`). This is a contradiction. The goal is to prove `False` which means to prove a contradiction.\n"
+"\n"
+"Note that we don't need to introduce a new symbol to define negation, it can be defined in terms of what we already know.\n"
 "\n"
 "Consider the following truth table: \n"
 "$\n"
@@ -867,22 +869,42 @@ msgid "In this level we introduce the negation, the `¬` connective (read as 'no
 "\n"
 "Notice that regardless of the truth value of `P`, the two propositions `¬P` and `P → False` have the same truth table. Therefore, they can be used interchangeably.(we say that these two expressions are logically equivalent, but let's leave this to a future level)\n"
 "\n"
-"In fact, this is how `¬P` is defined in Lean. You can do `unfold Not at hnP` to replace `¬P` with its implication form.\n"
+"What `¬P` means is that if `P` were true, then we can deduce a contradiction.\n"
+"\n"
+"This is how `¬P` is defined in Lean. You can do `unfold Not at hnP` to replace `¬P` with its implication form.\n"
 "\n"
 "Remember that an implication acts like a function, that takes a proof of whats on the left hand returning a proof of whats on the right hand side.\n"
 "\n"
 "For this level, `¬P` being true tells us that a proof of `P` gives us a proof of `False`. We have a proof of `P`. Therefore we can obtain a proof of `False` which is the goal."
 msgstr ""
 
-#: Game.Levels.Logic.L11_Not
-msgid "In the next level, we will explore what it means to have proven `False`."
+#: Game.Levels.Logic.L06_Not
+msgid "To emphasize the idea of what 'contradiction' means, consider the following truth table:\n"
+"$\n"
+"\\begin{array}{|c|c|} \n"
+"\\hline\n"
+"P & ¬P & P ∧ ¬P\\\\\n"
+"\\hline\n"
+"T & F & F \\\\\n"
+"F & T & F \\\\\n"
+"\\hline\n"
+"\\end{array}\n"
+"$\n"
+"\n"
+"In the current proof state, we know that `P ∧ ¬P` is true but notice from the truth that `P ∧ ¬P` is always false regardless of the value of `P`. A contradiction is when a proposition is true and false at the same time, in other words, when for a `P : Prop` we have\n"
+"```\n"
+"hP : P   proof that P is true\n"
+"hnP : ¬P proof of ¬P is true i.e P is false\n"
+"```\n"
+"\n"
+"In the next level, we will explore what it means to have proven `False`."
 msgstr ""
 
-#: Game.Levels.Logic.L12_False
+#: Game.Levels.Logic.L07_False
 msgid "From `False`, anything follows."
 msgstr ""
 
-#: Game.Levels.Logic.L12_False
+#: Game.Levels.Logic.L07_False
 msgid "We proved `False`, what does this mean? What can we conclude? What does `False` IMPLY?\n"
 "\n"
 "Let's check the `→` truth table:\n"
@@ -921,7 +943,7 @@ msgid "We proved `False`, what does this mean? What can we conclude? What does `
 "Use this implication to prove `Q` where `Q` is any proposition."
 msgstr ""
 
-#: Game.Levels.Logic.L12_False
+#: Game.Levels.Logic.L07_False
 msgid "Having proven `False`, instead of going through this to prove `Q` you can use the the `contradiction` tactic. If you were able to prove `False`, then the `contradiction` tactic will prove the goal regardless what the goal is because 'from `False`, anything follows'.\n"
 "\n"
 "Proving `False` is what's usually called deriving a contradiction, and note that to prove `False` you would first need to have a proof `P`, and a proof of `¬P` i.e `P → False`."

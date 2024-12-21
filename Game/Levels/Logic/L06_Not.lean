@@ -63,12 +63,6 @@ https://en.wikipedia.org/wiki/Logical_biconditional#Colloquial_usage
 /-
 Another way to say that `P = False` is by saying `¬P = True`. These two statements say the same thing. This is how we will define `¬`.
 
-`¬` is defined to satisfy the following properties:
-`(P = True) → (¬P = False)`
-`(P = False) → (¬P = True)`
-If `P` is True, then `¬P` is False.
-If `P` is False, then `¬P` is True.
-
 Two nots give a true. Double negatives. Two negatives make/resolve into a positive.
 Intuitvely, this fits how negation or 'not' works in language.
 
@@ -76,7 +70,6 @@ Intuitvely, this fits how negation or 'not' works in language.
 
 Proving a proposition and its negation is a special case of 'deriving a contradiction' because we have proven `p ∧ ¬p` which is always false. A logical system that has this quality is called an inconsistent system.
 
-# Defining `¬`
 
 ## But what is `False` exactly?(now we know what `False` is from the truth value perspective so this would need a rewrite in logic world, no it doesn't because we were dealing with `= False` but now we are dealing with `→ False`).
 For now, just know that `False` is a type that has no introduction rule and that proving `False` means deriving a contradiction. So, to prove `¬p` , you must assume `p` and derive a contradiction. We will explain in more detail what is meant by 'contradiction'.
@@ -104,7 +97,9 @@ F & T \\\\
 \\end{array}
 $
 
-But we don't need to introduce a new symbol, it can be defined in terms of what we already know.
+Notice that since `P` is true, `¬P` should be false but in this proof state it is true (by `hnP`). This is a contradiction. The goal is to prove `False` which means to prove a contradiction.
+
+Note that we don't need to introduce a new symbol to define negation, it can be defined in terms of what we already know.
 
 Consider the following truth table: 
 $
@@ -120,7 +115,9 @@ $
 
 Notice that regardless of the truth value of `P`, the two propositions `¬P` and `P → False` have the same truth table. Therefore, they can be used interchangeably.(we say that these two expressions are logically equivalent, but let's leave this to a future level)
 
-In fact, this is how `¬P` is defined in Lean. You can do `unfold Not at hnP` to replace `¬P` with its implication form.
+What `¬P` means is that if `P` were true, then we can deduce a contradiction.
+
+This is how `¬P` is defined in Lean. You can do `unfold Not at hnP` to replace `¬P` with its implication form.
 
 Remember that an implication acts like a function, that takes a proof of whats on the left hand returning a proof of whats on the right hand side.
 
@@ -132,24 +129,11 @@ The empty type. It has no constructors.
 `False` is the empty proposition, thus it has no introduction rule. It represents a contradiction. Finding a 
 What is a contradiction? Well, it is a propostional statement that is false for all possible values of its variables. Constructing a term(i.e a proof) of this type is proving something that is false. The standard example of a contradiction is the following: 
 
-$
-\\begin{array}{|c|c|} 
-\\hline
-P & ¬P & P ∧ ¬P\\\\
-\\hline
-T & F & F \\\\
-F & T & F \\\\
-\\hline
-\\end{array}
-$
-
 Another meaning for the term contradiction to refer to the assertion or proof of a propositional statement that is false for all possible values of its variables. We will use both interchangeably. So, deriving a contradiction means constructing such a proof.
 
 # What is `False` exactly? 
 
-## How to prove `False` and what are the consequences? -- this has been introduced in the previous level...
-This is what you did in the previous level. This section is just reiterating that point. 
-
+## How to prove `False` and what are the consequences?
 Proving a proposition and its negation is a special case of 'deriving a contradiction' because we have proven `p ∧ ¬p` which is always false. A logical system that has this quality is called an inconsistent system.
 
 ## Principle of explosion
@@ -171,5 +155,23 @@ example (hPnp : P ∧ ¬P )
 
 Conclusion 
 "
+To emphasize the idea of what 'contradiction' means, consider the following truth table:
+$
+\\begin{array}{|c|c|} 
+\\hline
+P & ¬P & P ∧ ¬P\\\\
+\\hline
+T & F & F \\\\
+F & T & F \\\\
+\\hline
+\\end{array}
+$
+
+In the current proof state, we know that `P ∧ ¬P` is true but notice from the truth that `P ∧ ¬P` is always false regardless of the value of `P`. A contradiction is when a proposition is true and false at the same time, in other words, when for a `P : Prop` we have
+```
+hP : P   proof that P is true
+hnP : ¬P proof of ¬P is true i.e P is false
+```
+
 In the next level, we will explore what it means to have proven `False`.
 "

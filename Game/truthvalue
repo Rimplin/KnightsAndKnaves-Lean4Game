@@ -1,8 +1,0 @@
-#check true_implies
-
-#check of_eq_true
-#check of_eq_false
-#check eq_true
-#check eq_false
-
-

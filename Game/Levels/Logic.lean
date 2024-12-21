@@ -1,21 +1,10 @@
 import Game.Levels.Logic.L01_Intro
 import Game.Levels.Logic.L02_And
---import Game.Levels.LogicTruthValue_.L06_Or
-import Game.Levels.Logic.L07_Or
-import Game.Levels.Logic.L09_Implication
+import Game.Levels.Logic.L03_Or
+import Game.Levels.Logic.L04_Implication
 import Game.Levels.Logic.L05_ImpGoal
---import Game.Levels.LogicTruthValue_.L10_False
-import Game.Levels.Logic.L11_Not
-import Game.Levels.Logic.L12_False
---import Game.Levels.LogicTruthValue_.forall
---import Game.Levels.LogicTruthValue_.L03_And
---import Game.Levels.LogicTruthValue_.L04_Implication
---import Game.Levels.LogicTruthValue_.L05_BuildTruthTable
---import Game.Levels.Logic.L03_Or
---import Game.Levels.Logic.L05_False
---import Game.Levels.Logic.L06_Not
---import Game.Levels.Logic.L07_contrapositive
---import Game.Levels.Logic.L08_PrincipleOfExplosion
+import Game.Levels.Logic.L06_Not
+import Game.Levels.Logic.L07_False
 
 World "Logic"
 Title "Logic"

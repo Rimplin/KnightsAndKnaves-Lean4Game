@@ -13,7 +13,6 @@ x ∈ Knave, y ∈ Knight
 x ∈ Knave, y ∈ Knave
 ```
 
-
 /-
 def Xor' (a b : Prop) := (a ∧ ¬ b) ∨ (b ∧ ¬ a)
 
