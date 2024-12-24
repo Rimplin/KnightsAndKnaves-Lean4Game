@@ -1,13 +1,10 @@
 import Game.Levels.EquationalReasoning
-import Game.Levels.EquationalReasoningAutomation
---import Game.Levels.EquationalReasoningCalc
 import Game.Levels.Logic
 --import Game.Levels.LogicAlternative
 --import Game.Levels.SetTheoryLemmas
 import Game.Levels.KnightsAndKnavesLemmas
 import Game.Levels.KnightsAndKnaves
 import Game.Levels.KnightsAndKnaves2
---import Game.Levels.KnightsAndKnavesAndNormals
 
 Title "Reasoning"
 Introduction

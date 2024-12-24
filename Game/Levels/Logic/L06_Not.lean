@@ -1,81 +1,20 @@
 import Game.Metadata
 
-World "Logic" 
+World "Logic"
 Level 6
 
-Title "Not Connective, ¬" 
-
-#check not_false
-/-
-
-Index
-https://leanprover-community.github.io/mathlib4_docs/
-
-Init.Core
-https://leanprover-community.github.io/mathlib4_docs/Init/Core.html#not_true
-
-Init.Core
-https://leanprover-community.github.io/mathlib4_docs/Init/Core.html#Iff
-
-Init.Core
-https://leanprover-community.github.io/mathlib4_docs/Init/Core.html#propext
-
-Mathlib.Logic.Basic
-https://leanprover-community.github.io/mathlib4_docs/Mathlib/Logic/Basic.html#of_not_not
-
-lean4/src/Init/Core.lean at daa22187642d4cf6954c39a23eab20d8a8675416 · leanprover/lean4 · GitHub
-https://github.com/leanprover/lean4/blob/daa22187642d4cf6954c39a23eab20d8a8675416/src/Init/Core.lean#L1391-L1391
-
-Init.Core
-https://leanprover-community.github.io/mathlib4_docs/Init/Core.html#Iff.of_eq
-
-lean4/src/Init/Core.lean at daa22187642d4cf6954c39a23eab20d8a8675416 · leanprover/lean4 · GitHub
-https://github.com/leanprover/lean4/blob/daa22187642d4cf6954c39a23eab20d8a8675416/src/Init/Core.lean#L803-L803
-
-Mathlib.Logic.Basic
-https://leanprover-community.github.io/mathlib4_docs/Mathlib/Logic/Basic.html#iff_eq_eq
-
-Init.Core
-https://leanprover-community.github.io/mathlib4_docs/Init/Core.html#iff_of_eq
-
-Init.Core
-https://leanprover-community.github.io/mathlib4_docs/Init/Core.html#iff_iff_eq
-
-lean4/src/Init/Core.lean at daa22187642d4cf6954c39a23eab20d8a8675416 · leanprover/lean4 · GitHub
-https://github.com/leanprover/lean4/blob/daa22187642d4cf6954c39a23eab20d8a8675416/src/Init/Core.lean#L1390-L1390
-
-Init.Core
-https://leanprover-community.github.io/mathlib4_docs/Init/Core.html#propext
-
-lean4/src/Init/Core.lean at daa22187642d4cf6954c39a23eab20d8a8675416 · leanprover/lean4 · GitHub
-https://github.com/leanprover/lean4/blob/daa22187642d4cf6954c39a23eab20d8a8675416/src/Init/Core.lean#L1304-L1304
-
-Init.Ext
-https://leanprover-community.github.io/mathlib4_docs/Init/Ext.html#propext_iff
-
-biconditional at DuckDuckGo
-https://start.duckduckgo.com/lite/?q=biconditional
-
-Logical biconditional - Wikipedia
-https://en.wikipedia.org/wiki/Logical_biconditional#Colloquial_usage
--/
+Title "Not Connective, ¬"
 
 /-
-Another way to say that `P = False` is by saying `¬P = True`. These two statements say the same thing. This is how we will define `¬`.
-
-Two nots give a true. Double negatives. Two negatives make/resolve into a positive.
-Intuitvely, this fits how negation or 'not' works in language.
-
 # What is `False` exactly? 
 
 Proving a proposition and its negation is a special case of 'deriving a contradiction' because we have proven `p ∧ ¬p` which is always false. A logical system that has this quality is called an inconsistent system.
-
 
 ## But what is `False` exactly?(now we know what `False` is from the truth value perspective so this would need a rewrite in logic world, no it doesn't because we were dealing with `= False` but now we are dealing with `→ False`).
 For now, just know that `False` is a type that has no introduction rule and that proving `False` means deriving a contradiction. So, to prove `¬p` , you must assume `p` and derive a contradiction. We will explain in more detail what is meant by 'contradiction'.
 -/
 
-Introduction 
+Introduction
 "
 In this level we introduce the negation, the `¬` connective (read as 'not').
 
@@ -123,7 +62,7 @@ To see `¬P` in its implication form, you can do `unfold Not at hnP` to unfold t
 
 /-
 The empty type. It has no constructors.
-`False` is the empty proposition, thus it has no introduction rule. It represents a contradiction. Finding a 
+`False` is the empty proposition, thus it has no introduction rule. It represents a contradiction.
 What is a contradiction? Well, it is a propostional statement that is false for all possible values of its variables. Constructing a term(i.e a proof) of this type is proving something that is false. The standard example of a contradiction is the following: 
 
 Another meaning for the term contradiction to refer to the assertion or proof of a propositional statement that is false for all possible values of its variables. We will use both interchangeably. So, deriving a contradiction means constructing such a proof.
@@ -138,7 +77,6 @@ Moreover, `False` has no introduction rule , so the reasoning described above is
 -/
 
 #check not_of_eq_false
-#check eq_false
 Statement {P: Prop}
 {hP : P} {hnP : ¬P}
 : False := by{

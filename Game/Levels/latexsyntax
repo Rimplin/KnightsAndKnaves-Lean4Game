@@ -16,3 +16,5 @@ $\\displaystyle {\\frac {P\\rightarrow Q, P}{\\therefore Q}}$
 
 This is what this format means in general:
 $\\displaystyle {\\frac {Premises}{Conclusion}}$
+
+$\\displaystyle {\\frac {P\\lor Q,\\neg P}{\\therefore Q}}$

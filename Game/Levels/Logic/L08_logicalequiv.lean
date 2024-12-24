@@ -1,1 +1,0 @@
-#check iff_iff_implies_and_implies

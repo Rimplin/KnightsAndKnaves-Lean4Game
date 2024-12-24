@@ -39,3 +39,26 @@ where `P` is `x=2` and `Q` is `y=6`, we can construct a new proposition `P ∧ Q
 #check of_eq_false
 #check eq_true
 #check eq_false
+
+#check imp_false
+#check implies_true
+#check true_implies
+#check true_imp_iff
+#check false_implies
+#check true_iff
+#check false_iff
+#check iff_false
+#check Or.elim
+#check not_not
+-- false_or or_false not_true not_false_eq_true not_true_eq_false true_or or_true
+
+variable {emTruth : (P : Prop) → P = True ∨ P = False}
+
+#check true_ne_false
+#check not_true_eq_false
+#check refl
+#check eq_self
+#check eq_false
+     #check Implies.trans
+     #check trans
+     #check Eq.trans

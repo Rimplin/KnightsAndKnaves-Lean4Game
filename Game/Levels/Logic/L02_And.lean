@@ -1,13 +1,10 @@
 import Game.Metadata
 
-World "Logic" 
+World "Logic"
 Level 2
 
-Title "And , `∧`" 
-/-
-Instead of `x=2` , think `P`. Instead of `4*y=16` think `Q`. The new proposition would then be `P ∧ Q`.
--/
-Introduction 
+Title "And , `∧`"
+Introduction
 "
 In this level, we introduce the `∧` logical connective (read as 'and').
 
@@ -73,52 +70,16 @@ where `arg1 : P` , `arg2 : Q` , `(And.intro arg1 arg2) : P ∧ Q`.
 
 Use it to construct an object of type `P ∧ Q`, and use `exact` to close the goal.
 "
-/-
-In this level, we have a proof of `P`(i.e `P` is true), and a proof of `Q` (i.e `Q` is true). We want to construct a proof of `P ∧ Q`. 
-
-The `∧` introduction rule is perfect for the job. We can use it to obtain an object that EXACTLY matches the goal.
--/
-/-
-An example using it would be : 
-```
-And.intro left right
-```
--/
-
--- Notice that `And.intro hP hQ` has type `P ∧ Q` which is EXACTLY the goal. Let Lean know.
-
--- In logic, for `P,Q` propositions, `P and Q` is true when both `P` is true and `Q` is true, being false otherwise.
-
-/-
-
-## `constructor` tactic
-Using the `constructor` tactic will split a goal of the form `P ∧ Q` into two subgoals `P`,`Q` where you can deal with each one separately
-
-### Example: `And` , `∧`
-And.left h
-And.right h
-
--/
 
 Statement (P Q : Prop) (hP : P) (hQ : Q)  
   : P ∧ Q  := by
   {
     exact And.intro hP hQ 
-    --Hint 
-    --"
-    --The constructor tactic transformed the goal `P ∧ Q` into two subgoals the first being `P` and the second being `Q`. This way of doing things matches the meaning of the `∧` connective.
-    --"
-    --constructor
-    --Hint "Notice that the goal is now `P`"
-    --exact hP
-    --Hint "After closing the goal `P`, you now have to close the goal `Q`"
-    --exact hQ
   }
 
-Conclusion 
+Conclusion
 "
 "
 
-NewTactic  constructor
 NewTheorem And.intro 
 NewDefinition and

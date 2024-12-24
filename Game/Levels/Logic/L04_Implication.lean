@@ -4,17 +4,6 @@ World "Logic"
 Level 4
 
 Title "Implication, →"
-#check Function.mt
-#check Function.mtr
-
-#check and_imp
---variable {emTruth : (P : Prop) → P = True ∨ P = False}
-
-#check iff_def
-#check not_or_of_imp
-#check true_iff
-#check or_true
-#check true_implies
 
 Introduction
 "
@@ -55,11 +44,8 @@ You can think of logical implication as a function with one input and one output
 Statement {P Q : Prop}  (hP : P) (ptoq: P → Q) : Q := by
   exact ptoq hP
 
-Conclusion 
+Conclusion
 "
 In the next level, you will learn how to deal with an implication as the goal you have to prove.
 "
--- This is what is called an inference rule. It has two assumptions, `p : P` , `ptoq : P → Q` and the conclusion `Q`. It is an inference rule because we 'infer' a certain conclusion from assumptions or already established theorems.
-
-#check imp_iff_not_or
-NewDefinition imp 
+NewDefinition imp

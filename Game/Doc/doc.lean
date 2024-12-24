@@ -1,10 +1,19 @@
 import Game.Metadata
 
 /--
-Unfoldable:
-unfold Not at ...
-¬P is P → False
+## Implication defintion
+`¬P` is equivalent to `P → False`
 
+Given
+```
+hnP : ¬P
+```
+unfold Not at hnP will result in:
+```
+hnP : P → False
+```
+
+## truth table
 $
 \begin{array}{|c c|} 
 \hline
@@ -27,20 +36,24 @@ This rule is sometimes called ex falso (short for ex falso sequitur quodlibet),
 or the principle of explosion.
 For more information: [Propositional Logic](https://lean-lang.org/theorem_proving_in_lean4/propositions_and_proofs.html#propositional-logic)
 
-`False` is an 'empty' type that has no introduction rule. 
-
-`False` is the empty proposition. Thus, it has no introduction rules.
-
 Proving `False` means deriving a contradiction. So, to prove `¬p` , you must assume `p` and derive a contradiction. 
 -/
 DefinitionDoc Not as "¬"
 
 /--
-Such a system having `False` or a contradiction is called an inconsistent system.
+This principle asserts that if you have contradictory assumptions then you can prove anything.
+Example of contradictory assumptions:
+```
+h: P
+nh: ¬P
+```
 
-Any proposition is true and studying the current system becomes worthless.
+Proving `False` means deriving a contradiction.
+
+A contradiction is when `p` and `¬p` are both true.
 -/
 DefinitionDoc False as "`False`"
+
 /--
 You can think of a proposition as a statement that is either true or false(obviously, it can't be both at the same time).
 
