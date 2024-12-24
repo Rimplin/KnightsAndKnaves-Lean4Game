@@ -115,13 +115,10 @@ $
 
 Notice that regardless of the truth value of `P`, the two propositions `¬P` and `P → False` have the same truth table. Therefore, they can be used interchangeably.(we say that these two expressions are logically equivalent, but let's leave this to a future level)
 
-What `¬P` means is that if `P` were true, then we can deduce a contradiction.
+What `¬P` means is that if `P` were true, then we can deduce a contradiction. We know that `P` is true. Therefore, we can prove a contradiction which is the goal.
 
-This is how `¬P` is defined in Lean. You can do `unfold Not at hnP` to replace `¬P` with its implication form.
+To see `¬P` in its implication form, you can do `unfold Not at hnP` to unfold the definition of `¬`.
 
-Remember that an implication acts like a function, that takes a proof of whats on the left hand returning a proof of whats on the right hand side.
-
-For this level, `¬P` being true tells us that a proof of `P` gives us a proof of `False`. We have a proof of `P`. Therefore we can obtain a proof of `False` which is the goal.
 "
 
 /-
@@ -145,16 +142,27 @@ Moreover, `False` has no introduction rule , so the reasoning described above is
 Statement {P: Prop}
 {hP : P} {hnP : ¬P}
 : False := by{
-  exact hnP hP 
+    Hint (hidden:=true)
+   "Remember that an implication acts like a function, that takes a proof of whats on the left hand returning a proof of whats on the right hand side.
+
+For this level, `¬P` being true tells us that a proof of `P` gives us a proof of `False`. We have a proof of `P`. Therefore we can obtain a proof of `False` which is the goal."
+    unfold Not at hnP
+
+    Hint (hidden:=true)
+   "Remember that an implication acts like a function, that takes a proof of whats on the left hand returning a proof of whats on the right hand side.
+
+For this level, `¬P` being true tells us that a proof of `P` gives us a proof of `False`. We have a proof of `P`. Therefore we can obtain a proof of `False` which is the goal."
+    exact hnP hP 
  } 
-example (hPnp : P ∧ ¬P )
-  : False  := by
-  {
-   exact hPnp.right hPnp.left
-  }
 
 Conclusion 
 "
+In the next level, we will explore what it means to have proven `False`.
+"
+
+/-
+
+circular explanation below, P ∧ ¬P is false but proving it true. P is true but having ¬P proves it false.
 To emphasize the idea of what 'contradiction' means, consider the following truth table:
 $
 \\begin{array}{|c|c|} 
@@ -172,6 +180,5 @@ In the current proof state, we know that `P ∧ ¬P` is true but notice from the
 hP : P   proof that P is true
 hnP : ¬P proof of ¬P is true i.e P is false
 ```
-
-In the next level, we will explore what it means to have proven `False`.
-"
+-/
+NewTactic unfold

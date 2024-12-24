@@ -65,5 +65,5 @@ Conclusion
 "
 "
 
-NewTactic push_neg simp
+NewTactic push_neg
 NewTheorem not_and_or

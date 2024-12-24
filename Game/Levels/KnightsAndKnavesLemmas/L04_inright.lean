@@ -7,8 +7,6 @@ Title "`inright_notinleft`"
 
 Introduction
 "
-The lemma `inright_notinleft` in this level applies to any two sets that are disjoint. The two we are interested in of course are `Knight`,`Knave`.
-
 The reasoning goes as follows:
 
 Assume `A ∈ left`. This is done using `intro` tactic.
@@ -29,4 +27,19 @@ Statement inright_notinleft
 
 Conclusion 
 "
+We have proved the following theorem that you can use in future levels:
+```
+theorem inright_notinleft
+(h : left ∩ right = ∅ )
+(Aright : A ∈ right)
+: A ∉ left
+```
+
+Example:
+For a goal `A ∉ left`:
+`exact inright_notinleft h Aright` will close the goal.
+
+The theorem `inright_notinleft` can be used for any two disjoint sets. The two we are interested in of course are `Knight`,`Knave`.
+
+In the next level, you will use this theorem to prove that if `A` is a knave (`A ∈ Knave`), then `A` is not a knight (`A ∉ Knight`).
 "

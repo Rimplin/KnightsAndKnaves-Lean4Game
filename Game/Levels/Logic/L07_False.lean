@@ -64,7 +64,6 @@ example (h : ∀(Q : Prop), False → Q) (hF : False) : x=2 := by
   exact h (x=2) hF 
 
 #check false_ne_true
-  -- prove ¬(P ∧ ¬P)
 
 Conclusion
 "
@@ -80,7 +79,7 @@ Proving `False` is what's usually called deriving a contradiction, and note that
 --Or saying I am sick and I am not sick. 
 --For our world, asserting `P ∧ ¬P` for any proposition `P` is really weird. We say that `P` and `¬P` contradict each either, or that they are contradictory. And we say that proving `P ∧ ¬P`,`False`, or any other statement that is always `False` is deriving contradiction.
 
-NewTactic «have» unfold rcases contradiction
+NewTactic contradiction
 NewTheorem false_ne_true 
 
 NewDefinition False Not

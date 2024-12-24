@@ -19,16 +19,23 @@ Before diving into an actual knights and knaves puzzle, lets explore basic resul
 We will first look at the assumption that no one can be a knight and a knave at the same time.
 It is represented as:
 ```
-h : left ∩ right = ∅ 
+h : Knight ∩ Knave = ∅ 
 ```
+
+The reasoning in this level applies to any two finite sets, so we use the two sets `left`,`right`.
 
 In our problem, we have:
 ```
 Aleft: A ∈ left
 Aright: A ∈ right
+h : left ∩ right = ∅
 ```
 This means that `A` belongs to both `left` and `right` i.e `A ∈ left ∩ right`.
 
+Prove `A ∈ left ∩ right` using `AinBothInter : A ∈ left ∧ A ∈ right → A ∈ left ∩ right`.
+"
+
+/-
 So, we do have someone who is both a knight and a knave. This contradicts `h`.
 
 This would contradict `h` giving us `False` which is the goal.
@@ -47,7 +54,7 @@ twoEqualstwo : 2=2
 ```
 
 You can choose any name after `have` and any type after `:`.
-"
+-/
 /-
 Heres an example,
 Given the following proof state:
@@ -101,36 +108,63 @@ extending contradiction still seems to require passing the arguments, rendering 
 -- consider using this, if there is a finset version
 #check Set.mem_empty_iff_false
 #check Set.not_mem_empty 
-/-- dis22 -/
-TheoremDoc disjoint as "disjoint" in "Knights and Knaves"
-Statement disjoint (preamble := have A_not_in_Empty := Finset.not_mem_empty A) {inst : DecidableEq Inhabitant}(left : Finset Inhabitant ) (right : Finset Inhabitant)
+
+Statement disjoint (preamble := have A_not_in_Empty := Finset.not_mem_empty A) {inst : DecidableEq Inhabitant}{left : Finset Inhabitant } {right : Finset Inhabitant}
 (Aleft : A ∈ left)
 (Aright : A ∈ right)
 (h : left ∩ right = ∅)
+(AinBothInter : A ∈ left ∧ A ∈ right → A ∈ left ∩ right)
+(AnotEmpty : A ∉ (∅ : Finset Inhabitant) )
 : False := by
   #check Finset.mem_inter
-  have := Finset.mem_inter.mpr ⟨Aleft, Aright⟩ 
-  Hint "We know that `left ∩ right = ∅`, so replace it with `∅` using `rw` getting `A ∈ ∅`"
-  rw [h] at this
-  Hint "Remember that the empty is the set with no elements by definition. But we have found one, namely `A`. This directly contradicts the definition of `∅` so `contradiction` will work here."
+  Template
+  have  AinInter : A ∈ left ∩ right:=by Hole exact AinBothInter ⟨Aleft, Aright⟩ 
+  Hint "
+But,  `left ∩ right = ∅` so `A ∈ ∅` 
+
+  We know that `left ∩ right = ∅`, so replace it with `∅` using `rw` getting `A ∈ ∅`"
+  Hole
+  rw [h] at AinInter
+  Hint "
+So now we have `A ∈ ∅` but the empty set is by defintion the set with no elements i.e `¬ (A ∈ ∅)` written as `A ∉ ∅`. Therefore, `False`.
+"
+  Hint (hidden := true) " Remember `A ∉ ∅` is `A ∈ ∅ → False` , or use `contradiction`"
   contradiction
 
 #check Finset.inter_eq_right
--- Note that the forward direction is always true, and our assumption `h` wasn't used, but the backward direction is not always( We used `h` for that). This offers a simplification and decluttering of the proof state and will be followed from now on. The downside is an apparent loss of information, but the coming levels will show that this is not the case.
+--    But we have found one, namely `A`. This directly contradicts the definition of `∅` so `contradiction` will work here."
 
-example (P : Type) (h : P → Q) : P → Q := by assumption
+-- Note that the forward direction is always true, and our assumption `h` wasn't used, but the backward direction is not always( We used `h` for that). This offers a simplification and decluttering of the proof state and will be followed from now on. The downside is an apparent loss of information, but the coming levels will show that this is not the case.
 
 Conclusion
 "
-This works for any two disjoint sets, specifically the two sets `Knight`,`Knave`.
+We have proved the following theorem which you can use in future levels:
+```
+theorem disjoint
+(h : left ∩ right = ∅ )
+(Aleft : A ∈ left)
+(Aright : A ∈ right)
+: False
+```
 
+Example:
+For a goal `False`:
+```
+exact disjoint h Aleft Aright
+```
+would close the goal
+
+The two assumptions `AinInter` and `AnotEmpty` are always true for any sets, and are available in Lean but where added explictly to this level for your convenience. So, the `disjoint` theorem can just use them instead of having to take them as arguments.
+
+The theorem `disjoint` can be used for any two disjoint sets, specifically the two sets `Knight`,`Knave`.
+"
+/-
 Even if we didn't have `A_not_in_empty` in the assumptions, `contradiction` would have worked here because Lean knows the following theorem: 
 ```
 Finset.not_mem_empty.{u_1} {α : Type u_1} (a : α) : a ∉ ∅
 ```
-"
+-/
 
-#print disjoint
 NewTheorem Finset.mem_inter disjoint
-NewDefinition Finset inter KnightsKnaves
+NewDefinition Finset inter KnightsKnaves mem
 NewTactic «have» 

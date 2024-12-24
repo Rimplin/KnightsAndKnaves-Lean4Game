@@ -1,16 +1,15 @@
 import Game.Metadata
 
-World "KnightsAndKnavesLemmas" 
+World "KnightsAndKnavesLemmas"
 Level 2
 
-Title "`inleft_notinright`" 
+Title "`inleft_notinright`"
 
 Introduction 
 "
-The lemma `inleft_notinright` in this level applies to any two sets that are disjoint. The two we are interested in of course are `Knight`,`Knave`.
+For two disjoint sets `left`,`right`(i.e with no common element), `A ∈ left` means `A` can't be in `right` i.e `¬ (A ∈ right)` or `A ∉ right`.
 
 The reasoning goes as follows:
-
 Assume `A ∈ right`. This is done using `intro` tactic.
 "
 
@@ -18,12 +17,31 @@ Statement inleft_notinright
   {left : Finset K} {right : Finset K}
 {inst : DecidableEq K}
 (h : left ∩ right = ∅ )
-(h' : A ∈ left) : A ∉ right := by
-  intro a 
-  Hint "Look familiar? This is exactly like the previous level which gave us `disjoint` theorem."
-  exact disjoint h h' a
+(Aleft : A ∈ left) : A ∉ right := by
+  intro a
+  Hint
+  "
+This proof state is what `disjoint` was created to deal with.
+ "
+  exact disjoint h Aleft a
 
-Conclusion 
+Conclusion
 "
-In the next level, you will use this theorem to prove that if `A` is a knight, then `A` is not a knave.
+We have proved the following theorem that you can use in future levels:
+```
+theorem inleft_notinright
+(h : left ∩ right = ∅ )
+(Aleft : A ∈ left)
+: A ∉ right
+```
+
+Example:
+For a goal `A ∉ right`:
+`exact inleft_notinright h Aleft` will close the goal.
+
+The theorem `inleft_notinright` can be used for any two disjoint sets. The two we are interested in of course are `Knight`,`Knave`.
+
+In the next level, you will use this theorem to prove that if `A` is a knight (`A ∈ Knight`), then `A` is not a knave (`A ∉ Knave`).
 "
+
+NewTheorem inleft_notinright

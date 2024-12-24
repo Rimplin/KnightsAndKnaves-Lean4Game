@@ -3,24 +3,24 @@ import Game.Metadata
 World "KnightsAndKnaves"
 Level 1
 
-Title ""
+Title "I am a knave"
 
 Introduction 
 "
 Let's solve the previously mentioned 'I am a knave' puzzle.
 
-Suppose we have an inhabitant A which says: 
-A : 'I am a knave.'
+Suppose we have an inhabitant `A` which says: 
+```
+A : I am a knave.
+```
 
-Merely uttering this statement is a contradiction. This is equivalent to the liars paradox(https://en.wikipedia.org/wiki/Liar_paradox). A saying 'I am a knave' is like A saying 'I am a liar' or 'I am lying'. 
+If `A` were telling the truth(i.e were a knight), then `A` would be lying which is a contradiction. 
 
-If `A` were telling the truth(i.e a knight), then `A` would be lying which is a contradiction. 
+Similarly if `A` were lying(i.e were a knave) then `A` would be telling the truth. 
 
-Similarly if `A` were lying(i.e a knave) then A would be telling the truth. 
+Regardless of what `A` is, we fall into contradiction. The proof will take all cases for `A`, which are either the fact of always telling the truth(Knight) or always lying(Knave) and will show this contradiction.
 
-Regardless of what A is, we fall into contradiction. The proof will take all cases for A, which are either the fact of always telling the truth(Knight) or always lying(Knave) and will show this contradiction.
-
-Remember that `A` is either a knight or a knave, represented by `h1` , and our reasoning was taking every case and showing that we reach the same conclusion in both(which is a contradiction i.e `False`). This is known as a proof by cases.
+Remember that `A` is either a knight or a knave, represented by `h1` , and our reasoning was taking every case and showing that we reach the same conclusion `False` in both. This is known as a proof by cases.
 
 For this, we need the `cases` tactic. Try `cases h1` and see what happens.
 "
@@ -37,20 +37,21 @@ Statement IamKnave
 
   {
   cases h1
-  · 
+  ·
    Hint 
   "Notice that `h1` is now replaced by `h_1`, and we have two goals to prove instead of one. 
   The difference between each is that in the first, A is a knight(`h_1 : A ∈ Knight`) and in the second A is a knave(`h_1 : A ∈ Knave`).  
-  
-  Combine the statement of `A` and the fact `A` is a knight to conclude the truth of `A`'s statement. 
+
+  Use the `have` tactic  and the assumptions `stA` , `h_1` to conclude `A ∈ Knave`.
   "
 
-   have := stA.mp h_1
-   Hint 
-  "So now we have that A is a knave, in addition to what we already knew (A being a knight). 
+   have AKnave := stA.mp h_1
+   Hint
+  "So now we have `h_1 : A ∈ Knight` and `[{AKnave}] : A ∈ Knave`. 
 
-  But this contradicts the fact that these two sets are disjoint."
-   exact disjoint h h_1 this
+  But, remember that `Knight` and `Knave` are disjoint i.e have no common element , `h : Knight ∩ Knave = ∅`.
+  "
+   exact disjoint h h_1 AKnave
 
   ·
    --Hint "Notice that h_1 is now `A ∈ Knave`. There are multiple ways to get a contradiction here. Either by concluding `A ∉ Knave` from `stAn` or by concluding `A ∈ Knight` from `stA` which would be identical."
@@ -83,6 +84,9 @@ example
 
 Conclusion 
 "
+If you have heard about the liar's paradox before (https://en.wikipedia.org/wiki/Liar_paradox), then this should look familiar.
+
+A saying 'I am a knave' is like A saying 'I am a liar' or 'I am lying'. 
 "
 
 example 
@@ -111,3 +115,4 @@ example
 NewTactic cases
 
 NewTheorem IamKnave
+NewDefinition Iff

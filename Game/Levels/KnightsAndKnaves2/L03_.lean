@@ -31,6 +31,7 @@ Statement {A B C : Prop}
   · simp [hA,h] at stB 
     sorry
   · simp [hA,h] at stB
+
     sorry
 
 Conclusion 

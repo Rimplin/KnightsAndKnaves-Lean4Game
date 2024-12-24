@@ -3,15 +3,15 @@ import Game.Metadata
 World "Logic" 
 Level 2
 
-Title "And" 
+Title "And , `∧`" 
 /-
 Instead of `x=2` , think `P`. Instead of `4*y=16` think `Q`. The new proposition would then be `P ∧ Q`.
 -/
 Introduction 
 "
-In this level, we introduce the `∧` logical connective (read as 'and'). You can think of `∧` as taking to input proposition and outputting a new proposition.
+In this level, we introduce the `∧` logical connective (read as 'and').
 
-Remember the example given at the beginning of the world? We restate it here:
+Remember the following example:
 Given the two propositions `x=2`(`P`), `y=6`(`Q`) , we can construct a new propositon `x=2 ∧ y=6`(`P ∧ Q`) which is read as `x=2 and y=6`(`P and Q`).
 
 What is the truth value of this new proposition `x=2 ∧ y=6`(`P ∧ Q`)? 
@@ -38,7 +38,7 @@ $
 
 
 The proposition `x=2 ∧ y=6`(`P ∧ Q`) is true when `x=2`(`P`) is true AND `y=6`(`Q`) is true.
-In other words, if `P` is true AND `Q` is true. This is how things work regarless of what `P` is, what `Q` is. The only thing that matters is their truth value.
+In other words, if `P` is true AND `Q` is true. This is how things work regardless of what `P` is, what `Q` is. The only thing that matters is their truth value.
 Therefore, the more general truth table is the same:
 $
 \\begin{array}{|c|c|c|} 
@@ -56,13 +56,20 @@ F & F & F \\\\
 \\end{array}
 $
 
-
 Notice that `P ∧ Q` is true when both `P` is true and `Q` is true, being false otherwise.
 
-From this, we conclude that we can introduce `∧` if we have a proof of `P` and a proof of `Q`. The `∧` introduction rule takes these two proofs giving us `P ∧ Q`:
+From this, we conclude that we can introduce `∧` if we have a proof of `P` and a proof of `Q`.
 ```
   And.intro  (left : P) (right : Q) : P ∧ Q
 ```
+
+You can think of `And.intro` as a function that takes two inputs: a proof of `P`, a proof of `Q` and returns a proof of `P ∧ Q`.
+
+For example:
+```
+And.intro arg1 arg2 
+```
+where `arg1 : P` , `arg2 : Q` , `(And.intro arg1 arg2) : P ∧ Q`. 
 
 Use it to construct an object of type `P ∧ Q`, and use `exact` to close the goal.
 "
@@ -96,7 +103,6 @@ And.right h
 Statement (P Q : Prop) (hP : P) (hQ : Q)  
   : P ∧ Q  := by
   {
-    Hint (hidden:=true) "Try `exact And.intro hP hQ` or `constructor`" 
     exact And.intro hP hQ 
     --Hint 
     --"

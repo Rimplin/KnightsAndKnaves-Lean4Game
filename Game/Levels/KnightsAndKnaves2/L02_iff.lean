@@ -9,7 +9,6 @@ Title ""
 wolfram generated
 A ⇔ (C ∨ B)
 B ⇔ (A ⇔ C)
-
 -/
 Introduction 
 "
@@ -17,15 +16,11 @@ A: C is a knight or B is a knight.
 
 B: A is a knight, if and only if C is a knight.
 
+
+After filling in every `have` block, prove `A ∧ B ∧ C` using `hA` , `hB` , `hC`.
+"
+/-
 Everytime you need to assume, and for every bullet point, you would need to use the `have` tactic.
-
-Assuming `¬A`,
-- Prove `¬C ∧ ¬B` from `stAn`
-- Prove `¬(A ↔ C)` from `stBn`
-- Prove `A ↔ C` from `¬A, ¬C`
-- Prove `False` from `¬(A ↔ C) , (A ↔ C)`
-
-We have proven `¬A → False` which is `¬¬A` i.e `A`.
 
 Notice that `¬A` means `¬C, ¬B` where ¬B gives that A and C dont have the same type. This is a contradiction of course so the proposition ¬A is not true which means that A is true.  
 
@@ -38,66 +33,78 @@ Having B, we get that (A ↔ C) which gives us C. The final answer is A ∧ B �
 Now we know A,B. From B we get that A ↔ C, which means C.
 
 Now we know A,B,C.
-"
+-/
+
+    #check iff_true_right
+    #check iff_true_intro
+    #check iff_of_true
 Statement {A B C : Prop}
 {stA : A ↔ (C ∨ B)}
 {stAn : ¬A ↔ ¬(C ∨ B)}
 {stB : B ↔ (A ↔ C)}
 {stBn : ¬B ↔ ¬(A ↔ C)}
 : A ∧ B ∧ C := by 
-   
-  have stAn2 := stAn
-  rw [stB] at stAn 
-  rw [not_or] at stAn
-  have hA: A := by 
+  Template 
+  have hA: A := by
+    Hint 
+    "
+Assuming `¬A`,
+- Prove `¬C ∧ ¬B` from `stAn`
+- Prove `¬(A ↔ C)` from `stBn`
+- Prove `A ↔ C` from `¬A, ¬C`
+- Prove `False` from `¬(A ↔ C) , (A ↔ C)`
+    "
     by_contra nA 
-    have ⟨nC,AdiffC⟩ := stAn.mp nA
-    rw [not_iff] at AdiffC
-    have hC := AdiffC.mp nA 
-    exact nC hC
-  
-  -- explore cases
-  -- now we have that C ∨ B. Looking at the case where B is true, doesn't seem to contradict anything and we don't have enough information to make a conclusion. Looking at the case where ¬B is true, we have that C must be true from the C ∨ B,and from stBn we conclude that A,C dont have the same type. So ¬C must be true as well which is a contradiction. 
-  have CorB := stA.mp hA 
-
-  -- another strat, cases CorB
-  cases CorB
-  · simp [h,hA] at stB 
-    -- done
-    exact ⟨hA,stB,h⟩  
-  · simp [hA,h] at stB 
-    -- done
-    exact ⟨hA,h,stB⟩ 
-
-example {A B C : Prop}
-{stA : A ↔ (C ∨ B)}
-{stAn : ¬A ↔ ¬(C ∨ B)}
-{stB : B ↔ (A ↔ C)}
-{stBn : ¬B ↔ ¬(A ↔ C)}
-: A ∧ B ∧ C := by 
-  have hA : A := by 
-    by_contra nA 
-    have nCnB := stAn.mp nA 
+    -- asdfasdasdf
+    have nCnB := by Hole exact stAn.mp nA
     push_neg at nCnB
-    have nC := nCnB.left
-    have : A ↔ C := by 
-    -- when proof of something is based on truth table, usually simp can do it
-      simp [nA,nC]
-      --exact (iff_true_right nC).mpr nA
-    have nAiffC := stBn.mp nCnB.right 
-    contradiction
+    have AdiffC := stBn.mp nCnB.right
+    rw [not_iff] at AdiffC
+    have hC := AdiffC.mp nA
+    exact nCnB.left hC
 
-  have hB : B := by 
-    by_contra nB
-    simp [nB] at stA 
-    have := stBn.mp nB
-    contradiction
+  -- now we have that C ∨ B. Looking at the case where B is true, doesn't seem to contradict anything and we don't have enough information to make a conclusion. Looking at the case where ¬B is true, we have that C must be true from the C ∨ B,and from stBn we conclude that A,C dont have the same type. So ¬C must be true as well which is a contradiction. 
+  have CorB : C ∨ B := by 
+    Hint
+    "
+Prove `C ∨ B` from `stA` using `hA`.
+    "
+    Hole
+    exact stA.mp hA
 
-  have AiffC := stB.mp hB
-  have hC := AiffC.mp hA
-  exact ⟨hA,hB,hC⟩ 
+-- take two cases
+  rcases CorB with hC|hB
+  ·
+    have AiffC : A ↔ C := by
+      Hole
+      exact iff_of_true hA hC
+    have hB : B := by
+      Hole
+      exact stB.mpr AiffC
+    Hole
+    exact ⟨hA,hB,hC⟩ 
+  ·
+    have AiffC : A ↔ C := by 
+      Hint 
+      "
+Prove `A ↔ C` from `stB` using `hB`.
+      "
+      Hole
+      exact stB.mp hB
 
+    have hC : C := by 
 
+      Hint
+      "
+Prove `C` from `AiffC` using `hA`
+      "
+      Hole
+      exact AiffC.mp hA
+    Hole
+    Hint 
+    "
+    "
+    exact ⟨hA,hB,hC⟩ 
 
 /-
 wolfram generated

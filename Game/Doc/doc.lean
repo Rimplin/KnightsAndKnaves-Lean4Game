@@ -6,7 +6,7 @@ unfold Not at ...
 ¬P is P → False
 
 $
-\begin{array}{|c c|c|} 
+\begin{array}{|c c|} 
 \hline
 P & ¬P \\
 \hline
@@ -61,11 +61,16 @@ The truth table of a logical connective illustrates the rule for that logical co
 -/
 DefinitionDoc «Prop» as "Prop"
 
+/--
+Logical implication `P → Q` is made up of two components:
+- The premise, which in this case is `P`
+- The conclusion, which in this case is `Q`
 
-/-- 
+P → Q is read as 'If P is true, then Q is true.
+
 # truth table
 $
-\begin{array}{|c|c|c|} 
+\begin{array}{|c c|c|} 
 \hline
 P & Q & P → Q \\
 \hline
@@ -80,12 +85,9 @@ F & F & T \\\\
 \end{array}
 $
 
-Logical implication `P → Q` is made up of two components:
-- The premise, which in this case is `P`
-- The conclusion, which in this case is `Q`
-
 A statement `P → Q` is false when `P` is true and `Q` false, it's true otherwise.
 
+# Implication as a function
 What logical implication does is that it takes evidence or proof for `P` and transforms it returning a proof of `Q`.
 The truth of `P` IMPLIES the truth of `Q`. A proof of `P` IMPLIES a proof of `Q`.
 
@@ -100,7 +102,7 @@ DefinitionDoc imp as "→"
 Truth table:
 
 $
-\begin{array}{|c|c|c|} 
+\begin{array}{|c c|c|} 
 \hline
 P & Q & P ∧ Q \\
 \hline
@@ -139,7 +141,7 @@ DefinitionDoc and as "∧"
 /--
 # Truth Table
 $
-\begin{array}{|c|c|c|} 
+\begin{array}{|c c|c|} 
 \hline
 P & Q & P ∨ Q \\
 \hline
@@ -195,6 +197,30 @@ x - 7 = x - 7
 TacticDoc rfl
 
 /--
+The assumption tactic can also be used here which searches for an assumption that matches the goal, and closes the goal if it finds one.
+-/
+TacticDoc assumption
+
+/--
+`intro` tactic is used to deal with goals of the form `P → Q`.
+
+Having the following:
+```
+Goal:
+P → Q
+```
+We want to prove that 'If `P` is true, then `Q` is true'. 
+
+To do this, we first need to assume `P` then prove `Q`. Assuming `P` is done using `intro name` for any 'name'.
+-/
+TacticDoc intro
+
+/--
+The `constructor` tactic will split a goal of the form `P ∧ Q` into two subgoals `P`,`Q` where you can deal with each one separately.
+-/
+TacticDoc constructor
+
+/--
 Contradiction is a tactic that detects if you have contradictory assumptions and if so, closes the goal.
 -/
 TacticDoc contradiction
@@ -236,9 +262,48 @@ for `P Q : Prop`, `right` transforms the goal to `Q`.
 TacticDoc right
 
 /--
-[[mathlib_doc]]
-There is an alternative syntax for `have` which you can view in the right side pane. In any case, it will be introduced later on when its more convenient to use.
-`have name := ........`
+
+## Syntax
+
+### without specifying the type
+`have name := some-term `
+where `name` is the new assumption that will appear which will have `some-type` where `some-term : some-type` and `some-type : Prop` i.e `some-term` is a proof of some proposition.
+
+### with specifying the type
+```
+have name : some-proposition := by
+  proof steps
+  ...
+  proof steps
+```
+You would need to use editor mode if there are multiple proof steps.
+
+Inside the have block, you would have a new goal which is `some-proposition` say `x=2` , `A ∈ Knight` etc...
+
+Not specifying the `type` when using `have` doesn't allow you to use tactics.
+
+## Examples
+
+Given the following assumptions from lemmas world, level 1:
+```
+Assumptions:
+Aleft : A ∈ left 
+Aright : A ∈ right 
+h: left ∩ right = ∅
+AinBothInter: A ∈ left ∧ A ∈ right → A ∈ left ∩ right
+```
+
+### without specifying the type
+`have AinBoth := AinBothInter (And.intro Aleft Aright)` will add the following to the assumptions:
+```
+AinBoth : A ∈ left ∩ right
+```
+
+### specifying the type
+`have  AinBoth : A ∈ left ∩ right := by AinBothInter (And.intro Aleft Aright)` will add the following to the assumptions in the proof state:
+```
+AinBoth : A ∈ left ∩ right
+```
 -/
 TacticDoc «have»
 
@@ -306,6 +371,58 @@ Given the statement, its either 'this' or 'that'. If we know its not 'that' then
 TheoremDoc notright_left as "notright_left" in "Logic"
 
 /--
+theorem inleft_notinright
+(h : left ∩ right = ∅ )
+(Aleft : A ∈ left)
+: A ∉ right
+
+Given the following proof state:
+```
+Objects
+A : Inhabitant
+left right : Finset Inhabitant
+
+Assumptions
+h : left ∩ right = ∅
+Aleft : A ∈ left
+
+Goal
+A ∉ right
+```
+
+exact `inleft_notinright h Aleft` will close the goal.
+-/
+TheoremDoc inleft_notinright as "inleft_notinright" in "Knights and Knaves"
+
+/--
+```
+theorem disjoint
+(h : left ∩ right = ∅ )
+(Aleft : A ∈ left)
+(Aright : A ∈ right)
+: False
+```
+
+Given the following proof state:
+```
+Objects
+A : Inhabitant
+left right : Finset Inhabitant
+
+Assumptions
+h : left ∩ right = ∅ 
+Aleft : A ∈ left
+Aright : A ∈ right
+
+Goal
+False
+```
+
+`exact disjoint h Aleft Aright` will close the goal
+-/
+TheoremDoc disjoint as "disjoint" in "Knights and Knaves"
+
+/--
 A summary of all the terminology presented throughout the game, in order of appearance.
 
 Theorems represent an implication say:
@@ -339,18 +456,33 @@ A set is a collection of 'entities' or 'objects' that satisfy a certain property
 A finite set is a set with finitely many elements.
 
 ## Examples
-The set `Knight` would be the set of inhabitants of the island that are knights i.e satisfying the property of always telling the truth, the set `Knave` being the set of inhabitants of the island that are knives i.e the ones that always lie. 
+The set `Knight` would be the set of inhabitants of the island that are knights i.e satisfying the property of always telling the truth, the set `Knave` being the set of inhabitants of the island that are knaves i.e the ones that always lie.
 
 ## In Lean
+
 ```
 Set K
+Set Inhabitant
 ```
 
 ```
 Finset K
+Finset Inhabitant
 ```
 -/
 DefinitionDoc Finset as "Finset"
+
+/--
+Given the following proof state:
+```
+left : Finset K
+```
+
+`A ∈ left` read as 'A in left'.
+
+`A ∉ left` read as 'A not in left' means `¬(A ∈ left)` , `A ∈ left → False`.
+-/
+DefinitionDoc mem as "∈"
 
 /--
 ## Objects
@@ -522,6 +654,53 @@ $
 mul_left_cancel₀ written as mul_left_cancel\0
 -/
 DefinitionDoc UnicodeSymbols as "Unicode Symbols"
+
+/--
+`P ↔ Q`  is defined as `(P → Q) ∧ (Q → P)`. 
+
+Its truth table looks like the folowing:
+$
+\begin{array}{|c c|c c|c|} 
+\hline
+P & Q & P → Q & Q → P & P → Q ∧ Q → P\\
+\hline
+T & T & T & T & T \\
+\hline
+T & F & F & T & F \\
+\hline
+F & T & T & F & F \\
+\hline
+F & F & T & T & T \\
+\hline
+\end{array}
+$
+
+So, `P ↔ Q` is true when `P,Q` are true or `P,Q` are false, i.e when `P` and `Q` have the same truth value. Therefore, `P` and `Q` are equivalent from a truth value perspective regardless what the statement of `P` and of `Q` is.
+
+## Extracting Each Implication
+```
+h : P ↔ Q
+h.mp : P → Q
+h.mpr : Q → P
+```
+`h.mp` is the forward direction and `h.mpr` is the backward direction.
+
+## `P ↔ Q` is `P = Q`
+Since `P`, `Q` have the same truth value , they can be used interchangeably.
+You can think of `P ↔ Q` as `P = Q` and use `rw` in the same way you would if there was an actual `=` in the expression.
+
+For example:
+```
+h : P ↔ Q
+hP : P
+```
+Doing `rw [h] at hP` results in:
+```
+h : P ↔ Q
+hP : Q
+```
+-/
+DefinitionDoc Iff as "↔"
 
 /-- [[mathlib_doc]] -/
 TheoremDoc Nat.mul_left_cancel as "Nat.mul_left_cancel" in "*"

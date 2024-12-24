@@ -27,45 +27,20 @@ If `A`'s statement were true, then `A` is telling the truth so `A` must be a kni
 
 The two can be combined as `A ∈ Knight ↔ A ∈ Knave`
 
-`P ↔ Q`  is defined as `(P → Q) ∧ (Q → P)`. But what does it mean? Let's construct its truth table and find out.(make it as the level itself??)
+`P ↔ Q`  is defined as `(P → Q) ∧ (Q → P)`. 
 
-Remember,
+Its truth table looks like the folowing:
 $
-\\begin{array}{|c c|c|} 
-\\hline
-P & Q & P → Q \\\\
-\\hline
-T & T & T \\\\
-T & F & F \\\\
-F & T & T \\\\
-F & F & T \\\\
-\\hline
-\\end{array}
-$
-
-$
-\\begin{array}{|c c|c|} 
-\\hline
-Q & P & Q → P \\\\
-\\hline
-T & T & T \\\\
-T & F & F \\\\
-F & T & T \\\\
-F & F & T \\\\
-\\hline
-\\end{array}
-$
-
-
-The result is
-$
-\\begin{array}{|c c|c|} 
+\\begin{array}{|c c|c c|c|} 
 \\hline
 P & Q & P → Q & Q → P & P → Q ∧ Q → P\\\\
 \\hline
 T & T & T & T & T \\\\
+\\hline
 T & F & F & T & F \\\\
+\\hline
 F & T & T & F & F \\\\
+\\hline
 F & F & T & T & T \\\\
 \\hline
 \\end{array}
@@ -73,5 +48,5 @@ $
 
 So, `P ↔ Q` is true when `P,Q` are true or `P,Q` are false, i.e when `P` and `Q` have the same truth value. Therefore, `P` and `Q` are equivalent from a truth value perspective regardless what the statement of `P` and of `Q` is.
 
-To extract for example the forward direction `P → Q` from `h :P ↔ Q`, you do `h.mp`. This is a modus ponens version for `↔`. The reversed version `h.mpr` gives `Q → P`.
+The forward direction `P → Q` of `h :P ↔ Q` is `h.mp : P → Q`. This is a modus ponens version for `↔`. The reversed version `h.mpr`.
 "

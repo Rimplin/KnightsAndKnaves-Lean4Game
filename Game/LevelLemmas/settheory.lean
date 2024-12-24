@@ -526,10 +526,10 @@ theorem notinright_inleftIff
 
 theorem disjoint {inst : DecidableEq K}  {left : Finset K} {right : Finset K}
 (h : left ∩ right = ∅ )
-(hk : A ∈ left)
-(hkn : A ∈ right)  : False := by 
+(Aleft : A ∈ left)
+(Aright : A ∈ right)  : False := by 
   --have := Finset.mem_inter.mpr (And.intro hk hkn )
-  have := Finset.mem_inter_of_mem hk hkn 
+  have := Finset.mem_inter_of_mem Aleft Aright
   rw [h] at this
   contradiction
 

@@ -32,7 +32,8 @@ Statement (hP : P) (hQ : Q)
   : P ∧ Q  := by
 
   {
-    Hint (hidden:=true) "Try `exact And.intro hP hQ` or `constructor`" 
+    Hint (hidden:=true) 
+    "Try `exact And.intro hP hQ` or `constructor`" 
     Branch
        exact And.intro hP hQ 
     constructor

@@ -5,10 +5,11 @@ import Game.Levels.Logic.L04_Implication
 import Game.Levels.Logic.L05_ImpGoal
 import Game.Levels.Logic.L06_Not
 import Game.Levels.Logic.L07_False
+--import Game.Levels.Logic.L08_logicalequiv
 
 World "Logic"
 Title "Logic"
-Introduction 
+Introduction
 "
 In this world, we will be dealing with `Objects` of type `Prop` i.e propositions. You can think of a proposition as a statement that is either true or false(obviously, it can't be both at the same time). You have seen propositions before like `x=2`, `y=6` etc..
 
