@@ -194,13 +194,10 @@ DefinitionDoc inter as "∩"
 /--
 `rfl` is short for reflexivity. In the context of numbers, it is the property that for any number `a`, `a = a`.
 
-More generally, the `rfl` tactic will close all goals of the form `X=X`, regardless of what `X` is, `X=Y` where `X` and `Y` are identical. rfl can also prove the equality of two things that are 'equal by definition'.
+`rfl` also applies more generally, `rfl` will close any goal of the form `A=B` where `A`,`B` are identical. If needed, `rfl` will unfold both sides into their definitions and then check if they are equal. In other words, `rfl` can prove the equality of two things that are 'equal by definition'.
 
 In fact, `rfl` is not a tactic but syntactic sugar for `exact rfl`. `rfl` is of type `a = a` for any `a`.
 
-
-
-`rfl` also applies more generally, `rfl` will close any goal of the form `A=B` where `A`,`B` are identical. If needed, `rfl` will unfold both sides into their definitions and then check if they are equal. In other words, `rfl` can prove the equality of two things that are 'equal by definition'.
 ## examples
 ```
 x - 7 = x - 7
@@ -250,9 +247,12 @@ some expression involving A
 
 `rw [h]` would change the goal by replacing every occurrence of `A` with `B`.
 
-By default, rw uses an equation in the forward direction, matching the left-hand side of the equation with an occurrence of that in the goal, and replaces it with the right-hand side. 
+By default, rw uses an equation in the forward direction, matching the left-hand side of the equation `h` with an occurrence of `A` in the goal, and replaces it with the right-hand side i.e `B`. 
 
-The notation ←t can be used to instruct the tactic to use the equality t in the reverse direction.
+The notation `rw [←h]` can be used to instruct the tactic to use the equality `h` in the reverse direction i.e replace an occurrence of `B` with `A`.
+
+## Behavior with `=` and `↔`
+For `rw [h]`, the behavior is exactly the same for both, whether you had `h : x=2` or `h : P ↔ Q`.
 -/
 TacticDoc rw
 
@@ -377,6 +377,16 @@ You need to show that having two sets being disjoint (i.e sharing no common elem
 TacticDoc contradiction
 
 /--
+
+-/
+TheoremDoc notleft_right as "notleft_right" in "Logic"
+
+/--
+
+-/
+TheoremDoc four_pos as "four_pos" in "*"
+
+/--
 Another way to express this is that you have two possibilities one of which(or both) is supposed to be true, and you know its definitely not the second option. All is left is the first option. 
 
 Given the statement, its either 'this' or 'that'. If we know its not 'that' then its definitely 'this'.
@@ -384,10 +394,12 @@ Given the statement, its either 'this' or 'that'. If we know its not 'that' then
 TheoremDoc notright_left as "notright_left" in "Logic"
 
 /--
+```
 theorem inleft_notinright
 (h : left ∩ right = ∅ )
 (Aleft : A ∈ left)
 : A ∉ right
+```
 
 Given the following proof state:
 ```
@@ -636,35 +648,20 @@ DefinitionDoc Nat as "ℕ"
 ### **Equational Reasoning**
 | $Name~~~$ | $Ascii~~~$ | $Unicode$ | $Unicode Cmd$ |
 | --- | :---: | :---: | --- |
-|     |       |       | `mul_left_cancel\0`|
 | True | `True` |  |  |
 | False | `False` |  |  |
-| Not | `Not` | ¬ | `\n` `\not` `\neg` `\lnot` |
-| And | `/\` | ∧ | `\and` `\an` `\wedge` |
-| Or | `\/` | ∨ | `\v` `\or` `\vee` |
-| Implies | `->` | → | `\r` `\imp` `\->` `\to` `\r-` `\rightarrow` |
-| Iff | `<->` | ↔ | `\iff` `\lr-` `\lr` `\<->` `\leftrightarrow` |
-| For All | `foral` | ∀ | `\all` `\forall` |
-| Exists | `exists` | ∃ | `\ex` `\exists` |
+| Not | `Not` | ¬ |  `\not` `\neg`  |
+| And | `/\` | ∧ | `\and`  |
+| Or | `\/` | ∨ |  `\or`  |
+| Implies | `->` | → |  `\imp` |
+| Iff | `<->` | ↔ | `\iff` |
 
 ### **Other Unicode**
 | $Name$ | $Unicode~~~$ | $Unicode Cmd$ |
 | --- | :---: | --- |
-| Angle brackets | ⟨ ⟩ | `\<` `\>` `\langle` `\rangle` |
-| Subscript Numbers | ₁ ₂ ₃ ... | `\1` `\2` `\3` ... |
+| Angle brackets | ⟨⟩ | `\<>` |
 | Left Arrow | ← | `\l` `\leftarrow` `\gets` `\<-` |
-| Turnstyle | ⊢ | `\│-` `\entails` `\vdash` `\goal` |
 
-$
-\begin{array}{|c|c|} 
-\hline
-Unicode & Text \\
-\hline
-\text{mul\_left\_cancel₀} & `mul\_left\_cancel\0` \\
-\hline
-\end{array}
-$
-mul_left_cancel₀ written as mul_left_cancel\0
 -/
 DefinitionDoc UnicodeSymbols as "Unicode Symbols"
 
@@ -715,7 +712,9 @@ hP : Q
 -/
 DefinitionDoc Iff as "↔"
 
-/-- [[mathlib_doc]] -/
+/--
+
+-/
 TheoremDoc Nat.mul_left_cancel as "Nat.mul_left_cancel" in "*"
 
 /--
@@ -727,3 +726,29 @@ A ∈ Knight ∨ A ∈ Knave →
 ```
 -/
 TheoremDoc IamKnave as "IamKnave" in "Knights and Knaves"
+
+/--
+```
+theorem inright_notinleft
+(h : left ∩ right = ∅ )
+(Aright : A ∈ right)
+: A ∉ left
+```
+
+Given the following proof state:
+```
+Objects
+A : Inhabitant
+left right : Finset Inhabitant
+
+Assumptions
+h : left ∩ right = ∅
+Aright : A ∈ right
+
+Goal
+A ∉ left
+```
+
+exact `inright_notinleft h Aright` will close the goal.
+-/
+TheoremDoc inright_notinleft as "inright_notinleft" in "Knights and Knaves"

@@ -1,27 +1,20 @@
 import Game.Metadata
 
-
-World "KnightsAndKnaves2" 
+World "KnightsAndKnaves2"
 Level 5
 
-Title "" 
+Title ""
 
-Introduction 
+Introduction
 "
+`A`: If `C` is a knave, then `B` is a knave.
+`B`: `A` is a knight, if and only if `C` is a knave.
 "
 /-
 A ⇔ (¬C  ¬B)
 B ⇔ (A ⇔ ¬C)
-A: If C is a knave, then B is a knave.
-B: A is a knight, if and only if C is a knave.
-
-A is a knave.
-B is a knight.
-C is a knave. 
-
-A, C knight
-B knave
 -/
+
 #check imp_true_iff
 #check true_implies
 Statement {A B C : Prop}
@@ -29,113 +22,78 @@ Statement {A B C : Prop}
 {stAn : ¬A ↔ ¬(¬C → ¬B)}
 {stB : B ↔ (A ↔ ¬C)}
 {stBn : ¬B ↔ ¬(A ↔ ¬C)}
-: A ∧ ¬B ∧ C := by 
-  have hC : C := by 
-    by_contra nC 
-    simp only [nC,not_false_eq_true,true_implies] at stA 
-    --nth_rw 1 [stA] at stB
-    simp [nC] at stB
-    rw [stB] at stA
-    #check iff_not_self
-    apply iff_not_self
-    exact stA
+: A ∧ ¬B ∧ C := by
+  Template
+  have hC : C := by
+    by_contra nC
+    Hint
+    "
+Assuming `¬C` to prove `False` i.e `¬C → False` i.e `¬¬C` i.e `C`:
 
-  simp [hC] at stA 
-  simp [hC,stA] at stB
-  -- done
-  simp [*]
+- Since `¬C` is true by `nC : ¬C`, then `A ↔ ¬C` and `A` have the same truth value. If `A` is true then `A ↔ ¬C` is true, and if `A` is false then `A ↔ ¬C` is false.
+Use `iff_true_right (ha : a) : (b ↔ a) ↔ b` to replace `A ↔ ¬C` with `A`.
+In our case, `b ↔ a` is `A ↔ ¬C`.
 
+- Rewrite `¬C` in `stA` with true using `eq_true`
+- Rewrite `True → ¬B` in `stA` with `¬B` using `true_implies`
+- Rewrite `¬B` in `stA` with `¬A` using `stBn`
+- Prove `False` using `not_iff_self`
+    "
+    Hole
+    rw [iff_true_right nC] at stBn
+    #check true_implies
+    rw [eq_true nC] at stA
+    rw [true_implies (¬B)] at stA
+    rw [stBn] at stA 
+    #check not_iff_self
+    exact not_iff_self stA.symm
 
+    --simp only [nC,not_false_eq_true,true_implies] at stA 
+    ----nth_rw 1 [stA] at stB
+    --simp [nC] at stB
+    --rw [stB] at stA
+    --#check iff_not_self
+    --apply iff_not_self
+    --exact stA
 
---A ⇔ (¬C  ¬B)
---B ⇔ (¬A  C)
---A: If C is a knave, then B is a knave.
---B: If A is a knave, then C is a knight.
--- translate implications to or,and expressions
-example {A B C : Prop}
-{stA : A ↔ (¬C → ¬B)}
-{stAn : ¬A ↔ ¬(¬C → ¬B)}
-{stB : B ↔ (¬A → C)}
-{stBn : ¬B ↔ ¬(¬A → C)}
-: A ∧ B ∧ C := by 
+  Hole
+  Hint 
+  "
+Rewrite `¬C` in `stA` as `¬True` using `eq_true`
+  "
+  rw [eq_true hC] at stA 
+  #check not_true
+  Hint
+  "
+Rewrite `¬True` in `stA` as `False` using `not_true`
+  "
+  rw [not_true] at stA
+  Hint
+  "
+Rewrite `False → ¬B` in `stA` as `¬B` using `false_implies`
+  "
+  rw [false_implies] at stA
+  #check iff_true_iff
+  Hint
+  "
+Rewrite `stA` using `iff_true_iff`.
+  "
+  rw [iff_true_iff] at stA
 
-  have hA : A := by 
-    by_contra nA
-    have CB := stAn.mp nA 
-    simp [not_imp] at CB 
-    have cont := stB.mp CB.right
-    simp [nA] at cont
-    exact CB.left cont
+  -- similarly here, let user use simp
+  Hint
+  "
+- Use simp and `hC : C` to simplify `stB`
+- Rewrite `stB` using `iff_not_comm` obtaining `stB : A ↔ ¬B`
+- Prove `¬B` using and conclude the goal
+  "
+  simp [hC] at stB
+  rw [iff_not_comm] at stB 
+  have nB := stB.mp stA
+  exact ⟨stA,nB,hC⟩ 
 
-  have : ¬ A → C := by simp [hA] 
-  have hB :=  stB.mpr this 
-  simp [hA,hB] at stA
-  --done
-  sorry
-
---A ⇔ (B ∧ ¬C)
---B ⇔ (¬C ⇔ ¬A)
-example {A B C : Prop}
-{stA : A ↔ (B ∧ ¬C)}
-{stAn : ¬A ↔ ¬(B ∧ ¬C)}
-{stB : B ↔ (¬C ↔ ¬A)}
-{stBn : ¬B ↔ ¬(¬C ↔ ¬A)}
-: False := by 
--- getting nA
-  rw [stB] at stA 
-  have : ((¬C ↔ ¬A) ∧ ¬C) → ¬A := by 
-    intro ⟨ACiff,nC⟩  
-    rw [ACiff] at nC
-    assumption
-  have := Implies.trans stA.mp this   
-  #check imp_not_self
-  have nA : ¬A := by 
-   intro a 
-   exact (this a) a
-
-  have BC := stAn.mp nA 
-  rw [not_and_or] at BC
-  simp at BC
-  -- do cases then done.. ez, but similar to other levels. want to reason with implications and not or,and expressions.
-  sorry
-
-
--- cant solve idk why
-example {A B C : Prop}
-{stA : A ↔ (¬C → ¬B)}
-{stAn : ¬A ↔ ¬(¬C → ¬B)}
-{stB : B ↔ (A ↔ ¬C)}
-{stBn : ¬B ↔ ¬(A ↔ ¬C)}
-: False := by 
-  have hB : B := by 
-    by_contra nB
-    have AsameC := stBn.mp nB 
-    rw [not_iff] at AsameC 
-    have stAn2 := stAn
-    rw [AsameC] at stAn2
-    rw [not_imp] at stAn2
-    simp at stAn2
-     
-    have hC := Function.mt stAn2 nB
-    simp at hC 
-    have hA := (not_iff_not.mp AsameC).mpr hC 
-    simp [hA,nB,hC] at * 
-    sorry
-  have nB : ¬B := by 
-    intro hB
-    have AdiffC := stB.mp hB 
-    rw [AdiffC] at stA
-    have := stA.mp 
-    #check and_imp
-    rw [and_imp.symm] at this
-    simp at this
-    have := (Function.mt this)
-    simp at this
-    have hC := this hB
-
-    sorry
-  sorry
-
-Conclusion 
+Conclusion
 "
 "
+NewTheorem iff_true_right true_implies eq_true not_iff_self not_true false_implies iff_true_iff
+

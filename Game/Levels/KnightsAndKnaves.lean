@@ -21,11 +21,35 @@ A says 'I am a knave'
 
 Formally, the statement 'I am a knave' is `A ∈ Knave`.
 
-Remember that if `A` were a knight, then `A`'s statement is true. This can be translated to an implication: `A ∈ Knight → A ∈ Knave`
+Remember that if `A` were a knight, then `A`'s statement is true. As an implication:
+```
+A ∈ Knight → A ∈ Knave
+```
 
-If `A`'s statement were true, then `A` is telling the truth so `A` must be a knight. `A ∈ Knave → A ∈ Knight`
+If `A`'s statement were true, then `A` is telling the truth so `A` must be a knight. As an implication:
+```
+A ∈ Knave → A ∈ Knight
+```
 
-The two can be combined as `A ∈ Knight ↔ A ∈ Knave`
+The two can be combined as 
+```
+stA : A ∈ Knight ↔ A ∈ Knave
+```
+
+Similarly, if `A` were a knave then `A`'s statement is false. As an implication:
+```
+A ∈ Knave → ¬(A ∈ Knave)
+```
+
+If `A`'s statement were false `A` must be a knave. As an implication:
+```
+¬(A ∈ Knave) → (A ∈ Knave)
+```
+
+Both can be combined as:
+```
+stAn : A ∈ Knave ↔ ¬(A ∈ Knave)
+```
 
 `P ↔ Q`  is defined as `(P → Q) ∧ (Q → P)`. 
 
@@ -48,5 +72,6 @@ $
 
 So, `P ↔ Q` is true when `P,Q` are true or `P,Q` are false, i.e when `P` and `Q` have the same truth value. Therefore, `P` and `Q` are equivalent from a truth value perspective regardless what the statement of `P` and of `Q` is.
 
-The forward direction `P → Q` of `h :P ↔ Q` is `h.mp : P → Q`. This is a modus ponens version for `↔`. The reversed version `h.mpr`.
+The forward direction of `h :P ↔ Q` is `h.mp : P → Q`. 
+The backward direction of `h :P ↔ Q` is `h.mpr : Q → P`. 
 "

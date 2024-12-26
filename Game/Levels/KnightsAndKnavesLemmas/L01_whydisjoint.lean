@@ -165,6 +165,6 @@ Finset.not_mem_empty.{u_1} {α : Type u_1} (a : α) : a ∉ ∅
 ```
 -/
 
-NewTheorem Finset.mem_inter disjoint
+NewTheorem disjoint
 NewDefinition Finset inter KnightsKnaves mem
 NewTactic «have» 

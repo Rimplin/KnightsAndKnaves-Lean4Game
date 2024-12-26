@@ -27,3 +27,4 @@ Conclusion
 "
 use `intro name` to give the introduced hypothesis a name
 "
+NewTactic intro

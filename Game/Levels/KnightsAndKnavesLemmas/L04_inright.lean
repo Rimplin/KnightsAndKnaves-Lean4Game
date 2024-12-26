@@ -43,3 +43,4 @@ The theorem `inright_notinleft` can be used for any two disjoint sets. The two w
 
 In the next level, you will use this theorem to prove that if `A` is a knave (`A ∈ Knave`), then `A` is not a knight (`A ∉ Knight`).
 "
+NewTheorem inright_notinleft

@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Tue Dec 24 23:05:36 2024\n"
+"POT-Creation-Date: Thu Dec 26 20:26:28 2024\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -21,10 +21,19 @@ msgid "intermediate goal solved! 🎉"
 msgstr ""
 
 #: Game.Doc.doc
-msgid "Unfoldable:\n"
-"unfold Not at ...\n"
-"¬P is P → False\n"
+msgid "## Implication defintion\n"
+"`¬P` is equivalent to `P → False`\n"
 "\n"
+"Given\n"
+"```\n"
+"hnP : ¬P\n"
+"```\n"
+"unfold Not at hnP will result in:\n"
+"```\n"
+"hnP : P → False\n"
+"```\n"
+"\n"
+"## truth table\n"
 "$\n"
 "\\begin{array}{|c c|} \n"
 "\\hline\n"
@@ -47,19 +56,11 @@ msgid "Unfoldable:\n"
 "or the principle of explosion.\n"
 "For more information: [Propositional Logic](https://lean-lang.org/theorem_proving_in_lean4/propositions_and_proofs.html#propositional-logic)\n"
 "\n"
-"`False` is an 'empty' type that has no introduction rule. \n"
-"\n"
-"`False` is the empty proposition. Thus, it has no introduction rules.\n"
-"\n"
 "Proving `False` means deriving a contradiction. So, to prove `¬p` , you must assume `p` and derive a contradiction."
 msgstr ""
 
 #: Game.Doc.doc
-msgid "Such a system having `False` or a contradiction is called an inconsistent system.\n"
-"\n"
-"Any proposition is true and studying the current system becomes worthless.\n"
-"\n"
-"This principle asserts that if you have contradictory assumptions then you can prove anything.\n"
+msgid "This principle asserts that if you have contradictory assumptions then you can prove anything.\n"
 "Example of contradictory assumptions:\n"
 "```\n"
 "h: P\n"
@@ -204,13 +205,10 @@ msgstr ""
 #: Game.Doc.doc
 msgid "`rfl` is short for reflexivity. In the context of numbers, it is the property that for any number `a`, `a = a`.\n"
 "\n"
-"More generally, the `rfl` tactic will close all goals of the form `X=X`, regardless of what `X` is, `X=Y` where `X` and `Y` are identical. rfl can also prove the equality of two things that are 'equal by definition'.\n"
+"`rfl` also applies more generally, `rfl` will close any goal of the form `A=B` where `A`,`B` are identical. If needed, `rfl` will unfold both sides into their definitions and then check if they are equal. In other words, `rfl` can prove the equality of two things that are 'equal by definition'.\n"
 "\n"
 "In fact, `rfl` is not a tactic but syntactic sugar for `exact rfl`. `rfl` is of type `a = a` for any `a`.\n"
 "\n"
-"\n"
-"\n"
-"`rfl` also applies more generally, `rfl` will close any goal of the form `A=B` where `A`,`B` are identical. If needed, `rfl` will unfold both sides into their definitions and then check if they are equal. In other words, `rfl` can prove the equality of two things that are 'equal by definition'.\n"
 "## examples\n"
 "```\n"
 "x - 7 = x - 7\n"
@@ -255,9 +253,12 @@ msgid "Given the following:\n"
 "\n"
 "`rw [h]` would change the goal by replacing every occurrence of `A` with `B`.\n"
 "\n"
-"By default, rw uses an equation in the forward direction, matching the left-hand side of the equation with an occurrence of that in the goal, and replaces it with the right-hand side. \n"
+"By default, rw uses an equation in the forward direction, matching the left-hand side of the equation `h` with an occurrence of `A` in the goal, and replaces it with the right-hand side i.e `B`. \n"
 "\n"
-"The notation ←t can be used to instruct the tactic to use the equality t in the reverse direction."
+"The notation `rw [←h]` can be used to instruct the tactic to use the equality `h` in the reverse direction i.e replace an occurrence of `B` with `A`.\n"
+"\n"
+"## Behavior with `=` and `↔`\n"
+"For `rw [h]`, the behavior is exactly the same for both, whether you had `h : x=2` or `h : P ↔ Q`."
 msgstr ""
 
 #: Game.Doc.doc
@@ -374,16 +375,26 @@ msgid "The `contradiction` tactic works for the following proofs states:\n"
 msgstr ""
 
 #: Game.Doc.doc
+msgid ""
+msgstr ""
+
+#: Game.Doc.doc
+msgid ""
+msgstr ""
+
+#: Game.Doc.doc
 msgid "Another way to express this is that you have two possibilities one of which(or both) is supposed to be true, and you know its definitely not the second option. All is left is the first option. \n"
 "\n"
 "Given the statement, its either 'this' or 'that'. If we know its not 'that' then its definitely 'this'."
 msgstr ""
 
 #: Game.Doc.doc
-msgid "theorem inleft_notinright\n"
+msgid "```\n"
+"theorem inleft_notinright\n"
 "(h : left ∩ right = ∅ )\n"
 "(Aleft : A ∈ left)\n"
 ": A ∉ right\n"
+"```\n"
 "\n"
 "Given the following proof state:\n"
 "```\n"
@@ -602,35 +613,19 @@ msgid "### **Logic Constants & Operators**\n"
 "### **Equational Reasoning**\n"
 "| $Name~~~$ | $Ascii~~~$ | $Unicode$ | $Unicode Cmd$ |\n"
 "| --- | :---: | :---: | --- |\n"
-"|     |       |       | `mul_left_cancel\\0`|\n"
 "| True | `True` |  |  |\n"
 "| False | `False` |  |  |\n"
-"| Not | `Not` | ¬ | `\\n` `\\not` `\\neg` `\\lnot` |\n"
-"| And | `/\\` | ∧ | `\\and` `\\an` `\\wedge` |\n"
-"| Or | `\\/` | ∨ | `\\v` `\\or` `\\vee` |\n"
-"| Implies | `->` | → | `\\r` `\\imp` `\\->` `\\to` `\\r-` `\\rightarrow` |\n"
-"| Iff | `<->` | ↔ | `\\iff` `\\lr-` `\\lr` `\\<->` `\\leftrightarrow` |\n"
-"| For All | `foral` | ∀ | `\\all` `\\forall` |\n"
-"| Exists | `exists` | ∃ | `\\ex` `\\exists` |\n"
+"| Not | `Not` | ¬ |  `\\not` `\\neg`  |\n"
+"| And | `/\\` | ∧ | `\\and`  |\n"
+"| Or | `\\/` | ∨ |  `\\or`  |\n"
+"| Implies | `->` | → |  `\\imp` |\n"
+"| Iff | `<->` | ↔ | `\\iff` |\n"
 "\n"
 "### **Other Unicode**\n"
 "| $Name$ | $Unicode~~~$ | $Unicode Cmd$ |\n"
 "| --- | :---: | --- |\n"
-"| Angle brackets | ⟨ ⟩ | `\\<` `\\>` `\\langle` `\\rangle` |\n"
-"| Subscript Numbers | ₁ ₂ ₃ ... | `\\1` `\\2` `\\3` ... |\n"
-"| Left Arrow | ← | `\\l` `\\leftarrow` `\\gets` `\\<-` |\n"
-"| Turnstyle | ⊢ | `\\│-` `\\entails` `\\vdash` `\\goal` |\n"
-"\n"
-"$\n"
-"\\begin{array}{|c|c|} \n"
-"\\hline\n"
-"Unicode & Text \\\\\n"
-"\\hline\n"
-"\\text{mul\\_left\\_cancel₀} & `mul\\_left\\_cancel\\0` \\\\\n"
-"\\hline\n"
-"\\end{array}\n"
-"$\n"
-"mul_left_cancel₀ written as mul_left_cancel\\0"
+"| Angle brackets | ⟨⟩ | `\\<>` |\n"
+"| Left Arrow | ← | `\\l` `\\leftarrow` `\\gets` `\\<-` |"
 msgstr ""
 
 #: Game.Doc.doc
@@ -680,7 +675,7 @@ msgid "`P ↔ Q`  is defined as `(P → Q) ∧ (Q → P)`. \n"
 msgstr ""
 
 #: Game.Doc.doc
-msgid "[[mathlib_doc]]"
+msgid ""
 msgstr ""
 
 #: Game.Doc.doc
@@ -690,6 +685,31 @@ msgid "As an implication\n"
 "A ∈ Knight ∨ A ∈ Knave →\n"
 "(A ∈ Knight ↔ A ∈ Knave) → False\n"
 "```"
+msgstr ""
+
+#: Game.Doc.doc
+msgid "```\n"
+"theorem inright_notinleft\n"
+"(h : left ∩ right = ∅ )\n"
+"(Aright : A ∈ right)\n"
+": A ∉ left\n"
+"```\n"
+"\n"
+"Given the following proof state:\n"
+"```\n"
+"Objects\n"
+"A : Inhabitant\n"
+"left right : Finset Inhabitant\n"
+"\n"
+"Assumptions\n"
+"h : left ∩ right = ∅\n"
+"Aright : A ∈ right\n"
+"\n"
+"Goal\n"
+"A ∉ left\n"
+"```\n"
+"\n"
+"exact `inright_notinleft h Aright` will close the goal."
 msgstr ""
 
 #: Game.Levels.EquationalReasoning.L01_rfl
@@ -1543,14 +1563,48 @@ msgstr ""
 #: Game.Levels.KnightsAndKnaves.L01_IamKnave
 msgid "Let's solve the previously mentioned 'I am a knave' puzzle.\n"
 "\n"
-"Suppose we have an inhabitant `A` which says: \n"
+"Suppose we have an inhabitant `A` which says:\n"
 "```\n"
 "A : I am a knave.\n"
 "```\n"
 "\n"
-"If `A` were telling the truth(i.e were a knight), then `A` would be lying which is a contradiction. \n"
+"We repeat the representation here.\n"
 "\n"
-"Similarly if `A` were lying(i.e were a knave) then `A` would be telling the truth. \n"
+"Formally, the statement 'I am a knave' is `A ∈ Knave`.\n"
+"\n"
+"Remember that if `A` were a knight, then `A`'s statement is true. As an implication:\n"
+"```\n"
+"A ∈ Knight → A ∈ Knave\n"
+"```\n"
+"\n"
+"If `A`'s statement were true, then `A` is telling the truth so `A` must be a knight. As an implication:\n"
+"```\n"
+"A ∈ Knave → A ∈ Knight\n"
+"```\n"
+"\n"
+"The two can be combined as\n"
+"```\n"
+"stA : A ∈ Knight ↔ A ∈ Knave\n"
+"```\n"
+"\n"
+"Similarly, if `A` were a knave then `A`'s statement is false. As an implication:\n"
+"```\n"
+"A ∈ Knave → ¬(A ∈ Knave)\n"
+"```\n"
+"\n"
+"If `A`'s statement were false `A` must be a knave. As an implication:\n"
+"```\n"
+"¬(A ∈ Knave) → (A ∈ Knave)\n"
+"```\n"
+"\n"
+"Both can be combined as:\n"
+"```\n"
+"stAn : A ∈ Knave ↔ ¬(A ∈ Knave)\n"
+"```\n"
+"\n"
+"If `A` were a knight (i.e telling the truth), then `A` would be a knave which is a contradiction.\n"
+"\n"
+"Similarly if `A`  were a knave(i.e lying) then `A` would be a knight which is a contradiction.\n"
 "\n"
 "Regardless of what `A` is, we fall into contradiction. The proof will take all cases for `A`, which are either the fact of always telling the truth(Knight) or always lying(Knave) and will show this contradiction.\n"
 "\n"
@@ -1563,19 +1617,44 @@ msgstr ""
 msgid "Notice that `h1` is now replaced by `h_1`, and we have two goals to prove instead of one. \n"
 "The difference between each is that in the first, A is a knight(`h_1 : A ∈ Knight`) and in the second A is a knave(`h_1 : A ∈ Knave`).  \n"
 "\n"
-"Use the `have` tactic  and the assumptions `stA` , `h_1` to conclude `A ∈ Knave`."
+"Conclude  `AKnave : A ∈ Knave` using `stA` , `h_1`."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.L01_IamKnave
-msgid "So now we have `h_1 : A ∈ Knight` and `[«{AKnave}»] : A ∈ Knave`. \n"
+msgid "So now we have `h_1 : A ∈ Knight` and `«{AKnave}» : A ∈ Knave`. \n"
 "\n"
 "But, remember that `Knight` and `Knave` are disjoint i.e have no common element , `h : Knight ∩ Knave = ∅`."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.L01_IamKnave
+msgid "Remember the `disjoint` theorem"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.L01_IamKnave
+msgid "Notice that h_1 is now `A ∈ Knave`.\n"
+"\n"
+"Conclude `A ∈ Knight` using `stA` , `h_1`."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.L01_IamKnave
+msgid "So now we have `h_1 : A ∈ Knave` and `«{AKnight}» : A ∈ Knight`. \n"
+"\n"
+"But, remember that `Knight` and `Knave` are disjoint i.e have no common element , `h : Knight ∩ Knave = ∅`."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.L01_IamKnave
+msgid "Remember the `disjoint` theorem"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.L01_IamKnave
 msgid "If you have heard about the liar's paradox before (https://en.wikipedia.org/wiki/Liar_paradox), then this should look familiar.\n"
 "\n"
-"A saying 'I am a knave' is like A saying 'I am a liar' or 'I am lying'."
+"A saying 'I am a knave' is like A saying 'I am a liar' or 'I am lying'.\n"
+"\n"
+"In this level, we have proven the following theorem which is now available to you:\n"
+"```\n"
+"IamKnave (h : Knight ∩ Knave = ∅) (h1 : A ∈ Knight ∨ A ∈ Knave) (stA : A ∈ Knight ↔ A ∈ Knave) : False\n"
+"```"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.prob26
@@ -1583,13 +1662,16 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.prob26
-msgid "Three of the inhabitants `A`, `B`, and `C` were standing together in a garden. \n"
+msgid "Three of the inhabitants `A`, `B`, and `C` were standing together in a garden.\n"
 "\n"
-"A stranger passed by and asked A, 'Are you a knight or a knave?' A answered, but rather indistinctly, so the stranger could not make out what he said. \n"
+"A stranger passed by and asked `A`, 'Are you a knight or a knave?'. `A` answered, but rather indistinctly, so the stranger could not make out what he said.\n"
 "\n"
-"The stranger then asked B, 'What did A say?' B replied, 'A said that he is a knave.' At this point the third man, C, said, 'Don't believe B; he is lying!' \n"
+"The stranger then asked `B`, 'What did `A` say?'.\n"
+"`B` replied, '`A` said that he is a knave.' \n"
 "\n"
-"The question is, what are B and C?\n"
+"At this point the third man, `C`, said, 'Don't believe `B`; he is lying!'\n"
+"\n"
+"The question is, what are `B` and `C`?\n"
 "\n"
 "First of all, lets simplify the statements. C's statement can be simplified to 'B is a knave.'\n"
 "\n"
@@ -1601,7 +1683,7 @@ msgid "Three of the inhabitants `A`, `B`, and `C` were standing together in a ga
 "\n"
 "The formalization is given in the proof state.\n"
 "\n"
-"Note that for the statement of `B`, if `B` where telling the truth then `A` indeed made such a statement which is the statement 'I am a Knave' and the formalization of that is `A ∈ Knight ↔ A ∈ Knave`. Use IamKnave."
+"Note that for the statement of `B`, if `B` where telling the truth then `A` indeed made such a statement which is the statement 'I am a Knave' and the formalization of that is `A ∈ Knight ↔ A ∈ Knave`. So we get `stB : B ∈ Knight ↔ (A ∈ Knight ↔ A ∈ Knave)`"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.prob26
@@ -1609,8 +1691,8 @@ msgid "We know that `A` saying 'I am a knave' leads to contradiction.\n"
 "\n"
 "In implication form, `IamKnave` is of the following form:\n"
 "```\n"
-"(Knight ∩ Knave = ∅) → \n"
-"(A ∈ Knight ∨ A ∈ Knave) → \n"
+"(Knight ∩ Knave = ∅) →\n"
+"(A ∈ Knight ∨ A ∈ Knave) →\n"
 "(A ∈ Knight ↔ A ∈ Knave) → False\n"
 "```\n"
 "\n"
@@ -1627,15 +1709,15 @@ msgid "We know that `A` saying 'I am a knave' leads to contradiction.\n"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.prob26
-msgid "Now that we know `¬ (A ∈ Knight ↔ A ∈ Knave )` , we can conclude `B ∈ Knave` using `stBn`."
+msgid "Conclude `B ∈ Knave` using `stBn` and `«{this}»`."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.prob26
-msgid "Now that we know `B ∈ Knave`, we can conclude `C ∈ Knight` using `stC`."
+msgid "Conclude `C ∈ Knight` using `stC` and `«{BKnave}»`."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.prob26
-msgid "Now that we know `B ∈ Knave`, `C ∈ Knight`, we can conclude `B ∈ Knave ∧ C ∈ Knight` using both."
+msgid "Conclude `B ∈ Knave ∧ C ∈ Knight` from `«{BKnave}» : B ∈ Knave`, `«{CKnight}» : C ∈ Knight` and use exact to close the goal."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.prob26
@@ -1647,28 +1729,40 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.IKnaveOrKnave
-msgid "A says 'I am a knave or B is a knave'.\n"
+msgid "`A` says 'I am a knave or `B` is a knave'.\n"
 "\n"
 "Formally,\n"
 "```\n"
-"A ∈ Knave ↔ ¬ (A ∈ Knave ∨ B ∈ Knave)\n"
+"stA : A ∈ Knave ↔ ¬ (A ∈ Knave ∨ B ∈ Knave)\n"
 "```\n"
 "\n"
-"If `A ∈ Knave` then we get `A ∉ Knave` which is a contradiction.\n"
-"\n"
-"So, we can conclude that `A ∉ Knave`."
+"We have `¬(P ∨ Q)` when `P` is false and `Q` is false, i.e `¬P ∧ ¬Q`.\n"
+"Therefore, we represent `stA` as the following:\n"
+"```\n"
+"stA : A ∈ Knave ↔ A ∉ Knave ∧ B ∉ Knave\n"
+"```"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.IKnaveOrKnave
-msgid "Now that we know that `A` is not a knave, then `A` is a knight."
+msgid "Assuming `AKnave : A ∈ Knave`:\n"
+"- Prove `ABnotKnave : A ∉ Knave ∧ B ∉ Knave` using `stAn`,`AKnave`.\n"
+"- Prove `False` using `ABnotKnave.left : A ∉ Knave` , `AKnave : A ∈ Knave`"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.IKnaveOrKnave
-msgid "From this, we can conclude that `A ∈ Knave ∨ B ∈ Knave`."
+msgid "Prove `AKnight : A ∈ Knight` using `«{AnKnave}» : A ∉ Knave` , `notright_left`"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.IKnaveOrKnave
-msgid "Since `A ∉ Knave`, we can conclude `B ∈ Knave`."
+msgid "Prove `AorBKn: A ∈ Knave ∨ B ∈ Knave` using `«{AKnight}»`, `stA`."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.IKnaveOrKnave
+msgid "Prove `BKnave : B ∈ Knave` using `«{AorBKn}»` , `«{AnKnave}»`"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.IKnaveOrKnave
+msgid "Prove the goal using `AKnight` , `BKnave`."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.IKnaveOrKnave
@@ -1680,23 +1774,30 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.prob33
-msgid "Suppose `A` says 'I am a knave, but B is not'.\n"
+msgid "Suppose `A` says 'I am a knave, but `B` is not' i.e `A ∈ Knave ∧ B ∉ Knave`.\n"
 "\n"
-"If we assume `A ∈ Knight`, then we get `A ∈ Knave` which is a contradiction.\n"
-"\n"
-"So `A ∉ Knight`."
+"For `stAn` we would have `A ∈ Knave ↔ ¬(A ∈ Knave ∧ B ∉ Knave)` which is equivalent to:\n"
+"```\n"
+"stAn : A ∈ Knave ↔ A ∉ Knave ∨ B ∈ Knave\n"
+"```"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.prob33
-msgid "So, `A ∈ Knave`."
+msgid "Assuming `AKnight : A ∈ Knight`:\n"
+"- Prove `AKnBnKn : A ∈ Knave ∧ B ∉ Knave` using `AKnight`, `stA`\n"
+"- Prove `False` using `disjoint` , `AKnBnKn.left : A ∈ Knave` , `AKnight : A ∈ Knight`."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.prob33
-msgid "Since `A ∈ Knave`, `A ∉ Knave ∨ B ∈ Knave`"
+msgid "Prove `AKnave : A ∈ Knave` using `notleft_right` , `«{AnKnight}» : A ∉ Knight`"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.prob33
-msgid "Since `A ∉ Knave ∨ B ∈ Knave` and `A ∈ Knave` then `B ∈ Knave`."
+msgid "Prove `AnKnBKn : A ∉ Knave ∨ B ∈ Knave` using `«{AKnave}» : A ∈ Knave` ,`stAn`"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves.prob33
+msgid "Prove `BKnave : B ∈ Knave` using  `A ∉ Knave ∨ B ∈ Knave` and `«{AKnave}» : A ∈ Knave`. Use `simp` here."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves.prob33
@@ -1715,11 +1816,35 @@ msgid "Suppose the island has an inhabitant `A` which says the following stateme
 "\n"
 "Formally, the statement 'I am a knave' is `A ∈ Knave`.\n"
 "\n"
-"Remember that if `A` were a knight, then `A`'s statement is true. This can be translated to an implication: `A ∈ Knight → A ∈ Knave`\n"
+"Remember that if `A` were a knight, then `A`'s statement is true. As an implication:\n"
+"```\n"
+"A ∈ Knight → A ∈ Knave\n"
+"```\n"
 "\n"
-"If `A`'s statement were true, then `A` is telling the truth so `A` must be a knight. `A ∈ Knave → A ∈ Knight`\n"
+"If `A`'s statement were true, then `A` is telling the truth so `A` must be a knight. As an implication:\n"
+"```\n"
+"A ∈ Knave → A ∈ Knight\n"
+"```\n"
 "\n"
-"The two can be combined as `A ∈ Knight ↔ A ∈ Knave`\n"
+"The two can be combined as \n"
+"```\n"
+"stA : A ∈ Knight ↔ A ∈ Knave\n"
+"```\n"
+"\n"
+"Similarly, if `A` were a knave then `A`'s statement is false. As an implication:\n"
+"```\n"
+"A ∈ Knave → ¬(A ∈ Knave)\n"
+"```\n"
+"\n"
+"If `A`'s statement were false `A` must be a knave. As an implication:\n"
+"```\n"
+"¬(A ∈ Knave) → (A ∈ Knave)\n"
+"```\n"
+"\n"
+"Both can be combined as:\n"
+"```\n"
+"stAn : A ∈ Knave ↔ ¬(A ∈ Knave)\n"
+"```\n"
 "\n"
 "`P ↔ Q`  is defined as `(P → Q) ∧ (Q → P)`. \n"
 "\n"
@@ -1742,7 +1867,8 @@ msgid "Suppose the island has an inhabitant `A` which says the following stateme
 "\n"
 "So, `P ↔ Q` is true when `P,Q` are true or `P,Q` are false, i.e when `P` and `Q` have the same truth value. Therefore, `P` and `Q` are equivalent from a truth value perspective regardless what the statement of `P` and of `Q` is.\n"
 "\n"
-"The forward direction `P → Q` of `h :P ↔ Q` is `h.mp : P → Q`. This is a modus ponens version for `↔`. The reversed version `h.mpr`."
+"The forward direction of `h :P ↔ Q` is `h.mp : P → Q`. \n"
+"The backward direction of `h :P ↔ Q` is `h.mpr : Q → P`."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves2.L01_Introduction
@@ -1750,33 +1876,27 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves2.L01_Introduction
-msgid "A: B is a knight and C is a knight.\n"
+msgid "`A`: `B` is a knight and `C` is a knight.\n"
 "\n"
-"B: C is a knight and A is a knave.\n"
-"\n"
-"Formally,\n"
-"```\n"
-"stA : A ↔ B ∈ Knight ∧ C ∈ Knight\n"
-"stB : B ↔ C ∈ Knight ∧ A ∈ Knave\n"
-"```\n"
-"\n"
-"\n"
-"\n"
-"Using `¬C`, we get `¬C ∨ A` which gives `¬B` using `stBn`."
+"`B`: `C` is a knight and `A` is a knave."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves2.L01_Introduction
-msgid "Assuming `A` is true:\n"
+msgid "Assuming `hA : A`:\n"
 "- Prove `BC : B ∧ C` from `stA` using `A`\n"
-"- Prove `CnA : C ∧ ¬A` from `stB` using `B`\n"
-"- Prove `cont :False` from `A`,`¬A` which is the goal."
+"- Prove `CnA : C ∧ ¬A` using `stB` , `BC.left : B`\n"
+"- Prove `False` using `AKnight : A`,`CnA.right : ¬A`."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves2.L01_Introduction
-msgid "Assuming `C` is true:\n"
-"- `B` from `stB` using `C ∧ ¬A`\n"
-"- `A` from `stA` using `B ∧ C`\n"
-"- `False` from `A`,`¬A`"
+msgid "Assuming `hC : C`:\n"
+"- Prove `hB : B` using `stB`, `C ∧ ¬A`\n"
+"- Prove `hA : A` using `stA` , `B ∧ C`\n"
+"- Prove `False` from `hA: A`,`hnA : ¬A`"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L01_Introduction
+msgid "Using `¬C`, we get `¬C ∨ A` which gives `¬B` using `stBn`."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves2.L02_iff
@@ -1784,36 +1904,43 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves2.L02_iff
-msgid "A: C is a knight or B is a knight.\n"
+msgid "`A`: `C` is a knight or `B` is a knight.\n"
 "\n"
-"B: A is a knight, if and only if C is a knight.\n"
+"`B`: `A` is a knight, if and only if `C` is a knight."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L02_iff
+msgid "We want to prove `A`, to do this we will prove `¬¬A` i.e `¬A → False`. The tactic `by_contra` facilitates this, assuming `¬A` and changing the goal to `False`.\n"
 "\n"
+"Assuming `nA : ¬A`,\n"
+"- Prove `nCnB : ¬C ∧ ¬B` from `stAn`\n"
+"- Prove `AdiffC : ¬(A ↔ C)` from `stBn` , `nCnB.right : ¬B`\n"
+"- Prove `AiffC : A ↔ C` from `iff_of_false (ha : ¬a) (hb : ¬b) : a ↔ b `, `nA:¬A` , `nCnB.left : ¬C`\n"
+"- Prove `False` from `AdiffC : ¬(A ↔ C)`  `AiffC : (A ↔ C)`"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L02_iff
+msgid "Prove `CorB : C ∨ B` using `stA` , `«{hA}»`."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L02_iff
+msgid "Now consider cases for `CorB`."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L02_iff
+msgid "Prove `AiffC : A ↔ C` using `iff_of_true (ha : a) (hb : b) : a ↔ b` , `hA : A` , `h : C`"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L02_iff
+msgid "Prove `hB : B` using `stB` , `«{AiffC}»`."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L02_iff
+msgid "Prove the goal using `«{hA}»`, `«{hB}»` ,`h`.\n"
 "\n"
-"After filling in every `have` block, prove `A ∧ B ∧ C` using `hA` , `hB` , `hC`."
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves2.L02_iff
-msgid "Assuming `¬A`,\n"
-"- Prove `¬C ∧ ¬B` from `stAn`\n"
-"- Prove `¬(A ↔ C)` from `stBn`\n"
-"- Prove `A ↔ C` from `¬A, ¬C`\n"
-"- Prove `False` from `¬(A ↔ C) , (A ↔ C)`"
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves2.L02_iff
-msgid "Prove `C ∨ B` from `stA` using `hA`."
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves2.L02_iff
-msgid "Prove `A ↔ C` from `stB` using `hB`."
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves2.L02_iff
-msgid "Prove `C` from `AiffC` using `hA`"
-msgstr ""
-
-#: Game.Levels.KnightsAndKnaves2.L02_iff
-msgid ""
+"Use `constructor` tactic to split the goal in two, one would be proving the left side of `∧` and the other being the right side.\n"
+"\n"
+"The proof of the second case for `h : B` is similar."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves2.L02_iff
@@ -1825,7 +1952,63 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves2.L03_
-msgid "similar explanation to lvl 2"
+msgid "`A`: `C` is a knave or `B` is a knight.\n"
+"\n"
+"`B`: `A` is a knave, if and only if `C` is a knight."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L03_
+msgid "We want to prove `A`, to do this we will prove `¬¬A` i.e `¬A → False`. The tactic `by_contra` facilitates this, assuming `¬A` and changing the goal to `False`.\n"
+"\n"
+"Assuming `hA : ¬A`:\n"
+"- Prove `hCnB : C ∧ ¬ B` using `stAn` , `nA`.\n"
+"- Prove `AsameC : ¬(¬A ↔ C)` using `stBn` , `hCnB.right : ¬B`\n"
+"- Prove `nAiffC : ¬A ↔ C` using `iff_of_true` , `nA` , `hCnB.left : C`\n"
+"- Prove `False` from `nAiffC` and `AsameC`."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L03_
+msgid "Prove `nCorB : ¬C ∨ B` using `stA` , `«{hA}»`"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L03_
+msgid "Take cases for `«{nCorB}»`."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L03_
+msgid "Use `iff_of_true` to prove `A ↔ ¬C`"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L03_
+msgid "Use `iff_not_comm` to prove `C ↔ ¬A`"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L03_
+msgid "Prove `B` using `stB` , `CiffnA.symm : C ↔ ¬A`. (symm for symmetry)"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L03_
+msgid "Given `hP : P` , `hQ : Q`, `hR : R` and the goal `P ∧ Q ∧ R` , you can close this goal using:\n"
+"```\n"
+"exact ⟨hP,hQ,hR⟩\n"
+"```\n"
+"where ⟨⟩ is typed as \\<>.(this is to avoid nesting `And.intro` inside another)"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L03_
+msgid "Prove `nAiffC : ¬A ↔ C` using `stB` , `h`"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L03_
+msgid "Prove `AiffnC : A ↔ ¬C` using `iff_not_comm` , `nAiffC.symm : C ↔ ¬A`(symm for symmetry)."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L03_
+msgid "Prove `hC : C` using `AiffnC : A ↔ ¬C` , `hA : A`"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L03_
+msgid "Split using `constructor` or use ⟨⟩ notation."
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves2.L03_
@@ -1837,8 +2020,40 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves2.L04_orIff
-msgid "A: B is a knight or C is a knight.\n"
-"B: C is a knave, if and only if A is a knave"
+msgid "`A`: `B` is a knight or `C` is a knight.\n"
+"`B`: `C` is a knave, if and only if `A` is a knave"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L04_orIff
+msgid "Assuming `nB : ¬B`:\n"
+"- Prove `CdiffA : ¬(¬C ↔ ¬A)` using `stBn` , `nB`\n"
+"- Using `simp` and `nB : ¬B` , reduce `stA` to `stA : A ↔ C`. (`B ∨ C` , `C` have the same truth value(for `C` being true or false) when `B` is false.\n"
+"- Using `not_iff_not`, reduce `¬C ↔ ¬A` in `CdiffA` to `C ↔ A`.\n"
+"- Prove `False` using `CdiffA` , `stA.symm : A ↔ C`"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L04_orIff
+msgid "Prove `CsameA : C ↔ A` using `stB` , `«{hB}»`"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L04_orIff
+msgid "Prove `BorC : B ∨ C` using `«{hB}»`"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L04_orIff
+msgid "Prove `hA : A` using `stA` , `«{BorC}»`."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L04_orIff
+msgid "Rewrite `CsameA` to `CsameA : C ↔ A` using `not_iff_not`"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L04_orIff
+msgid "Prove `hC : C` using `«{CsameA}»` , `«{hA}»`"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L04_orIff
+msgid "Use constructor"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves2.L04_orIff
@@ -1850,7 +2065,43 @@ msgid ""
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves2.L05_imp
-msgid ""
+msgid "`A`: If `C` is a knave, then `B` is a knave.\n"
+"`B`: `A` is a knight, if and only if `C` is a knave."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L05_imp
+msgid "Assuming `¬C` to prove `False` i.e `¬C → False` i.e `¬¬C` i.e `C`:\n"
+"\n"
+"- Since `¬C` is true by `nC : ¬C`, then `A ↔ ¬C` and `A` have the same truth value. If `A` is true then `A ↔ ¬C` is true, and if `A` is false then `A ↔ ¬C` is false.\n"
+"Use `iff_true_right (ha : a) : (b ↔ a) ↔ b` to replace `A ↔ ¬C` with `A`.\n"
+"In our case, `b ↔ a` is `A ↔ ¬C`.\n"
+"\n"
+"- Rewrite `¬C` in `stA` with true using `eq_true`\n"
+"- Rewrite `True → ¬B` in `stA` with `¬B` using `true_implies`\n"
+"- Rewrite `¬B` in `stA` with `¬A` using `stBn`\n"
+"- Prove `False` using `not_iff_self`"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L05_imp
+msgid "Rewrite `¬C` in `stA` as `¬True` using `eq_true`"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L05_imp
+msgid "Rewrite `¬True` in `stA` as `False` using `not_true`"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L05_imp
+msgid "Rewrite `False → ¬B` in `stA` as `¬B` using `false_implies`"
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L05_imp
+msgid "Rewrite `stA` using `iff_true_iff`."
+msgstr ""
+
+#: Game.Levels.KnightsAndKnaves2.L05_imp
+msgid "- Use simp and `hC : C` to simplify `stB`\n"
+"- Rewrite `stB` using `iff_not_comm` obtaining `stB : A ↔ ¬B`\n"
+"- Prove `¬B` using and conclude the goal"
 msgstr ""
 
 #: Game.Levels.KnightsAndKnaves2.L05_imp
@@ -1969,40 +2220,39 @@ msgid "This is a gamification of mathematical proofs. Every level has a `Goal`, 
 msgstr ""
 
 #: Game
-msgid "For example: Game version, Credits, Link to Github and Zulip, etc.\n"
+msgid "Many technical details have been skipped for the sake of not getting bogged down with `Lean` and its mathematical library `mathlib`, but focus on the aspects of reasoning and proof. You can visit https://leanprover-community.github.io/mathlib4_docs/ for more information about any tactic used by searching `Mathlib.Tactic.tacticname`, and you can search for theorems used as well.\n"
 "\n"
-"Many technical details have been skipped for the sake of not getting bogged down with Lean and its mathematical library mathlib, but focus on the aspects of reasoning and proof. You can visit https://leanprover-community.github.io/mathlib4_docs/ for more information about any tactic used by searching `Mathlib.Tactic.tacticname`, and theorems.\n"
-"\n"
-"Zulip chat for lean has been a very useful resource to resolve issues when formalizing the exercises, you can visit it and ask questions in the '#new members' stream. You can also view messages without signing up. There are other streams dedicated to various topics you can check out as well. \n"
+"Zulip chat for lean has been a very useful resource to resolve issues when formalizing the exercises, you can visit it and ask questions in the '#new members' stream. You can also view messages without signing up. There are other streams dedicated to various topics you can check out as well.\n"
 "\n"
 "# Editor Mode \n"
-"## copy and paste your solutions somewhere else\n"
-"Some levels will force you to use editor mode. Editor mode is necessary for multiline tactics. Moreover, you should get used to it because it mimics a vscode Lean environment which is the most common way Lean is run.\n"
+"Some levels will force you to use editor mode. Editor mode is necessary for multiline tactics like `have`. Moreover, you should get used to it because it mimics a vscode `Lean` environment which is the most common way `Lean` is run.\n"
 "\n"
 "To access editor mode, click on the icon to the left of the hamburger menu in the top right.\n"
-"You can copy and paste your solutions if you have Lean setup, or you can use the lean web editor: https://live.lean-lang.org/ if you want to experiment with your solutions outside the lean game.\n"
-"Make sure to have `import Mathlib.Tactic` at the top and then to copy whats above the editor area which is the problem statement. Each problem statement is of the form `example ... :=  by` and after that is where your solution should go.\n"
 "\n"
 "## vscode like environment\n"
 "Hovering over things will give you useful information.\n"
+"\n"
 "# Links \n"
+"## documentation\n"
 "https://leanprover-community.github.io/\n"
 "https://lean-lang.org/\n"
 "https://lean-lang.org/documentation/\n"
 "\n"
 "https://github.com/leanprover-community/mathlib4\n"
 "\n"
+"## zulip, ask questions\n"
 "https://leanprover.zulipchat.com/\n"
 "https://zulip.com/case-studies/lean/\n"
 "\n"
-"# how to navigate documentation\n"
-"You can use https://leanprover-community.github.io/mathlib4_docs/ for Lean and mathlib related documentation. You can see 'Lean', 'Mathlib' in the left side pane, clicking on either will expand them. A more effective way of finding what you want is using the search feature of this page , using 'Go To Definition' if you have vscode setup for Lean and mathlib, or hovering over things to get more information\n"
-"\n"
-"-- consider removing # Rules\n"
 "# Rules\n"
-"You can relax the rules.\n"
+"You can relax the rules and skip levels.\n"
 "\n"
-"This is not recommended for people who have never heard about Lean before. Moreover, relaxing the rules would ruin the coherence and structured/guided experience you would have when playing the game normally. If that is what you are looking for, then don't relax the rules."
+"This is not recommended for people who have never heard about Lean before. Moreover, relaxing the rules would ruin the coherence and structured/guided experience you would have when playing the game normally. If that is what you are looking for, then don't relax the rules.\n"
+"\n"
+"# Github\n"
+"The game's repository is on \n"
+"\n"
+"You can view the code for every level.(and the solution there)"
 msgstr ""
 
 #: Game

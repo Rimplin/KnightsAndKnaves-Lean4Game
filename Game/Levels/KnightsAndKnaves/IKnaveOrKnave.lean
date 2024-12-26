@@ -1,22 +1,24 @@
 import Game.Metadata
 
-World "KnightsAndKnaves" 
+World "KnightsAndKnaves"
 Level 3
 
-Title "" 
+Title ""
 
 Introduction 
 "
-A says 'I am a knave or B is a knave'.
+`A` says 'I am a knave or `B` is a knave'.
 
 Formally,
 ```
-A ∈ Knave ↔ ¬ (A ∈ Knave ∨ B ∈ Knave)
+stA : A ∈ Knave ↔ ¬ (A ∈ Knave ∨ B ∈ Knave)
 ```
 
-If `A ∈ Knave` then we get `A ∉ Knave` which is a contradiction.
-
-So, we can conclude that `A ∉ Knave`.
+We have `¬(P ∨ Q)` when `P` is false and `Q` is false, i.e `¬P ∧ ¬Q`.
+Therefore, we represent `stA` as the following:
+```
+stA : A ∈ Knave ↔ A ∉ Knave ∧ B ∉ Knave
+```
 "
 
 -- A says I am a knave or B is a knave
@@ -24,43 +26,48 @@ Statement
 {inst : DecidableEq Inhabitant}
   {Knight : Finset Inhabitant} {Knave : Finset Inhabitant}
 {h : Knight ∩ Knave = ∅ }
-{all2 : ∀ (x : Inhabitant), x = A ∨ x = B}
-{Or : ∀(x :Inhabitant), x ∈ Knight ∨ x ∈ Knave}
+{h1 :  A ∈ Knight ∨ A ∈ Knave}
+{h2 :  B ∈ Knight ∨ B ∈ Knave}
 {stA : A ∈ Knight ↔ (A ∈ Knave ∨ B ∈ Knave) }
-{stAn : A ∈ Knave ↔ ¬ (A ∈ Knave ∨ B ∈ Knave) }
+{stAn : A ∈ Knave ↔ (A ∉ Knave ∧ B ∉ Knave) }
 : A ∈ Knight ∧ B ∈ Knave := by 
-  -- explain this
-  --push_neg at stAn 
-
+  Template
   have AnKnave : A ∉ Knave := by 
-    -- maybe have these astemplate
+    Hint 
+    "
+Assuming `AKnave : A ∈ Knave`:
+- Prove `ABnotKnave : A ∉ Knave ∧ B ∉ Knave` using `stAn`,`AKnave`.
+- Prove `False` using `ABnotKnave.left : A ∉ Knave` , `AKnave : A ∈ Knave`
+    "
+    Hole
     intro AKnave
-    have ABK := stAn.mp AKnave 
-    -- teach this??
-    -- prove A ∈ Knave ∨ B ∈ Knave
-    exact ABK (by left ; assumption)
-
-   -- exact ABK.left AKnave
+    have ABKnave := stAn.mp AKnave 
+    exact ABKnave.left AKnave
 
   Hint
   "
-Now that we know that `A` is not a knave, then `A` is a knight. 
+Prove `AKnight : A ∈ Knight` using `{AnKnave} : A ∉ Knave` , `notright_left` 
   "
-  have AKnight := notinright_inleft (Or A)  AnKnave
+  Hole
+  have AKnight := notright_left h1  AnKnave
 
   Hint
   "
-From this, we can conclude that `A ∈ Knave ∨ B ∈ Knave`. 
+Prove `AorBKn: A ∈ Knave ∨ B ∈ Knave` using `{AKnight}`, `stA`. 
   "
   have AorBKn := stA.mp AKnight
   Hint
   "
-Since `A ∉ Knave`, we can conclude `B ∈ Knave`.
+Prove `BKnave : B ∈ Knave` using `{AorBKn}` , `{AnKnave}`
   "
-  simp [AnKnave] at AorBKn
-  constructor
-  repeat assumption
+  have BKnave := notleft_right AorBKn AnKnave
+  Hint
+  "
+Prove the goal using `AKnight` , `BKnave`.
+  "
+  exact And.intro AKnight BKnave
 
-Conclusion 
+Conclusion
 "
 "
+NewTheorem not_or

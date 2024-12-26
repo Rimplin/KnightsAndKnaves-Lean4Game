@@ -42,46 +42,42 @@ You will execute tactics one by one until Lean tells you that you have closed th
 
 # More info
 You can click the hamburger menu in the top right then 'Game Info' for more information.
-
 "
 
 Info "
+Many technical details have been skipped for the sake of not getting bogged down with `Lean` and its mathematical library `mathlib`, but focus on the aspects of reasoning and proof. You can visit https://leanprover-community.github.io/mathlib4_docs/ for more information about any tactic used by searching `Mathlib.Tactic.tacticname`, and you can search for theorems used as well.
 
-For example: Game version, Credits, Link to Github and Zulip, etc.
-
-Many technical details have been skipped for the sake of not getting bogged down with Lean and its mathematical library mathlib, but focus on the aspects of reasoning and proof. You can visit https://leanprover-community.github.io/mathlib4_docs/ for more information about any tactic used by searching `Mathlib.Tactic.tacticname`, and theorems.
-
-Zulip chat for lean has been a very useful resource to resolve issues when formalizing the exercises, you can visit it and ask questions in the '#new members' stream. You can also view messages without signing up. There are other streams dedicated to various topics you can check out as well. 
+Zulip chat for lean has been a very useful resource to resolve issues when formalizing the exercises, you can visit it and ask questions in the '#new members' stream. You can also view messages without signing up. There are other streams dedicated to various topics you can check out as well.
 
 # Editor Mode 
-## copy and paste your solutions somewhere else
-Some levels will force you to use editor mode. Editor mode is necessary for multiline tactics. Moreover, you should get used to it because it mimics a vscode Lean environment which is the most common way Lean is run.
+Some levels will force you to use editor mode. Editor mode is necessary for multiline tactics like `have`. Moreover, you should get used to it because it mimics a vscode `Lean` environment which is the most common way `Lean` is run.
 
 To access editor mode, click on the icon to the left of the hamburger menu in the top right.
-You can copy and paste your solutions if you have Lean setup, or you can use the lean web editor: https://live.lean-lang.org/ if you want to experiment with your solutions outside the lean game.
-Make sure to have `import Mathlib.Tactic` at the top and then to copy whats above the editor area which is the problem statement. Each problem statement is of the form `example ... :=  by` and after that is where your solution should go.
 
 ## vscode like environment
 Hovering over things will give you useful information.
+
 # Links 
+## documentation
 https://leanprover-community.github.io/
 https://lean-lang.org/
 https://lean-lang.org/documentation/
 
 https://github.com/leanprover-community/mathlib4
 
+## zulip, ask questions
 https://leanprover.zulipchat.com/
 https://zulip.com/case-studies/lean/
 
-# how to navigate documentation
-You can use https://leanprover-community.github.io/mathlib4_docs/ for Lean and mathlib related documentation. You can see 'Lean', 'Mathlib' in the left side pane, clicking on either will expand them. A more effective way of finding what you want is using the search feature of this page , using 'Go To Definition' if you have vscode setup for Lean and mathlib, or hovering over things to get more information
-
--- consider removing # Rules
 # Rules
-You can relax the rules.
+You can relax the rules and skip levels.
 
 This is not recommended for people who have never heard about Lean before. Moreover, relaxing the rules would ruin the coherence and structured/guided experience you would have when playing the game normally. If that is what you are looking for, then don't relax the rules.
 
+# Github
+The game's repository is on 
+
+You can view the code for every level.(and the solution there)
 "
 
 /-! Information to be displayed on the servers landing page. -/
