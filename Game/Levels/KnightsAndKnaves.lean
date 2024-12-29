@@ -50,28 +50,4 @@ Both can be combined as:
 ```
 stAn : A ∈ Knave ↔ ¬(A ∈ Knave)
 ```
-
-`P ↔ Q`  is defined as `(P → Q) ∧ (Q → P)`. 
-
-Its truth table looks like the folowing:
-$
-\\begin{array}{|c c|c c|c|} 
-\\hline
-P & Q & P → Q & Q → P & P → Q ∧ Q → P\\\\
-\\hline
-T & T & T & T & T \\\\
-\\hline
-T & F & F & T & F \\\\
-\\hline
-F & T & T & F & F \\\\
-\\hline
-F & F & T & T & T \\\\
-\\hline
-\\end{array}
-$
-
-So, `P ↔ Q` is true when `P,Q` are true or `P,Q` are false, i.e when `P` and `Q` have the same truth value. Therefore, `P` and `Q` are equivalent from a truth value perspective regardless what the statement of `P` and of `Q` is.
-
-The forward direction of `h :P ↔ Q` is `h.mp : P → Q`. 
-The backward direction of `h :P ↔ Q` is `h.mpr : Q → P`. 
 "

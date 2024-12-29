@@ -23,6 +23,7 @@ Clicking on one will display an overview and some examples. This will be availab
 Any new tactic, theorem, or definition introduced in a level will be highlighted in a yellow color.
 
 We now discuss each section in the right side pane.
+(note that you can view the official documentation of tactics or theorems by hovering over a term when you are in editor mode, you can enter editor mode by clicking the icon next to the hamburger menu that is in the top right hand corner)
 ## Tactics
 In this puzzle game, you will use tactics to manipulate the `Goal` and close it, essentially proving the `Goal`. Tactics will be incrementally introduced, and tactics that haven't been introduced yet will have a lock icon which means you can't use them yet. 
 
@@ -52,12 +53,12 @@ Zulip chat for lean has been a very useful resource to resolve issues when forma
 # Editor Mode 
 Some levels will force you to use editor mode. Editor mode is necessary for multiline tactics like `have`. Moreover, you should get used to it because it mimics a vscode `Lean` environment which is the most common way `Lean` is run.
 
-To access editor mode, click on the icon to the left of the hamburger menu in the top right.
+To access editor mode, click on the icon next to the hamburger menu in the top right.
 
 ## vscode like environment
-Hovering over things will give you useful information.
+Hovering over things will give you the official documentation of things.
 
-# Links 
+# Links
 ## documentation
 https://leanprover-community.github.io/
 https://lean-lang.org/
@@ -69,6 +70,14 @@ https://github.com/leanprover-community/mathlib4
 https://leanprover.zulipchat.com/
 https://zulip.com/case-studies/lean/
 
+## Knights and Knaves
+https://www.wolframcloud.com/objects/demonstrations/KnightsAndKnavesPuzzleGenerator-source.nb
+
+Knights and Knaves in Prolog
+https://www.youtube.com/watch?v=oEAa2pQKqQU
+
+Blog post series, includes introduction ,representation and formalization, automated solutions using other provers, and creating your own puzzles.
+https://summerofgodel.blogspot.com/search/label/Knights%20and%20Knaves%20puzzle
 # Rules
 You can relax the rules and skip levels.
 

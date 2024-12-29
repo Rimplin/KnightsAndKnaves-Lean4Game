@@ -16,10 +16,10 @@ Statement inright_notinleft
   {left : Finset K} {right : Finset K}
 {inst : DecidableEq K}
 (h : left ∩ right = ∅ )
-(h' : A ∈ right) : A ∉ left := by
+(Aright : A ∈ right) : A ∉ left := by
   intro a 
   Hint "Look familiar? This is exactly like the previous level which gave us `disjoint` theorem."
-  exact disjoint h a h'
+  exact disjoint h a Aright
 
 ----
   --rw [Finset.inter_comm] at h

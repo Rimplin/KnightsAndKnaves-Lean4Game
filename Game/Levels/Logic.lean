@@ -5,7 +5,7 @@ import Game.Levels.Logic.L04_Implication
 import Game.Levels.Logic.L05_ImpGoal
 import Game.Levels.Logic.L06_Not
 import Game.Levels.Logic.L07_False
---import Game.Levels.Logic.L08_logicalequiv
+import Game.Levels.Logic.L08_LogicalEquivalence
 
 World "Logic"
 Title "Logic"
@@ -13,7 +13,7 @@ Introduction
 "
 In this world, we will be dealing with `Objects` of type `Prop` i.e propositions. You can think of a proposition as a statement that is either true or false(obviously, it can't be both at the same time). You have seen propositions before like `x=2`, `y=6` etc..
 
-When you have `h : P` where `P : Prop` , then we say `h` is a proof of the statement `P`(imagine `x=2` instead of `P` if you wish). 
+When you have `h : P` where `P : Prop` , then we say `h` is a proof of the statement `P`(imagine `x=2` instead of `P` if you wish).
 
 In a proof state, this would look like the following:
 ```
@@ -50,7 +50,7 @@ where `P` is `x=2` and `Q` is `y=6`, we can construct a new proposition `P ∧ Q
 #check iff_false
 #check Or.elim
 #check not_not
--- false_or or_false not_true not_false_eq_true not_true_eq_false true_or or_true
+-- not_true not_false_eq_true not_true_eq_false
 
 variable {emTruth : (P : Prop) → P = True ∨ P = False}
 
@@ -58,7 +58,6 @@ variable {emTruth : (P : Prop) → P = True ∨ P = False}
 #check not_true_eq_false
 #check refl
 #check eq_self
-#check eq_false
      #check Implies.trans
      #check trans
      #check Eq.trans

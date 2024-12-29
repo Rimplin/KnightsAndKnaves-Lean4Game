@@ -12,10 +12,10 @@ theorem inleft_notinright
   [inst : DecidableEq K]
   {left : Finset K} {right : Finset K}
 (h : left ∩ right = ∅ )
-(h' : A ∈ left) : A ∉ right := by
+(Aleft : A ∈ left) : A ∉ right := by
   intro a 
   #check Finset.mem_inter_of_mem
-  have := Finset.mem_inter_of_mem h' a
+  have := Finset.mem_inter_of_mem Aleft a
   rw [h] at this
   contradiction
 
@@ -23,9 +23,9 @@ theorem inright_notinleft
   [inst : DecidableEq K]
   {left : Finset K} {right : Finset K}
 (h : left ∩ right = ∅ )
-(h' : A ∈ right) : A ∉ left := by
+(Aright : A ∈ right) : A ∉ left := by
   intro a 
-  have := Finset.mem_inter_of_mem h' a
+  have := Finset.mem_inter_of_mem Aright a
   rw [Finset.inter_comm] at h
   rw [h] at this
   contradiction

@@ -29,28 +29,23 @@ Notice that this definition is an implication and that the truth table with `¬P
 
 What this means is that to prove `¬P`, we assume `P` and derive a contradiction i.e constructing an object of type `False`. 
 In other words, having `¬P` as a goal, you have to start the proof with `intro` because you are proving an implication.
-
-It represents a contradiction. `False` elimination rule, `False.rec`,
-expresses the fact that anything follows from a contradiction.
-This rule is sometimes called ex falso (short for ex falso sequitur quodlibet),
-or the principle of explosion.
-For more information: [Propositional Logic](https://lean-lang.org/theorem_proving_in_lean4/propositions_and_proofs.html#propositional-logic)
-
-Proving `False` means deriving a contradiction. So, to prove `¬p` , you must assume `p` and derive a contradiction. 
 -/
 DefinitionDoc Not as "¬"
 
 /--
-This principle asserts that if you have contradictory assumptions then you can prove anything.
-Example of contradictory assumptions:
-```
-h: P
-nh: ¬P
-```
-
 Proving `False` means deriving a contradiction.
 
-A contradiction is when `p` and `¬p` are both true.
+A contradiction is when `P` and `¬P` are both true. We say that `P` and `¬P` contradict each other.
+
+# Principle of explosion, from `False` anything follows.
+This principle asserts that if you have contradictory assumptions then you can prove anything.
+```
+hP: P
+hnP: ¬P
+```
+Since `hnP : ¬P` is `P → False` , we can obtain `hnP hP : False`.
+
+Moreover, we know that `hFQ : False → Q` for any `Q : Prop` and so `hFQ (hnP hP) : Q`. (using `contradiction` after having proven `False` will close any goal as well)
 -/
 DefinitionDoc False as "`False`"
 
@@ -59,14 +54,13 @@ You can think of a proposition as a statement that is either true or false(obvio
 
 Moreover, these statements are denoted by a symbol like `P`,`Q`,`R`.
 
-For an object of type P where P is of type Prop, i.e `h : P` where `P : Prop`, `h` would be a proof or a witness that `P` is true. Equivalently, from `h` we can construct a term `h' := eq_true h of type `h' : P = True` which would be a proof that P is true as well. Both perspectives are interchangeable and equivalent.
+For an object of type `P` where `P` is of type Prop, i.e `h : P` where `P : Prop`, `h` would be a proof or a witness that `P` is true.
 
 # Constructing new propositions from old ones
 The atomic propositions in the compound proposition `p ∧ q` are : `p`, `q`. Of course, `p ∧ q` can be used to construct more complicated propositions.
 
 ## Connecting Propositions With A Logical Connective
-It is important to note that connecting two proposition via a logic connective results in a proposition as well. If this wasn't the case, then how could we talk about the truth value of `P ∧ Q` if `P ∧ Q` were not a proposition! This proposition constructed using a logical connective and other propositions, like any other proposition, has a truth value. This truth value depends on the truth value of the propositions it was built out of and the rules of the logical connective. This is clearly illustrated in a truth table. 
-
+This truth value depends on the truth value of the propositions it was built out of and the rules of the logical connective. This is clearly illustrated in a truth table. 
 
 # Truth table
 The truth table of a logical connective illustrates the rule for that logical connective , i.e the truth value of the compound statement depending on the truth value of the propositions it connects.
@@ -109,9 +103,6 @@ In other words, it acts like a function. If you give `P → Q` a proof of `P`, y
 DefinitionDoc imp as "→"
 
 /--
-
-`And.intro` takes a proof of `P`, a proof of `Q`, and transforms/evaulates them to a proof of `P ∧ Q` where `P Q : Prop`.
-
 Truth table:
 
 $
@@ -173,7 +164,7 @@ From the truth table, we can see that if one of `P`,`Q` is true then `P ∨ Q` i
 
 Therefore, if we have `P ∨ Q` as our goal, it is enough to prove `P` or to prove `Q`.
 
-Having `P ∨ Q` as the goal, you can tell Lean that you want the left side by simply typing `left` or the right side by simply typing `right`.
+Having `P ∨ Q` as the goal, you can tell Lean that you want to prove the left side by simply typing `left` or the right side by simply typing `right`.
 -/
 DefinitionDoc or as "∨"
 
@@ -186,8 +177,10 @@ A ∩ B
 ```
 
 `A ∩ B` is itself another set, containing elements that are in both `A` and `B`.
+In other words, `x ∈ A ∩ B ↔ x ∈ A ∧ x ∈ B`.
 
 `A ∩ B = ∅` means that `A` and `B` have no common element i.e no element of `A` belongs to both and no element of `B` belongs to both.
+In other words, `x ∈ A → x ∉ B` , `x ∈ B → x ∉ A` which are `inleft_notinright` and `inright_notinleft` respectively.
 -/
 DefinitionDoc inter as "∩"
 
@@ -207,10 +200,34 @@ x - 7 = x - 7
 TacticDoc rfl
 
 /--
-The assumption tactic can also be used here which searches for an assumption that matches the goal, and closes the goal if it finds one.
+The assumption tactic searches for an assumption that matches the goal, and closes the goal if it finds one.
+
+Given,
+```
+Objects
+P : Prop
+
+Assumptions
+hP : P
+
+Goal
+P
+```
+`assumption` will close the goal.
 -/
 TacticDoc assumption
 
+/--
+Given,
+```
+PorQ : P ∨ Q
+
+Goal
+some-goal
+```
+`cases PorQ` will first assume `P` and ask you to prove `some-goal` and then it will assume `Q` and ask you to prove `some-goal`. So in both cases, `some-goal` is true. Therefore we can conclude `some-goal`. This is called a proof by cases.
+-/
+TacticDoc cases
 /--
 `intro` tactic is used to deal with goals of the form `P → Q`.
 
@@ -232,6 +249,18 @@ TacticDoc constructor
 
 /--
 Contradiction is a tactic that detects if you have contradictory assumptions and if so, closes the goal.
+
+Having
+```
+h : False
+```
+or
+```
+hP : P 
+hnP : ¬P
+```
+(or other 'simple' contradictions)
+`contradiction` will close any goal.
 -/
 TacticDoc contradiction
 
@@ -321,6 +350,18 @@ AinBoth : A ∈ left ∩ right
 TacticDoc «have»
 
 /--
+`And.intro` takes a proof of `P`, a proof of `Q`, and gives a proof of `P ∧ Q` where `P Q : Prop`.
+
+Given,
+```
+hP : P
+hQ : Q
+```
+we have `And.intro hP hQ : P ∧ Q`
+-/
+TheoremDoc And.intro as "And.intro" in "And"
+
+/--
 Refer to `Prop` documentation if you need to.
 
 ## Overview
@@ -345,6 +386,8 @@ This is done by `exact h`.
 TacticDoc exact
 
 /--
+Here we introduce the `have` tactic which allows us to add theorems to the context(which you would have to prove, of course). 
+
 ```
 `have name-of-object : type := by ...` 
 ```

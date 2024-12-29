@@ -7,6 +7,9 @@ Title ""
 
 Introduction
 "
+`
+A ∈ Knight → A ∈ Knave ∧ B ∉ Knave
+`
 Suppose `A` says 'I am a knave, but `B` is not' i.e `A ∈ Knave ∧ B ∉ Knave`.
 
 For `stAn` we would have `A ∈ Knave ↔ ¬(A ∈ Knave ∧ B ∉ Knave)` which is equivalent to:
@@ -16,8 +19,10 @@ stAn : A ∈ Knave ↔ A ∉ Knave ∨ B ∈ Knave
 "
 
 Statement
-  {inst : DecidableEq Inhabitant}
-  {Knight : Finset Inhabitant} {Knave : Finset Inhabitant}
+{inst : DecidableEq Inhabitant}
+{A B : Inhabitant}
+{Knight : Finset Inhabitant}
+{Knave : Finset Inhabitant}
 {h : Knight ∩ Knave = ∅ }
 {h1 : A ∈ Knight ∨ A ∈ Knave }
 {h2: B ∈ Knight ∨ B ∈ Knave }
@@ -27,7 +32,7 @@ Statement
   Template
   have AnKnight : A ∉ Knight := by
     Hole
-    Hint 
+    Hint
     "
     Assuming `AKnight : A ∈ Knight`:
     - Prove `AKnBnKn : A ∈ Knave ∧ B ∉ Knave` using `AKnight`, `stA`
@@ -40,7 +45,7 @@ Statement
   Hole
   Hint "Prove `AKnave : A ∈ Knave` using `notleft_right` , `{AnKnight} : A ∉ Knight`"
   have AKnave := notleft_right h1 AnKnight
-  Hint "Prove `AnKnBKn : A ∉ Knave ∨ B ∈ Knave` using `{AKnave} : A ∈ Knave` ,`stAn` "
+  Hint "Prove `AnKnBKn : A ∉ Knave ∨ B ∈ Knave` using `{AKnave} : A ∈ Knave` ,`stAn`"
   have AnKnBKn := stAn.mp AKnave
   Hint "Prove `BKnave : B ∈ Knave` using  `A ∉ Knave ∨ B ∈ Knave` and `{AKnave} : A ∈ Knave`. Use `simp` here. "
   simp [AKnave] at AnKnBKn

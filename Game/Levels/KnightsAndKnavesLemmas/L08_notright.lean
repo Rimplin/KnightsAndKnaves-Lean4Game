@@ -21,10 +21,8 @@ Use `have` and `eq_false` to get `Q = False`.
 
 "
 
-#check or_false_iff
 #check or_iff_not_imp_left
 #check or_iff_not_imp_right
-#check notright_left
 Statement notright_left {P Q : Prop} (Or : P ∨ Q) (notright : ¬Q) (hPF : P ∨ False → P) : P := by
 {
   have := eq_false notright
@@ -33,25 +31,23 @@ Statement notright_left {P Q : Prop} (Or : P ∨ Q) (notright : ¬Q) (hPF : P �
   Hint "
   Since `P ∨ False` is true, then either `P` is true or `False` is true. Therefore, `P` must be true.
 
-  Use the implication `hPF` to conclude `P` andclose the goal.
-
+Use `or_false_iff (p : Prop) : (p ∨ False) ↔ p` to reduce `Or : P ∨ False` to `Or : P` , then use `Or : P` to prove the goal.
   "
-  exact hPF Or
+  rw [or_false_iff] at Or
+  assumption
 }
-/-
-
-```
-or_false_iff (p : Prop) : p ∨ False ↔ p
-```
-
-  `P` and `P ∨ False` have the same truth value. We know `P ∨ False` is true, therefore `P` is true.
-
--/
 #check or_false_iff
 
 Conclusion 
 "
+Instead of doing it manually, you can instead use `simp` tactic.
+
+The `simp` tactic uses lemmas and hypotheses to simplify the main goal target or some assumption.
+
+`simp [notright] at Or` does the job. It simplifies `Or` using `notright` and various theorems called 'simp lemmas' , the ones relevant here are `or_false_iff` and `eq_false`.
+
+`simp` will simplify `Or` with the theorems you gave, in this case `notright : ¬Q`. The resulting simplified expression would be `Or : P`.
 "
 
-NewTheorem notright_left eq_false
+NewTheorem notright_left eq_false or_false_iff
 NewTactic simp

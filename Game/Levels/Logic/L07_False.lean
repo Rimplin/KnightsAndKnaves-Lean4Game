@@ -11,7 +11,7 @@ We proved `False`, what does this mean? What can we conclude? What does `False` 
 
 Let's check the `→` truth table:
 $$
-\\begin{array}{|c|c|c|} 
+\\begin{array}{|c|c|c|}
 \\hline
 P & Q & P → Q \\\\
 \\hline
@@ -28,7 +28,7 @@ $$
 
 Let's focus on part of the truth table where `P` is `False`, because we want to see what `False` implies.
 $$
-\\begin{array}{|c|c|c|} 
+\\begin{array}{|c|c|c|}
 \\hline
 Q & False → Q \\\\
 \\hline
@@ -42,11 +42,10 @@ $$
 We have that the implication `False → Q` is true regardless what `Q` represents and regardless whether `Q` is true or is false. 
 So `False` implies any proposition. This principle is known as: 'From `False` anything follows'.
 
-Use this implication to prove `Q` where `Q` is any proposition.
+Use the implication `False.elim (h : False) : C` to prove `Q` where `Q` is any proposition.
 "
-
-Statement {Q : Prop} (h : False → Q) (hF : False) : Q := by 
-  exact h hF
+Statement {Q : Prop} (hF : False) : Q := by
+  exact False.elim hF
 
 Conclusion
 "
@@ -57,3 +56,4 @@ Proving `False` is what's usually called deriving a contradiction, and note that
 
 NewTactic contradiction
 NewDefinition False Not
+NewTheorem False.elim

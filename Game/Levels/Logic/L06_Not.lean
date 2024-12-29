@@ -47,7 +47,7 @@ Notice that regardless of the truth value of `P`, the two propositions `¬P` and
 
 What `¬P` means is that if `P` were true, then we can deduce a contradiction. We know that `P` is true. Therefore, we can prove a contradiction which is the goal.
 
-To see `¬P` in its implication form, you can do `unfold Not at hnP` to unfold the definition of `¬`.
+To see `¬P` in its implication form, you can do `unfold Not` to unfold the definition of `¬`. Note that this would apply to the goal, and so `unfold Not at hnP` applies at `hnP`.
 
 "
 

@@ -48,14 +48,6 @@ In our case, `b ↔ a` is `A ↔ ¬C`.
     #check not_iff_self
     exact not_iff_self stA.symm
 
-    --simp only [nC,not_false_eq_true,true_implies] at stA 
-    ----nth_rw 1 [stA] at stB
-    --simp [nC] at stB
-    --rw [stB] at stA
-    --#check iff_not_self
-    --apply iff_not_self
-    --exact stA
-
   Hole
   Hint 
   "
@@ -88,12 +80,11 @@ Rewrite `stA` using `iff_true_iff`.
 - Prove `¬B` using and conclude the goal
   "
   simp [hC] at stB
-  rw [iff_not_comm] at stB 
+  rw [iff_not_comm] at stB
   have nB := stB.mp stA
-  exact ⟨stA,nB,hC⟩ 
+  exact ⟨stA,nB,hC⟩
 
 Conclusion
 "
 "
 NewTheorem iff_true_right true_implies eq_true not_iff_self not_true false_implies iff_true_iff
-

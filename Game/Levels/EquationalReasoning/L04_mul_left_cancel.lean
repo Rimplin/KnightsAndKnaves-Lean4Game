@@ -1,14 +1,10 @@
 import Game.Metadata
 
-import Game.Doc.doc
-
 World "EquationalReasoning"
 Level 4
 
 Title "`Nat.mul_left_cancel` , Divide both sides of an equation"
 
--- Nat.mul_left_cancel {n m k : ℕ} (np : 0 < n) (h : n * m = n * k) : m = k
-#check Nat.mul_left_cancel
 Introduction
 "
 We know that `4 * y = 16`. Dividing both sides by `4` gives us `y = 4` which is the goal.
@@ -25,7 +21,6 @@ The `secondarg` would be the equation you are working with, in this case `h`.
 
 Give this proof to Lean using `exact`.
 "
--- The type of `Nat.mul_left_cancel firstarg secondarg` would be the equation after cancelling a number from both sides.
 
 Statement (h : 4*y=16) : y = 4 := by{
   exact Nat.mul_left_cancel four_pos h
@@ -33,8 +28,6 @@ Statement (h : 4*y=16) : y = 4 := by{
 
 /-
 --------------
-Here we introduce the `have` tactic which allows us to add theorems to the context(which you would have to prove, of course). 
-
 We will add the theorem `16=4*4` to the proof state, and use it to prove the goal.
 
 Heres an example:
@@ -56,8 +49,8 @@ example (h : 4*y=16) : y = 4 := by{
   For the proof, we need to carry out the calculation of `4 * 4` and as in the previous level, the tactic for that is `norm_num`. Typing that as the proof will work. 
   "
 
-  --Hint (hidden := true) (strict := true) "Try `have helper : 16=4*4 := by norm_num`" 
   -- Notice that if `16` were in the goal, you would do `rw [{helper}]` to replace `16` with with `4*4`. We want to do the same thing at `h`. So, `rw ... at h` will do it. 
+
   have helper : 16=4*4 := by norm_num 
   Hint "Now, using `rw`, we want to replace the `16` in `h` with `4 * 4`. "
   -- In other words, we want to do `rw [{helper}]` and have it be applied on h. 
@@ -91,17 +84,12 @@ example (h : 4*y=16) : y = 4 := by{
 
   Adapt this to the current problem.
   "
-  /-
-   mul_left_cancel₀ ha h
-
-   The theorem then cancels `a`(`4`) from both sides giving a proof of `b=c`(`y=4`). This is exactly what we want to prove the goal.
-  -/
   Hint (hidden:=true) "
   Notice that `mul_left_cancel₀ four_ne_zero h` has type `y = 4`. So, `exact mul_left_cancel₀ four_ne_zero h` will do it."
   exact Nat.mul_left_cancel four_pos h
 }
 
-Conclusion 
+Conclusion
 "
 Here is the type signature of Nat.mul_left_cancel:
   ```
