@@ -1,3 +1,6 @@
+# Theorem prover game
+
+
 # Game Skeleton
 
 This is a template for creating a game with [lean4game](https://github.com/leanprover-community/lean4game/). It contains a single Level plus the files needed for a local development setup.
