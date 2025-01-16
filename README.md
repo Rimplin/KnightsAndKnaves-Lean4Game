@@ -1,5 +1,8 @@
 # Theorem prover game
 
+## worlds
+
+## objective
 
 # Game Skeleton
 
