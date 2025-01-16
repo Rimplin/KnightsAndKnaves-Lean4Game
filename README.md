@@ -1,17 +1,19 @@
-# Theorem prover game
+# Educational Theorem Prover Game
+The following game offers a guided experience that teaches you the basics of proving theorems on a computer, specifically using the Lean theorem prover.
 
-## worlds
+The final objective of the game is to teach you how to solve knights and knaves logic puzzles in a theorem prover. No pre-requisite knowledge of logic is needed or what the puzzle is, everything needed is slowly introduced in each world with plenty of hints and explanations.
 
-## objective
+## Worlds
+The game is divided into the following worlds:
+- Equational Reasoning
+- Logic
+- Knights and Knaves Lemmas
+- Knights and Knaves
 
-# Game Skeleton
+# How This Was Made, How To Run Locally
+Follow instructions at [Game Skeleton](https://github.com/hhu-adam/GameSkeleton) to make your own game or to run this one locally.
 
-This is a template for creating a game with [lean4game](https://github.com/leanprover-community/lean4game/). It contains a single Level plus the files needed for a local development setup.
+This project was a collaboration between myself and [@limb0007](https://github.com/limb0007)
 
-The documentation about how to use this template are at the [lean4game repository](https://github.com/leanprover-community/lean4game/):
-
-* [Creating a new game](https://github.com/leanprover-community/lean4game/blob/main/doc/create_game.md)
-  * [Updating an existing game](https://github.com/leanprover-community/lean4game/blob/main/doc/update_game.md)
-  * [Running a game locally](https://github.com/leanprover-community/lean4game/blob/main/doc/running_locally.md)
-
-
+# Coming soon, play in your browser
+This game will be uploaded to play at https://adam.math.hhu.de, no installation of lean or other tools needed.
