@@ -15,6 +15,8 @@ Title ""
 
 Introduction
 "
+From Raymond Smullyan's book called 'What is the name of this book', part 1 chapter 3 problem 26
+
 Three of the inhabitants `A`, `B`, and `C` were standing together in a garden.
 
 A stranger passed by and asked `A`, 'Are you a knight or a knave?'. `A` answered, but rather indistinctly, so the stranger could not make out what he said.

@@ -7,12 +7,17 @@ Title ""
 
 Introduction
 "
-`
-A ∈ Knight → A ∈ Knave ∧ B ∉ Knave
-`
+From Raymond Smullyan's book called 'What is the name of this book', part 1 chapter 3 problem 33
+
 Suppose `A` says 'I am a knave, but `B` is not' i.e `A ∈ Knave ∧ B ∉ Knave`.
 
-For `stAn` we would have `A ∈ Knave ↔ ¬(A ∈ Knave ∧ B ∉ Knave)` which is equivalent to:
+Formally,
+```
+stA: A ∈ Knight → A ∈ Knave ∧ B ∉ Knave
+stAn : A ∈ Knave ↔ ¬(A ∈ Knave ∧ B ∉ Knave)
+```
+
+For `stAn`, the statement is equivalent to:
 ```
 stAn : A ∈ Knave ↔ A ∉ Knave ∨ B ∈ Knave
 ```
@@ -53,4 +58,5 @@ Statement
 
 Conclusion
 "
+In the next world, we present a different way to represent the knights and knaves puzzle which would affect what the solution looks like(the patterns of reasoning won't change though, only their execution).
 "

@@ -39,7 +39,6 @@ Statement {A B C : Prop}
       have AsameC := stBn.mp hCnB.right
       have nAiffC:= iff_of_true nA hCnB.left
       #check not_iff
-      #check not_not
       contradiction
 
     Hole

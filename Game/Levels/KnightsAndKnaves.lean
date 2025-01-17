@@ -4,13 +4,6 @@ import Game.Levels.KnightsAndKnaves.IKnaveOrKnave
 import Game.Levels.KnightsAndKnaves.prob33
 World "KnightsAndKnaves"
 Title "Knights And Knaves"
---'stA' stands for 'statement of A'
-/-
-In a proof state, this would look like:
-```
-A ∈ Knave
-```
--/
 
 Introduction 
 "

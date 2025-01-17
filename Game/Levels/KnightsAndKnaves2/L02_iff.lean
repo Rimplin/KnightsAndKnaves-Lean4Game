@@ -116,5 +116,5 @@ The proof of the second case for `h : B` is similar.
 Conclusion
 "
 "
-NewTactic constructor
+NewTactic constructor by_contra
 NewTheorem iff_of_false iff_of_true

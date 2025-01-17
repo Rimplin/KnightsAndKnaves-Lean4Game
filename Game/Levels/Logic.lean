@@ -49,7 +49,6 @@ where `P` is `x=2` and `Q` is `y=6`, we can construct a new proposition `P ∧ Q
 #check false_iff
 #check iff_false
 #check Or.elim
-#check not_not
 -- not_true not_false_eq_true not_true_eq_false
 
 variable {emTruth : (P : Prop) → P = True ∨ P = False}

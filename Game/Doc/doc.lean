@@ -598,19 +598,25 @@ Or : A ∈ Knight ∨ A ∈ Knave
 ```
 
 ## Translating statements to formal notation
-Knight version...
-Given inhabitant `A`:
+Given an inhabitant `A`,
 
 The translation we use is based on the following:
 - If `A` is a knight, then `A`'s statement is true.
-- If `A`'s statement is true, then `A` is a knight.
+- If `A`'s statement is true, then `A` is telling the truth i.e is a knight.
 
 Formally:
 ```
-A ∈ Knight → stA
-stA → A ∈ Knight
+A ∈ Knight → statement-of-A
+statement-of-A → A ∈ Knight
+```
+where `statement-of-A : Prop` represents `A`'s statement.
+
+Combining them we get,
+```
+stA : A ∈ Knight ↔ statement-of-A
 ```
 
+### Quick Example
 If,
 ```
 A says B is a knave
@@ -624,22 +630,29 @@ B ∈ Knave → A ∈ Knight
 
 Combining them using `↔`:
 ```
-A ∈ Knight ↔ B ∈ Knave
+stA : A ∈ Knight ↔ B ∈ Knave
 ```
 
 ### equivalent translations, using knaves
-Given inhabitant `A`:
+Given inhabitant `A`,
 
 The translation we use is based on the following:
 - If `A` is a knave, then `A`'s statement is false, i.e its negation is true.
-- If `A`'s statement is false, then `A` is a knave.
+- If `A`'s statement is false, then `A` is lying i.e is a knave.
 
 Formally:
 ```
-A ∈ Knave → ¬stA
-¬stA → A ∈ Knave
+A ∈ Knave → ¬statement-of-A
+¬statement-of-A → A ∈ Knave
+```
+where `statement-of-A : Prop` represents `A`'s statement.
+
+Combining them we get,
+```
+stAn : A ∈ Knave ↔ ¬statement-of-A
 ```
 
+### Quick Example
 If,
 ```
 A says B is a knave
@@ -653,42 +666,15 @@ A ∈ Knave → ¬(B ∈ Knave)
 
 Combining them using `↔`:
 ```
-A ∈ Knave ↔ ¬(B ∈ Knave)
+stAn : A ∈ Knave ↔ ¬(B ∈ Knave)
 ```
 -/
 DefinitionDoc KnightsKnaves as "Knights and Knaves"
 
---# Xor
---To introduce Xor, introduce as the negation of if and only if. Xor is inequivalence, Xor is such that exactly one of the propositions is truei.e exclusive or. 
---
---def Xor' (a b : Prop) := (a ∧ ¬ b) ∨ (b ∧ ¬ a)
---
---# Exclusive Or 
---
---## Rewriting Xor'
---`Xor' p q` can be rewritten as:
---```
---(p ∧ ¬q) ∨ (¬p ∧ q)
---```
---To rewrite `Xor'` in the goal:
---```
---rw [Xor']
---```
---
---To rewrite `Xor'` in hypothesis `h`:
---```
---rw [Xor'] at h
---```
----/
---DefinitionDoc Xor' as "Xor'" 
---NewDefinition Xor' 
-
-DefinitionDoc Nat as "ℕ"  
-
+DefinitionDoc Nat as "ℕ"
 
 /--
 ### **Logic Constants & Operators**
-### **Equational Reasoning**
 | $Name~~~$ | $Ascii~~~$ | $Unicode$ | $Unicode Cmd$ |
 | --- | :---: | :---: | --- |
 | True | `True` |  |  |
