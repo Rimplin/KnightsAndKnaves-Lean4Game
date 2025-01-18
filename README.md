@@ -14,6 +14,3 @@ The game is divided into the following worlds:
 Follow instructions at [Game Skeleton](https://github.com/hhu-adam/GameSkeleton) to make your own game or to run this one locally.
 
 This project was a collaboration between myself and [@limb0007](https://github.com/limb0007)
-
-# Coming Soon, play in your browser
-This game will be uploaded to play at https://adam.math.hhu.de, no installation of lean or other tools needed when that happens.
