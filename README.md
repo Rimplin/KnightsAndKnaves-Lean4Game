@@ -14,7 +14,8 @@ The game is divided into the following worlds:
 Most of the puzzles in smullyan's book titled 'What is the name of this book' have been formalized and proven.
 You can find examples here: 
 
-# How This Was Made, How To Run Locally
+# Run Locally, Make Your Own Game
 Follow instructions at [Game Skeleton](https://github.com/hhu-adam/GameSkeleton) to make your own game or to run this one locally.
 
+# Credits
 This project was a collaboration between myself and [@limb0007](https://github.com/limb0007)
