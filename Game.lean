@@ -4,7 +4,7 @@ import Game.Levels.KnightsAndKnavesLemmas
 import Game.Levels.KnightsAndKnaves
 import Game.Levels.KnightsAndKnaves2
 
-Title "Reasoning"
+Title "Knights And Knaves Game"
 Introduction
 "
 This is a gamification of mathematical proofs. Every level has a `Goal`, which is what you are trying to prove. Closing the `Goal` means you have proved the theorem and there is nothing else to do.
@@ -104,7 +104,7 @@ https://christopherphelps.trinket.io/sites/knight_knave_puzzler
 
 /-! Information to be displayed on the servers landing page. -/
 Languages "English"
-CaptionShort "Knights And Knaves"
+CaptionShort "From the basics to Knights And Knaves"
 CaptionLong "A guided experience that teaches you everything you need to know to understand and solve knights and knaves logic puzzles, including the basics of lean and basic logic.
 
 Based on statements made, you will deductively conclude who is a knight(truthful) and who is a knave(liar)."

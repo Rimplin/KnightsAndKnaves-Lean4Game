@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Sun Jan 26 19:47:59 2025\n"
+"POT-Creation-Date: Wed Jan 29 21:49:06 2025\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -2277,7 +2277,7 @@ msgid "In this world, we also deal with the knights and knaves puzzle with the d
 msgstr ""
 
 #: Game
-msgid "Reasoning"
+msgid "Knights And Knaves Game"
 msgstr ""
 
 #: Game
@@ -2377,7 +2377,7 @@ msgid "Many technical details have been skipped for the sake of not getting bogg
 msgstr ""
 
 #: Game
-msgid "Knights And Knaves"
+msgid "From the basics to Knights And Knaves"
 msgstr ""
 
 #: Game
