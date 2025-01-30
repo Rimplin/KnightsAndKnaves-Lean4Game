@@ -37,8 +37,6 @@ where `P` is `x=2` and `Q` is `y=6`, we can construct a new proposition `P ∧ Q
 
 #check of_eq_true
 #check of_eq_false
-#check eq_true
-#check eq_false
 
 #check imp_false
 #check implies_true

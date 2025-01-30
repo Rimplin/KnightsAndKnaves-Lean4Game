@@ -361,6 +361,40 @@ we have `And.intro hP hQ : P ∧ Q`
 -/
 TheoremDoc And.intro as "And.intro" in "And"
 
+TheoremDoc eq_false as "eq_false" in "Logic"
+
+TheoremDoc eq_true as "eq_true" in "Logic"
+
+TheoremDoc false_implies as "false_implies" in "Logic"
+
+TheoremDoc false_or_iff as "false_or_iff" in "Logic"
+
+TheoremDoc iff_not_comm as "iff_not_comm" in "Logic"
+
+TheoremDoc iff_of_false as "iff_of_false" in "Logic"
+
+TheoremDoc iff_of_true as "iff_of_true" in "Logic"
+
+TheoremDoc iff_true_iff as "iff_true_iff" in "Logic"
+
+TheoremDoc iff_true_right as "iff_true_right" in "Logic"
+
+TheoremDoc not_iff_not as "not_iff_not" in "Logic"
+
+TheoremDoc not_iff_self as "not_iff_self" in "Logic"
+
+TheoremDoc not_or as "not_or" in "Logic"
+
+TheoremDoc not_true as "not_true" in "Logic"
+
+TheoremDoc or_false_iff as "or_false_iff" in "Logic"
+
+TheoremDoc true_implies as "true_implies" in "Logic"
+
+TheoremDoc not_iff as "not_iff" in "Logic"
+
+
+
 /--
 Refer to `Prop` documentation if you need to.
 

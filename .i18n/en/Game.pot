@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Thu Jan 30 09:21:17 2025\n"
+"POT-Creation-Date: Thu Jan 30 14:50:43 2025\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -360,6 +360,70 @@ msgid "`And.intro` takes a proof of `P`, a proof of `Q`, and gives a proof of `P
 "hQ : Q\n"
 "```\n"
 "we have `And.intro hP hQ : P ∧ Q`"
+msgstr ""
+
+#: Game.Doc.doc
+msgid ""
+msgstr ""
+
+#: Game.Doc.doc
+msgid ""
+msgstr ""
+
+#: Game.Doc.doc
+msgid ""
+msgstr ""
+
+#: Game.Doc.doc
+msgid ""
+msgstr ""
+
+#: Game.Doc.doc
+msgid ""
+msgstr ""
+
+#: Game.Doc.doc
+msgid ""
+msgstr ""
+
+#: Game.Doc.doc
+msgid ""
+msgstr ""
+
+#: Game.Doc.doc
+msgid ""
+msgstr ""
+
+#: Game.Doc.doc
+msgid ""
+msgstr ""
+
+#: Game.Doc.doc
+msgid ""
+msgstr ""
+
+#: Game.Doc.doc
+msgid ""
+msgstr ""
+
+#: Game.Doc.doc
+msgid ""
+msgstr ""
+
+#: Game.Doc.doc
+msgid ""
+msgstr ""
+
+#: Game.Doc.doc
+msgid ""
+msgstr ""
+
+#: Game.Doc.doc
+msgid ""
+msgstr ""
+
+#: Game.Doc.doc
+msgid ""
 msgstr ""
 
 #: Game.Doc.doc
