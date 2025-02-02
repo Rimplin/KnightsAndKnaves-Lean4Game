@@ -6,6 +6,7 @@ import Game.LevelLemmas.settheory
 --import Mathlib.Util.Delaborators
 --import Mathlib
 
+import Mathlib.Tactic.Have
 import Mathlib.Tactic.FieldSimp
 import Mathlib.Data.Real.Basic
 import Mathlib.Tactic.Linarith.Frontend

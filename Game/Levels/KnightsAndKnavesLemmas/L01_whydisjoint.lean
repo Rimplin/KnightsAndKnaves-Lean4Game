@@ -28,12 +28,18 @@ This means that `A` belongs to both `left` and `right` i.e `A ∈ left ∩ right
 So, we do have someone who is both a knight and a knave. 
 This would contradict `h` giving us `False` which is the goal.
 
-To show `A ∈ left ∩ right`, use the following
+To show `A ∈ left ∩ right`, we introduce the `have` tactic of the following syntax:
 ```
-Finset.mem_inter : a ∈ s₁ ∩ s₂ ↔ a ∈ s₁ ∧ a ∈ s₂
+have [theorem-name] : [theorem-prop] 
 ```
 
-Notice `have`, ... explain
+We give the following concrete example:
+```
+have a : 2=2
+```
+This would change the goal to `2=2` and when proven, would then add `a` to the list of hypotheses with the original goal.
+
+In other words, `have` allows you to add a theorem/hypothesis, which in this level we want it to be `A ∈ left ∩ right`.
 "
 /-
 Heres an example:
@@ -70,34 +76,52 @@ The two sets Knight and Knave must be disjoint. You can't tell the truth and lie
 
 #check disjoint
 #check Finset.not_mem_empty 
+example (x : False) : False := by
+  revert x
+  exact id
+
 Statement disjoint {inst : DecidableEq Inhabitant}{left : Finset Inhabitant } {right : Finset Inhabitant}
 (Aleft : A ∈ left)
 (Aright : A ∈ right)
 (h : left ∩ right = ∅)
 (A_not_in_Empty : A ∉ (∅ : Finset Inhabitant) )
-: False := by
-  Template
-  have  AinInter : A ∈ left ∩ right:=by
-    Hint (hidden := true) 
+: False := by{
+  have AinInter : A ∈ left ∩ right 
+  Hint
   "
-The backward direction `Finset.mem_inter.mpr : a ∈ s₁ ∧ a ∈ s₂ → a ∈ s₁ ∩ s₂` is needed here.
+Now you have to prove `A ∈ left ∩ right`, which you can do using the following:
+```
+Finset.mem_inter :
+    a ∈ s₁ ∩ s₂ ↔ a ∈ s₁ ∧ a ∈ s₂
+```
+"
+
+  Hint (hidden := true)
   "
-    Hole exact Finset.mem_inter.mpr (And.intro Aleft Aright)
-  Hint "
+Specifically, the backward direction 
+```
+Finset.mem_inter.mpr :
+    a ∈ s₁ ∧ a ∈ s₂ → a ∈ s₁ ∩ s₂
+```
+is needed here.
+  "
+  exact Finset.mem_inter.mpr (And.intro Aleft Aright)
+  Hint
+  "
+Now, notice that {AinInter} has been added.
 But,  `left ∩ right = ∅` so `A ∈ ∅` 
 
   We know that `left ∩ right = ∅`, so replace it with `∅` using `rw` getting `A ∈ ∅`.
 
 `rw [h]` would apply on the goal, but we want it to apply at `{AinInter}`. And so `rw [h] at {AinInter}` will do.
   "
-  Hole
   rw [h] at AinInter
   Hint "
 So now we have `A ∈ ∅` but the empty set is by defintion the set with no elements i.e `¬ (A ∈ ∅)` written as `A_not_in_empty : A ∉ ∅`. Therefore, `False`.
 "
   Hint (hidden := true) " Remember `A ∉ ∅` is `A ∈ ∅ → False` , or use `contradiction`"
   contradiction
-
+}
 
 Conclusion
 "
